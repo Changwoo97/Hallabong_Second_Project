@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+body {
+	margin: 0px;
+}
+
+#nav {
+	text-indent: 15px;
+	user-select: none;
+}
+
+#nav span {
+	padding-left: 2px;
+	padding-right: 2px;
+	cursor: pointer;
+}
+
+#nav .foldable {
+	text-indent: 30px;
+}
+
+
+/* .rotate {
+	transform: rotate(90deg);
+}
+
+.opacity {
+	filter: opacity(50%);
+} */

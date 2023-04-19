@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+#tableMenubar {
+	position: sticky;
+	left: 0px;
+	top: 40px; 
+	width: 100%;
+	height: 40px;
+	background-color: rgb(185, 209, 234);
+}
+
+#tableMenubar table {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+#tableMenubar .padding {
+	width: 10px;
+}
+
+#tableMenubar .pageNum {
+	width: 30px;
+}
+
+#tableMenubar .right {
+	width: 80px;
+}
+
+#tableSearch {
+	position: sticky;
+	left: 0px;
+	top: 80px;
+	background-color: rgb(240, 240, 240);
+}
+
+#tableSearch table {
+	margin-top: 0px;
+	margin-left: auto;
+	margin-right: auto; 
+	margin-bottom: 0px;
+	font-size: 10pt;
+}
+
+#tableSearch table th, #tableSearch table td {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+#tableSearch table th {
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: left;
+}
+
+#tableSearch table td {
+	text-align: center;
+}
+
+#tableSearch input[type="text"] {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+#table {
+	border-collapse: collapse;
+	font-size: 10pt;
+}
+
+#table th, #table td {
+	border: 2px solid rgb(240, 240, 240);
+	white-space: nowrap;
+	padding: 5px;
+}
+
+#table thead {
+	position: sticky;
+	border-top: 1px solid rgb(240, 240, 240);
+	border-bottom: 1px solid white;
+	left: 0px;
+	top: 80px;
+	background-color: white;
+}

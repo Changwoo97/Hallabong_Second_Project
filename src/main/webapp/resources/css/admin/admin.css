@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+body {
+	margin: 0px;
+	overflow: hidden;
+}
+
+#header {
+	height: 40px;
+	background-color: rgb(240, 240, 240);
+}
+
+#aside {
+	float: left;
+	border: 2px solid rgb(240, 240, 240);
+	padding: 15px;
+	width: 200px;
+	overflow: auto;
+	font-size: 10pt;
+	white-space: nowrap;
+}
+
+#movingBorder {
+	float: left;
+	width: 5px;
+	background-color: rgb(240, 240, 240);
+	cursor: e-resize;
+}
+
+#main {
+	float: left;
+	border: 2px solid rgb(240, 240, 240);
+	overflow: scroll;
+}
