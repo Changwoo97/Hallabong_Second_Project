@@ -24,7 +24,7 @@ CREATE TABLE cust (
     gender  CHAR(1),
     dob     DATE,
     reg_tm  TIMESTAMP DEFAULT SYSTIMESTAMP,
-    quit_tm TIMESTAMP,
+    quit_tm TIMESTAMP DEFAULT SYSTIMESTAMP,
     sta     VARCHAR2(20) NOT NULL
 );
 
@@ -40,8 +40,8 @@ CREATE TABLE dlvy (
     recv_addr VARCHAR2(100) NOT NULL,
     fee       NUMBER NOT NULL,
     reg_tm    TIMESTAMP DEFAULT SYSTIMESTAMP,
-    dep_tm    TIMESTAMP,
-    arr_tm    TIMESTAMP,
+    dep_tm    TIMESTAMP DEFAULT SYSTIMESTAMP,
+    arr_tm    TIMESTAMP DEFAULT SYSTIMESTAMP,
     sta       VARCHAR2(20) NOT NULL,
     ord_no    VARCHAR2(20) NOT NULL
 );
@@ -82,10 +82,8 @@ CREATE TABLE prod (
     name   VARCHAR2(100) NOT NULL,
     cost   NUMBER NOT NULL,
     sp     NUMBER NOT NULL,
-    inv    NUMBER NOT NULL,
     s_img  VARCHAR2(100),
     l_img  VARCHAR2(100),
-    "DESC" VARCHAR2(2000),
     cat_no NUMBER NOT NULL,
     reg_tm TIMESTAMP DEFAULT SYSTIMESTAMP
 );
@@ -98,7 +96,7 @@ CREATE TABLE qa (
     q        VARCHAR2(2000),
     q_reg_tm TIMESTAMP DEFAULT SYSTIMESTAMP,
     a        VARCHAR2(2000),
-    a_reg_tm TIMESTAMP,
+    a_reg_tm TIMESTAMP DEFAULT SYSTIMESTAMP,
     sta      VARCHAR2(20) NOT NULL
 );
 
@@ -107,6 +105,19 @@ CREATE TABLE rev (
     prod_no VARCHAR2(20) NOT NULL,
     cont    VARCHAR2(4000),
     reg_tm  TIMESTAMP DEFAULT SYSTIMESTAMP
+);
+
+CREATE TABLE admin (
+    id VARCHAR2(20) NOT NULL,
+    pw VARCHAR2(20) NOT NULL
+);
+
+ALTER TABLE admin ADD CONSTRAINT admin_pk PRIMARY KEY ( id );
+
+CREATE TABLE NOTI (
+    reg_tm TIMESTAMP DEFAULT SYSTIMESTAMP,
+    tit    VARCHAR2(100) NOT NULL,
+    cont   VARCHAR2(2000) 
 );
 
 ALTER TABLE cart

@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5F431A01-F152-07D1-FC20-42D10B246D77" name="ADMIN">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-04-20 09:21:19 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_10</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="070A2216-6E73-F303-ECAE-3C5DA85A5673">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-04-20 09:21:59 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PW" id="246B0D24-2B49-990C-373C-FA9407653401">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-04-20 09:21:59 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2543895E-4BED-BC64-5E32-6FADEA820E2C" name="ADMIN_PK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-04-20 09:30:35 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="070A2216-6E73-F303-ECAE-3C5DA85A5673"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
