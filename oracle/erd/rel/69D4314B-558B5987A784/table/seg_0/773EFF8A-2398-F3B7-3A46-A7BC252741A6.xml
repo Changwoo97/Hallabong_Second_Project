@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="773EFF8A-2398-F3B7-3A46-A7BC252741A6" name="POINT">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 02:28:58 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_9</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ACCOUNT_ID" id="5844C6E8-4102-66D7-233B-6EAA16BD0FB3">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 02:29:42 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2224BFF4-C318-7BF1-F668-C90B4D8800E5" referredColumn="2F76EF67-EE22-743E-74F2-69CECE608936"/>
+</associations>
+</Column>
+<Column name="TIMESTAMP" id="E3D741D9-78A0-606F-96C0-2AA4E529CC0D">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 02:30:17 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="POINT" id="299BE518-FE8F-14D5-2E02-21C03FA2DAF2">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 02:32:10 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BALANCE" id="DEBAACFF-2D9D-21AB-EF08-DD6229D6EB1D">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 02:32:32 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDER_ID" id="4FE4DAB6-FD90-4F99-9702-83F40BFD56C3">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 02:32:46 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="24B31843-C038-C561-ABFD-746518F4C0DA" referredColumn="F5ECE599-1A88-87FB-F74A-A35F953BE426"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0774823D-5284-1E06-A2AB-CB1206606F0E" name="POINT_ACCOUNT_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 02:29:42 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5844C6E8-4102-66D7-233B-6EAA16BD0FB3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="06A71C40-EFC1-A04A-59DD-CB9374EA5AA0" name="POINT_ORDER_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 02:32:46 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4FE4DAB6-FD90-4F99-9702-83F40BFD56C3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

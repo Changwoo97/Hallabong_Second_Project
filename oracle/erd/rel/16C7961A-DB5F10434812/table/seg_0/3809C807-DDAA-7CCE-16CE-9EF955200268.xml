@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3809C807-DDAA-7CCE-16CE-9EF955200268" name="PROD_PRICE">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-03-15 02:37:15 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_20</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NO" id="189CCD2F-6668-A28B-6E22-B936DDEED6DE">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-03-15 02:48:16 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PROD_NO" id="0F5C541D-DAFC-1A87-B139-A288C70AF883">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-03-15 02:41:23 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COST" id="55F978C4-8A89-06BB-F16E-DCCF4479ED8F">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-03-15 02:43:25 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SP" id="6B0804F1-394F-72D2-DF4C-56424380E133">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-03-15 02:43:25 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DC" id="013A9A9C-E286-B34C-DBB8-CAC71FB40D13">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-03-15 03:02:33 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TS" id="E2FC513F-7532-7D18-2620-62B4F8E48783">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-03-15 02:41:18 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1634DF2C-E4F7-1A64-FE94-6268C65BAC2B" name="PROD_PRICE_PK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-03-15 02:50:14 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="189CCD2F-6668-A28B-6E22-B936DDEED6DE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2DE572B4-62BB-9FF3-8858-0A24209E44B3" name="PROD_PRICE_PROD_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-03-15 02:41:23 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0F5C541D-DAFC-1A87-B139-A288C70AF883"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

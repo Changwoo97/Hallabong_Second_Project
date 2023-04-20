@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="67543F99-5273-22EA-69D2-DE17B5C136CB" containerWithKeyObject="C350F616-0F71-95D1-E541-197A6F0A864E" localFKIndex="127D3665-1B00-4F6E-4010-99B22876793F" name="CART_CUST_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:22:54 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<referredTableLongName>CUST</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>542E3F9C-F1F0-3947-6801-7E950D84BCCE</referredTableID>
+<keyObject>A1D9150B-C927-6BE8-A3FB-202900A8F8F8</keyObject>
+<referredKeyID>A1D9150B-C927-6BE8-A3FB-202900A8F8F8</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

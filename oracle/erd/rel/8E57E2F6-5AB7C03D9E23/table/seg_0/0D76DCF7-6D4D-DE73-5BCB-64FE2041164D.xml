@@ -1,0 +1,204 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0D76DCF7-6D4D-DE73-5BCB-64FE2041164D" name="ORD">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:02:42 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_2</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NO" id="0E028AC3-264F-C8BA-0D82-2E51440C49E3">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:03:03 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CUST_ID" id="A2CBD768-3FE6-5E02-5693-6CD808C8AD0F">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:07:12 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0C58A9B0-8CB9-470F-3B54-9DF7B2492AB5" referredColumn="C286936E-F38C-F876-F46B-C7E65EE61A9D"/>
+</associations>
+</Column>
+<Column name="TYPE" id="2C040B1A-E579-40B9-634A-AC2E49E47168">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-29 11:34:25 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDR_NAME" id="8B82D2F6-1DF1-5DD8-3950-6DD286EFED43">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:24:44 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDR_TEL" id="97C3ED10-2570-2272-28C4-BC8714E5CD30">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:25:06 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDR_ADDR" id="219A659E-23A7-D3D4-B94F-D0955EC8EA50">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:25:22 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RECV_NAME" id="B0C4ABE2-0A81-06C6-57D4-F614F24D3ED3">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:04:21 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RECV_TEL" id="86C4FD03-E621-B3D7-01DF-AFAC80C3E615">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:04:48 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RECV_ADDR" id="5D9F8401-D65E-DFE1-BB86-5C6D70FF3494">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:05:41 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PAY_METH" id="38DDC407-C212-6D01-392C-938D31CF5EC7">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-28 10:52:08 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DLVY_FEE" id="8DDDE9CF-4E9A-27EB-5B64-4FC21A5F5901">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:03:55 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CONT" id="E6D30CDC-462B-DF49-AC72-35670CF253AA">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-29 11:36:36 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REG_TM" id="2689C65E-DACA-8630-3F05-3FA92BA84B6B">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:06:29 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STLM_TM" id="5EEAB881-2E98-9B61-FC0C-63DDA690049F">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-04-03 09:07:28 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STA" id="E1834A12-654E-F20B-DE3F-8EFDA942610C">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-04-20 04:55:47 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0A08520F-44B5-F716-3BAF-FD78501E03DE" name="ORD_PK">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:03:03 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0E028AC3-264F-C8BA-0D82-2E51440C49E3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="28971BA2-A55A-F7E8-0A12-AC8529A1A803" name="ORD_CUST_FK">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:07:12 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A2CBD768-3FE6-5E02-5693-6CD808C8AD0F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

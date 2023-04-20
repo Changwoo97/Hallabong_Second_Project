@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="erd" id="2064E95A-1BE6-853C-835F-9127B723B1E5" version="3.5">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 02:13:34 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>2064E95A-1BE6-853C-835F-9127B723B1E5</designId>
+</OSDM_Design>

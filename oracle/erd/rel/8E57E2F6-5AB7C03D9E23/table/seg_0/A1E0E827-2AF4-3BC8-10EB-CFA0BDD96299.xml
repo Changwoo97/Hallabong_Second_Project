@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A1E0E827-2AF4-3BC8-10EB-CFA0BDD96299" name="REV">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:04:45 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_12</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="CUST_ID" id="448ADAB7-0044-2B16-4159-B5279F31685B">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:05:42 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="80E1A5C6-3BFA-DB7D-8868-22163E6F6641" referredColumn="C286936E-F38C-F876-F46B-C7E65EE61A9D"/>
+</associations>
+</Column>
+<Column name="PROD_NO" id="3041B3AB-AB7A-FE72-A051-CA8ACC795FEF">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:05:46 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C46DF6BD-0365-4CB7-56DE-3E9DDB123554" referredColumn="6BCB7C1E-1B01-D1D0-E4A5-492B5147C55A"/>
+</associations>
+</Column>
+<Column name="CONT" id="4AAC6314-3753-9D1F-80A4-AC8F4F8EA7F9">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:05:33 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REG_TM" id="C90C90E0-EB40-6506-4BD1-4518EB89CD58">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:16:55 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1ECF5892-CE05-00BD-E4A6-BD75794785D5" name="REV_CUST_FK">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:05:42 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="448ADAB7-0044-2B16-4159-B5279F31685B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="30B44F9B-5DC3-DEF1-0FA2-CCB535624A72" name="REV_PROD_FK">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:05:46 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3041B3AB-AB7A-FE72-A051-CA8ACC795FEF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

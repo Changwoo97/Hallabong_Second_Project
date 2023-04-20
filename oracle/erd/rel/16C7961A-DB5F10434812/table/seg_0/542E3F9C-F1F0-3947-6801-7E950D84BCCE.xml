@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="542E3F9C-F1F0-3947-6801-7E950D84BCCE" name="CUST">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 06:45:04 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_2</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="E71D48A6-A930-64D7-FF46-24878B32E22A">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 06:46:04 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PW" id="EC7FA08F-679C-BCAF-5BA2-BDF29F5FBB72">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 06:47:41 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NAME" id="F7166D35-C4CB-0D83-E3A9-258AB9E6116D">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 06:48:44 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOB" id="D4F36C46-7FE1-B1A4-C0B6-B5E024D34E02">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 06:49:12 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ADDR" id="C4E0DF21-C06E-053B-8914-246CC5C3229D">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 06:47:41 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PHONE" id="5E44D490-6A63-46A9-2971-4EA891B1136B">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 06:48:02 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REG_TS" id="E0C5A40D-F87C-3A6B-5360-F4CDB250F86F">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 06:50:35 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A1D9150B-C927-6BE8-A3FB-202900A8F8F8" name="CUST_PK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 06:46:04 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E71D48A6-A930-64D7-FF46-24878B32E22A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

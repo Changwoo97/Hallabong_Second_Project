@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="825C2980-1DFA-264D-02A8-85671778A86C" name="GRADE">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 03:25:55 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_10</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="854E1025-3237-410B-5FF3-9B5B3AA765E0">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 03:26:37 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NAME" id="7C4E8521-0DEE-A1F9-01CB-94BB5381DEC7">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 03:33:02 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="POINT_RATE" id="D564FB68-BA4F-567C-273E-AC8C52AC9CF4">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 03:29:09 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,3,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F8FDCEAE-38D1-1B32-A65E-CEEA276115E6" name="GRADE_PK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 03:26:37 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="854E1025-3237-410B-5FF3-9B5B3AA765E0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

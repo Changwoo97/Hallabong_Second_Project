@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A174D40F-B91E-5719-57EF-D0EA54BE4878" name="CAT">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:01:42 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_10</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NO" id="67898FCC-9854-8E48-C7DF-363E4D9613BB">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:03:19 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LARGE" id="396639AC-279A-BB9E-A951-1807BD8F0FB1">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:03:35 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MIDDLE" id="0811C6B6-4136-68EB-33CA-BF474911C0AD">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:08:39 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SMALL" id="D2837844-D059-6BCC-38D4-60D2F026ABB5">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:08:39 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DF23E646-9030-3E90-CD92-084DC9B4BFF8" name="CAT_PK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:03:35 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="67898FCC-9854-8E48-C7DF-363E4D9613BB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="70DBB682-4314-35AD-642E-8E4811816114" name="CAT_UN">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:09:38 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="396639AC-279A-BB9E-A951-1807BD8F0FB1"/>
+<colUsage columnID="0811C6B6-4136-68EB-33CA-BF474911C0AD"/>
+<colUsage columnID="D2837844-D059-6BCC-38D4-60D2F026ABB5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
