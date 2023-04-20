@@ -1,0 +1,108 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9C4D0C81-4189-E2A7-8B9E-C156841C7AAD" name="ACCOUNT">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 03:29:40 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="2F76EF67-EE22-743E-74F2-69CECE608936">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 03:31:00 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PW" id="2F6C930D-83B9-894E-DB4C-B170A2375288">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 03:33:05 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NAME" id="1FB662AD-C4B5-0A1B-E348-F732410D3670">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 05:55:37 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ADDRESS" id="41C4033F-00C6-0162-906E-0D4B959767ED">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 05:33:16 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PHONE" id="C819E0E0-4C44-AC4C-1D33-B011A74A53A0">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 05:52:39 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="GRADE_ID" id="FF23F8E9-F5E9-F567-B934-ECA03528E530">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 03:27:15 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="15FEF1CD-7BA2-CA59-7BC0-A9266BBF94EC" referredColumn="854E1025-3237-410B-5FF3-9B5B3AA765E0"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="751A6A87-0E40-495E-448E-B69FD5FAD23A" name="ACCOUNT_PK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 03:31:00 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2F76EF67-EE22-743E-74F2-69CECE608936"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E4AF30F5-CFAC-6815-C77E-61802C6B9066" name="ACCOUNT_GRADE_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 03:27:15 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FF23F8E9-F5E9-F567-B934-ECA03528E530"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B5C606C6-DAC2-264E-4B55-075B84371C39" name="MONEY">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 09:14:27 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_19</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ACCOUNT_ID" id="33DD8DD7-FA93-15D9-F3E6-ED21D1BA3B8D">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 09:18:38 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E0CF55C1-EC53-FBA5-B1E8-8F816CA16D10" referredColumn="2F76EF67-EE22-743E-74F2-69CECE608936"/>
+</associations>
+</Column>
+<Column name="TIMESTAMP" id="FA29C000-AF5B-2479-FC1A-A08BBDBB7A16">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 09:17:12 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MONEY" id="BCA171FC-3C4A-62CA-8CEB-312C9EBD8902">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 00:23:10 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BALANCE" id="6C06E611-E8E3-D58F-27C3-7104DB4272A2">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 00:14:12 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDER_ID" id="E3ED2DF7-6CC9-F6C3-C899-29AAA9DF85D3">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 00:32:01 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="48AB32CB-A0BA-9E16-77A2-0211CD18F88E" referredColumn="F5ECE599-1A88-87FB-F74A-A35F953BE426"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="55A6738D-F0B5-D764-CF4B-77302A9A3752" name="MONEY_ACCOUNT_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 09:18:38 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="33DD8DD7-FA93-15D9-F3E6-ED21D1BA3B8D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B973279C-DB6D-864A-98A6-B326026B79FF" name="MONEY_ORDER_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 00:32:01 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E3ED2DF7-6CC9-F6C3-C899-29AAA9DF85D3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

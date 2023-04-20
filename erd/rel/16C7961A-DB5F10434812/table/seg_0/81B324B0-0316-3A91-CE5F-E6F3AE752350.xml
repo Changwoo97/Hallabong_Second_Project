@@ -1,0 +1,132 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="81B324B0-0316-3A91-CE5F-E6F3AE752350" name="ORD_DTL">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:29:23 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_19</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ORD_NO" id="8469C295-4E86-0368-DACC-391FB1F1E557">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:29:39 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2C5683CC-08BE-BD74-3710-2D099F911F3E" referredColumn="D31EE329-1C87-5F37-FC63-A808B9FD0032"/>
+</associations>
+</Column>
+<Column name="NO" id="36133F88-137E-8DFC-5115-EA12D122E580">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 08:30:33 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PROD_PRICE_NO" id="69D25EDC-AF97-203E-8CBE-99E2175473F2">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-03-15 02:50:56 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C66B1AAA-F71A-D3F3-0113-3BA932E621DE" referredColumn="189CCD2F-6668-A28B-6E22-B936DDEED6DE"/>
+</associations>
+</Column>
+<Column name="QTY" id="51D34CDA-A614-8EDE-7031-C57A8B45FBEA">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:31:04 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RES" id="B32530E4-B8F4-7B99-69A0-95CAD1F97CB8">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:41:01 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DLVY_NO" id="3F33A39B-63C7-DFD3-DDBA-E7F9E22D5461">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 09:12:03 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C2370902-A989-FA98-2D58-C7BC37D91E2C" referredColumn="47787876-0978-05E8-0C1E-77480D7A60D3"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C95AF0BA-0AA1-F2F4-5CFB-81A815DDF1DD" name="ORD_DTL_PK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 08:30:33 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8469C295-4E86-0368-DACC-391FB1F1E557"/>
+<colUsage columnID="36133F88-137E-8DFC-5115-EA12D122E580"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C22A7FB9-6D85-B7BC-EC04-981E3657C1CE" name="ORD_DTL_ORD_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:29:39 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8469C295-4E86-0368-DACC-391FB1F1E557"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BC075B5A-5809-BB0D-F4DF-72BE5FD3A963" name="ORD_DTL_DLVY_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 09:12:03 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3F33A39B-63C7-DFD3-DDBA-E7F9E22D5461"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4BD0A44F-F7DD-3AE3-0A52-482350E109DB" name="ORD_DTL_PROD_PRICE_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-03-15 02:50:56 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="69D25EDC-AF97-203E-8CBE-99E2175473F2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

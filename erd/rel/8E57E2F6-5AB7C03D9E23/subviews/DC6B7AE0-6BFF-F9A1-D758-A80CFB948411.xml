@@ -1,0 +1,283 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Diagram class="oracle.dbtools.crest.swingui.relational.DPVRelational" name="Main" id="DC6B7AE0-6BFF-F9A1-D758-A80CFB948411">
+<createdBy>CHANGWOO</createdBy>
+<modifiedBy>CHANGWOO</modifiedBy>
+<createdTime>2023-03-24 06:52:15 UTC</createdTime>
+<autoRoute>false</autoRoute>
+<boxInbox>true</boxInbox>
+<showLegend>false</showLegend>
+<showLabels>false</showLabels>
+<showRelAttributes>false</showRelAttributes>
+<gridEnabled>false</gridEnabled>
+<showGrid>false</showGrid>
+<diagramColor>-1</diagramColor>
+<display>false</display>
+<notation>1</notation>
+<objectViews>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="0D76DCF7-6D4D-DE73-5BCB-64FE2041164D" otype="Table" vid="27ACCFA6-7695-600C-0793-477068A3098A">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="229" y="432" width="209" height="293"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="0EE762E9-0224-C601-01C0-E69C800ECFFE" otype="Table" vid="276F4B3B-67DC-62B4-6967-959B663AD61D">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="498" y="385" width="200" height="151"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="3460116F-D007-A40D-B368-E31FDF57F826" otype="Table" vid="0282C9E2-D2A5-628C-B818-7780CCC29440">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="1334" y="91" width="181" height="100"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="576AF104-2450-F2C1-4088-54E6DA2DD0FB" otype="Note" vid="280A9DB9-0D48-A511-D673-21698E58EA0C">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="1523" y="109" width="109" height="103"/>
+<comment>CAT: 카테고리
+--------------
+NO: 카테고리번호
+NAME: 카테고리명</comment>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="607F53DF-06C4-BE8C-511D-604A83A9460C" otype="Table" vid="5A924783-43FC-60D4-986D-7979A51DED1A">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="963" y="328" width="204" height="185"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="63F8C4E8-D532-7AF8-49E5-958F4065D0B5" otype="Note" vid="55DB8ACA-73F3-04D2-97E7-990C78053B2C">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="52" y="446" width="168" height="274"/>
+<comment>ORD: 주문
+-------------------
+NO: 주문번호
+CUST_ID: 고객아이디
+TYPE: 주문종류(주문, 교환, 환불)
+ORDR_NAME: 주문인 이름
+ORDR_TEL: 주문인 전화번호
+ORDR_ADDR: 주문인 주소
+RECV_NAME: 배송인 이름
+RECV_TEL : 배송인 전화번호
+RECV_ADDR: 배송지
+PAY_METH: 결제수단
+DLVY_FEE: 배송료
+CONT: 교환사유, 환불사유
+REG_TM: 주문시간
+STLM_TM: 정산시간
+STA: 주문상태</comment>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="6696AD66-E073-2257-2264-7FE8B6BA9FAB" otype="Note" vid="A36093EF-D332-BDEA-C031-F546811BD872">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="1445" y="413" width="174" height="246"/>
+<comment>DLVY: 배송
+----------------
+NO: 배송번호
+SEND_NAME: 보내는 사람
+SEND_TEL: 보내는 사람 전화번호
+SEND_ADDR: 보내는 사람 주소
+RECV_NAME: 받는 사람 
+RECV_TEL: 받는 사람 전화번호
+RECV_ADDR: 받는 사람 주소
+FEE: 배송료
+REG_TM: 등록일
+DEP_TM: 출발일
+ARR_TM: 도착일
+STA: 배송상태
+ORD_NO: 주문번호</comment>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="67341D2D-DAC0-E484-9B47-7E5BF9D42B06" otype="Note" vid="0FB6F2EB-6028-F28B-4D26-DCD17B740723">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="796" y="362" width="149" height="140"/>
+<comment>QA : Q&amp;A
+----------------
+CUST_ID: 고객 아이디
+PROD_NO: 제품번호
+Q: 질문
+Q_REG_TM: 질문 등록시간
+A: 답변
+A_REG_TM: 답변등록시간
+STA: Q&amp;A상태</comment>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="9A026C1F-06E5-968C-E130-D67D66A0B993" otype="Note" vid="858A55F2-028B-F4A1-0E1E-E46F758FAA5C">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="1192" y="195" width="123" height="226"/>
+<comment>PROD: 상품
+--------------------
+NO: 상품번호
+FS: 판매여부
+NAME: 제품명
+COST: 원가
+SP: 판매가
+INV: 재고량
+S_IMG: 소이미지
+L_IMG: 상세이미지
+DESC: 설명
+CAT_NO: 카테고리 번호
+REG_TM: 등록일
+</comment>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="9DAED851-623B-D05B-DECE-ACC9FED0EFF0" otype="Table" vid="01392F4E-0100-282E-339F-882198F9BE5F">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="1192" y="443" width="226" height="278"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="A05B4459-9DD3-0F3C-B42B-45A7FE075586" otype="Note" vid="765EFF33-EFE7-BE9E-BCED-7F2E4036766D">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="582" y="20" width="112" height="113"/>
+<comment>REV : 리뷰
+-------------
+CUST_ID: 고객 아이디
+PROD_NO: 상품번호
+CONT: 내용
+REG_TM: 등록시간
+</comment>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="A1E0E827-2AF4-3BC8-10EB-CFA0BDD96299" otype="Table" vid="E062E89B-7D3E-9E00-6F4C-DB3D51CA4949">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="514" y="171" width="194" height="138"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="A52BACFA-0DC4-5AD7-A365-F0EC8DBCC640" otype="Table" vid="C13A978A-0485-A1A7-21EF-7093C7A15B67">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="749" y="53" width="185" height="133"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="AE7FB5EE-FC3E-9411-3152-A3C3095AD075" otype="Note" vid="2CED8204-EFC3-914E-C8A9-1B3EC9FFA36F">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="134" y="23" width="130" height="200"/>
+<comment>CUST : 고객
+----------------
+ID : 아이디
+PW : 패스워드
+NAME: 이름
+EMAIL: 이메일
+TEL: 전화번호
+ADDR: 주소
+GENDER : 성별(선택)
+DOB : 생년월일(선택)
+REG_TM :  회원가입일
+QUIT_TM: 탈퇴일
+STA: 상태</comment>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="C2988A89-4F81-DBC0-4A78-C0EBEBDB2E1B" otype="Note" vid="9E567E7C-6C3B-E4DF-4927-53DDC1361DFA">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="501" y="580" width="129" height="122"/>
+<comment>ORD_DTL: 상세주문
+--------------
+ORD_NO: 주문번호
+PROD_NO: 상품번호
+PROD_COST: 상품 원가
+PROD_SP: 상품 판매가
+PROD_QNTY: 상품수량</comment>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="D2FC6BB7-A8BF-8B33-A17E-053227AE4824" otype="Note" vid="C8885314-A6C2-216E-3316-606B891BF457">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="411" y="14" width="129" height="109"/>
+<comment>CART: 장바구니
+--------------
+CUST_ID: 고객 아이디
+PROD_NO: 상품번호
+QNTY: 제품수량
+REG_TM: 등록시간</comment>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="D7517FE3-C08E-0C61-2246-8112CA0FD25F" otype="Table" vid="3D2C5CCF-D993-A436-3D29-85F05FA84F0A">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="1009" y="52" width="198" height="243"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="F23F7BF4-FE96-7744-010A-BABB536FAC54" otype="Table" vid="91CC2C0D-9F1E-A3DE-6F0F-F55FEB50AFB0">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="276" y="147" width="185" height="220"/>
+</OView>
+</objectViews>
+<connectors>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="02DDBC75-03B5-E671-555D-1F726792F912" otype="FKIndexAssociation" vid_source="91CC2C0D-9F1E-A3DE-6F0F-F55FEB50AFB0" vid_target="C13A978A-0485-A1A7-21EF-7093C7A15B67">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="461" y="166"/>
+<point x="749" y="166"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="0C58A9B0-8CB9-470F-3B54-9DF7B2492AB5" otype="FKIndexAssociation" vid_source="91CC2C0D-9F1E-A3DE-6F0F-F55FEB50AFB0" vid_target="27ACCFA6-7695-600C-0793-477068A3098A">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="357" y="367"/>
+<point x="357" y="432"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="3C024E0B-AFBF-6C88-A1F8-4E13BBE77173" otype="FKIndexAssociation" vid_source="27ACCFA6-7695-600C-0793-477068A3098A" vid_target="276F4B3B-67DC-62B4-6967-959B663AD61D">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="438" y="484"/>
+<point x="498" y="484"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="80E1A5C6-3BFA-DB7D-8868-22163E6F6641" otype="FKIndexAssociation" vid_source="91CC2C0D-9F1E-A3DE-6F0F-F55FEB50AFB0" vid_target="E062E89B-7D3E-9E00-6F4C-DB3D51CA4949">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="461" y="240"/>
+<point x="514" y="240"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="89FD42B8-121B-0808-06C8-046A48DD417F" otype="FKIndexAssociation" vid_source="3D2C5CCF-D993-A436-3D29-85F05FA84F0A" vid_target="5A924783-43FC-60D4-986D-7979A51DED1A">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="1088" y="295"/>
+<point x="1088" y="328"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="90CB6F28-5FAF-C224-11AD-843C611AF92C" otype="FKIndexAssociation" vid_source="91CC2C0D-9F1E-A3DE-6F0F-F55FEB50AFB0" vid_target="5A924783-43FC-60D4-986D-7979A51DED1A">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="461" y="347"/>
+<point x="963" y="347"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="C46DF6BD-0365-4CB7-56DE-3E9DDB123554" otype="FKIndexAssociation" vid_source="3D2C5CCF-D993-A436-3D29-85F05FA84F0A" vid_target="E062E89B-7D3E-9E00-6F4C-DB3D51CA4949">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="1009" y="218"/>
+<point x="708" y="218"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="C672D37B-4991-1DAA-80F4-68B02C4EEDBA" otype="FKIndexAssociation" vid_source="0282C9E2-D2A5-628C-B818-7780CCC29440" vid_target="3D2C5CCF-D993-A436-3D29-85F05FA84F0A">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="1334" y="141"/>
+<point x="1207" y="141"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="D244572A-0B7C-25FA-774D-B74F20582AD5" otype="FKIndexAssociation" vid_source="27ACCFA6-7695-600C-0793-477068A3098A" vid_target="01392F4E-0100-282E-339F-882198F9BE5F">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="438" y="567"/>
+<point x="1192" y="567"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="D3BBA451-55AA-1082-EFB5-F237980FBC4E" otype="FKIndexAssociation" vid_source="3D2C5CCF-D993-A436-3D29-85F05FA84F0A" vid_target="C13A978A-0485-A1A7-21EF-7093C7A15B67">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="1009" y="119"/>
+<point x="934" y="119"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="EDFBBCB7-BF12-756C-524A-2551141B3EB7" otype="FKIndexAssociation" vid_source="3D2C5CCF-D993-A436-3D29-85F05FA84F0A" vid_target="276F4B3B-67DC-62B4-6967-959B663AD61D">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="1009" y="229"/>
+<point x="698" y="404"/>
+</points>
+</Connector>
+</connectors>
+</Diagram>

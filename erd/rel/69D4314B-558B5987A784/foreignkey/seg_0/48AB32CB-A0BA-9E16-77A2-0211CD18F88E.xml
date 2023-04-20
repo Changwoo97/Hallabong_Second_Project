@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="48AB32CB-A0BA-9E16-77A2-0211CD18F88E" containerWithKeyObject="B5C606C6-DAC2-264E-4B55-075B84371C39" localFKIndex="B973279C-DB6D-864A-98A6-B326026B79FF" name="MONEY_ORDER_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 00:32:01 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<referredTableLongName>ORDER</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>239EADEF-E66D-0658-BA35-8D7E12E110A9</referredTableID>
+<keyObject>8633B5A5-FA96-43E7-D055-2F4DC2CB2687</keyObject>
+<referredKeyID>8633B5A5-FA96-43E7-D055-2F4DC2CB2687</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

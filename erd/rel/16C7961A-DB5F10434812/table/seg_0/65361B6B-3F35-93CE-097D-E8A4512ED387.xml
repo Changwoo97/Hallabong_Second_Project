@@ -1,0 +1,156 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="65361B6B-3F35-93CE-097D-E8A4512ED387" name="DLVY">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:41:57 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_20</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NO" id="47787876-0978-05E8-0C1E-77480D7A60D3">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:42:32 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FEE" id="B4D0D018-FEE8-DF44-E79B-514228CF2902">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 01:36:32 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SEND_NAME" id="0A3E843B-0186-FE5C-2372-A03A36019F52">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 08:36:45 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SEND_ADDR" id="769BC0B5-4289-3CAE-2A95-B24CFD4DD45C">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 08:36:45 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SEND_TEL" id="6AADD239-926A-913B-34CB-32B04E77FC81">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 08:36:45 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RECV_NAME" id="5FF91E78-5DD5-6A69-54AD-429B17D27F70">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 09:04:24 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RECV_ADDR" id="B66BD59B-B2AA-6A45-A0A5-55DDA230D6C5">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 09:04:55 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RECV_TEL" id="880D0111-3010-7CD8-0794-DE0F372A9A6A">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 09:05:15 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REG_TS" id="56F17B11-6477-3A86-B5D9-241991FAFB76">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 00:43:31 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEP_TS" id="DE52E474-B49D-32B9-59C7-49AB0273A0E1">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 00:34:05 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ARR_TS" id="F4514523-07D2-95E3-050A-1F6904564E45">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 00:34:23 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RES" id="E56DBEB0-9A61-EE87-20CA-EF16D1A8C2CC">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:59:03 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A9215689-42D9-1488-FE09-1BFC3575B230" name="DLVY_PK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:42:32 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="47787876-0978-05E8-0C1E-77480D7A60D3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

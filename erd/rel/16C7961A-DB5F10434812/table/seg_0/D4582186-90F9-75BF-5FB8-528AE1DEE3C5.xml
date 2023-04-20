@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D4582186-90F9-75BF-5FB8-528AE1DEE3C5" name="PROD_DTL">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 06:31:47 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_17</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PROD_NO" id="009EF64D-237D-766A-4B29-2402B55E16AB">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 06:32:18 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="56541F5C-4DD8-14B3-BCDB-DEE4FD137B25" referredColumn="A596AD6F-3719-BECE-3B68-A3A546072623"/>
+</associations>
+</Column>
+<Column name="TYPE" id="3921E48E-9C00-8195-C401-B0E281D2010A">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 06:34:31 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CONT" id="E014E7D8-1B97-36AF-8A80-0428F4639540">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 06:34:31 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000</dataTypeSize>
+<ownDataTypeParameters>1000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E00FF0B4-B35D-B482-4E4E-9B89BFFBB20F" name="PROD_DTL_PROD_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 06:32:18 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="009EF64D-237D-766A-4B29-2402B55E16AB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

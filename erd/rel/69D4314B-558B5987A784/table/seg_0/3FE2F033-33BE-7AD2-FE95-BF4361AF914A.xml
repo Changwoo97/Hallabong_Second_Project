@@ -1,0 +1,82 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3FE2F033-33BE-7AD2-FE95-BF4361AF914A" name="DISCOUNT">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 08:17:24 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_16</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ITEM_ID" id="A8D99CFF-682A-B4D5-593F-1C3D2BB3F6C5">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 08:18:29 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EB193DA7-A7CA-F917-5307-90633CE1FE8B" referredColumn="35F507CA-59C9-DF43-F39C-BEBD95ABEBF4"/>
+</associations>
+</Column>
+<Column name="RATE" id="B1D7DB57-32ED-33C6-F367-4427E56F3A4C">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 08:18:16 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,3,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="START_DATE" id="90CA1FD4-956D-5084-CAC7-00DFF2FE86F3">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 08:19:15 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="END_DATE" id="7D8C12BF-9912-A5AC-B398-EB52D8796D36">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 08:19:23 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="AC68FC43-7398-7C04-C583-413324432AD9" name="DISCOUNT_PK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 08:18:38 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A8D99CFF-682A-B4D5-593F-1C3D2BB3F6C5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7D9F6EFB-9760-67B1-3797-C444F29EE96D" name="DISCOUNT_ITEM_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 08:18:29 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A8D99CFF-682A-B4D5-593F-1C3D2BB3F6C5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

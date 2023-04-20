@@ -1,0 +1,98 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B9B141FF-B47D-8B9F-4747-23324FD794F9" name="PROD_QA">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:19:56 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_15</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PROD_NO" id="F575F5C1-B92F-75BB-3FCD-182EBDD1C410">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:20:37 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2B9EBD67-AC76-2E40-89E6-18BC14DEA803" referredColumn="A596AD6F-3719-BECE-3B68-A3A546072623"/>
+</associations>
+</Column>
+<Column name="CUST_ID" id="6CE242B8-0100-F318-2DD6-1334DC3716AE">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 00:38:12 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4C3FE6B1-4B6A-1C9F-894E-0C63D26FAB04" referredColumn="E71D48A6-A930-64D7-FF46-24878B32E22A"/>
+</associations>
+</Column>
+<Column name="Q" id="2C99E674-6F39-3A11-86EF-1D0977BB5F26">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 00:39:55 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3000</dataTypeSize>
+<ownDataTypeParameters>3000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="A" id="7088A429-2FD7-372C-AAB5-49498A8058D9">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 00:40:06 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3000</dataTypeSize>
+<ownDataTypeParameters>3000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TS" id="CEE5E920-80F1-8838-CE74-70A66140A9DC">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 00:38:48 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1D3ED319-1189-672B-9439-0811EE851192" name="PROD_QA_PROD_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-24 07:20:37 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F575F5C1-B92F-75BB-3FCD-182EBDD1C410"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="79EB3D7F-969D-B21A-D615-9249E11BEC4A" name="PROD_QA_CUST_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 00:38:12 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6CE242B8-0100-F318-2DD6-1334DC3716AE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

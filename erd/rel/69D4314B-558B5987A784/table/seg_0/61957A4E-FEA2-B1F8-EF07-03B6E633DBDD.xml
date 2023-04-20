@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="61957A4E-FEA2-B1F8-EF07-03B6E633DBDD" name="REVIEW">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 09:05:03 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_18</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ITEM_ID" id="716E3C83-EDD5-A3A7-D00E-E2C5F48A1F95">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 09:05:42 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="013DBF5C-51C4-5737-E7F6-307654866775" referredColumn="35F507CA-59C9-DF43-F39C-BEBD95ABEBF4"/>
+</associations>
+</Column>
+<Column name="TIMESTAMP" id="F853E710-1AE3-126A-675C-3AF2E60F14F6">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 09:09:30 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CONTENT" id="4C94FB06-DD15-D3B2-4F73-C1C9A22F5C43">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 09:06:29 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ACCOUNT_ID" id="DDE07F77-001A-A81E-960B-8B2BC17619C4">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 09:07:48 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="686B7186-EEA3-48DB-7C19-EEAC8EB54194" referredColumn="2F76EF67-EE22-743E-74F2-69CECE608936"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="71684638-5C75-9FDA-1B0C-8AA8C7E68C06" name="REVIEW_ITEM_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 09:05:42 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="716E3C83-EDD5-A3A7-D00E-E2C5F48A1F95"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AF22C1F3-2DA1-A7B5-A5F6-3E12623877C3" name="REVIEW_ACCOUNT_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-23 09:07:48 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DDE07F77-001A-A81E-960B-8B2BC17619C4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

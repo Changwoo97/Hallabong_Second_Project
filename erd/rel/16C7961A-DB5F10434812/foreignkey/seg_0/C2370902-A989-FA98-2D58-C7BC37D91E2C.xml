@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="C2370902-A989-FA98-2D58-C7BC37D91E2C" containerWithKeyObject="81B324B0-0316-3A91-CE5F-E6F3AE752350" localFKIndex="BC075B5A-5809-BB0D-F4DF-72BE5FD3A963" name="ORD_DTL_DLVY_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 09:12:03 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<referredTableLongName>DLVY</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>65361B6B-3F35-93CE-097D-E8A4512ED387</referredTableID>
+<keyObject>A9215689-42D9-1488-FE09-1BFC3575B230</keyObject>
+<referredKeyID>A9215689-42D9-1488-FE09-1BFC3575B230</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>NO</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

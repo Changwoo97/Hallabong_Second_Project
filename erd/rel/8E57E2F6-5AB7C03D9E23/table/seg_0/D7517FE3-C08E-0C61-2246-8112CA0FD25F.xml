@@ -1,0 +1,159 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D7517FE3-C08E-0C61-2246-8112CA0FD25F" name="PROD">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:12:11 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_6</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NO" id="6BCB7C1E-1B01-D1D0-E4A5-492B5147C55A">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:12:34 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FS" id="FF56BEF2-B34A-74E9-11EE-600493BD1DAC">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:16:32 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NAME" id="6EB10972-53A3-2728-B081-F5D4D34ED785">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:19:35 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COST" id="B8FCB67B-E2D8-9489-1D5D-96FF70B98DF9">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:20:07 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SP" id="36C441EE-A6D5-C210-AC15-FCA9098B056D">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:20:41 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="INV" id="8147395D-E52F-39F6-091E-0A716DA431C6">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:25:56 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="S_IMG" id="F2D91088-4612-E5A9-E7B4-686E31C1A9E5">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:07:34 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="L_IMG" id="B60764F7-F704-8896-4679-6CE16FA3D96D">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:11:17 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESC" id="1A1CD0D7-9ACF-A03D-ECE7-F28F863DD5D5">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:12:32 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CAT_NO" id="3CD1E05F-BA9B-FCE7-6891-C4D75B600D6D">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:22:36 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C672D37B-4991-1DAA-80F4-68B02C4EEDBA" referredColumn="69F66FB4-A0B1-F9D0-08D8-9E444BFD65A3"/>
+</associations>
+</Column>
+<Column name="REG_TM" id="F7823035-89A7-A283-8034-663FA5C9798F">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:49:12 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CDF29F52-1AC7-DB81-ED9A-B33CC55C4481" name="PROD_PK">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 07:12:34 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6BCB7C1E-1B01-D1D0-E4A5-492B5147C55A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="57035E0A-F334-8BEA-F1DD-4987D43D5187" name="PROD_CAT_FK">
+<createdBy>CHANGWOO</createdBy>
+<createdTime>2023-03-24 09:22:36 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3CD1E05F-BA9B-FCE7-6891-C4D75B600D6D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

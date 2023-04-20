@@ -1,0 +1,115 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BEE3365A-F4AF-788B-0AC1-B38160B081C8" name="RFD">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 08:25:44 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<ordsAlias>table_22</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NO" id="42F992FE-FF89-FA09-5A1F-D6AEDC3229BE">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 08:26:22 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CUST_ID" id="4F346799-C7F4-F78E-DA30-9EEC87227F09">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-03-15 02:58:01 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1737C1DA-5FCF-0427-5BF2-74C6A401EE6A" referredColumn="E71D48A6-A930-64D7-FF46-24878B32E22A"/>
+</associations>
+</Column>
+<Column name="NAME" id="DD25A43C-CA27-EC24-09EC-303177839701">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 00:27:56 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ADDR" id="A93A2CE5-108E-F1ED-2343-E38F3FEA9030">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 00:28:06 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PHONE" id="56D58EDF-B2DF-7728-8B10-582F99CA49F5">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 00:28:26 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DLVY_FEE" id="26212507-B834-3656-B005-16225318B7F3">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 00:28:56 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TS" id="53C6AFFF-07E2-9E09-B9EE-421A8A617FE3">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-28 00:27:56 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1AD4DADC-45AE-4A11-72B6-FDD41F9930E0" name="RFD_PK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-02-27 08:26:22 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="42F992FE-FF89-FA09-5A1F-D6AEDC3229BE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="88D0BBCA-A976-F667-F53F-205FA1D0EA1D" name="RFD_CUST_FK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-03-15 02:58:01 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4F346799-C7F4-F78E-DA30-9EEC87227F09"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
