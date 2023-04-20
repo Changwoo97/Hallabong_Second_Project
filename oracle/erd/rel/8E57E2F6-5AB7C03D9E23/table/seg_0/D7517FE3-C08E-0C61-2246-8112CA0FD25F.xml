@@ -61,16 +61,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="INV" id="8147395D-E52F-39F6-091E-0A716DA431C6">
-<createdBy>CHANGWOO</createdBy>
-<createdTime>2023-03-24 07:25:56 UTC</createdTime>
-<ownerDesignName>erd</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="S_IMG" id="F2D91088-4612-E5A9-E7B4-686E31C1A9E5">
 <createdBy>CHANGWOO</createdBy>
 <createdTime>2023-03-24 09:07:34 UTC</createdTime>
@@ -93,18 +83,6 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>100</dataTypeSize>
 <ownDataTypeParameters>100,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="DESC" id="1A1CD0D7-9ACF-A03D-ECE7-F28F863DD5D5">
-<createdBy>CHANGWOO</createdBy>
-<createdTime>2023-03-24 09:12:32 UTC</createdTime>
-<ownerDesignName>erd</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>2000</dataTypeSize>
-<ownDataTypeParameters>2000,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="CAT_NO" id="3CD1E05F-BA9B-FCE7-6891-C4D75B600D6D">
