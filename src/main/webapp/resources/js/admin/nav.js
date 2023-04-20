@@ -34,6 +34,7 @@ window.addEventListener('load', () => {
 		
 		// 더블 클릭
 		const group = spans[i].getAttribute('id');
+		const foldableBullet = document.getElementById(group + 'Bullet');
 
 		if (group != null) {
 			let foldables = [];
@@ -44,15 +45,22 @@ window.addEventListener('load', () => {
 				}
 			}
 			
-			spans[i].addEventListener('dblclick', (e) => {
+			function foldMenu(e) {
 				for (let j = 0; j < foldables.length; j++) {
 					if (foldables[j].style.display == '') {
 						foldables[j].style.display = 'none';
+						foldableBullet.style.transform = 'rotate(0deg)';
+						foldableBullet.style.opacity = '0.5';
 					} else {
 						foldables[j].style.display = '';
+						foldableBullet.style.transform = 'rotate(90deg)';
+						foldableBullet.style.opacity = '1.0';
 					}
 				}
-			});
+			}
+			
+			spans[i].addEventListener('dblclick', foldMenu);
+			foldableBullet.addEventListener('click', foldMenu);
 		} else {
 			const dataHref = spans[i].getAttribute('data-href');
 

@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div id="tableMenubar">
-		<table border="1">
+		<table>
 			<tr> 
 				<td class="padding"></td>
 				<c:set var="selectedPageBundleNum" value="${Math.floor(selectedPageNum / 5) + 1}" />

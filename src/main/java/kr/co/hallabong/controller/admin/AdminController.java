@@ -1,4 +1,4 @@
-package kr.co.hallabong.controller;
+package kr.co.hallabong.controller.admin;
 
 import org.springframework.stereotype.Controller;
 

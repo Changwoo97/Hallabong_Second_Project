@@ -9,6 +9,10 @@ body {
 	user-select: none;
 }
 
+#nav .navMargin {
+	height: 10px;
+}
+
 #nav span {
 	padding-left: 2px;
 	padding-right: 2px;
@@ -19,6 +23,19 @@ body {
 	text-indent: 30px;
 }
 
+#nav .bullet {
+	width: 10px;
+	height: 10px;
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+#nav .foldableBullet {
+	width: 10px;
+	height: 10px;
+	transform: rotate(90deg);
+	cursor: pointer;
+}
 
 /* .rotate {
 	transform: rotate(90deg);

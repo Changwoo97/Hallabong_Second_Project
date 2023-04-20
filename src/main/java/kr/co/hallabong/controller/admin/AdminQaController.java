@@ -1,4 +1,4 @@
-package kr.co.hallabong.controller;
+package kr.co.hallabong.controller.admin;
 
 import java.util.ArrayList;
 import java.util.List;

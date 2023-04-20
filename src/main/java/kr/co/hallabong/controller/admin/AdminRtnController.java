@@ -1,4 +1,4 @@
-package kr.co.hallabong.controller;
+package kr.co.hallabong.controller.admin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,8 @@ public class AdminRtnController {
 		thead.add(new Pair("<input type=\"checkbox\" id=\"checkAll\" />", "N"));
 		thead.add(new Pair("신청일", "D-reg_tm"));
 		thead.add(new Pair("주문번호", "K-ord_no"));
-		thead.add(new Pair("제품번호", "K-prod_no"));
-		thead.add(new Pair("제품명", "K-prod_name"));
+		thead.add(new Pair("상품번호", "K-prod_no"));
+		thead.add(new Pair("상품명", "K-prod_name"));
 		thead.add(new Pair("수량", "N"));
 		thead.add(new Pair("주문인", "K-ordr_name"));
 		thead.add(new Pair("주문인 전화번호", "K-ordr_tel"));
@@ -62,8 +62,8 @@ public class AdminRtnController {
 		List<Pair> thead = new ArrayList<>();
 		thead.add(new Pair("신청일", "D-reg_tm"));
 		thead.add(new Pair("주문번호", "K-ord_no"));
-		thead.add(new Pair("제품번호", "K-prod_no"));
-		thead.add(new Pair("제품명", "K-prod_name"));
+		thead.add(new Pair("상품번호", "K-prod_no"));
+		thead.add(new Pair("상품명", "K-prod_name"));
 		thead.add(new Pair("수량", "N"));
 		thead.add(new Pair("주문인", "K-ordr_name"));
 		thead.add(new Pair("주문인 전화번호", "K-ordr_tel"));
@@ -103,8 +103,8 @@ public class AdminRtnController {
 		thead.add(new Pair("신청일", "D-reg_tm"));
 		thead.add(new Pair("완료일", "D-end_tm"));
 		thead.add(new Pair("주문번호", "K-ord_no"));
-		thead.add(new Pair("제품번호", "K-prod_no"));
-		thead.add(new Pair("제품명", "K-prod_name"));
+		thead.add(new Pair("상품번호", "K-prod_no"));
+		thead.add(new Pair("상품명", "K-prod_name"));
 		thead.add(new Pair("수량", "N"));
 		thead.add(new Pair("주문인", "K-ordr_name"));
 		thead.add(new Pair("주문인 전화번호", "K-ordr_tel"));
