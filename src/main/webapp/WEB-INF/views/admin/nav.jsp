@@ -98,7 +98,7 @@
 		</tr>
 		<tr class="stlm">
 			<td class="foldable">
-				<span data-href="${root}/admin/stlm/search">정산조회</span>
+				<span data-href="${root}/admin/stlm/check">정산조회</span>
 			</td>
 		</tr>
 		<tr>
