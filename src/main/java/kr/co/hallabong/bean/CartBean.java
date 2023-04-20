@@ -10,5 +10,5 @@ public class CartBean {
 	private String cust_id; // 고객 아이디
 	private String prod_no; // 상품번호
 	private int qnty; // 수량
-	private String reg_tm; // 등록일(YYYY-MM-DD)
+	private String reg_tm; // 등록일(YYYY-MM-DD), default 이용
 }

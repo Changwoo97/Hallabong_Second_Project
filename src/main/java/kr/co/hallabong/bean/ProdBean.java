@@ -17,5 +17,5 @@ public class ProdBean {
 	private String l_img; // 상세이미지
 	private String desc; // 설명
 	private String cat_no; // 카테고리 번호
-	private String reg_tm; // 등록시간(YYYY-MM-DD)
+	private String reg_tm; // 등록시간(YYYY-MM-DD) default 이용
 }

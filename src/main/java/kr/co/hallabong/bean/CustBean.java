@@ -15,7 +15,7 @@ public class CustBean {
 	private String addr; // 주소
 	private String gender; // 성별
 	private String dob; // 생년월(YYYY-MM-DD)
-	private String reg_tm; // 가입일(YYYY-MM-DD)
-	private String quit_tm; // 탈퇴일(YYYY-MM-DD)
+	private String reg_tm; // 가입일(YYYY-MM-DD) default 이용
+	private String quit_tm; // 탈퇴일(YYYY-MM-DD) default 이용
 	private String sta; // 회원상태(가입: REG, 탈퇴: QUIT)
 }
