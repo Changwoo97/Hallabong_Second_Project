@@ -91,7 +91,6 @@ ALTER TABLE prod ADD CONSTRAINT prod_pk PRIMARY KEY ( no );
 CREATE TABLE qa (
     no       VARCHAR2(20) DEFAULT 'QA' || TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSFF2'),
     cust_id  VARCHAR2(20) NOT NULL,
-    prod_no  VARCHAR2(20) NOT NULL,
     q        VARCHAR2(2000),
     q_reg_tm TIMESTAMP DEFAULT SYSTIMESTAMP,
     a        VARCHAR2(2000),
@@ -158,10 +157,6 @@ ALTER TABLE prod
 ALTER TABLE qa
     ADD CONSTRAINT qa_cust_fk FOREIGN KEY ( cust_id )
         REFERENCES cust ( id );
-
-ALTER TABLE qa
-    ADD CONSTRAINT qa_prod_fk FOREIGN KEY ( prod_no )
-        REFERENCES prod ( no );
 
 ALTER TABLE rev
     ADD CONSTRAINT rev_cust_fk FOREIGN KEY ( cust_id )
