@@ -8,6 +8,17 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NO" id="C2CB2957-B41B-374A-B693-DC2BFD0AB793">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-04-21 00:15:37 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="CUST_ID" id="448ADAB7-0044-2B16-4159-B5279F31685B">
 <createdBy>CHANGWOO</createdBy>
 <createdTime>2023-03-24 09:05:42 UTC</createdTime>
@@ -16,7 +27,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>20</dataTypeSize>
-<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
@@ -31,7 +42,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>20</dataTypeSize>
-<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
@@ -62,6 +73,17 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="81751F3A-A30C-6B6A-FCED-42FAC3F56C55" name="REV_PK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-04-21 00:22:56 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C2CB2957-B41B-374A-B693-DC2BFD0AB793"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="1ECF5892-CE05-00BD-E4A6-BD75794785D5" name="REV_CUST_FK">
 <createdBy>CHANGWOO</createdBy>
 <createdTime>2023-03-24 09:05:42 UTC</createdTime>

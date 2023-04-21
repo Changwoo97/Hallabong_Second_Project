@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 // 배송
 public class DlvyBean {
-	private String no; // 배송번호
+	private String no; // 배송번호 default 이용
 	private String send_name; // 보내는 사람
 	private String send_tel; // 보내는 사람 전화번호
 	private String send_addr; // 보내는 사람 주소

@@ -8,14 +8,15 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="REG_TM" id="4686F8AF-B3E1-8941-9848-5DE4CC815254">
+<Column name="NO" id="0A83268B-A8E3-F7E3-A09A-A8D8C667D629">
 <createdBy>soldesk</createdBy>
-<createdTime>2023-04-20 09:22:40 UTC</createdTime>
+<createdTime>2023-04-21 00:16:12 UTC</createdTime>
 <ownerDesignName>erd</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT015</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="TIT" id="A3EAC7D5-509F-FCDE-4FB6-4A95F4CD68D9">
@@ -41,5 +42,28 @@
 <ownDataTypeParameters>2000,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="REG_TM" id="4686F8AF-B3E1-8941-9848-5DE4CC815254">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-04-20 09:22:40 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F1CF0B70-6E95-F7E7-D61D-1F5205967005" name="NOTI_PK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-04-21 00:22:50 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0A83268B-A8E3-F7E3-A09A-A8D8C667D629"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
 </Table>

@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 // Q&A
 public class QABean {
+	private String no; // Q&A번호 default 이용
 	private String cust_id; // 고객아이디
 	private String prod_no; // 상품번호
 	private String q; // 질문

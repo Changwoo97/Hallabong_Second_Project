@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 // 주문
 public class OrdBean {
-	private String no; // 주문번호
+	private String no; // 주문번호 default 이용
 	private String cust_id; // 고객아이디
 	private String type; // 주문종류 (주문: ord, 교환: ex, 환불: rtn)
 	private String ordr_name; // 주문인 이름
