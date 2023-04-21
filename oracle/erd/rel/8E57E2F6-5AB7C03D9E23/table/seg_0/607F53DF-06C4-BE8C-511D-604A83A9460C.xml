@@ -8,6 +8,17 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NO" id="5CF4FF6F-768E-BF91-C1DC-2CE256A83BC8">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-04-21 00:19:33 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="CUST_ID" id="820DF4D1-48B8-50FE-26F6-3B949308BE22">
 <createdBy>CHANGWOO</createdBy>
 <createdTime>2023-03-28 10:40:17 UTC</createdTime>
@@ -16,7 +27,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>20</dataTypeSize>
-<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
@@ -31,7 +42,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>20</dataTypeSize>
-<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
@@ -97,6 +108,17 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="95AC400A-1897-B8E1-8B30-783E5734B23C" name="QA_PK">
+<createdBy>soldesk</createdBy>
+<createdTime>2023-04-21 00:23:03 UTC</createdTime>
+<ownerDesignName>erd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5CF4FF6F-768E-BF91-C1DC-2CE256A83BC8"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="41F1759D-39EF-6EE0-BD0E-C984D9758BE2" name="QA_CUST_FK">
 <createdBy>CHANGWOO</createdBy>
 <createdTime>2023-03-28 10:40:17 UTC</createdTime>

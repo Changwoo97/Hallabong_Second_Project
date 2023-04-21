@@ -43,15 +43,5 @@
 <colUsage columnID="69F66FB4-A0B1-F9D0-08D8-9E444BFD65A3"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="85416C67-03AB-F8A2-3900-E6BD77B50B51" name="CAT_UN">
-<createdBy>CHANGWOO</createdBy>
-<createdTime>2023-03-24 09:22:07 UTC</createdTime>
-<ownerDesignName>erd</ownerDesignName>
-<indexState>Unique Constraint</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="8F2D8997-D42C-BB6D-4E39-3BD2770D314C"/>
-</indexColumnUsage>
-</ind_PK_UK>
 </indexes>
 </Table>

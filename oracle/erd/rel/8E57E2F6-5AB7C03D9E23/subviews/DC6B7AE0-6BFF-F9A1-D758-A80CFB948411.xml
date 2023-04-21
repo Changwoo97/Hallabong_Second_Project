@@ -16,7 +16,7 @@
 <objectViews>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="0D76DCF7-6D4D-DE73-5BCB-64FE2041164D" otype="Table" vid="27ACCFA6-7695-600C-0793-477068A3098A">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="229" y="432" width="209" height="293"/>
+<bounds x="229" y="432" width="209" height="302"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="0EE762E9-0224-C601-01C0-E69C800ECFFE" otype="Table" vid="276F4B3B-67DC-62B4-6967-959B663AD61D">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -24,7 +24,7 @@
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="3460116F-D007-A40D-B368-E31FDF57F826" otype="Table" vid="0282C9E2-D2A5-628C-B818-7780CCC29440">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="1253" y="19" width="181" height="100"/>
+<bounds x="1253" y="19" width="181" height="88"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.TVNote" oid="576AF104-2450-F2C1-4088-54E6DA2DD0FB" otype="Note" vid="280A9DB9-0D48-A511-D673-21698E58EA0C">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -40,7 +40,7 @@ NAME: 카테고리명</comment>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="607F53DF-06C4-BE8C-511D-604A83A9460C" otype="Table" vid="5A924783-43FC-60D4-986D-7979A51DED1A">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="963" y="328" width="204" height="185"/>
+<bounds x="963" y="328" width="204" height="210"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.TVNote" oid="63F8C4E8-D532-7AF8-49E5-958F4065D0B5" otype="Note" vid="55DB8ACA-73F3-04D2-97E7-990C78053B2C">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -65,7 +65,7 @@ STA: 주문상태</comment>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.TVNote" oid="6696AD66-E073-2257-2264-7FE8B6BA9FAB" otype="Note" vid="A36093EF-D332-BDEA-C031-F546811BD872">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="972" y="529" width="174" height="246"/>
+<bounds x="981" y="549" width="174" height="246"/>
 <comment>DLVY: 배송
 ----------------
 NO: 배송번호
@@ -87,6 +87,7 @@ ORD_NO: 주문번호</comment>
 <bounds x="796" y="362" width="149" height="140"/>
 <comment>QA : Q&amp;A
 ----------------
+NO: Q&amp;A번호
 CUST_ID: 고객 아이디
 PROD_NO: 제품번호
 Q: 질문
@@ -97,7 +98,7 @@ STA: Q&amp;A상태</comment>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="8A66904F-5CE7-31B0-2330-99276104D408" otype="Table" vid="DE78D907-987A-2AB7-520F-32297CE7A5CA">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="1337" y="278" width="187" height="82"/>
+<bounds x="1337" y="278" width="187" height="115"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.TVNote" oid="919F8324-6691-4E26-E9EC-3098A2BADC7B" otype="Note" vid="AB4C36EE-65EF-3E71-CA87-2195A13059F9">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -133,6 +134,7 @@ REG_TM: 등록일
 <bounds x="582" y="20" width="112" height="113"/>
 <comment>REV : 리뷰
 -------------
+NO: 리뷰번호
 CUST_ID: 고객 아이디
 PROD_NO: 상품번호
 CONT: 내용
@@ -141,7 +143,7 @@ REG_TM: 등록시간
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="A1E0E827-2AF4-3BC8-10EB-CFA0BDD96299" otype="Table" vid="E062E89B-7D3E-9E00-6F4C-DB3D51CA4949">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="514" y="171" width="194" height="138"/>
+<bounds x="514" y="171" width="194" height="164"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="A52BACFA-0DC4-5AD7-A365-F0EC8DBCC640" otype="Table" vid="C13A978A-0485-A1A7-21EF-7093C7A15B67">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -166,11 +168,13 @@ STA: 상태</comment>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.TVNote" oid="B0971AAA-362E-A95C-077B-1F3A6A258EF7" otype="Note" vid="C542F4B6-5080-66ED-6B5B-80C58301CBBB">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="1537" y="272" width="105" height="86"/>
+<bounds x="1537" y="272" width="105" height="103"/>
 <comment>NOTI: 공지사항
 --------------
+NO: 공지번호
 TIT: 제목
-CONT: 내용</comment>
+CONT: 내용
+REG_TM: 등록일</comment>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.TVNote" oid="C2988A89-4F81-DBC0-4A78-C0EBEBDB2E1B" otype="Note" vid="9E567E7C-6C3B-E4DF-4927-53DDC1361DFA">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -235,8 +239,8 @@ REG_TM: 등록시간</comment>
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <points>
-<point x="461" y="240"/>
-<point x="514" y="240"/>
+<point x="461" y="253"/>
+<point x="514" y="253"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="89FD42B8-121B-0808-06C8-046A48DD417F" otype="FKIndexAssociation" vid_source="3D2C5CCF-D993-A436-3D29-85F05FA84F0A" vid_target="5A924783-43FC-60D4-986D-7979A51DED1A">
@@ -262,8 +266,8 @@ REG_TM: 등록시간</comment>
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <points>
-<point x="1009" y="215"/>
-<point x="708" y="215"/>
+<point x="1009" y="230"/>
+<point x="708" y="230"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="C672D37B-4991-1DAA-80F4-68B02C4EEDBA" otype="FKIndexAssociation" vid_source="0282C9E2-D2A5-628C-B818-7780CCC29440" vid_target="3D2C5CCF-D993-A436-3D29-85F05FA84F0A">
@@ -271,8 +275,8 @@ REG_TM: 등록시간</comment>
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <points>
-<point x="1253" y="85"/>
-<point x="1207" y="85"/>
+<point x="1253" y="79"/>
+<point x="1207" y="79"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="D244572A-0B7C-25FA-774D-B74F20582AD5" otype="FKIndexAssociation" vid_source="27ACCFA6-7695-600C-0793-477068A3098A" vid_target="01392F4E-0100-282E-339F-882198F9BE5F">
@@ -280,8 +284,8 @@ REG_TM: 등록시간</comment>
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <points>
-<point x="438" y="567"/>
-<point x="1192" y="567"/>
+<point x="438" y="582"/>
+<point x="1192" y="582"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="D3BBA451-55AA-1082-EFB5-F237980FBC4E" otype="FKIndexAssociation" vid_source="3D2C5CCF-D993-A436-3D29-85F05FA84F0A" vid_target="C13A978A-0485-A1A7-21EF-7093C7A15B67">

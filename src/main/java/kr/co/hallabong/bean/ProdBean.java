@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 //상품
 public class ProdBean {
-	private String no; // 상품번호
+	private String no; // 상품번호 default 이용
 	private char fs; // 판매여부
 	private String name; // 제품명
 	private int cost; // 원가

@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 // 리뷰
 public class RevBean {
+	private String no; // 리뷰번호 default 이용
 	private String cust_id; // 고객아이디
 	private String prod_no; // 상품번호
 	private String cont; // 내용
