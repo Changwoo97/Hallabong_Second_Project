@@ -40,7 +40,7 @@ NAME: 카테고리명</comment>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="607F53DF-06C4-BE8C-511D-604A83A9460C" otype="Table" vid="5A924783-43FC-60D4-986D-7979A51DED1A">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="963" y="328" width="204" height="210"/>
+<bounds x="963" y="328" width="204" height="184"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.TVNote" oid="63F8C4E8-D532-7AF8-49E5-958F4065D0B5" otype="Note" vid="55DB8ACA-73F3-04D2-97E7-990C78053B2C">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -84,12 +84,11 @@ ORD_NO: 주문번호</comment>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.TVNote" oid="67341D2D-DAC0-E484-9B47-7E5BF9D42B06" otype="Note" vid="0FB6F2EB-6028-F28B-4D26-DCD17B740723">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="796" y="362" width="149" height="140"/>
+<bounds x="796" y="362" width="149" height="157"/>
 <comment>QA : Q&amp;A
 ----------------
 NO: Q&amp;A번호
 CUST_ID: 고객 아이디
-PROD_NO: 제품번호
 Q: 질문
 Q_REG_TM: 질문 등록시간
 A: 답변
@@ -241,15 +240,6 @@ REG_TM: 등록시간</comment>
 <points>
 <point x="461" y="253"/>
 <point x="514" y="253"/>
-</points>
-</Connector>
-<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="89FD42B8-121B-0808-06C8-046A48DD417F" otype="FKIndexAssociation" vid_source="3D2C5CCF-D993-A436-3D29-85F05FA84F0A" vid_target="5A924783-43FC-60D4-986D-7979A51DED1A">
-<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<backgroundColor>-16777216</backgroundColor>
-<lineWidth>1</lineWidth>
-<points>
-<point x="1088" y="260"/>
-<point x="1088" y="328"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="90CB6F28-5FAF-C224-11AD-843C611AF92C" otype="FKIndexAssociation" vid_source="91CC2C0D-9F1E-A3DE-6F0F-F55FEB50AFB0" vid_target="5A924783-43FC-60D4-986D-7979A51DED1A">

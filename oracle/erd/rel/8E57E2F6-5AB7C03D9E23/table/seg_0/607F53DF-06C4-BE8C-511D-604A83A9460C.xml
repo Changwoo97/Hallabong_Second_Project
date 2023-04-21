@@ -34,21 +34,6 @@
 <colAssociation fkAssociation="90CB6F28-5FAF-C224-11AD-843C611AF92C" referredColumn="C286936E-F38C-F876-F46B-C7E65EE61A9D"/>
 </associations>
 </Column>
-<Column name="PROD_NO" id="05498B06-60D9-43A8-429C-DC3928416C52">
-<createdBy>CHANGWOO</createdBy>
-<createdTime>2023-03-28 10:40:21 UTC</createdTime>
-<ownerDesignName>erd</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>20</dataTypeSize>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="89FD42B8-121B-0808-06C8-046A48DD417F" referredColumn="6BCB7C1E-1B01-D1D0-E4A5-492B5147C55A"/>
-</associations>
-</Column>
 <Column name="Q" id="3CA90241-BC3C-A6A1-0FAE-46109C71CBD9">
 <createdBy>CHANGWOO</createdBy>
 <createdTime>2023-03-24 09:12:57 UTC</createdTime>
@@ -127,16 +112,6 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="820DF4D1-48B8-50FE-26F6-3B949308BE22"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="5635C781-B285-3CB9-593A-91CFA0CCEACA" name="QA_PROD_FK">
-<createdBy>CHANGWOO</createdBy>
-<createdTime>2023-03-28 10:40:21 UTC</createdTime>
-<ownerDesignName>erd</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="05498B06-60D9-43A8-429C-DC3928416C52"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
