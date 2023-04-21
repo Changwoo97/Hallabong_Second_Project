@@ -19,28 +19,18 @@ body {
 	cursor: pointer;
 }
 
-#nav .foldable {
+#nav .indent {
 	text-indent: 30px;
+}
+
+#nav .groupBullet {
+	width: 10px;
+	height: 10px;
+	transform: rotate(90deg);
 }
 
 #nav .bullet {
 	width: 10px;
 	height: 10px;
 	opacity: 0.5;
-	cursor: pointer;
 }
-
-#nav .foldableBullet {
-	width: 10px;
-	height: 10px;
-	transform: rotate(90deg);
-	cursor: pointer;
-}
-
-/* .rotate {
-	transform: rotate(90deg);
-}
-
-.opacity {
-	filter: opacity(50%);
-} */

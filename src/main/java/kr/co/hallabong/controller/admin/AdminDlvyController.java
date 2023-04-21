@@ -2,13 +2,14 @@ package kr.co.hallabong.controller.admin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.hallabong.struct.Pair;
+import kr.co.hallabong.format.Format;
 
 @Controller
 @RequestMapping("/admin/dlvy")
@@ -16,28 +17,25 @@ public class AdminDlvyController {
 	@GetMapping("/request")
 	public String dlvyRequest(Model model) {
 		List<String> srcs = new ArrayList<>();
-		srcs.add("/js/admin/tableCheck.js");
 		
-		List<Pair> thead = new ArrayList<>();
-		thead.add(new Pair("<input type=\"checkbox\" id=\"checkAll\" />", "N"));
-		thead.add(new Pair("주문일", "D-reg_tm"));
-		thead.add(new Pair("주문번호", "K-ord_no"));
-		thead.add(new Pair("상품번호", "K-prod_no"));
-		thead.add(new Pair("상품명", "K-prod_name"));
-		thead.add(new Pair("수량", "N"));
-		thead.add(new Pair("주문인", "K-ordr_name"));
-		thead.add(new Pair("주문인 전화번호", "K-ordr_tel"));
-		thead.add(new Pair("주문인 주소", "K-ordr_addr"));
-		thead.add(new Pair("수령인", "K-recv_name"));
-		thead.add(new Pair("수령인 전화번호", "K-recv_name"));
-		thead.add(new Pair("수령인 주소", "K-recv_addr"));
-		thead.add(new Pair("<input type=\"submit\" value=\"요청확인\" />", "N"));
+		List<Map<String, String>> thead = new ArrayList<>();
+		thead.add(Format.getMap("title=주문일&type=date&name=reg_tm"));
+		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
+		thead.add(Format.getMap("title=상품번호&type=keyword&name=prod_no"));
+		thead.add(Format.getMap("title=상품명&type=keyword&name=prod_name"));
+		thead.add(Format.getMap("title=수량"));
+		thead.add(Format.getMap("title=주문인&type=keyword&name=ordr_name"));
+		thead.add(Format.getMap("title=주문인 전화번호&type=keyword&name=ordr_tel"));
+		thead.add(Format.getMap("title=주문인 주소&type=keyword&name=ordr_addr"));
+		thead.add(Format.getMap("title=수령인&type=keyword&name=recv_name"));
+		thead.add(Format.getMap("title=수령인 전화번호&type=keyword&name=recv_name"));
+		thead.add(Format.getMap("title=수령인 주소&type=keyword&name=recv_addr"));
+		thead.add(Format.getMap("title=요청확인"));
 	
 		List<List<String>> tbody = new ArrayList<>();
 		for (int i = 0; i < 100; i++) {
 			List<String> row = new ArrayList<>();
 			
-			row.add("<input type=\"checkbox\" name=\"checks\" />");
 			for (int j = 0; j < 11; j++) {
 				row.add(i + "-" + j);
 			}
@@ -58,28 +56,25 @@ public class AdminDlvyController {
 	@GetMapping("/ready")
 	public String dlvyReady(Model model) {
 		List<String> srcs = new ArrayList<>();
-		srcs.add("/js/admin/tableCheck.js");
 		
-		List<Pair> thead = new ArrayList<>();
-		thead.add(new Pair("<input type=\"checkbox\" id=\"checkAll\" />", "N"));
-		thead.add(new Pair("주문일", "D-reg_tm"));
-		thead.add(new Pair("주문번호", "K-ord_no"));
-		thead.add(new Pair("상품번호", "K-prod_no"));
-		thead.add(new Pair("상품명", "K-prod_name"));
-		thead.add(new Pair("수량", "N"));
-		thead.add(new Pair("주문인", "K-ordr_name"));
-		thead.add(new Pair("주문인 전화번호", "K-ordr_tel"));
-		thead.add(new Pair("주문인 주소", "K-ordr_addr"));
-		thead.add(new Pair("수령인", "K-recv_name"));
-		thead.add(new Pair("수령인 전화번호", "K-recv_name"));
-		thead.add(new Pair("수령인 주소", "K-recv_addr"));
-		thead.add(new Pair("<input type=\"submit\" value=\"준비완료\" />", "N"));
+		List<Map<String, String>> thead = new ArrayList<>();
+		thead.add(Format.getMap("title=주문일&type=date&name=reg_tm"));
+		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
+		thead.add(Format.getMap("title=상품번호&type=keyword&name=prod_no"));
+		thead.add(Format.getMap("title=상품명&type=keyword&name=prod_name"));
+		thead.add(Format.getMap("title=수량"));
+		thead.add(Format.getMap("title=주문인&type=keyword&name=ordr_name"));
+		thead.add(Format.getMap("title=주문인 전화번호&type=keyword&name=ordr_tel"));
+		thead.add(Format.getMap("title=주문인 주소&type=keyword&name=ordr_addr"));
+		thead.add(Format.getMap("title=수령인&type=keyword&name=recv_name"));
+		thead.add(Format.getMap("title=수령인 전화번호&type=keyword&name=recv_name"));
+		thead.add(Format.getMap("title=수령인 주소&type=keyword&name=recv_addr"));
+		thead.add(Format.getMap("title=준비완료"));
 	
 		List<List<String>> tbody = new ArrayList<>();
 		for (int i = 0; i < 100; i++) {
 			List<String> row = new ArrayList<>();
 			
-			row.add("<input type=\"checkbox\" name=\"checks\" />");
 			for (int j = 0; j < 11; j++) {
 				row.add(i + "-" + j);
 			}
@@ -101,18 +96,18 @@ public class AdminDlvyController {
 	public String dlvyWait(Model model) {
 		List<String> srcs = new ArrayList<>();
 		
-		List<Pair> thead = new ArrayList<>();
-		thead.add(new Pair("주문일", "D-reg_tm"));
-		thead.add(new Pair("주문번호", "K-ord_no"));
-		thead.add(new Pair("상품번호", "K-prod_no"));
-		thead.add(new Pair("상품명", "K-prod_name"));
-		thead.add(new Pair("수량", "N"));
-		thead.add(new Pair("주문인", "K-ordr_name"));
-		thead.add(new Pair("주문인 전화번호", "K-ordr_tel"));
-		thead.add(new Pair("주문인 주소", "K-ordr_addr"));
-		thead.add(new Pair("수령인", "K-recv_name"));
-		thead.add(new Pair("수령인 전화번호", "K-recv_name"));
-		thead.add(new Pair("수령인 주소", "K-recv_addr"));
+		List<Map<String, String>> thead = new ArrayList<>();
+		thead.add(Format.getMap("title=주문일&type=date&name=reg_tm"));
+		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
+		thead.add(Format.getMap("title=상품번호&type=keyword&name=prod_no"));
+		thead.add(Format.getMap("title=상품명&type=keyword&name=prod_name"));
+		thead.add(Format.getMap("title=수량"));
+		thead.add(Format.getMap("title=주문인&type=keyword&name=ordr_name"));
+		thead.add(Format.getMap("title=주문인 전화번호&type=keyword&name=ordr_tel"));
+		thead.add(Format.getMap("title=주문인 주소&type=keyword&name=ordr_addr"));
+		thead.add(Format.getMap("title=수령인&type=keyword&name=recv_name"));
+		thead.add(Format.getMap("title=수령인 전화번호&type=keyword&name=recv_name"));
+		thead.add(Format.getMap("title=수령인 주소&type=keyword&name=recv_addr"));
 	
 		List<List<String>> tbody = new ArrayList<>();
 		for (int i = 0; i < 100; i++) {
@@ -139,19 +134,19 @@ public class AdminDlvyController {
 	public String dlvyProcess(Model model) {
 		List<String> srcs = new ArrayList<>();
 		
-		List<Pair> thead = new ArrayList<>();
-		thead.add(new Pair("주문일", "D-reg_tm"));
-		thead.add(new Pair("출발일", "D-dep_tm"));
-		thead.add(new Pair("주문번호", "K-ord_no"));
-		thead.add(new Pair("상품번호", "K-prod_no"));
-		thead.add(new Pair("상품명", "K-prod_name"));
-		thead.add(new Pair("수량", "N"));
-		thead.add(new Pair("주문인", "K-ordr_name"));
-		thead.add(new Pair("주문인 전화번호", "K-ordr_tel"));
-		thead.add(new Pair("주문인 주소", "K-ordr_addr"));
-		thead.add(new Pair("수령인", "K-recv_name"));
-		thead.add(new Pair("수령인 전화번호", "K-recv_name"));
-		thead.add(new Pair("수령인 주소", "K-recv_addr"));
+		List<Map<String, String>> thead = new ArrayList<>();
+		thead.add(Format.getMap("title=주문일&type=date&name=reg_tm"));
+		thead.add(Format.getMap("title=출발일&type=date&name=dep_tm"));
+		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
+		thead.add(Format.getMap("title=상품번호&type=keyword&name=prod_no"));
+		thead.add(Format.getMap("title=상품명&type=keyword&name=prod_name"));
+		thead.add(Format.getMap("title=수량"));
+		thead.add(Format.getMap("title=주문인&type=keyword&name=ordr_name"));
+		thead.add(Format.getMap("title=주문인 전화번호&type=keyword&name=ordr_tel"));
+		thead.add(Format.getMap("title=주문인 주소&type=keyword&name=ordr_addr"));
+		thead.add(Format.getMap("title=수령인&type=keyword&name=recv_name"));
+		thead.add(Format.getMap("title=수령인 전화번호&type=keyword&name=recv_name"));
+		thead.add(Format.getMap("title=수령인 주소&type=keyword&name=recv_addr"));
 	
 		List<List<String>> tbody = new ArrayList<>();
 		for (int i = 0; i < 100; i++) {
@@ -179,20 +174,20 @@ public class AdminDlvyController {
 	public String dlvyComplete(Model model) {
 		List<String> srcs = new ArrayList<>();
 		
-		List<Pair> thead = new ArrayList<>();
-		thead.add(new Pair("주문일", "D-reg_tm"));
-		thead.add(new Pair("출발일", "D-dep_tm"));
-		thead.add(new Pair("도착일", "D-arr_tm"));
-		thead.add(new Pair("주문번호", "K-ord_no"));
-		thead.add(new Pair("상품번호", "K-prod_no"));
-		thead.add(new Pair("상품명", "K-prod_name"));
-		thead.add(new Pair("수량", "N"));
-		thead.add(new Pair("주문인", "K-ordr_name"));
-		thead.add(new Pair("주문인 전화번호", "K-ordr_tel"));
-		thead.add(new Pair("주문인 주소", "K-ordr_addr"));
-		thead.add(new Pair("수령인", "K-recv_name"));
-		thead.add(new Pair("수령인 전화번호", "K-recv_name"));
-		thead.add(new Pair("수령인 주소", "K-recv_addr"));
+		List<Map<String, String>> thead = new ArrayList<>();
+		thead.add(Format.getMap("title=주문일&type=date&name=reg_tm"));
+		thead.add(Format.getMap("title=출발일&type=date&name=dep_tm"));
+		thead.add(Format.getMap("title=도착일&type=date&name=arr_tm"));
+		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
+		thead.add(Format.getMap("title=상품번호&type=keyword&name=prod_no"));
+		thead.add(Format.getMap("title=상품명&type=keyword&name=prod_name"));
+		thead.add(Format.getMap("title=수량"));
+		thead.add(Format.getMap("title=주문인&type=keyword&name=ordr_name"));
+		thead.add(Format.getMap("title=주문인 전화번호&type=keyword&name=ordr_tel"));
+		thead.add(Format.getMap("title=주문인 주소&type=keyword&name=ordr_addr"));
+		thead.add(Format.getMap("title=수령인&type=keyword&name=recv_name"));
+		thead.add(Format.getMap("title=수령인 전화번호&type=keyword&name=recv_name"));
+		thead.add(Format.getMap("title=수령인 주소&type=keyword&name=recv_addr"));
 	
 		List<List<String>> tbody = new ArrayList<>();
 		for (int i = 0; i < 100; i++) {

@@ -8,9 +8,6 @@
 	<title>table</title>
 	<link rel="stylesheet" href="${root}/css/admin/table.css" />
 	<script type="text/javascript" src="${root}/js/admin/table.js"></script>
-	<c:forEach var="src" items="${srcs}">
-		<script type="text/javascript" src="${root}${src}"></script>
-	</c:forEach>
 </head>
 <body>
 	<div id="tableMenubar">
@@ -50,23 +47,21 @@
 	<div id="tableSearch">
 		<table>
 			<c:forEach var="cell" items="${thead}">
-				<c:if test="${!cell.item2.equals('N')}">
-					<tr>
-						<th>${cell.item1}</th>
-						<td>
-							<c:choose>
-								<c:when test="${cell.item2.substring(0, 1).equals('D')}">
-									<input type="date" name="${cell.item2.substring(2)}BeginDate"/>
-									~
-									<input type="date" name="${cell.item2.substring(2)}EndDate"/>
-								</c:when>
-								<c:when test="${cell.item2.substring(0, 1).equals('K')}">
-									<input type="text" name="${cell.item2.substring(2)}" />
-								</c:when>
-							</c:choose>
-						</td>
-					</tr>
-				</c:if>
+				<tr>
+					<th>${cell['title']}</th>
+					<td>
+						<c:choose>
+							<c:when test="${cell['type'].equals('date')}">
+								<input type="date" name="${cell['name']}BeginDate"/>
+								~
+								<input type="date" name="${cell['name']}EndDate"/>
+							</c:when>
+							<c:when test="${cell['type'].equals('keyword')}">
+								<input type="text" name="${cell['name']}" />
+							</c:when>
+						</c:choose>
+					</td>
+				</tr>
 			</c:forEach>
 			<tr>
 				<td colspan="2">
@@ -79,7 +74,7 @@
 		<thead>
 			<tr>
 				<c:forEach var="cell" items="${thead}">
-					<th>${cell.item1}</th>
+					<th>${cell['title']}</th>
 				</c:forEach>
 			</tr>
 		</thead>

@@ -2,13 +2,14 @@ package kr.co.hallabong.controller.admin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.hallabong.struct.Pair;
+import kr.co.hallabong.format.Format;
 
 @Controller
 @RequestMapping("/admin/stlm")
@@ -17,15 +18,15 @@ public class AdminStlmController {
 	public String check(Model model) {
 		List<String> srcs = new ArrayList<>();
 		
-		List<Pair> thead = new ArrayList<>();
-		thead.add(new Pair("신청일", "D-reg_tm"));
-		thead.add(new Pair("정산일", "D-stlm_tm"));
-		thead.add(new Pair("주문번호", "K-ord_no"));
-		thead.add(new Pair("배송료", "N"));
-		thead.add(new Pair("차감배송료", "N"));
-		thead.add(new Pair("원가", "N"));
-		thead.add(new Pair("판매금액", "N"));
-		thead.add(new Pair("순수익", "N"));
+		List<Map<String, String>> thead = new ArrayList<>();
+		thead.add(Format.getMap("title=신청일&type=date&name=reg_tm"));
+		thead.add(Format.getMap("title=정산일&type=date&name=stlm_tm"));
+		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
+		thead.add(Format.getMap("title=배송료"));
+		thead.add(Format.getMap("title=차감배송료"));
+		thead.add(Format.getMap("title=원가"));
+		thead.add(Format.getMap("title=판매금액"));
+		thead.add(Format.getMap("title=순수익"));
 	
 		List<List<String>> tbody = new ArrayList<>();
 		for (int i = 0; i < 100; i++) {

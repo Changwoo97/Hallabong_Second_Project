@@ -2,26 +2,27 @@ package kr.co.hallabong.controller.admin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.hallabong.struct.Pair;
+import kr.co.hallabong.format.Format;
 
 @Controller
 @RequestMapping("/admin/qa")
 public class AdminQaController {
 	@GetMapping("/request")
 	public String request(Model model) {
-List<String> srcs = new ArrayList<>();
+		List<String> srcs = new ArrayList<>();
 		
-		List<Pair> thead = new ArrayList<>();
-		thead.add(new Pair("작성일", "D-reg_tm"));
-		thead.add(new Pair("작성자", "K-cust_id"));
-		thead.add(new Pair("문의내용", "N"));
-		thead.add(new Pair("<input type=\"submit\" value=\"답변하기\" />", "N"));
+		List<Map<String, String>> thead = new ArrayList<>();
+		thead.add(Format.getMap("title=작성일&type=date&name=reg_tm"));
+		thead.add(Format.getMap("title=작성자&type=keyword&name=cust_id"));
+		thead.add(Format.getMap("title=문의내용"));
+		thead.add(Format.getMap("title=답변하기"));
 	
 		List<List<String>> tbody = new ArrayList<>();
 		for (int i = 0; i < 100; i++) {
@@ -49,13 +50,13 @@ List<String> srcs = new ArrayList<>();
 	public String complete(Model model) {
 List<String> srcs = new ArrayList<>();
 		
-		List<Pair> thead = new ArrayList<>();
-		thead.add(new Pair("작성일", "D-q_reg_tm"));
-		thead.add(new Pair("답변일", "D-a_reg_tm"));
-		thead.add(new Pair("작성자", "K-cust_id"));
-		thead.add(new Pair("문의내용", "N"));
-		thead.add(new Pair("답변내용", "N"));
-		thead.add(new Pair("<input type=\"submit\" value=\"수정하기\" />", "N"));
+		List<Map<String, String>> thead = new ArrayList<>();
+		thead.add(Format.getMap("title=작성일&type=date&name=q_reg_tm"));
+		thead.add(Format.getMap("title=답변일&type=date&name=a_reg_tm"));
+		thead.add(Format.getMap("title=작성자&type=keyword&name=cust_id"));
+		thead.add(Format.getMap("title=문의내용"));
+		thead.add(Format.getMap("title=답변내용"));
+		thead.add(Format.getMap("title=수정하기"));
 	
 		List<List<String>> tbody = new ArrayList<>();
 		for (int i = 0; i < 100; i++) {

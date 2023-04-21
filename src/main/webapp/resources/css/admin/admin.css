@@ -24,7 +24,6 @@ body {
 	float: left;
 	width: 5px;
 	background-color: rgb(240, 240, 240);
-	cursor: e-resize;
 }
 
 #main {
