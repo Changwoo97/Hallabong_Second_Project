@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
 	<title>prodDetail</title>
 	<link rel="stylesheet" href="${root}/css/admin/detail.css" />
 </head>
@@ -14,7 +14,7 @@
 			<input type="hidden" name="no" value="${no}">
 			<table>
 				<tr><td class="detailTop" colspan="2"></td></tr>
-				<c:if test="${!no.isEmpty()}">
+				<c:if test="${no != null}">
 					<tr>
 						<th>상품번호</th>
 						<td><input type="text" name="name" value="${no}" readonly/></td>

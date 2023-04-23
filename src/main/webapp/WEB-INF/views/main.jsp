@@ -7,6 +7,6 @@
 </head>
 <body>
 	<h1>Main</h1>
-	<a href="admin/admin">admin/admin</a>
+	<a href="admin">admin</a>
 </body>
 </html>

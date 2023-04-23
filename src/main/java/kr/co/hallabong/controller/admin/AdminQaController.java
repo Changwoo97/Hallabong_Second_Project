@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.hallabong.format.Format;
@@ -31,7 +32,11 @@ public class AdminQaController {
 			for (int j = 0; j < 11; j++) {
 				row.add(i + "-" + j);
 			}
-			row.add("<input type=\"submit\" value=\"답변하기\" />");
+			StringBuilder sb = new StringBuilder();
+			sb.append("<form action=\"registration\" method=\"post\">");
+			sb.append("\t<input type=\"submit\" value=\"답변하기\" />");
+			sb.append("</form>");
+			row.add(sb.toString());
 			
 			tbody.add(row);
 		}
@@ -48,7 +53,7 @@ public class AdminQaController {
 	
 	@GetMapping("/complete")
 	public String complete(Model model) {
-List<String> srcs = new ArrayList<>();
+		List<String> srcs = new ArrayList<>();
 		
 		List<Map<String, String>> thead = new ArrayList<>();
 		thead.add(Format.getMap("title=작성일&type=date&name=q_reg_tm"));
@@ -65,7 +70,11 @@ List<String> srcs = new ArrayList<>();
 			for (int j = 0; j < 11; j++) {
 				row.add(i + "-" + j);
 			}
-			row.add("<input type=\"submit\" value=\"수정하기\" />");
+			StringBuilder sb = new StringBuilder();
+			sb.append("<form action=\"modify\" method=\"post\">");
+			sb.append("\t<input type=\"submit\" value=\"수정하기\" />");
+			sb.append("</form>");
+			row.add(sb.toString());
 			
 			tbody.add(row);
 		}
@@ -78,5 +87,39 @@ List<String> srcs = new ArrayList<>();
 		model.addAttribute("thead", thead);
 		model.addAttribute("tbody", tbody);
 		return "admin/admin";
+	}
+	
+	@PostMapping("/registration")
+	public String registration(Model model) {
+		model.addAttribute("content", "/WEB-INF/views/admin/qaDetail.jsp");
+		model.addAttribute("frameName", "문의처리");
+		model.addAttribute("path", "/admin/qa/registration_proc");
+		model.addAttribute("submit", "답변하기");
+		return "admin/admin";
+	}
+	
+	@PostMapping("/registration_proc")
+	public String registration_proc(Model model) {
+		model.addAttribute("message", "문의가 처리되었습니다.");
+		model.addAttribute("path", "/admin/qa/complete");
+		return "admin/alert";
+	}
+	
+	@PostMapping("/modify") 
+	public String modify(Model model) {
+		
+		model.addAttribute("content", "/WEB-INF/views/admin/qaDetail.jsp");
+		model.addAttribute("frameName", "문의수정");
+		model.addAttribute("path", "/admin/qa/modify_proc");
+		model.addAttribute("submit", "수정하기");
+		return "admin/admin";
+	}
+	
+	@PostMapping("/modify_proc") 
+	public String modify_proc(Model model) {
+		
+		model.addAttribute("message", "문의가 수정되었습니다.");
+		model.addAttribute("path", "/admin/qa/complete");
+		return "admin/alert";
 	}
 }

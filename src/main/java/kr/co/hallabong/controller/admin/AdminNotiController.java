@@ -36,7 +36,7 @@ public class AdminNotiController {
 	public String check(Model model) {
 		List<Map<String, String>> thead = new ArrayList<>();
 		thead.add(Format.getMap("title=등록일&type=date&name=reg_tm"));
-		thead.add(Format.getMap("title=내용&type=keyword&name=N"));
+		thead.add(Format.getMap("title=내용"));
 		thead.add(Format.getMap("title=수정하기"));
 		thead.add(Format.getMap("title=삭제하기"));
 	
@@ -86,7 +86,6 @@ public class AdminNotiController {
 	@PostMapping("/modify_proc") 
 	public String modify_proc(Model model) {
 		
-		
 		model.addAttribute("message", "공지사항이 수정되었습니다.");
 		model.addAttribute("path", "/admin/noti/check");
 		return "admin/alert";
@@ -94,7 +93,6 @@ public class AdminNotiController {
 	
 	@PostMapping("/delete_proc") 
 	public String delete_proc(Model model) {
-		
 		
 		model.addAttribute("message", "공지사항이 삭제되었습니다.");
 		model.addAttribute("path", "/admin/noti/check");

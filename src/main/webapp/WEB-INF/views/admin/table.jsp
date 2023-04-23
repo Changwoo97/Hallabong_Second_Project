@@ -47,21 +47,23 @@
 	<div id="tableSearch">
 		<table>
 			<c:forEach var="cell" items="${thead}">
-				<tr>
-					<th>${cell['title']}</th>
-					<td>
-						<c:choose>
-							<c:when test="${cell['type'].equals('date')}">
-								<input type="date" name="${cell['name']}BeginDate"/>
-								~
-								<input type="date" name="${cell['name']}EndDate"/>
-							</c:when>
-							<c:when test="${cell['type'].equals('keyword')}">
-								<input type="text" name="${cell['name']}" />
-							</c:when>
-						</c:choose>
-					</td>
-				</tr>
+				<c:if test="${cell['type'] != null}">
+					<tr>
+						<th>${cell['title']}</th>
+						<td>
+							<c:choose>
+								<c:when test="${cell['type'].equals('date')}">
+									<input type="date" name="${cell['name']}BeginDate"/>
+									~
+									<input type="date" name="${cell['name']}EndDate"/>
+								</c:when>
+								<c:when test="${cell['type'].equals('keyword')}">
+									<input type="text" name="${cell['name']}" />
+								</c:when>
+							</c:choose>
+						</td>
+					</tr>
+				</c:if>
 			</c:forEach>
 			<tr>
 				<td colspan="2">
@@ -88,7 +90,11 @@
 			</c:forEach>	
 		</tbody>
 		<tfoot>
-			<tr></tr>
+			<tr>
+				<c:forEach var="cell" items="${tfoot}">
+					<th>${cell}</th>
+				</c:forEach>
+			</tr>
 		</tfoot>
 	</table>
 </body>

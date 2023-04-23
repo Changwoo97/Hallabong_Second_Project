@@ -10,8 +10,15 @@
 	<script type="text/javascript" src="${root}/js/admin/admin.js"></script>
 </head>
 <body>
-	<input type="hidden" id="asideWidth" value="${asideWidth}"/>
-	<div id="header"></div>
+	<div id="header">
+		<table>
+			<tr>
+				<td></td>
+				<td class="button"><a href="${root}/admin/logout_proc">로그아웃</a></td>
+				<td class="padding"></td>
+			</tr>
+		</table>
+	</div>
 	<div id="aside">
 		<jsp:include page="/WEB-INF/views/admin/nav.jsp" />
 	</div>

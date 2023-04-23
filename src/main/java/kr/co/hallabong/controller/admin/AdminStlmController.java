@@ -39,6 +39,16 @@ public class AdminStlmController {
 			tbody.add(row);
 		}
 		
+		List<String> tfoot = new ArrayList<>();
+		tfoot.add("");
+		tfoot.add("");
+		tfoot.add("합계");
+		tfoot.add("배송료");
+		tfoot.add("차감배송료");
+		tfoot.add("원가");
+		tfoot.add("판매금액");
+		tfoot.add("순수익");
+		
 		model.addAttribute("content", "/WEB-INF/views/admin/table.jsp");
 		model.addAttribute("srcs", srcs);
 		model.addAttribute("frameName", "정산조회");
@@ -46,6 +56,7 @@ public class AdminStlmController {
 		model.addAttribute("selectedPageNum", 7);
 		model.addAttribute("thead", thead);
 		model.addAttribute("tbody", tbody);
+		model.addAttribute("tfoot", tfoot);
 		return "admin/admin";
 	}
 }

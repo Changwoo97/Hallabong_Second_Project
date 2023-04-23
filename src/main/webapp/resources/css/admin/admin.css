@@ -10,6 +10,43 @@ body {
 	background-color: rgb(240, 240, 240);
 }
 
+#header table {
+	width: 100%;
+	height: 100%;
+}
+
+#header table .padding {
+	width: 10px;
+}
+
+#header table .button {
+	width: 70px;
+	text-align: center;
+}
+
+#header table .button a {
+	font-size: 10pt;
+}
+
+#header table .button a:link {
+	color: black;
+	text-decoration: none; 
+}
+
+#header table .button a:hover {
+	color: black;
+}
+
+#header table .button a:active {
+	color: black;
+	text-decoration: none; 
+}
+
+#header table .button a:visited {
+	color: black;
+	text-decoration: none; 
+}
+
 #aside {
 	float: left;
 	border: 2px solid rgb(240, 240, 240);
