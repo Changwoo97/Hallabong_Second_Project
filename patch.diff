@@ -1,0 +1,185 @@
+From 59971069c848c4a5d8831d15ab02e55998fbbf1a Mon Sep 17 00:00:00 2001
+From: Changwoo97 <yahsooys@gmail.com>
+Date: Mon, 24 Apr 2023 16:29:12 +0900
+Subject: [PATCH] no message
+
+---
+ .../hallabong/config/ServletAppContext.java   |  69 +++++++++++++++++-
+ .../kr/co/hallabong/service/CustService.java  |   2 +-
+ .../webapp/WEB-INF/properties/db.properties   |   4 +
+ .../hallabong/config/ServletAppContext.class  | Bin 1987 -> 5124 bytes
+ 4 files changed, 72 insertions(+), 3 deletions(-)
+ create mode 100644 src/main/webapp/WEB-INF/properties/db.properties
+
+diff --git a/src/main/java/kr/co/hallabong/config/ServletAppContext.java b/src/main/java/kr/co/hallabong/config/ServletAppContext.java
+index b7526b2..2c4d5df 100644
+--- a/src/main/java/kr/co/hallabong/config/ServletAppContext.java
++++ b/src/main/java/kr/co/hallabong/config/ServletAppContext.java
+@@ -1,17 +1,42 @@
+ package kr.co.hallabong.config;
+ 
++import org.apache.commons.dbcp2.BasicDataSource;
++import org.apache.ibatis.session.SqlSessionFactory;
++import org.mybatis.spring.SqlSessionFactoryBean;
++import org.mybatis.spring.mapper.MapperFactoryBean;
++import org.springframework.beans.factory.annotation.Value;
++import org.springframework.context.annotation.Bean;
+ import org.springframework.context.annotation.ComponentScan;
+ import org.springframework.context.annotation.Configuration;
++import org.springframework.context.annotation.PropertySource;
+ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+ import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
+ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+ 
++import kr.co.hallabong.mapper.CategoryMapper;
++import kr.co.hallabong.mapper.CustMapper;
++import kr.co.hallabong.mapper.UserMapper;
++
++@Configuration
++@EnableWebMvc //Controller로 등록되어 있는 클래스 셋팅
+ @ComponentScan("kr.co.hallabong.controller") //스캔할 패키지
++@ComponentScan("kr.co.hallabong.dao") //스캔할 패키지
+ @ComponentScan("kr.co.hallabong.service") //스캔할 패키지
+-@EnableWebMvc //Controller로 등록되어 있는 클래스 셋팅
+-@Configuration
++@PropertySource("/WEB-INF/properties/db.properties")
+ public class ServletAppContext implements WebMvcConfigurer {
++	@Value("${db.classname}")
++	private String db_classname;
++	
++	@Value("${db.url}")
++	private String db_url;
++	
++	@Value("${db.username}")
++	private String db_username;
++	
++	@Value("${db.password}")
++	private String db_password;
++	
+ 	@Override
+ 	public void configureViewResolvers(ViewResolverRegistry registry) {
+ 		// view 경로와 확장자 셋팅
+@@ -25,5 +50,45 @@ public class ServletAppContext implements WebMvcConfigurer {
+ 		WebMvcConfigurer.super.addResourceHandlers(registry);
+ 		registry.addResourceHandler("/**").addResourceLocations("/resources/");
+ 	}
++	
++	@Bean
++	public BasicDataSource dataSource() {
++		BasicDataSource source = new BasicDataSource();
++		source.setDriverClassName(db_classname);
++		source.setUrl(db_url);
++		source.setUsername(db_username);
++		source.setPassword(db_password);
++		
++		return source;
++	}
++	
++	@Bean
++	public SqlSessionFactory factory(BasicDataSource source) throws Exception{
++		SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
++		factoryBean.setDataSource(source);
++		SqlSessionFactory factory = factoryBean.getObject();
++		return factory;
++	}
++	
++	@Bean
++	public MapperFactoryBean<CustMapper> getCustMapper(SqlSessionFactory factory) throws Exception{
++		MapperFactoryBean<CustMapper> factoryBean = new MapperFactoryBean<CustMapper>(CustMapper.class);
++		factoryBean.setSqlSessionFactory(factory);
++		return factoryBean;
++	}
++	
++	@Bean
++	public MapperFactoryBean<CategoryMapper> getCategoryMapper(SqlSessionFactory factory) throws Exception{
++		MapperFactoryBean<CategoryMapper> factoryBean = new MapperFactoryBean<CategoryMapper>(CategoryMapper.class);
++		factoryBean.setSqlSessionFactory(factory);
++		return factoryBean;
++	}
++	
++	@Bean
++	public MapperFactoryBean<UserMapper> getUserMapper(SqlSessionFactory factory) throws Exception{
++		MapperFactoryBean<UserMapper> factoryBean = new MapperFactoryBean<UserMapper>(UserMapper.class);
++		factoryBean.setSqlSessionFactory(factory);
++		return factoryBean;
++	}
+ }
+ 
+diff --git a/src/main/java/kr/co/hallabong/service/CustService.java b/src/main/java/kr/co/hallabong/service/CustService.java
+index 6edbbae..f930b1a 100644
+--- a/src/main/java/kr/co/hallabong/service/CustService.java
++++ b/src/main/java/kr/co/hallabong/service/CustService.java
+@@ -30,7 +30,7 @@ public class CustService {
+ 		if (tempLoginCustBean2 != null) {
+ 			loginCustBean.setId(tempLoginCustBean2.getId());
+ 			loginCustBean.setPw(tempLoginCustBean2.getPw());
+-			loginCustBean.setCustLogin(true); // 최초에 false로 되음. 로그인성공
++			//loginCustBean.setCustLogin(true); // 최초에 false로 되음. 로그인성공
+ 
+ 		}
+ 
+diff --git a/src/main/webapp/WEB-INF/properties/db.properties b/src/main/webapp/WEB-INF/properties/db.properties
+new file mode 100644
+index 0000000..348ad45
+--- /dev/null
++++ b/src/main/webapp/WEB-INF/properties/db.properties
+@@ -0,0 +1,4 @@
++db.classname=oracle.jdbc.OracleDriver
++db.url=jdbc:oracle:thin:@localhost:1521:xe
++db.username=system
++db.password=12345
+\ No newline at end of file
+diff --git a/target/classes/kr/co/hallabong/config/ServletAppContext.class b/target/classes/kr/co/hallabong/config/ServletAppContext.class
+index 4d3c08fe10ffc490a0c4ff6c8ced780ebb59fe7a..4006d14bfa4852e4b84662016ce35260b2d8cdcc 100644
+GIT binary patch
+literal 5124
+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
+CWx2!v
+
+delta 597
+zcmZWnO-~a+7=C8k?bc<x3tK4Aq7((eUCSV-eEHE3Fd+ml9Dv}ZAq_$Zny%E45Qx!)
+z69h6h5)R%xcrhf95b$E+!N1^-@aje5vu&d!9_D?Yck+D9Oy*tB7svee`|LA-LF5n2
+zJ+&!XVs#b_#MPnrnoC-!M?)M<0*;)W7|TsQeIm=t#n*w1qgf!@yAr%K(Ta?LwA$6C
+zB5k;O{9PLteK#y*(P5xVpnj!LF38ow+LD}kRa#zKilbW~B0bN<E%*jJfl0Nm^{Zde
+zRBXe-ZRFHZbSo_d>SU=HyjU+S76WPG4h9VL3ryG88QsENl6Umy>O-RI;Ji%?s`q-6
+z%EyxGqn$8=Q31VNSY0owH};(RVW&l&gaI{TJL;|NtDgyL8y(<rxO6^5*m-@{E1V>|
+zVAs7<n4btVSgf(iri}!#RVBcN!-=;=18XRrqM63-c>XC|-)(eLCuo`dXJeB9Y`Y9j
+zQr}qdOI0;BKdNyJ?Q|63d)AzvQ4u<4L+9&$^a7pp5%=cI33_U{m$>i0s8;IIbjw^y
+s%1-}{$};L6BQ)HnxyDa1#Gd0Rhq*hl04<NvDiQ%6Tpk|c5vh-XKhKC)od5s;
+
+-- 
+2.39.1.windows.1
+
