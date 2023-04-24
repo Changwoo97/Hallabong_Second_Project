@@ -1,13 +1,8 @@
 package kr.co.hallabong.mapper;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 import kr.co.hallabong.bean.CustBean;
-import kr.co.hallabong.bean.CustInfoBean;
 
 
 public interface CustMapper {

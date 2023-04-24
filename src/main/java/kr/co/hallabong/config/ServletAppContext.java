@@ -3,7 +3,6 @@ package kr.co.hallabong.config;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,10 +12,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import kr.co.hallabong.mapper.CategoryMapper;
-import kr.co.hallabong.mapper.CustMapper;
-import kr.co.hallabong.mapper.UserMapper;
 
 @Configuration
 @EnableWebMvc //Controller로 등록되어 있는 클래스 셋팅
@@ -70,25 +65,25 @@ public class ServletAppContext implements WebMvcConfigurer {
 		return factory;
 	}
 	
-	@Bean
-	public MapperFactoryBean<CustMapper> getCustMapper(SqlSessionFactory factory) throws Exception{
-		MapperFactoryBean<CustMapper> factoryBean = new MapperFactoryBean<CustMapper>(CustMapper.class);
-		factoryBean.setSqlSessionFactory(factory);
-		return factoryBean;
-	}
-	
-	@Bean
-	public MapperFactoryBean<CategoryMapper> getCategoryMapper(SqlSessionFactory factory) throws Exception{
-		MapperFactoryBean<CategoryMapper> factoryBean = new MapperFactoryBean<CategoryMapper>(CategoryMapper.class);
-		factoryBean.setSqlSessionFactory(factory);
-		return factoryBean;
-	}
-	
-	@Bean
-	public MapperFactoryBean<UserMapper> getUserMapper(SqlSessionFactory factory) throws Exception{
-		MapperFactoryBean<UserMapper> factoryBean = new MapperFactoryBean<UserMapper>(UserMapper.class);
-		factoryBean.setSqlSessionFactory(factory);
-		return factoryBean;
-	}
+//	@Bean
+//	public MapperFactoryBean<CustMapper> getCustMapper(SqlSessionFactory factory) throws Exception{
+//		MapperFactoryBean<CustMapper> factoryBean = new MapperFactoryBean<CustMapper>(CustMapper.class);
+//		factoryBean.setSqlSessionFactory(factory);
+//		return factoryBean;
+//	}
+//	
+//	@Bean
+//	public MapperFactoryBean<CategoryMapper> getCategoryMapper(SqlSessionFactory factory) throws Exception{
+//		MapperFactoryBean<CategoryMapper> factoryBean = new MapperFactoryBean<CategoryMapper>(CategoryMapper.class);
+//		factoryBean.setSqlSessionFactory(factory);
+//		return factoryBean;
+//	}
+//	
+//	@Bean
+//	public MapperFactoryBean<UserMapper> getUserMapper(SqlSessionFactory factory) throws Exception{
+//		MapperFactoryBean<UserMapper> factoryBean = new MapperFactoryBean<UserMapper>(UserMapper.class);
+//		factoryBean.setSqlSessionFactory(factory);
+//		return factoryBean;
+//	}
 }
 

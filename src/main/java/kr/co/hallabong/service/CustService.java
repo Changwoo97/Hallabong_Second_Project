@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
 import kr.co.hallabong.bean.CustBean;
-import kr.co.hallabong.dao.CustDao;
+import kr.co.hallabong.dao.CustDAO;
 
 
 @Service
 public class CustService {
 	
 	@Autowired
-	private CustDao custDao;
+	private CustDAO custDao;
 
 	@Resource(name = "loginCustBean")
 	private CustBean loginCustBean; // 세션영역
