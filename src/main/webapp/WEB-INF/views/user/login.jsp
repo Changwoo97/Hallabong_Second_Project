@@ -111,13 +111,13 @@ background-color: display: block;
 				</c:if>	
 					<form:form action="${root }user/login_pro" method="post" modelAttribute="tempLoginUserBean">
 						<div class="form-group">
-							<form:input path="user_id" placeholder="아이디를 입력해주세요" class="inputbox"/>
-							<form:errors path="user_id" style="color:red" />
+							<form:input path="id" placeholder="아이디를 입력해주세요" class="inputbox"/>
+							<form:errors path="id" style="color:red" />
 						</div>
 						
 						<div class="form-group">
-							<form:password path="user_pw" placeholder="비밀번호를 입력해주세요" class="inputbox"/>
-							<form:errors path="user_pw" style="color:red" />
+							<form:password path="pw" placeholder="비밀번호를 입력해주세요" class="inputbox"/>
+							<form:errors path="pw" style="color:red" />
 						</div>
 						
 						<div align="right">

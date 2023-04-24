@@ -17,18 +17,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.hallabong.bean.UserBean;
 import kr.co.hallabong.service.UserService;
+import kr.co.hallabong.validator.UserValidator;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
 
-//	@Resource(name = "loginUserBean")
-//	private UserBean loginUserBean;
-//	
-//	@Autowired
-//	private UserService userService;
-//	
+	@Resource(name = "loginUserBean")
+	private UserBean loginUserBean;
+	
+	@Autowired
+	private UserService userService;
+	
 	@GetMapping("/login")
 	public String login(@ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean,
 						@RequestParam(value = "fail",defaultValue = "false") boolean fail, Model model) {
@@ -36,22 +37,22 @@ public class UserController {
 		//fail에 true면 실패했다
 		return "user/login";
 	}
-//	
-//	@PostMapping("/login_pro")
-//	public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean, BindingResult result) {
-//		if(result.hasErrors()) {
-//			return "user/login";
-//		}
-//		
-//		userService.getLoginUserInfo(tempLoginUserBean);
-//		
-//		if(loginUserBean.isUserLogin() == true) {
-//			return"user/login_success";
-//		}else {
-//			return "user/login_fail";
-//		}
-//		
-//	}
+	
+	@PostMapping("/login_pro")
+	public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean, BindingResult result) {
+		if(result.hasErrors()) {
+			return "user/login";
+		}
+		
+		userService.getLoginUserInfo(tempLoginUserBean);
+		
+		if(loginUserBean.isUserLogin() == true) {
+			return"user/login_success";
+		}else {
+			return "user/login_fail";
+		}
+		
+	}
 	
 	@GetMapping("/join_success")
 	public String join_success() {
@@ -160,8 +161,8 @@ public class UserController {
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		// UserValidator validator = new UserValidator();
-		// binder.addValidators(validator);
+		 UserValidator validator = new UserValidator();
+		 binder.addValidators(validator);
 	}
 	
 	

@@ -19,4 +19,29 @@ public class UserDao {
 		
 		return userLoginList;
 	}
+	
+	public String checkUserIDExist(String user_id) {
+		return userMapper.checkUserIDExist(user_id);
+	}
+	
+	//로그인
+		public UserBean getLoginUserInfo(UserBean tempLoginUserBean) {
+			return userMapper.getLoginUserInfo(tempLoginUserBean);
+		}
+	
+		//회원가입
+		public void addUserInfo(UserBean joinUserBean){
+			userMapper.addUserInfo(joinUserBean);
+		}
+		
+		//사용자 정보수정
+		public UserBean getModifyUserInfo(int user_idx) {
+			return userMapper.getModifyUserInfo(user_idx);
+		}
+		public void modifyUserInfo(UserBean modifyUserBean) {
+
+			userMapper.modifyUserinfo(modifyUserBean);
+			
+		}
+		
 }

@@ -112,12 +112,12 @@ button {
 							<table width=800>
 								<tr>
 									<td><a>이름</a> <span><font color="red">*</font></span></td>
-									<td width="550"><input type="text" name="user_name"
+									<td width="550"><input type="text" name="name"
 										size="20" placeholder="이름을 입력해주세요" class="inputbox"></td>
 								</tr>
 								<tr>
 									<td><a>아이디</a> <span><font color="red">*</font></span></td>
-									<td width="550"><input type="text" name="user_id"
+									<td width="550"><input type="text" name="id"
 										size="20" placeholder="아이디를 입력해주세요" class="inputbox">
 									</td>
 									<td>
@@ -126,33 +126,33 @@ button {
 								</tr>
 								<tr>
 									<td><a>비밀번호</a> <span><font color="red">*</font></span></td>
-									<td width="550"><input type="password" name="user_pass"
+									<td width="550"><input type="password" name="pw"
 										size="20" placeholder="비밀번호를 입력해주세요" class="inputbox">
 									</td>
 								</tr>
 								<tr>
 									<td><a>비밀번호확인 <font color="red">*</font></a></td>
-									<td width="550"><input type="password" name="user_pass2"
+									<td width="550"><input type="password" name="pw2"
 										size="20" placeholder="비밀번호를 다시 입력해주세요" class="inputbox">
 									</td>
 								</tr>
 								<tr>
 									<td><a>이메일</a> <span><font color="red">*</font></span></td>
-									<td width="550"><input type="email" name="user_email"
+									<td width="550"><input type="email" name="email"
 										size="20" placeholder="예:example@naver.com" class="inputbox">
 									</td>
 									<td><button>중복확인</button></td>
 								</tr>
 								<tr>
 									<td><a>휴대폰</a> <span><font color="red">*</font></span></td>
-									<td width="550"><input type="text" name="user_phonenumber"
+									<td width="550"><input type="text" name="tel"
 										size="20" placeholder="숫자만 입력해주세요" class="inputbox"></td>
 									<td><span><button>인증번호 받기</button></span></td>
 								</tr>
 								<tr>
 									<td><a>주소</a> <span><font color="red">*</font></span></td>
 									<td>
-										<button>주소 검색</button>
+										<button name="addr">주소 검색</button>
 										<h5 align="right">배송지에 따라 상품 정보가 달라질 수 있습니다</h5>
 									</td>
 								</tr>
@@ -160,16 +160,16 @@ button {
 							<table width=800>
 								<tr>
 									<td><a>성별</a></td>
-									<td><input type="radio" value="남성" class="gender"
-										name="성별" /><a>남성</a></td>
-									<td><input type="radio" value="여성" class="gender"
-										name="성별" /><a>여자</a></td>
-									<td><input type="radio" value="선택안함" class="gender"
+									<td><input type="radio" value="남"
+										name="gender" /><a>남성</a></td>
+									<td><input type="radio" value="여" 
+										name="gender" /><a>여성</a></td>
+									<td><input type="radio" value="선택안함"
 										name="성별" /><a>선택안함</a></td>
 								</tr>
 							</table>
 							<table width=800>
-								<tr width="550">
+								<tr width="550" >
 									<td><a>생년월일</a></td>
 									<td><input name="birthYear" placeholder="YYYY" type="text"
 										class="birthday" value=""></td>
