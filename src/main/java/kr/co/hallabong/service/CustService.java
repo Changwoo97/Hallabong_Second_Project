@@ -30,7 +30,7 @@ public class CustService {
 		if (tempLoginCustBean2 != null) {
 			loginCustBean.setId(tempLoginCustBean2.getId());
 			loginCustBean.setPw(tempLoginCustBean2.getPw());
-			//loginCustBean.setCustLogin(true); // 최초에 false로 되음. 로그인성공
+			loginCustBean.setCustLogin(true); // 최초에 false로 되음. 로그인성공
 
 		}
 
