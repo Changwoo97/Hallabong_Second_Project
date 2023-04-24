@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @ComponentScan("kr.co.hallabong.controller") //스캔할 패키지
+@ComponentScan("kr.co.hallabong.service") //스캔할 패키지
 @EnableWebMvc //Controller로 등록되어 있는 클래스 셋팅
 @Configuration
 public class ServletAppContext implements WebMvcConfigurer {
