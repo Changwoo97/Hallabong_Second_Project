@@ -30,7 +30,9 @@ public class AdminProdController {
 	private RowMapper<Pair<ProdBean, Integer>> prodRowMapper;
 	
 	@GetMapping("/registration")
-	public String registration(Model model) {		
+	public String registration(@ModelAttribute ProdBean prodBean , Model model) {		
+		prodBean.setFs('Y');
+		
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT no, name ");
 		sql.append("FROM cat ");
@@ -50,17 +52,29 @@ public class AdminProdController {
 	}
 	
 	@PostMapping("/registration_proc")
-	public String registration_proc(ProdBean prodBean, Model model) {
+	public String registration_proc(@ModelAttribute ProdBean prodBean, Model model) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO prod (no, fs, name, cost, sp, s_img, l_img, cat_no, reg_tm) ");
-		sql.append("VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, DEFAULT) ");
-
-		String s_img = prodBean.getS_img() == null ? "NULL" : prodBean.getS_img();
-		String l_img = prodBean.getL_img() == null ? "NULL" : prodBean.getL_img();
+		sql.append("VALUES ( ");
+		sql.append("DEFAULT, ");
+		sql.append("'" + prodBean.getFs() + "', ");
+		sql.append("'" + prodBean.getName() + "', ");
+		sql.append(prodBean.getCost() + ", ");
+		sql.append(prodBean.getSp() + ", ");
+		if (prodBean.getS_img() != null) {
+			sql.append("'" + prodBean.getS_img() + "', ");
+		} else {
+			sql.append("NULL, ");
+		}
+		if (prodBean.getL_img() != null) {
+			sql.append("'" + prodBean.getL_img() + "', ");
+		} else {
+			sql.append("NULL, ");
+		}
+		sql.append("'" + prodBean.getCat_no() + "', ");
+		sql.append("DEFAULT ) ");
 		
-		int insertResult = jdbcTemplate.update(sql.toString(), prodBean.getFs(), prodBean.getName(),
-				prodBean.getCost(), prodBean.getSp(), s_img, 
-				l_img, prodBean.getCat_no());
+		int insertResult = jdbcTemplate.update(sql.toString());
 		
 		if (insertResult > 0) {
 			model.addAttribute("message", "상품이 등록되었습니다.");

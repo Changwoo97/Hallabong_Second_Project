@@ -11,8 +11,9 @@
 </head>
 <body>
 	<div id="detail">
-		<form action="${root}${path}" method="post" >
-			<input type="hidden" name="no" value="${no}">
+		<form:form action="${root}${path}" method="post" modelAttribute="prodBean">
+			<form:hidden path="no" />
+			<form:hidden path="reg_tm" />
 			<table>
 				<tr><td class="detailTop" colspan="2"></td></tr>
 				<c:if test="${no != null}">
@@ -24,23 +25,23 @@
 				<tr>
 					<th>판매여부</th>
 					<td class="detailRadio">
-						<input type="radio" id="fs_Y" name="fs" value="Y" checked/>
-						<label for="fs_Y">판매중</label>
-						<input type="radio" id="fs_N" name="fs" value="N"/>
-						<label for="fs_N">판매보류</label>
+						<form:radiobutton path="fs" value="Y" />
+						<form:label path="fs">판매중</form:label>
+						<form:radiobutton path="fs" value="N"/>
+						<form:label path="fs">판매보류</form:label>
 					</td>
 				</tr>
 				<tr>
 					<th>상품명</th>
-					<td><input type="text" name="name" value="${name}"></td>
+					<td><form:input path="name" /></td>
 				</tr>
 				<tr>
 					<th>원가</th>
-					<td><input type="text" name="cost" value="${cost}"></td>
+					<td><form:input path="cost" /></td>
 				</tr>
 				<tr>
 					<th>판매가</th>
-					<td><input type="text" name="sp" value="${sp}"></td>
+					<td><form:input path="sp" /></td>
 				</tr>
 				<tr>
 					<th>소이미지</th>
@@ -53,11 +54,9 @@
 				<tr>
 					<th>카테고리</th>
 					<td>
-						<select name="cat_no">
-							<c:forEach var="cat" items="${cats}">
-								<option value="${cat.no}" ${cat_no.equals(cat.no) ? "selected" : ""}>${cat.name}</option>
-							</c:forEach>
-						</select>
+						<form:select path="cat_no">
+							<form:options items="${cats}" itemLabel="name" itemValue="no" />
+						</form:select>
 					</td>
 				</tr>
 				<tr>
@@ -68,11 +67,11 @@
 				</tr>
 				<tr>
 					<td class="detailBottom" colspan="2">
-						<input type="submit" value="${submit}">
+						<form:button>${submit}</form:button>
 					</td>
 				</tr>
 			</table>
-		</form>
+		</form:form>
 	</div>
 </body>
 </html>
