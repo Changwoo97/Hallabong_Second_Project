@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,7 @@
 			<input type="hidden" name="no" value="${no}">
 			<table>
 				<tr><td class="detailTop" colspan="2"></td></tr>
-				<c:if test="${!no.isEmpty()}">
+				<c:if test="${no != null}">
 					<tr>
 						<th>카테고리 번호</th>
 						<td>${no}</td>

@@ -14,26 +14,26 @@
 		<table>
 			<tr> 
 				<td class="padding"></td>
-				<c:set var="selectedPageBundleNum" value="${Math.floor(selectedPageNum / 5) + 1}" />
-				<c:set var="beginPageNum" value="${(selectedPageBundleNum - 1) * 5 + 1}"/>
-				<c:set var="endPageNum" value="${selectedPageBundleNum * 5}"/>
+				<c:set var="pageBundleNum" value="${Mathf.floor(selectedPageNum / 5) + 1}"/>
+				<c:set var="beginPageNum" value="${(pageBundleNum - 1) * 5 + 1}"/>
+				<c:set var="endPageNum" value="${pageBundleNum * 5}"/>
 				<c:if test="${endPageNum > pageSize}">
 					<c:set var="endPageNum" value="${pageSize}"/>
 				</c:if>
 				<c:if test="${beginPageNum > 5}">
 					<td class="pageNum">
-						<button value="${beginPageNum - 1}">&lt;</button>
+						<button name="pageButton" value="${beginPageNum - 1}">&lt;</button>
 					</td>
 				</c:if>
 	
 				<c:forEach var="i" begin="${beginPageNum}" end="${endPageNum}">
 					<td class="pageNum">
-						<button name="pageNum" value="${i}">${i}</button>
+						<button name="pageButton" value="${i}">${i}</button>
 					</td>
 				</c:forEach>
 				<c:if test="${endPageNum < pageSize}">
 					<td class="pageNum">
-						<button value="${endPageNum + 1}">&gt;</button>
+						<button name="pageButton" value="${endPageNum + 1}">&gt;</button>
 					</td>
 				</c:if>
 				<td></td>
@@ -45,33 +45,36 @@
 		</table>
 	</div>
 	<div id="tableSearch">
-		<table>
-			<c:forEach var="cell" items="${thead}">
-				<c:if test="${cell['type'] != null}">
-					<tr>
-						<th>${cell['title']}</th>
-						<td>
-							<c:choose>
-								<c:when test="${cell['type'].equals('date')}">
-									<input type="date" name="${cell['name']}BeginDate"/>
-									~
-									<input type="date" name="${cell['name']}EndDate"/>
-								</c:when>
-								<c:when test="${cell['type'].equals('keyword')}">
-									<input type="text" name="${cell['name']}" />
-								</c:when>
-							</c:choose>
-						</td>
-					</tr>
-				</c:if>
-			</c:forEach>
-			<tr>
-				<td colspan="2">
-					<button name="search">검색</button>
-				</td>
-			</tr>
-		</table>
+		<form name="searchForm" action="${root}${searchPath}" method="get">
+			<table>
+				<c:forEach var="cell" items="${thead}">
+					<c:if test="${cell['type'] != null}">
+						<tr>
+							<th>${cell['title']}</th>
+							<td>
+								<c:choose>
+									<c:when test="${cell['type'].equals('date')}">
+										<input type="date" name="${cell['name']}BeginDate"/>
+										~
+										<input type="date" name="${cell['name']}EndDate"/>
+									</c:when>
+									<c:when test="${cell['type'].equals('keyword')}">
+										<input type="text" name="${cell['name']}" />
+									</c:when>
+								</c:choose>
+							</td>
+						</tr>
+					</c:if>
+				</c:forEach>
+				<tr>
+					<td colspan="2">
+						<input type="submit" value="검색" />
+					</td>
+				</tr>
+			</table>
+		</form>
 	</div>
+	
 	<table id="table">
 		<thead>
 			<tr>

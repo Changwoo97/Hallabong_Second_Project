@@ -18,4 +18,21 @@ window.addEventListener('load', () => {
 			}
 		});
 	}
+	
+	const pageButtons = document.getElementsByName('pageButton');
+	const searchForm = document.getElementsByName('searchForm')[0];
+	
+	for (let i = 0; i < pageButtons.length; i++) {
+		pageButtons[i].addEventListener('click', (e) => {
+			const selectedPageNum = pageButtons[i].getAttribute('value');
+			
+			const hidden = document.createElement('input');
+			hidden.setAttribute('type', 'hidden');
+			hidden.setAttribute('name', 'selectedPageNum');
+			hidden.setAttribute('value', selectedPageNum);
+
+			searchForm.appendChild(hidden);
+			searchForm.submit();
+		});
+	}
 });

@@ -6,18 +6,16 @@ import org.springframework.stereotype.Repository;
 import kr.co.hallabong.bean.CustBean;
 import kr.co.hallabong.mapper.CustMapper;
 
-
-
 @Repository
 public class CustDAO {
 	
-	@Autowired
-	private CustMapper custMapper;
-	
-	//로그인 
-	public CustBean getLoginCustInfo(CustBean tempLoginCustBean) {
-		return custMapper.getLoginCustInfo(tempLoginCustBean);
-	}
+//	@Autowired
+//	private CustMapper custMapper;
+//	
+//	//로그인 
+//	public CustBean getLoginCustInfo(CustBean tempLoginCustBean) {
+//		return custMapper.getLoginCustInfo(tempLoginCustBean);
+//	}
 	//이메일
 //	public CustBean getCheckCustEmailInfo(String Email) {
 //		return custMapper.getCheckCustEmailInfo(tempLoginCustBean);

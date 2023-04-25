@@ -1,4 +1,4 @@
-package kr.co.hallabong.format;
+package kr.co.hallabong.util;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -15,26 +15,26 @@ import kr.co.hallabong.dao.CustDAO;
 @Service
 public class CustService {
 	
-	@Autowired
-	private CustDAO custDao;
-
-	@Resource(name = "loginCustBean")
-	private CustBean loginCustBean; // 세션영역
-	
-	// 로그인
-	public void getLoginCustInfo(CustBean tempLoginCustBean) {
-
-		CustBean tempLoginCustBean2 = custDao.getLoginCustInfo(tempLoginCustBean);
-
-		// 가져온 값이 없을시 예외처리
-		if (tempLoginCustBean2 != null) {
-			loginCustBean.setId(tempLoginCustBean2.getId());
-			loginCustBean.setPw(tempLoginCustBean2.getPw());
-			//loginCustBean.setCustLogin(true); // 최초에 false로 되음. 로그인성공
-
-		}
-
-	}
+//	@Autowired
+//	private CustDAO custDao;
+//
+//	@Resource(name = "loginCustBean")
+//	private CustBean loginCustBean; // 세션영역
+//	
+//	// 로그인
+//	public void getLoginCustInfo(CustBean tempLoginCustBean) {
+//
+//		CustBean tempLoginCustBean2 = custDao.getLoginCustInfo(tempLoginCustBean);
+//
+//		// 가져온 값이 없을시 예외처리
+//		if (tempLoginCustBean2 != null) {
+//			loginCustBean.setId(tempLoginCustBean2.getId());
+//			loginCustBean.setPw(tempLoginCustBean2.getPw());
+//			//loginCustBean.setCustLogin(true); // 최초에 false로 되음. 로그인성공
+//
+//		}
+//
+//	}
 	
 	// 이메일중복확인
 //	public void getCheckCustEmailInfo(CustBean tempLoginCustBean) {

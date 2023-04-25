@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.hallabong.format.Format;
+import kr.co.hallabong.util.Format;
 
 @Controller
 @RequestMapping("/admin/rtn")

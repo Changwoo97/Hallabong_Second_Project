@@ -4,20 +4,44 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.hallabong.format.Format;
+import kr.co.hallabong.bean.CatBean;
+import kr.co.hallabong.bean.ProdBean;
+import kr.co.hallabong.util.Format;
+import kr.co.hallabong.util.Pair;
 
 @Controller
 @RequestMapping("/admin/prod")
 public class AdminProdController {
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	private RowMapper<Pair<CatBean, Integer>> catRowMapper;
+	@Autowired
+	private RowMapper<Pair<ProdBean, Integer>> prodRowMapper;
+	
 	@GetMapping("/registration")
-	public String registration(Model model) {
-
+	public String registration(Model model) {		
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT no, name ");
+		sql.append("FROM cat ");
+		
+		List<Pair<CatBean, Integer>> catBeans = jdbcTemplate.query(sql.toString(), catRowMapper);
+		List<CatBean> cats = new ArrayList<>();
+		for (Pair<CatBean, Integer> catBean : catBeans) {
+			cats.add(catBean.getItem1());
+		}
+		
+		model.addAttribute("cats", cats);
 		model.addAttribute("content", "/WEB-INF/views/admin/prodDetail.jsp");
 		model.addAttribute("frameName", "상품등록");
 		model.addAttribute("path", "/admin/prod/registration_proc");
@@ -26,9 +50,23 @@ public class AdminProdController {
 	}
 	
 	@PostMapping("/registration_proc")
-	public String registration_proc(Model model) {
+	public String registration_proc(ProdBean prodBean, Model model) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO prod (no, fs, name, cost, sp, s_img, l_img, cat_no, reg_tm) ");
+		sql.append("VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, DEFAULT) ");
 
-		model.addAttribute("message", "상품이 등록되었습니다.");
+		String s_img = prodBean.getS_img() == null ? "NULL" : prodBean.getS_img();
+		String l_img = prodBean.getL_img() == null ? "NULL" : prodBean.getL_img();
+		
+		int insertResult = jdbcTemplate.update(sql.toString(), prodBean.getFs(), prodBean.getName(),
+				prodBean.getCost(), prodBean.getSp(), s_img, 
+				l_img, prodBean.getCat_no());
+		
+		if (insertResult > 0) {
+			model.addAttribute("message", "상품이 등록되었습니다.");
+		} else {
+			model.addAttribute("message", "상품 등록에 실패했습니다.");
+		}
 		model.addAttribute("path", "/admin/prod/check");
 		return "admin/alert";
 	}
@@ -53,6 +91,7 @@ public class AdminProdController {
 			for (int j = 0; j < 11; j++) {
 				row.add(i + "-" + j);
 			}
+			
 			StringBuilder sb = new StringBuilder();
 			sb.append("<form action=\"modify\" method=\"post\">");
 			sb.append("\t<input type=\"submit\" value=\"수정하기\" />");
@@ -73,8 +112,18 @@ public class AdminProdController {
 	}
 	
 	@PostMapping("/modify") 
-	public String modify(Model model) {
+	public String modify(@ModelAttribute ProdBean prodBean, Model model) {
+		prodBean.setFs('Y');
 		
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT no, name ");
+		sql.append("FROM cat ");
+		
+		List<Pair<CatBean, Integer>> catBeans = jdbcTemplate.query(sql.toString(), catRowMapper);
+		List<CatBean> cats = new ArrayList<>();
+		for (Pair<CatBean, Integer> catBean : catBeans) {
+			cats.add(catBean.getItem1());
+		}
 		
 		model.addAttribute("content", "/WEB-INF/views/admin/prodDetail.jsp");
 		model.addAttribute("frameName", "상품수정");
@@ -84,7 +133,7 @@ public class AdminProdController {
 	}
 	
 	@PostMapping("/modify_proc") 
-	public String modify_proc(Model model) {
+	public String modify_proc(@ModelAttribute ProdBean prodBean, Model model) {
 		model.addAttribute("message", "상품이 수정되었습니다.");
 		model.addAttribute("path", "/admin/prod/check");
 		return "admin/alert";
