@@ -86,11 +86,10 @@ public class SpringConfigClass extends AbstractAnnotationConfigDispatcherServlet
 	//52428800: 파일데이터를 포함한 전체 용량 (1024*500) 500M
 	//0: 데이터를 받아서 자동 저장
 	@Override
-	   protected void customizeRegistration(Dynamic registration) {
-	      // TODO Auto-generated method stub
-	      super.customizeRegistration(registration);
-	      
-	      MultipartConfigElement config1 = new MultipartConfigElement(null, 52428800, 52428800, 0);
-	      registration.setMultipartConfig(config1);
-	   }
+	protected void customizeRegistration(Dynamic registration) {
+       super.customizeRegistration(registration);
+      
+       MultipartConfigElement config1 = new MultipartConfigElement(null, 52428800, 52428800, 0);
+       registration.setMultipartConfig(config1);
+    }
 }

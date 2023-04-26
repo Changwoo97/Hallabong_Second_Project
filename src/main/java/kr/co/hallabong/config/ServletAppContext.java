@@ -13,6 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -78,7 +79,22 @@ public class ServletAppContext implements WebMvcConfigurer {
 		return factory;
 	}
 	
+	/*
+	 컴파일시 올바른 입력도 유효성에 걸림
+	이유
+	enctype="multipart/form-data"에서 정보를 받으면 일반적인 방법이 아니므로 contentBean의 
+	@NotBlank
+	private String content_subject;
+	
+	@NotBlank
+	private String content_text;에서 받지못함
+	그러므로 Bean을 정의 
+	 */
 
+	@Bean
+	public StandardServletMultipartResolver multipartResolver() {
+		return new StandardServletMultipartResolver();
+	}
 	
 //	@Bean
 //	public MapperFactoryBean<CategoryMapper> getCategoryMapper(SqlSessionFactory factory) throws Exception{

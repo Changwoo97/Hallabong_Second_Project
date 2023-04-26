@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="detail">
-		<form:form action="${root}${path}" method="post" modelAttribute="prodBean">
+		<form:form action="${root}${path}" method="post" modelAttribute="prodBean" enctype="multipart/form-data">
 			<form:hidden path="no" />
 			<form:hidden path="reg_tm" />
 			<table>
@@ -45,11 +45,11 @@
 				</tr>
 				<tr>
 					<th>소이미지</th>
-					<td></td>
+					<td><form:input type="file" path="s_img_file" accept="image/*" /></td>
 				</tr>
 				<tr>
 					<th>상세이미지</th>
-					<td></td>
+					<td><form:input type="file" path="l_img_file" accept="image/*" /></td>
 				</tr>
 				<tr>
 					<th>카테고리</th>

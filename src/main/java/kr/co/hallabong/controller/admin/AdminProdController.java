@@ -1,18 +1,24 @@
 package kr.co.hallabong.controller.admin;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.hallabong.bean.CatBean;
 import kr.co.hallabong.bean.ProdBean;
@@ -21,7 +27,10 @@ import kr.co.hallabong.util.Pair;
 
 @Controller
 @RequestMapping("/admin/prod")
+@PropertySource("/WEB-INF/properties/option.properties")
 public class AdminProdController {
+	@Value("${path.upload}")
+	private String path_upload;
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	@Autowired
@@ -52,7 +61,24 @@ public class AdminProdController {
 	}
 	
 	@PostMapping("/registration_proc")
-	public String registration_proc(@ModelAttribute ProdBean prodBean, Model model) {
+	public String registration_proc(@ModelAttribute ProdBean prodBean, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			model.addAttribute("message", "상품 등록에 실패했습니다.");
+			model.addAttribute("path", "/admin/prod/check");
+			return "admin/alert";
+		}
+		
+		MultipartFile s_img_file = prodBean.getS_img_file();
+		if (s_img_file.getSize() > 0) {
+			String fileName = saveUploadFile(s_img_file);
+			prodBean.setS_img(fileName);
+		}
+		MultipartFile l_img_file = prodBean.getL_img_file();
+		if (l_img_file.getSize() > 0) {
+			String fileName = saveUploadFile(l_img_file);
+			prodBean.setS_img(fileName);
+		}
+		
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO prod (no, fs, name, cost, sp, s_img, l_img, cat_no, reg_tm) ");
 		sql.append("VALUES ( ");
@@ -99,6 +125,11 @@ public class AdminProdController {
 		thead.add(Format.getMap("title=수정하기"));
 	
 		List<List<String>> tbody = new ArrayList<>();
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT no, fs, name, cost, sp, reg_tm ");
+		sql.append("FROM prod ");
+		
 		for (int i = 0; i < 100; i++) {
 			List<String> row = new ArrayList<>();
 			
@@ -151,5 +182,23 @@ public class AdminProdController {
 		model.addAttribute("message", "상품이 수정되었습니다.");
 		model.addAttribute("path", "/admin/prod/check");
 		return "admin/alert";
+	}
+	
+	private String saveUploadFile(MultipartFile uploadFile) {
+		
+		//String file_name = System.currentTimeMillis() + "_" + upload_file.getOriginalFilename();
+
+		//경로 시스템오류시
+		String file_name = System.currentTimeMillis() + "_" +  
+		FilenameUtils.getBaseName(uploadFile.getOriginalFilename()) + "." + 
+				FilenameUtils.getExtension(uploadFile.getOriginalFilename());
+		
+		try {
+			uploadFile.transferTo(new File(path_upload + "/" + file_name));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return file_name;
 	}
 }
