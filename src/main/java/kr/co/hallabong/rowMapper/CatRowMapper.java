@@ -14,11 +14,11 @@ public class CatRowMapper implements RowMapper<Pair<CatBean, Integer>> {
 
 	@Override
 	public Pair<CatBean, Integer> mapRow(ResultSet rs, int rowNum) throws SQLException {
-		CatBean catBean = new CatBean();
-		catBean.setNo(rs.getString("no"));
-		catBean.setName(rs.getString("name"));
+		CatBean bean = new CatBean();
+		bean.setNo(rs.getString("no"));
+		bean.setName(rs.getString("name"));
 		
-		return new Pair<>(catBean, rowNum);
+		return new Pair<>(bean, rowNum);
 	}
 	
 }

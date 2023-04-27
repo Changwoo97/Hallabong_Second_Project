@@ -1,3 +1,6 @@
+
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath}" />
@@ -45,6 +48,9 @@
 		</table>
 	</div>
 	<div id="tableSearch">
+		<c:forEach var="searchKeyAndValue" items="${searchKeyAndValues}">
+			<input type="hidden" data-name="${searchKeyAndValue.item1}" data-value="${searchKeyAndValue.item2}" class="searchKeyAndValue" />
+		</c:forEach>
 		<form name="searchForm" action="${root}${searchPath}" method="get">
 			<table>
 				<c:forEach var="cell" items="${thead}">
@@ -54,12 +60,22 @@
 							<td>
 								<c:choose>
 									<c:when test="${cell['type'].equals('date')}">
-										<input type="date" name="${cell['name']}BeginDate"/>
+										<input type="date" name="${cell['name']}BeginDate" />
 										~
-										<input type="date" name="${cell['name']}EndDate"/>
+										<input type="date" name="${cell['name']}EndDate" />
+									</c:when>
+									<c:when test="${cell['type'].equals('select')}">
+										<select name="${cell['name']}">
+											<option value="T">전체</option>
+											<c:forEach var="i" begin="1" end="${cell['selectEnd']}">
+												<c:set var="selectValueKey" value="selectValue${i}" />
+												<c:set var="selectLabelKey" value="selectLabel${i}" />
+												<option value="${cell[selectValueKey]}" >${cell[selectLabelKey]}</option>
+											</c:forEach>
+										</select>
 									</c:when>
 									<c:when test="${cell['type'].equals('keyword')}">
-										<input type="text" name="${cell['name']}" />
+										<input type="text" name="${cell['name']}"/>
 									</c:when>
 								</c:choose>
 							</td>

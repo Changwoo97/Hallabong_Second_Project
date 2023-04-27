@@ -13,13 +13,15 @@
 	<div id="detail">
 		<form:form action="${root}${path}" method="post" modelAttribute="prodBean" enctype="multipart/form-data">
 			<form:hidden path="no" />
+			<form:hidden path="s_img"/>
+			<form:hidden path="l_img"/>
 			<form:hidden path="reg_tm" />
 			<table>
 				<tr><td class="detailTop" colspan="2"></td></tr>
-				<c:if test="${no != null}">
+				<c:if test="${prodBean.no != null}">
 					<tr>
 						<th>상품번호</th>
-						<td>${no}</td>
+						<td>${prodBean.no}</td>
 					</tr>
 				</c:if>
 				<tr>
@@ -45,11 +47,21 @@
 				</tr>
 				<tr>
 					<th>소이미지</th>
-					<td><form:input type="file" path="s_img_file" accept="image/*" /></td>
+					<td>
+						<c:if test="${prodBean.s_img != null}">
+							<img src="${root}/upload/${prodBean.s_img}" /><br/>
+						</c:if>
+						<form:input type="file" path="s_img_file" accept="image/*" />
+					</td>
 				</tr>
 				<tr>
 					<th>상세이미지</th>
-					<td><form:input type="file" path="l_img_file" accept="image/*" /></td>
+					<td>
+						<c:if test="${prodBean.l_img != null}">
+							<img src="${root}/upload/${prodBean.l_img}" /><br/>
+						</c:if>
+						<form:input type="file" path="l_img_file" accept="image/*" />
+					</td>
 				</tr>
 				<tr>
 					<th>카테고리</th>
@@ -60,9 +72,9 @@
 					</td>
 				</tr>
 				<tr>
-					<c:if test="${reg_tm != null}">
+					<c:if test="${prodBean.reg_tm != null}">
 						<th>등록일</th>
-						<td>${reg_tm}</td>
+						<td>${prodBean.reg_tm}</td>
 					</c:if>
 				</tr>
 				<tr>

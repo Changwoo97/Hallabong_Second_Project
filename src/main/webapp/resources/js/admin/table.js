@@ -35,4 +35,25 @@ window.addEventListener('load', () => {
 			searchForm.submit();
 		});
 	}
+	
+	const searchKeyAndValues = document.getElementsByClassName('searchKeyAndValue');
+	for (let i = 0; i < searchKeyAndValues.length; i++) {
+		const key = searchKeyAndValues[i].getAttribute('data-name');
+		const value = searchKeyAndValues[i].getAttribute('data-value');
+		
+		const injection = document.getElementsByName(key);
+		if (injection[0].tagName == 'select') {
+			const opions = injection[0].getElementsByTagName('option');
+			
+			for (let i = 0; i < opions.length; i++) {
+				if (opions[i].value == value) {
+					opions[i].setAttribute("selected", "selected");
+					break;
+				}
+			}
+		} else {
+			injection[0].setAttribute('value', value); 
+			injection[0].value = value;
+		}
+	}
 });

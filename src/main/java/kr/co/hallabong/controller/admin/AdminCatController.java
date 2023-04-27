@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -45,14 +47,14 @@ public class AdminCatController {
 		if (result > 0) {
 			model.addAttribute("message", "카테고리가 등록되었습니다.");
 		} else {
-			model.addAttribute("message", "카테고리가 등록이 실패했습니다.");
+			model.addAttribute("message", "카테고리가 등록에 실패했습니다.");
 		}
 		model.addAttribute("path", "/admin/cat/check");
 		return "admin/alert";
 	}
 	
 	@GetMapping("/check")
-	public String check(String no, String name, 
+	public String check(HttpServletRequest request, String no, String name, 
 				@ModelAttribute("selectedPageNum") String selectedPageNum, Model model) {
 		final int ROW_SIZE = 2;
 
@@ -89,7 +91,6 @@ public class AdminCatController {
 		}
 		
 		int parseSelectedPageNum;
-		
 		try {
 			parseSelectedPageNum = Integer.parseInt(selectedPageNum);
 			parseSelectedPageNum = (parseSelectedPageNum > 0) ? parseSelectedPageNum : 1;
@@ -118,14 +119,14 @@ public class AdminCatController {
 			row.add(catBean.getItem1().getName());
 
 			StringBuilder sb = new StringBuilder();
-			sb.append("<form action=\"modify\" method=\"post\">");
+			sb.append("<form action=\"" + request.getContextPath() + "/admin/cat/modify\" method=\"post\">");
 			sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + catBean.getItem1().getNo() + "\" />");
 			sb.append("\t<input type=\"submit\" value=\"수정하기\" />");
 			sb.append("</form>");
 			row.add(sb.toString());
 			
 			sb.setLength(0);
-			sb.append("<form action=\"delete_proc\" method=\"post\">");
+			sb.append("<form action=\"" + request.getContextPath() + "/admin/cat/delete_proc\" method=\"post\">");
 			sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + catBean.getItem1().getNo() + "\" />");
 			sb.append("\t<input type=\"submit\" value=\"삭제하기\" />");
 			sb.append("</form>");
@@ -151,11 +152,11 @@ public class AdminCatController {
 		sql.append("FROM cat ");
 		sql.append("WHERE no = '" + catBean.getNo() + "' ");
 		
-		List<Pair<CatBean, Integer>> results = jdbcTemplate.query(sql.toString(), catRowMapper);
-		CatBean result = results.get(0).getItem1();
+		List<Pair<CatBean, Integer>> selectResults = jdbcTemplate.query(sql.toString(), catRowMapper);
+		CatBean selectResult = selectResults.get(0).getItem1();
 		
-		model.addAttribute("no", result.getNo());
-		model.addAttribute("name", result.getName());
+		model.addAttribute("no", selectResult.getNo());
+		model.addAttribute("name", selectResult.getName());
 		model.addAttribute("content", "/WEB-INF/views/admin/catDetail.jsp");
 		model.addAttribute("frameName", "카테고리 수정");
 		model.addAttribute("path", "/admin/cat/modify_proc");
@@ -170,9 +171,12 @@ public class AdminCatController {
 		sql.append("SET name = '" + catBean.getName() + "' ");
 		sql.append("WHERE no = '" + catBean.getNo() + "' ");
 		
-		jdbcTemplate.update(sql.toString());
-		
-		model.addAttribute("message", "카테고리가 수정되었습니다.");
+		int updateResult = jdbcTemplate.update(sql.toString());
+		if (updateResult > 0) {
+			model.addAttribute("message", "카테고리가 수정되었습니다.");
+		} else {
+			model.addAttribute("message", "카테고리 수정에 실패했습니다.");
+		}
 		model.addAttribute("path", "/admin/cat/check");
 		return "admin/alert";
 	}
@@ -183,9 +187,13 @@ public class AdminCatController {
 		sql.append("DELETE FROM cat ");
 		sql.append("WHERE no = '" + catBean.getNo() + "' ");
 		
-		jdbcTemplate.update(sql.toString());
+		int deleteResult = jdbcTemplate.update(sql.toString());
 		
-		model.addAttribute("message", "카테고리가 삭제되었습니다.");
+		if (deleteResult > 0) {
+			model.addAttribute("message", "카테고리가 삭제되었습니다.");
+		} else {
+			model.addAttribute("message", "카테고리 삭제에 실패했습니다.");
+		}
 		model.addAttribute("path", "/admin/cat/check");
 		return "admin/alert";
 	}
