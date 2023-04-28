@@ -9,9 +9,9 @@ import kr.co.hallabong.bean.CustBean;
 
 @Configuration
 public class RootAppContext {
-	@Bean("loginCustBean")
+	@Bean("CustBean")
 	@SessionScope
-	public CustBean loginCustBean() {
+	public CustBean CustBean() {
 		return new CustBean();
 	}
 }

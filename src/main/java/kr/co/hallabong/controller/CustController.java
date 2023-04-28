@@ -44,6 +44,21 @@ public class CustController {
 	  }
 	  
 	  
+		@GetMapping("/join")
+		public String join(@ModelAttribute("joinusecuCustBean") CustBean joinusecuCustBean) {
+			
+			return "user/join";
+		}
+		
+		@PostMapping("/join_pro")
+		public String join_pro(@Valid @ModelAttribute("joinusecuCustBean") CustBean joinusecuCustBean,BindingResult result) {
+			
+			if(result.hasErrors()) {
+				return "user/join";
+			}
+			 custService.addjoinUserInfo(joinusecuCustBean);
+			return "user/join_success";
+		}
 		 
 	@GetMapping("/update_login")
 	public String updateLogin() {

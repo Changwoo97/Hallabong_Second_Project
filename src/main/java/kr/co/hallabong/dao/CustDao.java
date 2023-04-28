@@ -18,9 +18,31 @@ public class CustDao {
 	private CustMapper custMapper;
 	
 	//로그인 
-	public CustBean getLoginCustInfo(CustBean tempLoginCustBean) {
-		return custMapper.getLoginCustInfo(tempLoginCustBean);
+	public CustBean getLoginCustInfo(CustBean tempLoginUserBean) {
+		System.out.println(tempLoginUserBean);
+		return custMapper.getLoginCustInfo(tempLoginUserBean);
 	}
+	
+	public String checkUserIDExist(String id) {
+		return custMapper.checkUserIDExist(id);
+	}
+	
+	public void addjoin(CustBean joinusecuCustBean){
+		custMapper.addjoin(joinusecuCustBean);
+	}
+
+	public CustBean findId(CustBean findid) {
+		return custMapper.findId(findid);
+	}
+	
+	public 	CustBean findPw(CustBean findpw) {
+		return custMapper.findPw(findpw);
+	}
+	
+	public CustBean updatepw(CustBean findpw) {
+		return custMapper.updatepw(findpw);
+	}
+	
 	//이메일
 //	public CustBean getCheckCustEmailInfo(String Email) {
 //		return custMapper.getCheckCustEmailInfo(tempLoginCustBean);

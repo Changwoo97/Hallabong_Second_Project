@@ -1,6 +1,5 @@
 package kr.co.hallabong.mapper;
 
-import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -12,11 +11,22 @@ import kr.co.hallabong.bean.CustInfoBean;
 
 public interface CustMapper {
 	
-	@Select("SELECT id, pw "
+	@Select("SELECT id,name "
 			+ "FROM CUST "
-			+ "WHERE ID = #{id} AND PW = #{pw}")
-	CustBean getLoginCustInfo(CustBean tempLoginCustBean); //tempLoginCustBean은 request영역
+			+ "WHERE ID = #{id} and PW = #{pw}")
+	CustBean getLoginCustInfo(CustBean tempLoginUserBean); //tempLoginCustBean은 request영역
+	//회원가입
+	@Insert("insert into cust values (#{id},#{pw},#{name},#{email},#{tel},#{addr},#{gender},#{dob},default,default,'REG')")
+	void addjoin(CustBean joinusecuCustBean);
+	//아이디 
+	@Select("select name from cust where id=#{id}")
+	String checkUserIDExist(String id);
 	
+	@Select("select pw from cust where id= #{id} and tel = #{tel}")
+	CustBean findPw(CustBean findpw);
+	
+	@Select("select Id from cust where name= #{name} and tel = #{tel}")
+	CustBean findId(CustBean findid);
 	
 	
 	/*
