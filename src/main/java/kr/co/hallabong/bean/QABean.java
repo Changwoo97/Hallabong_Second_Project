@@ -13,5 +13,5 @@ public class QABean {
 	private String q_reg_tm; // 질문등록시간 default 이용
 	private String a; // 답변
 	private String a_reg_tm; // 답변등록시간 default 이용
-	private String sta; // Q&A 상태
+	private String sta; // Q&A 상태 (REQUEST, COMPLETE)
 }

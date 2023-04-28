@@ -13,6 +13,7 @@
 	<div id="detail">
 		<form:form action="${root}${path}" method="post" modelAttribute="notiBean">
 			<form:hidden path="no" />
+			<form:hidden path="reg_tm" />
 			<table>
 				<tr><td class="detailTop" colspan="2"></td></tr>
 				<c:if test="${notiBean.no != null}">

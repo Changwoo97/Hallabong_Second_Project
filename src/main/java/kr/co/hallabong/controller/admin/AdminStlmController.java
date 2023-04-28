@@ -1,27 +1,35 @@
 package kr.co.hallabong.controller.admin;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.hallabong.bean.CatBean;
 import kr.co.hallabong.util.Format;
+import kr.co.hallabong.util.Pair;
 
 @Controller
 @RequestMapping("/admin/stlm")
 public class AdminStlmController {
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
 	@GetMapping("/check")
 	public String check(Model model) {
-		List<String> srcs = new ArrayList<>();
-		
 		List<Map<String, String>> thead = new ArrayList<>();
+		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
 		thead.add(Format.getMap("title=신청일&type=date&name=reg_tm"));
 		thead.add(Format.getMap("title=정산일&type=date&name=stlm_tm"));
-		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
 		thead.add(Format.getMap("title=배송료"));
 		thead.add(Format.getMap("title=차감배송료"));
 		thead.add(Format.getMap("title=원가"));
@@ -29,6 +37,35 @@ public class AdminStlmController {
 		thead.add(Format.getMap("title=순수익"));
 	
 		List<List<String>> tbody = new ArrayList<>();
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT ord.no                                        AS no           ");
+		sql.append("     , TO_CHAR(ord.reg_tm, 'YYYY-MM-DD')             AS reg_tm       ");
+		sql.append("     , TO_CHAR(ord.stlm_tm, 'YYYY-MM-DD')            AS stlm_tm      ");
+		sql.append("     , dlvy.fee                                      AS fee          ");
+		sql.append("     , ord.dlvy_fee                                  AS deducted_fee ");
+		sql.append("     , SUM(ord_dtl.prod_cost)                        AS cost         ");
+		sql.append("     , SUM(ord_dtl.prod_sp)                          AS sp           ");
+		sql.append("     , SUM(ord_dtl.prod_sp) - SUM(ord_dtl.prod_cost) AS net_income   ");
+		sql.append("FROM ord INNER JOIN ord_dtl ON ord.no = ord_dtl.ord_no               ");
+		sql.append("         INNER JOIN dlvy    ON ord.no = dlvy.ord_no                  ");
+		sql.append("WHERE ord.sta = 'COMPLETE'                                           ");
+		sql.append("GROUP BY ord.no                                                      ");
+		sql.append("       , TO_CHAR(ord.reg_tm, 'YYYY-MM-DD')                           ");
+		sql.append("       , TO_CHAR(ord.stlm_tm, 'YYYY-MM-DD')                          ");
+		sql.append("       , dlvy.fee                                                    ");
+		sql.append("       , ord.dlvy_fee                                                ");
+		sql.append("ORDER BY no DESC                                                     ");
+		
+		List<Map<String, String>> selectResults = jdbcTemplate.query(sql.toString(), new RowMapper<Map<String, String>>() {
+			@Override
+			public Map<String, String> mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+				
+				return new HashMap<>();
+			}
+		});
+		
 		for (int i = 0; i < 100; i++) {
 			List<String> row = new ArrayList<>();
 			
@@ -50,7 +87,6 @@ public class AdminStlmController {
 		tfoot.add("순수익");
 		
 		model.addAttribute("content", "/WEB-INF/views/admin/table.jsp");
-		model.addAttribute("srcs", srcs);
 		model.addAttribute("frameName", "정산조회");
 		model.addAttribute("pageSize", 9);
 		model.addAttribute("selectedPageNum", 7);

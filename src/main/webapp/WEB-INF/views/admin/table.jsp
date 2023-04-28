@@ -31,7 +31,14 @@
 	
 				<c:forEach var="i" begin="${beginPageNum}" end="${endPageNum}">
 					<td class="pageNum">
-						<button name="pageButton" value="${i}">${i}</button>
+						<c:choose>
+							<c:when test="${selectedPageNum == i}">
+								<button name="pageButton" value="${i}" disabled>${i}</button>
+							</c:when>
+							<c:otherwise>
+								<button name="pageButton" value="${i}">${i}</button>
+							</c:otherwise>
+						</c:choose>
 					</td>
 				</c:forEach>
 				<c:if test="${endPageNum < pageSize}">

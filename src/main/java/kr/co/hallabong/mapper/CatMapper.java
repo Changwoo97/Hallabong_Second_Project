@@ -10,18 +10,18 @@ import org.apache.ibatis.annotations.Update;
 import kr.co.hallabong.bean.CatBean;
 
 public interface CatMapper {
-	@Select("SELECT no, name FROM cat")
-	List<CatBean> selectAll();
+	@Select("SELECT no, name FROM cat ORDER BY name ")
+	List<CatBean> selectCatList();
 	
-	@Select("SELECT no, name FROM cat WHERE no = #{no}")
-	CatBean selectOne(String no);
+	@Select("SELECT no, name FROM cat WHERE no = #{no} ")
+	CatBean selectCat(String no);
 
-	@Insert("INSERT INTO cat(no, name) VALUES(DEFAULT, #{name})")
-	void insert(CatBean bean);
+	@Insert("INSERT INTO cat(no, name) VALUES(DEFAULT, #{name}) ")
+	void insertCat(CatBean bean);
 	
-	@Update("UPDATE cat SET name = #{name} WHERE no = #{no}")
-	void update(CatBean bean);
+	@Update("UPDATE cat SET name = #{name} WHERE no = #{no} ")
+	void updateCat(CatBean bean);
 	
-	@Delete("DELETE FROM cat WHERE no = #{no}")
-	void delete(String no);
+	@Delete("DELETE FROM cat WHERE no = #{no} ")
+	void deleteCat(String no);
 }

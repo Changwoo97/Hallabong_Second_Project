@@ -11,27 +11,27 @@
 </head>
 <body>
 	<div id="detail">
-		<form action="${root}${path}" method="post">
-			<input type="hidden" name="no" value="${no}">
+		<form:form action="${root}${path}" method="post" modelAttribute="catBean">
+			<form:hidden path="no"/>
 			<table>
 				<tr><td class="detailTop" colspan="2"></td></tr>
-				<c:if test="${no != null}">
+				<c:if test="${catBean.no != null}">
 					<tr>
 						<th>카테고리 번호</th>
-						<td>${no}</td>
+						<td>${catBean.no}</td>
 					</tr>
 				</c:if>
 				<tr>
 					<th>카테고리 이름</th>
-					<td><input type="text" name="name" value="${name}" /></td>
+					<td><form:input path="name" /></td>
 				</tr>
 				<tr>
 					<td class="detailBottom" colspan="2">
-						<input type="submit" value="${submit}" />
+						<form:button>${submit}</form:button>
 					</td>
 				</tr>
 			</table>
-		</form>
+		</form:form>
 	</div>
 </body>
 </html>

@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.hallabong.bean.CatBean;
 import kr.co.hallabong.bean.ProdBean;
+import kr.co.hallabong.service.CatService;
+import kr.co.hallabong.service.ProdService;
 import kr.co.hallabong.util.Format;
 import kr.co.hallabong.util.Pair;
 
@@ -36,25 +39,18 @@ public class AdminProdController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	@Autowired
-	private RowMapper<Pair<CatBean, Integer>> catRowMapper;
-	@Autowired
 	private RowMapper<Pair<ProdBean, Integer>> prodRowMapper;
+	@Autowired
+	private ProdService prodService;
+	@Autowired
+	private CatService catService;
+	
 	
 	@GetMapping("/registration")
 	public String registration(@ModelAttribute ProdBean prodBean , Model model) {		
 		prodBean.setFs('Y');
-		
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT no, name ");
-		sql.append("FROM cat ");
-		
-		List<Pair<CatBean, Integer>> catBeans = jdbcTemplate.query(sql.toString(), catRowMapper);
-		List<CatBean> cats = new ArrayList<>();
-		for (Pair<CatBean, Integer> catBean : catBeans) {
-			cats.add(catBean.getItem1());
-		}
-		
-		model.addAttribute("cats", cats);
+
+		model.addAttribute("cats", catService.getCatList());
 		model.addAttribute("content", "/WEB-INF/views/admin/prodDetail.jsp");
 		model.addAttribute("frameName", "상품등록");
 		model.addAttribute("path", "/admin/prod/registration_proc");
@@ -63,7 +59,7 @@ public class AdminProdController {
 	}
 	
 	@PostMapping("/registration_proc")
-	public String registration_proc(@ModelAttribute ProdBean prodBean, BindingResult result, Model model) {
+	public String registration_proc(ProdBean prodBean, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("message", "상품 등록에 실패했습니다.");
 			model.addAttribute("path", "/admin/prod/check");
@@ -81,34 +77,9 @@ public class AdminProdController {
 			prodBean.setS_img(fileName);
 		}
 		
-		StringBuilder sql = new StringBuilder();
-		sql.append("INSERT INTO prod (no, fs, name, cost, sp, s_img, l_img, cat_no, reg_tm) ");
-		sql.append("VALUES (");
-		sql.append("DEFAULT, ");
-		sql.append("'" + prodBean.getFs() + "', ");
-		sql.append("'" + prodBean.getName() + "', ");
-		sql.append(prodBean.getCost() + ", ");
-		sql.append(prodBean.getSp() + ", ");
-		if (prodBean.getS_img() != null) {
-			sql.append("'" + prodBean.getS_img() + "', ");
-		} else {
-			sql.append("NULL, ");
-		}
-		if (prodBean.getL_img() != null) {
-			sql.append("'" + prodBean.getL_img() + "', ");
-		} else {
-			sql.append("NULL, ");
-		}
-		sql.append("'" + prodBean.getCat_no() + "', ");
-		sql.append("DEFAULT) ");
-		
-		int insertResult = jdbcTemplate.update(sql.toString());
-		
-		if (insertResult > 0) {
-			model.addAttribute("message", "상품이 등록되었습니다.");
-		} else {
-			model.addAttribute("message", "상품 등록에 실패했습니다.");
-		}
+		prodService.addProd(prodBean);
+
+		model.addAttribute("message", "상품이 등록되었습니다.");
 		model.addAttribute("path", "/admin/prod/check");
 		return "admin/alert";
 	}
@@ -120,8 +91,15 @@ public class AdminProdController {
 			@ModelAttribute("name") String name, 
 			@ModelAttribute("reg_tmBeginDate") String reg_tmBeginDate, 
 			@ModelAttribute("reg_tmEndDate") String reg_tmEndDate, 
-			@ModelAttribute("selectedPageNum") String selectedPageNum) {
+			@RequestParam(name = "selectedPageNum", defaultValue = "1") int selectedPageNum) {
 		final int ROW_SIZE = 2;
+		
+		no = (no == null) ? "" : no.trim();
+		fs = (fs == null || fs.equals("T")) ? "" : fs;
+		name = (name == null) ? "" : name.trim();
+		reg_tmBeginDate = (reg_tmBeginDate == null) ? "" : reg_tmBeginDate;
+		reg_tmEndDate = (reg_tmEndDate == null) ? "" : reg_tmEndDate;
+		selectedPageNum = (selectedPageNum > 0) ? selectedPageNum : 1;
 		
 		List<Map<String, String>> thead = new ArrayList<>();
 		thead.add(Format.getMap("title=상품번호&type=keyword&name=no"));
@@ -137,13 +115,6 @@ public class AdminProdController {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT no, fs, name, cost, sp, s_img, l_img, cat_no, reg_tm ");
 		sql.append("FROM prod ");
-
-		no = (no == null) ? "" : no.trim();
-		fs = (fs == null || fs.equals("T")) ? "" : fs;
-		name = (name == null) ? "" : name.trim();
-		reg_tmBeginDate = (reg_tmBeginDate == null) ? "" : reg_tmBeginDate;
-		reg_tmEndDate = (reg_tmEndDate == null) ? "" : reg_tmEndDate;
-		
 		if (no.length() + fs.length() + name.length() 
 			+ reg_tmBeginDate.length() + reg_tmEndDate.length() > 0) {
 			sql.append("WHERE ");
@@ -173,20 +144,12 @@ public class AdminProdController {
 				sql.replace(andIndex, sql.length(), "");
 			}
 		}
-		
-		int parseSelectedPageNum;
-		try {
-			parseSelectedPageNum = Integer.parseInt(selectedPageNum);
-			parseSelectedPageNum = (parseSelectedPageNum > 0) ? parseSelectedPageNum : 0;
-		} catch (Exception e) {
-			parseSelectedPageNum = 1;
-		}
-		selectedPageNum = String.valueOf(parseSelectedPageNum);
+		sql.append("ORDER BY reg_tm DESC ");
 		
 		List<Pair<ProdBean, Integer>> selectResults = jdbcTemplate.query(sql.toString(), prodRowMapper);
 		int pageSize = selectResults.size() / ROW_SIZE + ((selectResults.size() % ROW_SIZE) > 0 ? 1 : 0); 
-		int startRowNum = (parseSelectedPageNum - 1) * ROW_SIZE;
-		int endRowNum = (parseSelectedPageNum) * ROW_SIZE;
+		int startRowNum = (selectedPageNum - 1) * ROW_SIZE;
+		int endRowNum = (selectedPageNum) * ROW_SIZE;
 		
 		if (selectResults.size() > 0) {
 			for (Pair<ProdBean, Integer> selectResult : selectResults) {
@@ -249,34 +212,19 @@ public class AdminProdController {
 	
 	@PostMapping("/modify") 
 	public String modify(@ModelAttribute ProdBean prodBean, Model model) {
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT no, name ");
-		sql.append("FROM cat ");
-		
-		List<Pair<CatBean, Integer>> catSelectResults = jdbcTemplate.query(sql.toString(), catRowMapper);
-		List<CatBean> cats = new ArrayList<>();
-		for (Pair<CatBean, Integer> catSelectResult : catSelectResults) {
-			cats.add(catSelectResult.getItem1());
-		}
-		
-		sql.setLength(0);
-		
-		sql.append("SELECT no, fs, name, cost, sp, s_img, l_img, cat_no, reg_tm ");
-		sql.append("FROM prod ");
-		sql.append("WHERE no = '" + prodBean.getNo() + "' ");
+		List<CatBean> cats = catService.getCatList();
 
-		List<Pair<ProdBean, Integer>> selectResults = jdbcTemplate.query(sql.toString(), prodRowMapper);
-		ProdBean selectResult = selectResults.get(0).getItem1();
+		ProdBean result = prodService.getProd(prodBean.getNo());
 		
-		prodBean.setNo(selectResult.getNo());
-		prodBean.setFs(selectResult.getFs());
-		prodBean.setName(selectResult.getName());
-		prodBean.setCost(selectResult.getCost());
-		prodBean.setSp(selectResult.getSp());
-		prodBean.setS_img(selectResult.getS_img());
-		prodBean.setL_img(selectResult.getL_img());
-		prodBean.setCat_no(selectResult.getCat_no());
-		prodBean.setReg_tm(selectResult.getReg_tm());
+		prodBean.setNo(result.getNo());
+		prodBean.setFs(result.getFs());
+		prodBean.setName(result.getName());
+		prodBean.setCost(result.getCost());
+		prodBean.setSp(result.getSp());
+		prodBean.setS_img(result.getS_img());
+		prodBean.setL_img(result.getL_img());
+		prodBean.setCat_no(result.getCat_no());
+		prodBean.setReg_tm(result.getReg_tm());
 		
 		model.addAttribute("cats", cats);
 		model.addAttribute("content", "/WEB-INF/views/admin/prodDetail.jsp");
@@ -287,7 +235,7 @@ public class AdminProdController {
 	}
 	
 	@PostMapping("/modify_proc") 
-	public String modify_proc(@ModelAttribute ProdBean prodBean, Model model) {
+	public String modify_proc(ProdBean prodBean, Model model) {
 		MultipartFile s_img_file = prodBean.getS_img_file();
 		if (s_img_file.getSize() > 0) {
 			deleteUploadFile(prodBean.getS_img());
@@ -300,24 +248,9 @@ public class AdminProdController {
 			prodBean.setL_img(saveUploadFile(l_img_file));
 		}
 
-		StringBuilder sql = new StringBuilder();
-		sql = new StringBuilder();
-		sql.append("UPDATE prod ");
-		sql.append("SET fs = '" + prodBean.getFs() + "', ");
-		sql.append("name = '" + prodBean.getName() + "', ");
-		sql.append("cost = '" + prodBean.getCost() + "', ");
-		sql.append("sp = '" + prodBean.getSp() + "', ");
-		sql.append("s_img = '" + prodBean.getS_img() + "', ");
-		sql.append("l_img = '" + prodBean.getL_img() + "', ");
-		sql.append("cat_no = '" + prodBean.getCat_no() + "' ");
-		sql.append("WHERE no = '" + prodBean.getNo() + "' ");
+		prodService.setProd(prodBean);
 		
-		int updateResult = jdbcTemplate.update(sql.toString());
-		if (updateResult > 0) {
-			model.addAttribute("message", "상품이 수정되었습니다.");
-		} else {
-			model.addAttribute("message", "상품 수정에 실패했습니다.");
-		}
+		model.addAttribute("message", "상품이 수정되었습니다.");
 		model.addAttribute("path", "/admin/prod/check");
 		return "admin/alert";
 	}
@@ -339,22 +272,6 @@ public class AdminProdController {
 		return file_name;
 	}
 	
-//	private MultipartFile getUploadFile(String fileName) throws IOException {
-//        File file = new File(path_upload + "/" + fileName);
-//        System.out.println(file.getAbsolutePath());
-//        FileItem fileItem = new DiskFileItem("originFile", 
-//        		Files.probeContentType(file.toPath()), false, file.getName(), 
-//        		(int) file.length(), file.getParentFile());
-//
-//        InputStream is = new FileInputStream(file);
-//        OutputStream os = fileItem.getOutputStream();
-//        IOUtils.copy(is, os);
-//
-//        //jpa.png -> multipart 변환
-//        MultipartFile mFile = new CommonsMultipartFile(fileItem);
-//        return mFile;
-//    }
-	
 	private void deleteUploadFile (String fileName) {
 		File file = new File(path_upload + "/" + fileName);
 
@@ -362,4 +279,20 @@ public class AdminProdController {
 			file.delete();
 		}
 	}
+	
+//	private MultipartFile getUploadFile(String fileName) throws IOException {
+//  File file = new File(path_upload + "/" + fileName);
+//  System.out.println(file.getAbsolutePath());
+//  FileItem fileItem = new DiskFileItem("originFile", 
+//  		Files.probeContentType(file.toPath()), false, file.getName(), 
+//  		(int) file.length(), file.getParentFile());
+//
+//  InputStream is = new FileInputStream(file);
+//  OutputStream os = fileItem.getOutputStream();
+//  IOUtils.copy(is, os);
+//
+//  //jpa.png -> multipart 변환
+//  MultipartFile mFile = new CommonsMultipartFile(fileItem);
+//  return mFile;
+//}
 }

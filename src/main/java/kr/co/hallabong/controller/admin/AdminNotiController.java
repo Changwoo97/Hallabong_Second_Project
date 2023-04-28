@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.hallabong.bean.NotiBean;
 import kr.co.hallabong.rowMapper.NotiRowMapper;
+import kr.co.hallabong.service.NotiService;
 import kr.co.hallabong.util.Format;
 import kr.co.hallabong.util.Pair;
 
@@ -28,6 +29,8 @@ public class AdminNotiController {
 	private JdbcTemplate jdbcTemplate;
 	@Autowired 
 	NotiRowMapper notiRowMapper;
+	@Autowired 
+	NotiService notiService;
 	
 	@GetMapping("/registration") 
 	public String registration(@ModelAttribute NotiBean notiBean, Model model) {
@@ -40,41 +43,21 @@ public class AdminNotiController {
 	
 	@PostMapping("/registration_proc") 
 	public String registration_proc(NotiBean notiBean, Model model) {
-		StringBuilder sql = new StringBuilder();
-		sql.append("INSERT INTO noti (no, tit, cont, reg_tm) ");
-		sql.append("VALUES (");
-		sql.append("DEFAULT, ");
-		if (notiBean.getTit() != null) {
-			sql.append("'" + notiBean.getTit() + "', ");
-		} else {
-			sql.append("NULL, ");
-		}
-		if (notiBean.getCont() != null) {
-			sql.append("'" + notiBean.getCont() + "', ");
-		} else {
-			sql.append("NULL, ");
-		}
-		sql.append("DEFAULT) ");
-		
-		int insertResult = jdbcTemplate.update(sql.toString());
-		
-		if (insertResult > 0) {
-			model.addAttribute("message", "공지사항이 등록되었습니다.");
-		} else {
-			model.addAttribute("message", "공지사항 등록에 실패했습니다.");
-		}
+		notiService.addNoti(notiBean);
+
+		model.addAttribute("message", "공지사항이 등록되었습니다.");
 		model.addAttribute("path", "/admin/noti/check");
 		return "admin/alert";
 	}
 	
 	@GetMapping("/check") 
 	public String check(HttpServletRequest request, Model model,
-			@RequestParam(name = "no", defaultValue = "") String no, 
-			@RequestParam(name = "reg_tmBeginDate", defaultValue = "") String reg_tmBeginDate, 
-			@RequestParam(name = "reg_tmEndDate", defaultValue = "") String reg_tmEndDate,
-			@RequestParam(name = "tit", defaultValue = "") String tit, 
-			@RequestParam(name = "cont", defaultValue = "") String cont, 
-			@RequestParam(name = "selectedPageNum", defaultValue = "1") String selectedPageNum) {
+			@ModelAttribute("no") String no, 
+			@ModelAttribute("reg_tmBeginDate") String reg_tmBeginDate, 
+			@ModelAttribute("reg_tmEndDate") String reg_tmEndDate,
+			@ModelAttribute("tit") String tit, 
+			@ModelAttribute("cont") String cont, 
+			@RequestParam(name = "selectedPageNum", defaultValue = "1") int selectedPageNum) {
 		final int ROW_SIZE = 2;
 		
 		List<Map<String, String>> thead = new ArrayList<>();
@@ -87,20 +70,15 @@ public class AdminNotiController {
 
 		List<List<String>> tbody = new ArrayList<>();
 
-		no = no.trim();
-		tit = tit.trim();
-		cont = cont.trim();
-		if (reg_tmBeginDate.isBlank()) {
-			reg_tmBeginDate = reg_tmEndDate;
-		}
-		if (reg_tmEndDate.isBlank()) {
-			reg_tmEndDate = reg_tmBeginDate;
-		}
+		no = (no == null) ? "" : no.trim();
+		tit = (tit == null) ? "" : tit.trim();
+		cont = (cont == null) ? "" : cont.trim();
+		reg_tmBeginDate = (reg_tmBeginDate == null) ? "" : reg_tmBeginDate;
+		reg_tmEndDate = (reg_tmEndDate == null) ? "" : reg_tmEndDate;
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT no, tit, cont, reg_tm ");
 		sql.append("FROM noti ");
-		
 		if (no.length() + tit.length() + cont.length() 
 			+ reg_tmBeginDate.length() + reg_tmEndDate.length() > 0) {
 			sql.append("WHERE ");
@@ -116,9 +94,12 @@ public class AdminNotiController {
 				sql.append("cont LIKE '%" + cont + "%' ");
 				sql.append("AND ");
 			}
-			if (reg_tmBeginDate.length() > 0 && reg_tmEndDate.length() > 0) {
-				sql.append("reg_tm BETWEEN TO_DATE('"+ reg_tmBeginDate +"', 'YYYY-MM-DD') "
-						+ "AND TO_DATE('" + reg_tmEndDate + "', 'YYYY-MM-DD') ");
+			if (reg_tmBeginDate.length() > 0) {
+				sql.append("reg_tm >= TO_DATE('" + reg_tmBeginDate + "', 'YYYY-MM-DD') ");
+				sql.append("AND ");
+			}
+			if (reg_tmEndDate.length() > 0) {
+				sql.append("reg_tm < TO_DATE('" + reg_tmEndDate + "', 'YYYY-MM-DD') + 1 ");
 				sql.append("AND ");
 			}
 			
@@ -127,47 +108,42 @@ public class AdminNotiController {
 				sql.replace(andIndex, sql.length(), "");
 			}
 		}
+		sql.append("ORDER BY reg_tm DESC ");
 
-		int parseSelectedPageNum;
-		try {
-			parseSelectedPageNum = Integer.parseInt(selectedPageNum);
-			parseSelectedPageNum = (parseSelectedPageNum > 0) ? parseSelectedPageNum : 1;
-		} catch (Exception e) {
-			parseSelectedPageNum = 1;
-		}
+		selectedPageNum = (selectedPageNum > 0) ? selectedPageNum : 1;
 		
-		List<Pair<NotiBean, Integer>> notiBeans = jdbcTemplate.query(sql.toString(), notiRowMapper);
-		int pageSize = notiBeans.size() / ROW_SIZE + ((notiBeans.size() % ROW_SIZE) > 0 ? 1 : 0); 
-		int startRowNum = (parseSelectedPageNum - 1) * ROW_SIZE;
-		int endRowNum = (parseSelectedPageNum) * ROW_SIZE;
+		List<Pair<NotiBean, Integer>> selectResults = jdbcTemplate.query(sql.toString(), notiRowMapper);
+		int pageSize = selectResults.size() / ROW_SIZE + ((selectResults.size() % ROW_SIZE) > 0 ? 1 : 0); 
+		int startRowNum = (selectedPageNum - 1) * ROW_SIZE;
+		int endRowNum = (selectedPageNum) * ROW_SIZE;
 		
-		if (notiBeans.size() > 0) {	
-			for (Pair<NotiBean, Integer> notiBean : notiBeans) {
-				if (notiBean.getItem2() < startRowNum) {
+		if (selectResults.size() > 0) {	
+			for (Pair<NotiBean, Integer> selectResult : selectResults) {
+				if (selectResult.getItem2() < startRowNum) {
 					continue;
 				}
 	
-				if (endRowNum <= notiBean.getItem2()) {
+				if (endRowNum <= selectResult.getItem2()) {
 					break;
 				}
 				
 				List<String> row = new ArrayList<>();
 				
-				row.add(notiBean.getItem1().getNo());
-				row.add(notiBean.getItem1().getTit());
-				row.add(notiBean.getItem1().getCont());
-				row.add(notiBean.getItem1().getReg_tm());
+				row.add(selectResult.getItem1().getNo());
+				row.add(selectResult.getItem1().getTit());
+				row.add(selectResult.getItem1().getCont());
+				row.add(selectResult.getItem1().getReg_tm());
 				
 				StringBuilder sb = new StringBuilder();
 				sb.append("<form action=\"" + request.getContextPath() + "/admin/noti/modify\" method=\"post\">");
-				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + notiBean.getItem1().getNo() + "\" />");
+				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + selectResult.getItem1().getNo() + "\" />");
 				sb.append("\t<input type=\"submit\" value=\"수정하기\" />");
 				sb.append("</form>");
 				row.add(sb.toString());
 				
 				sb.setLength(0);
 				sb.append("<form action=\"" + request.getContextPath() + "/admin/noti/delete_proc\" method=\"post\">");
-				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + notiBean.getItem1().getNo() + "\" />");
+				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + selectResult.getItem1().getNo() + "\" />");
 				sb.append("\t<input type=\"submit\" value=\"삭제하기\" />");
 				sb.append("</form>");
 				row.add(sb.toString());
@@ -185,29 +161,32 @@ public class AdminNotiController {
 			tbody.add(row);
 		}
 		
+		List<Pair<String, String>> searchKeyAndValues = new ArrayList<>();
+		searchKeyAndValues.add(new Pair<String, String>("no", no));
+		searchKeyAndValues.add(new Pair<String, String>("tit", tit));
+		searchKeyAndValues.add(new Pair<String, String>("cont", cont));
+		searchKeyAndValues.add(new Pair<String, String>("reg_tmBeginDate", reg_tmBeginDate));
+		searchKeyAndValues.add(new Pair<String, String>("reg_tmEndDate", reg_tmEndDate));
+		
+		model.addAttribute("selectedPageNum", selectedPageNum);
+		model.addAttribute("searchKeyAndValues", searchKeyAndValues);
 		model.addAttribute("searchPath", "/admin/noti/check");
 		model.addAttribute("content", "/WEB-INF/views/admin/table.jsp");
 		model.addAttribute("frameName", "공지사항 조회");
 		model.addAttribute("pageSize", pageSize);
-		model.addAttribute("selectedPageNum", parseSelectedPageNum);
 		model.addAttribute("thead", thead);
 		model.addAttribute("tbody", tbody);
 		return "admin/admin";
 	}
 	
 	@PostMapping("/modify") 
-	public String modify(NotiBean notiBean, Model model) {
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT no, tit, cont, reg_tm ");
-		sql.append("FROM noti ");
-		sql.append("WHERE no = '" + notiBean.getNo() + "' ");
-		
-		List<Pair<NotiBean, Integer>> selectResults = jdbcTemplate.query(sql.toString(), notiRowMapper);
-		NotiBean selectResult = selectResults.get(0).getItem1();
-		notiBean.setNo(selectResult.getNo());
-		notiBean.setTit(selectResult.getTit());
-		notiBean.setCont(selectResult.getCont());
-		notiBean.setReg_tm(selectResult.getReg_tm());
+	public String modify(@ModelAttribute NotiBean notiBean, Model model) {
+		NotiBean bean = notiService.getNoti(notiBean.getNo());
+
+		notiBean.setNo(bean.getNo());
+		notiBean.setTit(bean.getTit());
+		notiBean.setCont(bean.getCont());
+		notiBean.setReg_tm(bean.getReg_tm());
 		
 		model.addAttribute("content", "/WEB-INF/views/admin/notiDetail.jsp");
 		model.addAttribute("frameName", "공지사항 수정");
@@ -218,34 +197,18 @@ public class AdminNotiController {
 	
 	@PostMapping("/modify_proc") 
 	public String modify_proc(NotiBean notiBean, Model model) {
-		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE noti ");
-		sql.append("SET tit = '" + notiBean.getTit() + "', ");
-		sql.append("cont = '" + notiBean.getCont() + "' ");
-		sql.append("WHERE no = '" + notiBean.getNo() + "' ");
-		
-		int updateResult = jdbcTemplate.update(sql.toString());
-		if (updateResult > 0) {
-			model.addAttribute("message", "공지사항이 수정되었습니다.");
-		} else {
-			model.addAttribute("message", "공지사항 수정에 실패했습니다.");
-		}
+		notiService.setNoti(notiBean);
+
+		model.addAttribute("message", "공지사항이 수정되었습니다.");
 		model.addAttribute("path", "/admin/noti/check");
 		return "admin/alert";
 	}
 	
 	@PostMapping("/delete_proc") 
 	public String delete_proc(NotiBean notiBean, Model model) {
-		StringBuilder sql = new StringBuilder();
-		sql.append("DELETE FROM noti ");
-		sql.append("WHERE no = '" + notiBean.getNo() + "' ");
-		
-		int deleteResult = jdbcTemplate.update(sql.toString());
-		if (deleteResult > 0) {
-			model.addAttribute("message", "공지사항이 삭제되었습니다.");
-		} else {
-			model.addAttribute("message", "공지사항 삭제에 실패했습니다.");
-		}
+		notiService.removeNoti(notiBean.getNo());
+
+		model.addAttribute("message", "공지사항이 삭제되었습니다.");
 		model.addAttribute("path", "/admin/noti/check");
 		return "admin/alert";
 	}

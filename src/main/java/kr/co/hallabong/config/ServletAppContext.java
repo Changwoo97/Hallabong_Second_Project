@@ -6,7 +6,6 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperFactoryBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,6 +19,9 @@ import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import kr.co.hallabong.mapper.CatMapper;
+import kr.co.hallabong.mapper.NotiMapper;
+import kr.co.hallabong.mapper.ProdMapper;
+import kr.co.hallabong.mapper.QAMapper;
 
 @Configuration
 @EnableWebMvc //Controller로 등록되어 있는 클래스 셋팅
@@ -96,18 +98,32 @@ public class ServletAppContext implements WebMvcConfigurer {
 		return new StandardServletMultipartResolver();
 	}
 	
-//	@Bean
-//	public MapperFactoryBean<CategoryMapper> getCategoryMapper(SqlSessionFactory factory) throws Exception{
-//		MapperFactoryBean<CategoryMapper> factoryBean = new MapperFactoryBean<CategoryMapper>(CategoryMapper.class);
-//		factoryBean.setSqlSessionFactory(factory);
-//		return factoryBean;
-//	}
-//	
-//	@Bean
-//	public MapperFactoryBean<UserMapper> getUserMapper(SqlSessionFactory factory) throws Exception{
-//		MapperFactoryBean<UserMapper> factoryBean = new MapperFactoryBean<UserMapper>(UserMapper.class);
-//		factoryBean.setSqlSessionFactory(factory);
-//		return factoryBean;
-//	}
+	@Bean
+	public MapperFactoryBean<ProdMapper> getProdMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<ProdMapper> factoryBean = new MapperFactoryBean<>(ProdMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<CatMapper> getCatMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<CatMapper> factoryBean = new MapperFactoryBean<>(CatMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<NotiMapper> getNotiMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<NotiMapper> factoryBean = new MapperFactoryBean<>(NotiMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<QAMapper> getQAMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<QAMapper> factoryBean = new MapperFactoryBean<>(QAMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
 }
 
