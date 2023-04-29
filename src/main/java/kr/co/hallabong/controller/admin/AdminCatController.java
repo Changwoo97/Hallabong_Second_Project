@@ -7,8 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,10 +23,6 @@ import kr.co.hallabong.util.Pair;
 @Controller
 @RequestMapping("/admin/cat")
 public class AdminCatController {
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	@Autowired
-	private RowMapper<Pair<CatBean, Integer>> catRowMapper;
 	@Autowired
 	private CatService catService;
 	
@@ -61,27 +55,6 @@ public class AdminCatController {
 		name = (name == null) ? "" : name.trim();
 		selectedPageNum = (selectedPageNum > 0) ? selectedPageNum : 1;
 		
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT no, name ");
-		sql.append("FROM cat ");
-		if (no.length() + name.length() > 0) {
-			sql.append("WHERE ");
-			if (no.length() > 0) {
-				sql.append("no LIKE '%" + no + "%' ");
-				sql.append("AND ");
-			}
-			if (name.length() > 0) {
-				sql.append("name LIKE '%" + name + "%' ");
-				sql.append("AND ");
-			}
-			
-			int andIndex = sql.lastIndexOf("AND ");
-			if (andIndex > -1) {
-				sql.replace(andIndex, sql.length(), "");
-			}
-		}
-		sql.append("ORDER BY name ");
-		
 		List<Map<String, String>> thead = new ArrayList<>();
 		thead.add(Format.getMap("title=카테고리 번호&type=keyword&name=no"));
 		thead.add(Format.getMap("title=카테고리 이름&type=keyword&name=name"));
@@ -90,37 +63,40 @@ public class AdminCatController {
 		
 		List<List<String>> tbody = new ArrayList<>();
 		
-		List<Pair<CatBean, Integer>> selectResults = jdbcTemplate.query(sql.toString(), catRowMapper);
-		int pageSize = selectResults.size() / ROW_SIZE + ((selectResults.size() % ROW_SIZE) > 0 ? 1 : 0); 
+		List<CatBean> catList = catService.getCatList();
+		for (int i = catList.size() - 1; i >= 0; i--) {
+			CatBean cat = catList.get(i);
+			if ((no.isBlank() || cat.getNo().contains(no))
+					&& (name.isBlank() || cat.getName().contains(name)))
+				continue;
+			catList.remove(cat);
+		}
+		
+		int pageSize = catList.size() / ROW_SIZE + ((catList.size() % ROW_SIZE) > 0 ? 1 : 0); 
 		int startRowNum = (selectedPageNum - 1) * ROW_SIZE;
 		int endRowNum = (selectedPageNum) * ROW_SIZE;
 
-		if (selectResults.size() > 0) {
-			for (Pair<CatBean, Integer> selectResult : selectResults) {
-	
-				if (selectResult.getItem2() < startRowNum) {
-					continue;
-				}
-	
-				if (endRowNum <= selectResult.getItem2()) {
-					break;
-				}
+		if (catList.size() > 0) {
+			for (int i = startRowNum; i < catList.size(); i++) {
+				if (endRowNum <= i) break;
+				
+				CatBean cat = catList.get(i);
 				
 				List<String> row = new ArrayList<>();
 				
-				row.add(selectResult.getItem1().getNo());
-				row.add(selectResult.getItem1().getName());
+				row.add(cat.getNo());
+				row.add(cat.getName());
 	
 				StringBuilder sb = new StringBuilder();
 				sb.append("<form action=\"" + request.getContextPath() + "/admin/cat/modify\" method=\"post\">");
-				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + selectResult.getItem1().getNo() + "\" />");
+				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + cat.getNo() + "\" />");
 				sb.append("\t<input type=\"submit\" value=\"수정하기\" />");
 				sb.append("</form>");
 				row.add(sb.toString());
 				
 				sb.setLength(0);
 				sb.append("<form action=\"" + request.getContextPath() + "/admin/cat/delete_proc\" method=\"post\">");
-				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + selectResult.getItem1().getNo() + "\" />");
+				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + cat.getNo() + "\" />");
 				sb.append("\t<input type=\"submit\" value=\"삭제하기\" />");
 				sb.append("</form>");
 				row.add(sb.toString());

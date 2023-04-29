@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.hallabong.bean.NotiBean;
-import kr.co.hallabong.rowMapper.NotiRowMapper;
 import kr.co.hallabong.service.NotiService;
 import kr.co.hallabong.util.Format;
 import kr.co.hallabong.util.Pair;
@@ -25,10 +23,6 @@ import kr.co.hallabong.util.Pair;
 @Controller
 @RequestMapping("/admin/noti")
 public class AdminNotiController {
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	@Autowired 
-	NotiRowMapper notiRowMapper;
 	@Autowired 
 	NotiService notiService;
 	
@@ -75,75 +69,47 @@ public class AdminNotiController {
 		cont = (cont == null) ? "" : cont.trim();
 		reg_tmBeginDate = (reg_tmBeginDate == null) ? "" : reg_tmBeginDate;
 		reg_tmEndDate = (reg_tmEndDate == null) ? "" : reg_tmEndDate;
-		
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT no, tit, cont, reg_tm ");
-		sql.append("FROM noti ");
-		if (no.length() + tit.length() + cont.length() 
-			+ reg_tmBeginDate.length() + reg_tmEndDate.length() > 0) {
-			sql.append("WHERE ");
-			if (no.length() > 0) {
-				sql.append("no LIKE '%" + no + "%' ");
-				sql.append("AND ");
-			}
-			if (tit.length() > 0) {
-				sql.append("tit LIKE '%" + tit + "%' ");
-				sql.append("AND ");
-			}
-			if (cont.length() > 0) {
-				sql.append("cont LIKE '%" + cont + "%' ");
-				sql.append("AND ");
-			}
-			if (reg_tmBeginDate.length() > 0) {
-				sql.append("reg_tm >= TO_DATE('" + reg_tmBeginDate + "', 'YYYY-MM-DD') ");
-				sql.append("AND ");
-			}
-			if (reg_tmEndDate.length() > 0) {
-				sql.append("reg_tm < TO_DATE('" + reg_tmEndDate + "', 'YYYY-MM-DD') + 1 ");
-				sql.append("AND ");
-			}
-			
-			int andIndex = sql.lastIndexOf("AND ");
-			if (andIndex > -1) {
-				sql.replace(andIndex, sql.length(), "");
-			}
-		}
-		sql.append("ORDER BY reg_tm DESC ");
-
 		selectedPageNum = (selectedPageNum > 0) ? selectedPageNum : 1;
 		
-		List<Pair<NotiBean, Integer>> selectResults = jdbcTemplate.query(sql.toString(), notiRowMapper);
-		int pageSize = selectResults.size() / ROW_SIZE + ((selectResults.size() % ROW_SIZE) > 0 ? 1 : 0); 
+		List<NotiBean> notiList = notiService.getNotiList();
+		for (int i = notiList.size() - 1; i >= 0; i--) {
+			NotiBean noti = notiList.get(i);
+			if ((no.isBlank() || noti.getNo().contains(no))
+					&& (tit.isBlank() || noti.getTit().contains(tit))
+					&& (cont.isBlank() || noti.getCont().contains(cont)
+					&& (reg_tmBeginDate.isBlank() || noti.getReg_tm().compareTo(reg_tmBeginDate) >= 0)
+					&& (reg_tmEndDate.isBlank() || noti.getReg_tm().compareTo(reg_tmEndDate) <= 0)))
+				continue;
+			notiList.remove(noti);
+		}
+		
+		int pageSize = notiList.size() / ROW_SIZE + ((notiList.size() % ROW_SIZE) > 0 ? 1 : 0); 
 		int startRowNum = (selectedPageNum - 1) * ROW_SIZE;
 		int endRowNum = (selectedPageNum) * ROW_SIZE;
 		
-		if (selectResults.size() > 0) {	
-			for (Pair<NotiBean, Integer> selectResult : selectResults) {
-				if (selectResult.getItem2() < startRowNum) {
-					continue;
-				}
-	
-				if (endRowNum <= selectResult.getItem2()) {
-					break;
-				}
+		if (notiList.size() > 0) {	
+			for (int i = startRowNum; i < notiList.size(); i++) {
+				if (endRowNum <= i) break;
+				
+				NotiBean noti = notiList.get(i);
 				
 				List<String> row = new ArrayList<>();
 				
-				row.add(selectResult.getItem1().getNo());
-				row.add(selectResult.getItem1().getTit());
-				row.add(selectResult.getItem1().getCont());
-				row.add(selectResult.getItem1().getReg_tm());
+				row.add(noti.getNo());
+				row.add(noti.getTit());
+				row.add(noti.getCont());
+				row.add(noti.getReg_tm());
 				
 				StringBuilder sb = new StringBuilder();
 				sb.append("<form action=\"" + request.getContextPath() + "/admin/noti/modify\" method=\"post\">");
-				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + selectResult.getItem1().getNo() + "\" />");
+				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + noti.getNo() + "\" />");
 				sb.append("\t<input type=\"submit\" value=\"수정하기\" />");
 				sb.append("</form>");
 				row.add(sb.toString());
 				
 				sb.setLength(0);
 				sb.append("<form action=\"" + request.getContextPath() + "/admin/noti/delete_proc\" method=\"post\">");
-				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + selectResult.getItem1().getNo() + "\" />");
+				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + noti.getNo() + "\" />");
 				sb.append("\t<input type=\"submit\" value=\"삭제하기\" />");
 				sb.append("</form>");
 				row.add(sb.toString());

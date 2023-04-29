@@ -11,9 +11,7 @@ import kr.co.hallabong.bean.QABean;
 
 public interface QAMapper {
 	@Select("SELECT no, cust_id, q, TO_CHAR(q_reg_tm, 'YYYY-MM-DD') AS q_reg_tm, a, TO_CHAR(a_reg_tm, 'YYYY-MM-DD') AS a_reg_tm, sta "
-			+ "FROM qa "
-			+ "WHERE sta = #{sta} " 
-			+ "ORDER BY q_reg_tm DESC ")
+			+ "FROM (SELECT * FROM qa WHERE sta = #{sta} ORDER BY q_reg_tm DESC) ")
 	List<QABean> selectQAList(String sta);
 	
 	@Select("SELECT no, cust_id, q, TO_CHAR(q_reg_tm, 'YYYY-MM-DD') AS q_reg_tm, a, TO_CHAR(a_reg_tm, 'YYYY-MM-DD') AS a_reg_tm, sta "

@@ -11,8 +11,6 @@ import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,10 +34,6 @@ import kr.co.hallabong.util.Pair;
 public class AdminProdController {
 	@Value("${path.upload}")
 	private String path_upload;
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	@Autowired
-	private RowMapper<Pair<ProdBean, Integer>> prodRowMapper;
 	@Autowired
 	private ProdService prodService;
 	@Autowired
@@ -112,67 +106,40 @@ public class AdminProdController {
 	
 		List<List<String>> tbody = new ArrayList<>();
 		
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT no, fs, name, cost, sp, s_img, l_img, cat_no, reg_tm ");
-		sql.append("FROM prod ");
-		if (no.length() + fs.length() + name.length() 
-			+ reg_tmBeginDate.length() + reg_tmEndDate.length() > 0) {
-			sql.append("WHERE ");
-			if (no.length() > 0) {
-				sql.append("no LIKE '%" + no + "%' ");
-				sql.append("AND ");
-			}
-			if (fs.length() > 0) {
-				sql.append("fs = '" + fs + "' ");
-				sql.append("AND ");
-			}
-			if (name.length() > 0) {
-				sql.append("name LIKE '%" + name + "%' ");
-				sql.append("AND ");
-			}
-			if (reg_tmBeginDate.length() > 0) {
-				sql.append("reg_tm >= TO_DATE('" + reg_tmBeginDate + "', 'YYYY-MM-DD') ");
-				sql.append("AND ");
-			}
-			if (reg_tmEndDate.length() > 0) {
-				sql.append("reg_tm < TO_DATE('" + reg_tmEndDate + "', 'YYYY-MM-DD') + 1 ");
-				sql.append("AND ");
-			}
-			
-			int andIndex = sql.lastIndexOf("AND ");
-			if (andIndex > -1) {
-				sql.replace(andIndex, sql.length(), "");
-			}
+		List<ProdBean> prodList = prodService.getProdList();
+		for (int i = prodList.size() - 1; i >= 0; i--) {
+			ProdBean prod = prodList.get(i);
+			if ((no.isBlank() || prod.getNo().contains(no))
+					&& (fs.isBlank() || prod.getFs() == fs.charAt(0))
+					&& (name.isBlank() || prod.getName().contains(name)
+					&& (reg_tmBeginDate.isBlank() || prod.getReg_tm().compareTo(reg_tmBeginDate) >= 0)
+					&& (reg_tmEndDate.isBlank() || prod.getReg_tm().compareTo(reg_tmEndDate) <= 0)))
+				continue;
+			prodList.remove(prod);
 		}
-		sql.append("ORDER BY reg_tm DESC ");
 		
-		List<Pair<ProdBean, Integer>> selectResults = jdbcTemplate.query(sql.toString(), prodRowMapper);
-		int pageSize = selectResults.size() / ROW_SIZE + ((selectResults.size() % ROW_SIZE) > 0 ? 1 : 0); 
+		int pageSize = prodList.size() / ROW_SIZE + ((prodList.size() % ROW_SIZE) > 0 ? 1 : 0); 
 		int startRowNum = (selectedPageNum - 1) * ROW_SIZE;
 		int endRowNum = (selectedPageNum) * ROW_SIZE;
 		
-		if (selectResults.size() > 0) {
-			for (Pair<ProdBean, Integer> selectResult : selectResults) {
-				if (selectResult.getItem2() < startRowNum) {
-					continue;
-				}
-	
-				if (endRowNum <= selectResult.getItem2()) {
-					break;
-				}
+		if (prodList.size() > 0) {
+			for (int i = startRowNum; i < prodList.size(); i++) {
+				if (endRowNum <= i) break;
+				
+				ProdBean prod = prodList.get(i);
 				
 				List<String> row = new ArrayList<>();
 	
-				row.add(selectResult.getItem1().getNo());
-				row.add(String.valueOf(selectResult.getItem1().getFs()));
-				row.add(selectResult.getItem1().getName());
-				row.add(String.valueOf(selectResult.getItem1().getCost()));
-				row.add(String.valueOf(selectResult.getItem1().getSp()));
-				row.add(selectResult.getItem1().getReg_tm());
+				row.add(prod.getNo());
+				row.add(String.valueOf(prod.getFs()));
+				row.add(prod.getName());
+				row.add(String.valueOf(prod.getCost()));
+				row.add(String.valueOf(prod.getSp()));
+				row.add(prod.getReg_tm());
 				
 				StringBuilder sb = new StringBuilder();
 				sb.append("<form action=\""+ request.getContextPath() +"/admin/prod/modify\" method=\"post\">");
-				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + selectResult.getItem1().getNo() + "\" />");
+				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + prod.getNo() + "\" />");
 				sb.append("\t<input type=\"submit\" value=\"수정하기\" />");
 				sb.append("</form>");
 				row.add(sb.toString());

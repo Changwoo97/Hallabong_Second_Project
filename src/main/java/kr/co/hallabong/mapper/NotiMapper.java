@@ -11,8 +11,7 @@ import kr.co.hallabong.bean.NotiBean;
 
 public interface NotiMapper {
 	@Select("SELECT no, tit, cont, TO_CHAR(reg_tm, 'YYYY-MM_DD') AS reg_tm "
-			+ "FROM noti "
-			+ "ORDER BY reg_tm DESC ")
+			+ "FROM (SELECT * FROM noti ORDER BY reg_tm DESC) ")
 	public List<NotiBean> selectNotiList();
 	
 	@Select("SELECT no, tit, cont, TO_CHAR(reg_tm, 'YYYY-MM_DD') AS reg_tm "

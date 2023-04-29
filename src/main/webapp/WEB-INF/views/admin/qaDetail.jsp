@@ -38,10 +38,12 @@
 					</td>
 				</tr>
 				<c:if test="${showAnswerArea}">
+					<c:if test="${qaBean.a_reg_tm != null}">
 					<tr>
 						<th>답변일</th>
 						<td>${qaBean.a_reg_tm}</td>
 					</tr>
+					</c:if>
 					<tr>
 						<th>답변내용</th>
 						<td>

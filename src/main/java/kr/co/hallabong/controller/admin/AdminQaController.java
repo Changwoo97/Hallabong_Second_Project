@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.hallabong.bean.QABean;
 import kr.co.hallabong.service.QAService;
@@ -55,26 +53,26 @@ public class AdminQaController {
 		List<List<String>> tbody = new ArrayList<>();
 		
 		List<QABean> qaList = qaService.getRequestQAList();
-		List<QABean> filterdQAList = new ArrayList<>();
-		for (QABean qa : qaList) {
-			if ((!no.isBlank() && !qa.getNo().contains(no)) 
-				|| (!cust_id.isBlank() && !qa.getCust_id().contains(cust_id)) 
-				|| (!q_reg_tmBeginDate.isBlank() && !(qa.getQ_reg_tm().compareTo(q_reg_tmBeginDate) >= 0)) 
-				|| (!q_reg_tmEndDate.isBlank() && !(qa.getQ_reg_tm().compareTo(q_reg_tmBeginDate) <= 0))) 
+		for (int i = qaList.size() - 1; i >=0; i--) {
+			QABean qa = qaList.get(i);
+			if ((no.isBlank() || qa.getNo().contains(no)) 
+				&& (cust_id.isBlank() || qa.getCust_id().contains(cust_id)) 
+				&& (q_reg_tmBeginDate.isBlank() || qa.getQ_reg_tm().compareTo(q_reg_tmBeginDate) >= 0)
+				&& (q_reg_tmEndDate.isBlank() || qa.getQ_reg_tm().compareTo(q_reg_tmEndDate) <= 0))
 				continue;
 			
-			filterdQAList.add(qa);
+				qaList.remove(qa);
 		}
 	
-		int pageSize = filterdQAList.size() / ROW_SIZE + ((filterdQAList.size() % ROW_SIZE) > 0 ? 1 : 0); 
+		int pageSize = qaList.size() / ROW_SIZE + ((qaList.size() % ROW_SIZE) > 0 ? 1 : 0); 
 		int startRowNum = (selectedPageNum - 1) * ROW_SIZE;
 		int endRowNum = (selectedPageNum) * ROW_SIZE;
 		
-		if (filterdQAList.size() > 0) {
-			for (int i = startRowNum; i < filterdQAList.size(); i++) {
+		if (qaList.size() > 0) {
+			for (int i = startRowNum; i < qaList.size(); i++) {
 				if (endRowNum <= i) break;
 				
-				QABean qa = filterdQAList.get(i);
+				QABean qa = qaList.get(i);
 				
 				List<String> row = new ArrayList<>();
 				
@@ -165,28 +163,27 @@ public class AdminQaController {
 		List<List<String>> tbody = new ArrayList<>();
 		
 		List<QABean> qaList = qaService.getCompleteQAList();
-		List<QABean> filteredQAList = new ArrayList<>();
-		for (QABean qa : qaList) {
-			if ((!no.isBlank() && !qa.getNo().contains(no)) 
-				|| (!cust_id.isBlank() && !qa.getCust_id().contains(cust_id)) 
-				|| (!q_reg_tmBeginDate.isBlank() && !(qa.getQ_reg_tm().compareTo(q_reg_tmBeginDate) >= 0)) 
-				|| (!q_reg_tmEndDate.isBlank() && !(qa.getQ_reg_tm().compareTo(q_reg_tmBeginDate) <= 0))
-				|| (!a_reg_tmBeginDate.isBlank() && !(qa.getA_reg_tm().compareTo(a_reg_tmBeginDate) >= 0)) 
-				|| (!a_reg_tmEndDate.isBlank() && !(qa.getA_reg_tm().compareTo(a_reg_tmBeginDate) <= 0))) 
+		for (int i = qaList.size() - 1; i >= 0; i--) {
+			QABean qa = qaList.get(i);
+			if ((no.isBlank() || qa.getNo().contains(no)) 
+				&& (cust_id.isBlank() || qa.getCust_id().contains(cust_id)) 
+				&& (q_reg_tmBeginDate.isBlank() || qa.getQ_reg_tm().compareTo(q_reg_tmBeginDate) >= 0)
+				&& (q_reg_tmEndDate.isBlank() || qa.getQ_reg_tm().compareTo(q_reg_tmEndDate) <= 0)
+				&& (a_reg_tmBeginDate.isBlank() || qa.getA_reg_tm().compareTo(a_reg_tmBeginDate) >= 0)
+				&& (a_reg_tmEndDate.isBlank() || qa.getA_reg_tm().compareTo(a_reg_tmEndDate) <= 0)) 
 				continue;
-			
-			filteredQAList.add(qa);
+			qaList.remove(qa);
 		}
 	
-		int pageSize = filteredQAList.size() / ROW_SIZE + ((filteredQAList.size() % ROW_SIZE) > 0 ? 1 : 0); 
+		int pageSize = qaList.size() / ROW_SIZE + ((qaList.size() % ROW_SIZE) > 0 ? 1 : 0); 
 		int startRowNum = (selectedPageNum - 1) * ROW_SIZE;
 		int endRowNum = (selectedPageNum) * ROW_SIZE;
 		
-		if (filteredQAList.size() > 0) {
-			for (int i = startRowNum; i < filteredQAList.size(); i++) {
+		if (qaList.size() > 0) {
+			for (int i = startRowNum; i < qaList.size(); i++) {
 				if (endRowNum <= i) break;
 				
-				QABean qa = filteredQAList.get(i);
+				QABean qa = qaList.get(i);
 				
 				List<String> row = new ArrayList<>();
 				

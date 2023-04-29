@@ -11,8 +11,7 @@ import kr.co.hallabong.bean.ProdBean;
 
 public interface ProdMapper {
 	@Select("SELECT no, fs, name, cost, sp, s_img, l_img, cat_no, TO_CHAR(reg_tm, 'YYYY-MM-DD') AS reg_tm "
-			+ "FROM prod "
-			+ "ORDER BY reg_tm DESC ")
+			+ "FROM (SELECT * FROM prod ORDER BY reg_tm DESC) ")
 	List<ProdBean> selectProdList();
 	
 	@Select("SELECT no, fs, name, cost, sp, s_img, l_img, cat_no, TO_CHAR(reg_tm, 'YYYY-MM-DD') AS reg_tm "
