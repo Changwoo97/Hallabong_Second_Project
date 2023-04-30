@@ -6,18 +6,26 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import kr.co.hallabong.bean.AdminBean;
+import kr.co.hallabong.interceptor.AdminInterceptor;
+import kr.co.hallabong.mapper.AdminMapper;
 import kr.co.hallabong.mapper.CatMapper;
 import kr.co.hallabong.mapper.NotiMapper;
 import kr.co.hallabong.mapper.ProdMapper;
@@ -42,6 +50,9 @@ public class ServletAppContext implements WebMvcConfigurer {
 	
 	@Value("${db.password}")
 	private String db_password;
+	
+	@Autowired
+	private AdminBean adminBean;
 	
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
@@ -92,12 +103,22 @@ public class ServletAppContext implements WebMvcConfigurer {
 	private String content_text;에서 받지못함
 	그러므로 Bean을 정의 
 	 */
-
+	
 	@Bean
 	public StandardServletMultipartResolver multipartResolver() {
 		return new StandardServletMultipartResolver();
 	}
 	
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		WebMvcConfigurer.super.addInterceptors(registry);
+		
+		AdminInterceptor admin = new AdminInterceptor(adminBean);
+		InterceptorRegistration reg = registry.addInterceptor(admin);
+		reg.addPathPatterns("/admin/**");
+		reg.excludePathPatterns("/admin", "/admin/login_proc");
+	}
+
 	@Bean
 	public MapperFactoryBean<ProdMapper> getProdMapper(SqlSessionFactory factory) throws Exception{
 		MapperFactoryBean<ProdMapper> factoryBean = new MapperFactoryBean<>(ProdMapper.class);
@@ -124,6 +145,25 @@ public class ServletAppContext implements WebMvcConfigurer {
 		MapperFactoryBean<QAMapper> factoryBean = new MapperFactoryBean<>(QAMapper.class);
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<AdminMapper> getAdminMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<AdminMapper> factoryBean = new MapperFactoryBean<>(AdminMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean 
+	public ReloadableResourceBundleMessageSource messageSource() {
+		ReloadableResourceBundleMessageSource res = new ReloadableResourceBundleMessageSource();
+		res.setBasenames("/WEB-INF/properties/error_message");
+		return res;
+	}
+	
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer PropertySourcesPlaceholderConfigurer() {
+		return new PropertySourcesPlaceholderConfigurer();
 	}
 }
 

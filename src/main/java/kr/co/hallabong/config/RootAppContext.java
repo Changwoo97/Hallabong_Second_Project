@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.annotation.SessionScope;
 
+import kr.co.hallabong.bean.AdminBean;
 import kr.co.hallabong.bean.CustBean;
 
 @Configuration
@@ -13,5 +14,11 @@ public class RootAppContext {
 	@SessionScope
 	public CustBean loginCustBean() {
 		return new CustBean();
+	}
+	
+	@Bean
+	@SessionScope
+	public AdminBean getAdminBean() {
+		return new AdminBean();
 	}
 }
