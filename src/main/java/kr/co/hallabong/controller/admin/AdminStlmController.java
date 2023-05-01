@@ -2,7 +2,12 @@ package kr.co.hallabong.controller.admin;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.hallabong.util.Format;
+import kr.co.hallabong.util.Pair;
+import oracle.sql.DATE;
 
 @Controller
 @RequestMapping("/admin/stlm")
@@ -31,16 +38,19 @@ public class AdminStlmController {
 			@ModelAttribute("reg_tmBeginDate") String reg_tmBeginDate, 
 			@ModelAttribute("reg_tmEndDate") String reg_tmEndDate, 
 			@ModelAttribute("stlm_tmBeginDate") String stlm_tmBeginDate, 
-			@ModelAttribute("stlm_tmEndDate") String stlm_tmEndDate, 
-			@RequestParam(name = "selectedPageNum", defaultValue = "1") int selectedPageNum) {
-		final int ROW_SIZE = 2;
-		
-		ord_no = (ord_no == null) ? "" : ord_no.trim();
-		reg_tmBeginDate = (reg_tmBeginDate == null) ? "" : reg_tmBeginDate;
-		reg_tmEndDate = (reg_tmEndDate == null) ? "" : reg_tmEndDate;
-		stlm_tmBeginDate = (stlm_tmBeginDate == null) ? "" : stlm_tmBeginDate;
-		stlm_tmEndDate = (stlm_tmEndDate == null) ? "" : stlm_tmEndDate;
-		selectedPageNum = (selectedPageNum > 0) ? selectedPageNum : 1;
+			@ModelAttribute("stlm_tmEndDate") String stlm_tmEndDate) {		
+		System.out.println("aa " + reg_tmBeginDate);
+		if (reg_tmBeginDate.length() + reg_tmEndDate.length()
+			+ stlm_tmBeginDate.length() + stlm_tmEndDate.length() <= 0) {
+			LocalDateTime today = LocalDateTime.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			
+			reg_tmBeginDate = today.minusMonths(1).format(formatter);
+			reg_tmEndDate = today.format(formatter);
+			
+			model.addAttribute("reg_tmBeginDate", reg_tmBeginDate);
+			model.addAttribute("reg_tmEndDate", reg_tmEndDate);
+		}
 		
 		List<Map<String, String>> thead = new ArrayList<>();
 		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
@@ -110,17 +120,10 @@ public class AdminStlmController {
 				continue;
 			selectResults.remove(selectResult);
 		}
-		
-		int pageSize = selectResults.size() / ROW_SIZE + ((selectResults.size() % ROW_SIZE) > 0 ? 1 : 0); 
-		int startRowNum = (selectedPageNum - 1) * ROW_SIZE;
-		int endRowNum = (selectedPageNum) * ROW_SIZE;
-		
+
 		if (selectResults.size() > 0) {
 			Integer feeSum = 0, deducted_feeSum = 0, costSum = 0, spSum = 0, net_incomeSum = 0;
-			int i = startRowNum;
 			for (Map<String, String> selectResult : selectResults) {
-				if (endRowNum <= i++) break;
-				
 				List<String> row = new ArrayList<>();
 				
 				row.add(selectResult.get("ord_no"));
@@ -171,10 +174,17 @@ public class AdminStlmController {
 			tfoot.add("순수익");
 		}
 		
+		List<Pair<String, String>> searchKeyAndValues = new ArrayList<>();
+		searchKeyAndValues.add(new Pair<String, String>("ord_no", ord_no));
+		searchKeyAndValues.add(new Pair<String, String>("reg_tmBeginDate", reg_tmBeginDate));
+		searchKeyAndValues.add(new Pair<String, String>("reg_tmEndDate", reg_tmEndDate));
+		searchKeyAndValues.add(new Pair<String, String>("stlm_tmBeginDate", stlm_tmBeginDate));
+		searchKeyAndValues.add(new Pair<String, String>("stlm_tmEndDate", stlm_tmEndDate));
+		
+		model.addAttribute("searchKeyAndValues", searchKeyAndValues);
 		model.addAttribute("content", "/WEB-INF/views/admin/table.jsp");
 		model.addAttribute("frameName", "정산조회");
-		model.addAttribute("pageSize", pageSize);
-		model.addAttribute("selectedPageNum", selectedPageNum);
+		model.addAttribute("pageSize", 0);
 		model.addAttribute("thead", thead);
 		model.addAttribute("tbody", tbody);
 		model.addAttribute("tfoot", tfoot);

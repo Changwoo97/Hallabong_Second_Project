@@ -67,7 +67,7 @@
 							<td>
 								<c:choose>
 									<c:when test="${cell['type'].equals('date')}">
-										<input type="date" name="${cell['name']}BeginDate" />
+										<input type="date" name="${cell['name']}BeginDate"/>
 										~
 										<input type="date" name="${cell['name']}EndDate" />
 									</c:when>
@@ -82,7 +82,7 @@
 										</select>
 									</c:when>
 									<c:when test="${cell['type'].equals('keyword')}">
-										<input type="text" name="${cell['name']}"/>
+										<input type="text" name="${cell['name']}" />
 									</c:when>
 								</c:choose>
 							</td>

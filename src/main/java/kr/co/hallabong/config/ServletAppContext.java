@@ -27,7 +27,9 @@ import kr.co.hallabong.bean.AdminBean;
 import kr.co.hallabong.interceptor.AdminInterceptor;
 import kr.co.hallabong.mapper.AdminMapper;
 import kr.co.hallabong.mapper.CatMapper;
+import kr.co.hallabong.mapper.DlvyMapper;
 import kr.co.hallabong.mapper.NotiMapper;
+import kr.co.hallabong.mapper.OrdMapper;
 import kr.co.hallabong.mapper.ProdMapper;
 import kr.co.hallabong.mapper.QAMapper;
 
@@ -154,9 +156,24 @@ public class ServletAppContext implements WebMvcConfigurer {
 		return factoryBean;
 	}
 	
+	@Bean
+	public MapperFactoryBean<DlvyMapper> getDlvyMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<DlvyMapper> factoryBean = new MapperFactoryBean<>(DlvyMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<OrdMapper> getOrdMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<OrdMapper> factoryBean = new MapperFactoryBean<>(OrdMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
 	@Bean 
 	public ReloadableResourceBundleMessageSource messageSource() {
 		ReloadableResourceBundleMessageSource res = new ReloadableResourceBundleMessageSource();
+		res.setDefaultEncoding("UTF-8");
 		res.setBasenames("/WEB-INF/properties/error_message");
 		return res;
 	}

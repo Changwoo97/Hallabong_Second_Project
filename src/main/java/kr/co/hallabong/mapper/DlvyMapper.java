@@ -1,5 +1,27 @@
 package kr.co.hallabong.mapper;
 
-public interface DlvyMapper {
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Update;
 
+import kr.co.hallabong.bean.DlvyBean;
+
+public interface DlvyMapper {
+	@Insert("INSERT INTO dlvy (no, send_name, send_tel, send_addr, recv_name, recv_tel, recv_addr, fee, reg_tm, dep_tm, arr_tm, sta, ord_no) "
+			+ "VALUES (DEFAULT, #{send_name}, #{send_tel}, #{send_addr}, #{recv_name}, #{recv_tel}, #{recv_addr}, #{fee}, DEFAULT, NULL, NULL, 'READY', #{ord_no}) ")
+	void insertDlvy(DlvyBean bean);
+	
+	@Update("UPDATE dlvy "
+			+ "SET sta = #{sta} "
+			+ "WHERE no = #{no} ")
+	void updateDlvySta(String no, String sta);
+	
+	@Update("UPDATE dlvy "
+			+ "SET dep_tm = DEFAULT "
+			+ "WHERE no = #{no} ")
+	void updateDlvyDep_tm(String no);
+	
+	@Update("UPDATE dlvy "
+			+ "SET arr_tm = DEFAULT "
+			+ "WHERE no = #{no} ")
+	void updateDlvyArr_tm(String no);
 }

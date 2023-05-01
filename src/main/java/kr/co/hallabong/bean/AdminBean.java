@@ -10,13 +10,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AdminBean {
-	@Size(min = 4, max = 20)
-	@Pattern(regexp = "[a-zA-Z0-9]")
 	@NotBlank
+	@Size(min = 4, max = 20)
+	@Pattern(regexp = "[a-zA-Z0-9]*")
 	private String id;
-	@Size(min = 4, max = 20)
-	@Pattern(regexp = "[a-zA-Z0-9]")
 	@NotBlank
+	@Size(min = 4, max = 20)
+	@Pattern(regexp = "[a-zA-Z0-9]*")
 	private String pw;
 	
 	private boolean login = false;

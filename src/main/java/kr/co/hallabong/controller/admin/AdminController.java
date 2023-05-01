@@ -1,10 +1,15 @@
 package kr.co.hallabong.controller.admin;
 
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.validation.Valid;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +30,8 @@ public class AdminController {
 	private AdminService adminService;
 	@Autowired
 	private AdminBean adminBean;
+	@Autowired
+	private ReloadableResourceBundleMessageSource messageSource;
 	
 	@GetMapping("")
 	public String login(@ModelAttribute("tempAdminBean") AdminBean tempAdminBean) {
@@ -39,10 +46,14 @@ public class AdminController {
 	public String login_proc(@Valid @ModelAttribute("tempAdminBean") AdminBean tempAdminBean, 
 			BindingResult result, Model model) {
 		if (result.hasErrors()) {
+			StringBuilder messages = new StringBuilder();
 			List<FieldError> errors = result.getFieldErrors();
 			for (FieldError error : errors) {
-				System.out.println(error.getCode() + " " + error.getObjectName() + " " + error.getField());
+				String code = error.getCode() + ".tempAdminBean." + error.getField();
+				String message = messageSource.getMessage(code, null, Locale.ROOT);
+				messages.append(message + "\\n");
 			}
+			model.addAttribute("message", messages);
 			model.addAttribute("path", "/admin");
 			return "admin/alert";
 		}
