@@ -1,0 +1,133 @@
+@charset "UTF-8";
+
+a{
+   color: orange;
+   
+}
+
+ul li{
+   list-style-type: none;
+   text-align: center;
+   
+}
+
+ul{
+   text-align: center;
+   
+   padding: 0;
+   margin: 0 auto;
+}
+
+section{
+   margin: 0px 200px 0px;
+}
+
+
+
+#banner{
+   text-align: center;
+   justify-content: center;
+   
+}
+
+
+#category{
+   text-align: center;
+   align-items: center;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   background-color: white;
+}
+
+#board{
+   text-align: center;
+}
+
+#newProduct{
+   text-align: center;
+   
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   background-color: white;
+   
+}
+
+#banner div img{
+   width: 100%;
+   
+}
+
+.categoryIcon{
+   margin: 0 200x;
+   padding: 20px 50px;
+   display: flex;
+   justify-content: space-between;
+   text-align: center;
+   
+}
+
+
+.info{
+   padding: 0;   
+   }
+
+.card-body{
+   border: solid orange;
+   
+}
+
+.btn btn-primary{
+   background-color: orange;
+    border-color: orange;
+   
+}
+
+.newProduct-list{
+   margin: 0 120px;
+   
+   display: flex;
+   justify-content: space-between;
+   text-align: center;
+}
+
+.newProduct-list li img{
+   
+   width: 170px;
+   height: 200px;
+   border: 1px solid orange;
+   
+}
+
+.catrgoryDetail{
+   display: flex;
+   flex-direction: column;
+}
+
+.gab{
+	padding: 30px; 0px; 0px; 0px;
+}
+
+.navigator{
+	margin: 0 auto;
+   	height: 50px;
+   background-color: orange;
+   position: sticky;
+   left: 0px;
+   top: 0px;
+   margin: 0px 200px 0px;
+   z-index: 10;
+}
+
+.navigator ul{
+   
+   display: flex;
+   justify-content: space-around;
+   }
+   
+ .navigator-link a{
+ 	color: green;
+ 	text-decoration-line: none;
+ }
+ 

@@ -1,0 +1,48 @@
+
+#container{
+  width: 70%;
+  margin: 0 auto; /* ���η� �߾ӿ� ��ġ */
+  padding-top: 30%; 
+}
+
+
+
+#hr{
+	border : 0px;
+  	border-top: 2px solid black;
+ 	width : 50%;
+}
+
+.text-field{
+ border:#ccc 1px solid;
+    border-radius:5px;
+    height: 30px;
+    width:90%;
+}
+
+
+
+
+.button {
+  
+    padding: 6px 18px;
+    color:white;
+    background: purple;
+   	border: none;
+    border-radius: 5px;
+
+    
+}
+.complain1{
+	line-height: 70px;
+	
+
+	
+}
+.complain2{
+	line-height: 70px;
+
+	
+}
+
+
