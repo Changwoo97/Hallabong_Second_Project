@@ -1,9 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="root" value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
+
 <html>
+<head>
 <style type="text/css">
 .find_button{
 
@@ -18,7 +21,8 @@
 	background-color: #F7D358;
 	border: 0px none;
 
-} 
+
+}
 .inputbox {
 	width: 100%;
 	height: 46px;
@@ -31,10 +35,8 @@
 	color: #333;
 	outline: none;
 	box-sizing: border-box;
-}
+} 
 </style>
-<head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>미니 프로젝트</title>
@@ -58,12 +60,12 @@
 				<div class="card shadow">
 					<div class="card-body">
 	<center>
-	<h1>아이디 찾기</h1>	
-	<form:form action="find_id_pro" method="post" modelAttribute="findid">
+	<h1>비밀번호 찾기</h1>	
+	<form:form action="find_pw_pro" method="post" modelAttribute="findpw" >
 		<div class="form-group">
-			<form:label path="name">이름</form:label>		
-			<div>
-			<form:input path="name" placeholder="이름을 입력해주세요"  class="inputbox"/>
+			<form:label path="id">아이디</form:label>	
+			<div>	
+			<form:input path="id" placeholder="아이디를 입력해주세요" class="inputbox"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -73,16 +75,17 @@
 			</div>
 		</div>
 		<div>
-			<form:button class="find_button">아이디 찾기</form:button>
+			<form:button class="find_button">찾기</form:button>
 		</div>
 		</form:form>
 	</center>
 	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
+</div>
+</div>
+</div>
+</div>
+
+
 	<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 </body>
 </html>

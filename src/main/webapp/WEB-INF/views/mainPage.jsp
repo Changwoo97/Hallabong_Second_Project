@@ -15,7 +15,9 @@
 	<header>
 		<c:import url="/WEB-INF/views/include/top.jsp"></c:import>
 	</header>
+<div>
 
+</div>
 	<nav class="navigator">
 		<ul>
 			<li class="navigator-link"><a href="#mainNotice">공지사항</a></li>

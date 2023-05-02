@@ -3,14 +3,19 @@ package kr.co.hallabong.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.hallabong.bean.CustBean;
 import kr.co.hallabong.bean.NewCustBean;
 import kr.co.hallabong.service.CustService;
 
@@ -22,21 +27,18 @@ public class CustController {
 	private CustService custService;
 
 	/**
-	 * 개인정보 확인페이지(개인정보수정페이지 이동 전)
-	 * 개인정보 수정페이지 이동전 본인 재인증
+	 * 개인정보 확인페이지(개인정보수정페이지 이동 전) 개인정보 수정페이지 이동전 본인 재인증
+	 * 
 	 * @param model
 	 * @return String
-	 * @author 
-	 * @since  
+	 * @author
+	 * @since
 	 */
 	@RequestMapping("/update_login/form") // top에서 가려는 집주소(경로에 대한 요청 처리)
-	public String updateLoginForm(Model model) { //"updateLoginForm" 메서드는 "Model" 객체를 매개변수로 받아서
-
+	public String updateLoginForm(Model model) { // "updateLoginForm" 메서드는 "Model" 객체를 매개변수로 받아서
 		// 추후 아마도 session에 담긴 id 값을 가지고 내려가면 됨.
-		model.addAttribute("cust_id", "tester3333"); //"custId"라는 이름으로 "tester2222" 값을 모델에 추가
-
-		return "cust/UpdateLogin"; // 띄우는 화면 "cust/UpdateLogin" 뷰(View)를 반환 
-
+		model.addAttribute("cust_id", "tester3333"); // "custId"라는 이름으로 "tester2222" 값을 모델에 추가
+		return "cust/UpdateLogin"; // 띄우는 화면 "cust/UpdateLogin" 뷰(View)를 반환
 	}
 
 	/**
@@ -48,8 +50,8 @@ public class CustController {
 	 * @since
 	 */
 	@RequestMapping("/login/check") // 집주소(경로에 대한요청 처리)
-	@ResponseBody  //@Responsebody 어노테이션을 사용하면 http요청 body를 자바 객체로 전달받을 수 있다.
-	public Map<String, Object> loginCheck(NewCustBean paramLoginCustBean, Model model) { //Model 객체를 사용하여 View로 데이터를 전달
+	@ResponseBody // @Responsebody 어노테이션을 사용하면 http요청 body를 자바 객체로 전달받을 수 있다.
+	public Map<String, Object> loginCheck(NewCustBean paramLoginCustBean, Model model) { // Model 객체를 사용하여 View로 데이터를 전달
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
@@ -61,7 +63,7 @@ public class CustController {
 		return resultMap;
 
 	}
-	
+
 	/**
 	 * 개인정보 수정페이지
 	 * 
@@ -70,7 +72,7 @@ public class CustController {
 	 * @author
 	 * @since
 	 */
-	@RequestMapping("/update/form") 
+	@RequestMapping("/update/form")
 	public String updateCustForm(NewCustBean paramLoginCustBean, Model model) {
 
 		// 추후 아마도 session에 담긴 id 값을 가지고 내려가면 됨.
@@ -78,9 +80,8 @@ public class CustController {
 		model.addAttribute("custInfo", custInfo);
 
 		return "cust/Update"; // 띄우는 화면
-
 	}
-	
+
 	/**
 	 * 이메일 중복 확인
 	 * 
@@ -92,18 +93,16 @@ public class CustController {
 	@RequestMapping("/email/check") // 집주소
 	@ResponseBody
 	public Map<String, Object> emailCheck(NewCustBean paramLoginCustBean, Model model) {
-
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
-			int emailCount = custService.getEmailDupCheck(paramLoginCustBean); 
+			int emailCount = custService.getEmailDupCheck(paramLoginCustBean);
 			resultMap.put("emailCount", emailCount);
 		} catch (Exception e) {
 			resultMap.put("message", e.getMessage());
 		}
 		return resultMap;
-
 	}
-	
+
 	/**
 	 * 개인정보 수정
 	 * 
@@ -114,19 +113,38 @@ public class CustController {
 	 */
 	@RequestMapping("/update") // 집주소
 	@ResponseBody
-	public Map<String, Object> updateCust(NewCustBean paramLoginCustBean, Model model) {		
-		
+	public Map<String, Object> updateCust(NewCustBean paramLoginCustBean, Model model) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
-			int result = custService.updateCustInfo(paramLoginCustBean); 
+			int result = custService.updateCustInfo(paramLoginCustBean);
 			resultMap.put("result", result);
 		} catch (Exception e) {
 			resultMap.put("message", e.getMessage());
 		}
 		return resultMap;
-
 	}
-	
+
+	@GetMapping("/join")
+	public String join(@ModelAttribute("joinusecuCustBean") CustBean joinusecuCustBean) {
+		return "user/join";
+	}
+
+	@PostMapping("/join_pro")
+	public String join_pro(@Valid @ModelAttribute("joinusecuCustBean") CustBean joinusecuCustBean,
+			BindingResult result) {
+
+		if (result.hasErrors()) {
+			return "user/join";
+		}
+		custService.addjoinUserInfo(joinusecuCustBean);
+		return "user/join_success";
+	}
+
+	@GetMapping("/update_login")
+	public String updateLogin() {
+		return "cust/UpdateLogin";
+	}
+
 	/**
 	 * 탈퇴하기
 	 * 
@@ -141,7 +159,7 @@ public class CustController {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
-			int delCount = custService.deleteCust(paramLoginCustBean.getCust_idx()); 
+			int delCount = custService.deleteCust(paramLoginCustBean.getCust_idx());
 			resultMap.put("delCount", delCount);
 		} catch (Exception e) {
 			resultMap.put("message", e.getMessage());
@@ -149,12 +167,9 @@ public class CustController {
 		return resultMap;
 
 	}
-	
 
-	@GetMapping("/resign/check") 
+	@GetMapping("/resign/check")
 	public String resigncheck(@ModelAttribute("paramLoginCustBean") NewCustBean paramLoginCustBean) {
-
 		return "cust/Resign"; // 띄우는 화면
-
 	}
 }

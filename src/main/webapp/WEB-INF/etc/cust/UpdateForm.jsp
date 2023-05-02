@@ -10,7 +10,6 @@
 <link type="text/css" rel="stylesheet" href="${root}css/UpdateForm_style.css" />
 </head>
 <body>
-
 	<h4>개인 정보 수정</h4>	
 	<hr class="hr1"/>
 	<br>

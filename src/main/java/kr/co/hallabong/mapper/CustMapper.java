@@ -1,6 +1,5 @@
 package kr.co.hallabong.mapper;
 
-import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -8,12 +7,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import kr.co.hallabong.bean.CustBean;
 import kr.co.hallabong.bean.NewCustBean;
-import kr.co.hallabong.bean.CustInfoBean;
 
 @Mapper //MyBatis에서 사용하는 Mapper 인터페이스임을 명시
 public interface CustMapper {
-	
 	/*개인정보수정(본인재확인)*/
 	@Select("SELECT CUST_IDX "
 		   + "FROM CUST "
@@ -48,6 +46,23 @@ public interface CustMapper {
     @Delete("DELETE FROM CUST " +
 		    " WHERE cust_idx = #{cust_idx}")
 	int deleteCust(int cust_idx);	
+
+	@Select("SELECT id,name "
+			+ "FROM CUST "
+			+ "WHERE ID = #{id} and PW = #{pw}")
+	CustBean getLoginCustInfo(CustBean tempLoginUserBean); //tempLoginCustBean은 request영역
+	//회원가입
+	@Insert("insert into cust values (#{id},#{pw},#{name},#{email},#{tel},#{addr},#{gender},#{dob},default,default,'REG')")
+	void addjoin(CustBean joinusecuCustBean);
+	//아이디 
+	@Select("select name from cust where id=#{id}")
+	String checkUserIDExist(String id);
+	
+	@Select("select pw from cust where id= #{id} and tel = #{tel}")
+	CustBean findPw(CustBean findpw);
+	
+	@Select("select Id from cust where name= #{name} and tel = #{tel}")
+	CustBean findId(CustBean findid);
 	
 	//수정
 	@Update("UPDATE CUST"
@@ -68,8 +83,6 @@ public interface CustMapper {
 		  + " WHERE EMAIL = #{email}"
 		  + " AND CUST_IDX <> #{cust_idx}")
 	int getEmailDupCheck(NewCustBean paramLoginCustBean);
-
-	
 
 }
 

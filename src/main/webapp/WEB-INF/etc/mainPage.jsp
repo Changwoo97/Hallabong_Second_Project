@@ -23,7 +23,7 @@
 			<li class="navigator-link"><a href="#mainNew">신상품</a></li>
 		</ul>
 	</nav>
-
+	
 	<section>
 		<article id="banner">
 			<div>

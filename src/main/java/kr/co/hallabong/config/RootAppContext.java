@@ -11,7 +11,7 @@ import kr.co.hallabong.bean.CustBean;
 public class RootAppContext {
 	@Bean("loginCustBean")
 	@SessionScope
-	public CustBean loginCustBean() {
+	public CustBean CustBean() {
 		return new CustBean();
 	}
 	
