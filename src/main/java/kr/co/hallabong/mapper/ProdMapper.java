@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import kr.co.hallabong.bean.ProdBean;
+import kr.co.hallabong.bean.RevBean;
 
 public interface ProdMapper {
 	@Select("SELECT no, fs, name, cost, sp, s_img, l_img, cat_no, TO_CHAR(reg_tm, 'YYYY-MM-DD') AS reg_tm "
@@ -31,4 +32,19 @@ public interface ProdMapper {
 	@Delete("DELETE FROM prod "
 			+ "WHERE no = ${no} ")
 	void deleteProd(String no);
+	
+	@Select("select * "+
+			"from prod " +
+			"where name LIKE '%' || #{name} || '%'")
+	List<ProdBean> searchProductList(String name);
+	
+	@Select("select * "
+			+ "from prod "
+			+ "where no=#{prod_No} ")
+	List<ProdBean> getProdInfoPage(String prod_No);
+	
+	@Select("select p.no, r.no, r.cont, r.reg_tm "
+			+ "from rev r, prod p "
+			+ "where r.prod_no = p.no and p.no = #{prod_No} ")
+	List<RevBean> getReviewList(String prod_No);
 }

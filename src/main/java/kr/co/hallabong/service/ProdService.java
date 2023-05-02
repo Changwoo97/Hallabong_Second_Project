@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.hallabong.bean.ProdBean;
+import kr.co.hallabong.bean.RevBean;
 import kr.co.hallabong.dao.ProdDAO;
 
 @Service
@@ -31,5 +32,19 @@ public class ProdService {
 	
 	public void removeProd(String no) {
 		prodDAO.deleteProd(no);
+	}
+	
+	public List<ProdBean> searchProductList(String name) {
+		return prodDAO.searchProductList(name);
+	}
+	
+	public List<ProdBean> getProdInfoPage(String prod_No) {
+		List<ProdBean> ProdInfoPage = prodDAO.getProdInfoPage(prod_No);
+		return ProdInfoPage;		
+	}
+	
+	public List<RevBean> getReviewList(String prod_No) {
+		List<RevBean> ReviewList = prodDAO.getReviewList(prod_No);
+		return ReviewList;		
 	}
 }

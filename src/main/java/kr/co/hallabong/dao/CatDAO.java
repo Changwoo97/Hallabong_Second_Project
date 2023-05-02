@@ -2,14 +2,11 @@ package kr.co.hallabong.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.hallabong.bean.CatBean;
+import kr.co.hallabong.bean.ProdBean;
 import kr.co.hallabong.mapper.CatMapper;
 
 @Repository
@@ -35,5 +32,10 @@ public class CatDAO {
 
 	public void deleteCat(String no) {
 		catMapper.deleteCat(no);
+	}
+	
+	public List<ProdBean> getcatMainPage(String Cat_No) {
+		List<ProdBean> catMainPage = catMapper.getcatMainPage(Cat_No);
+		return catMainPage;
 	}
 }

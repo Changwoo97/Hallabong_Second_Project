@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.hallabong.bean.ProdBean;
+import kr.co.hallabong.bean.RevBean;
 import kr.co.hallabong.mapper.ProdMapper;
 
 @Repository
@@ -31,5 +32,20 @@ public class ProdDAO {
 	
 	public void deleteProd(String no) {
 		prodMapper.deleteProd(no);
+	}
+	
+	public List<ProdBean> searchProductList(String name) {
+		List<ProdBean> searchProductList = prodMapper.searchProductList(name);
+		return searchProductList;
+	}
+	
+	public List<ProdBean> getProdInfoPage(String prod_No) {
+		List<ProdBean> ProdInfoPage = prodMapper.getProdInfoPage(prod_No);
+		return ProdInfoPage;
+	}
+	
+	public List<RevBean> getReviewList(String prod_No) {
+		List<RevBean> ReviewList = prodMapper.getReviewList(prod_No);
+		return ReviewList;
 	}
 }
