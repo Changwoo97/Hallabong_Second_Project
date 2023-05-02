@@ -25,6 +25,6 @@
 	background-color: rgb(185, 209, 234);
 }
 
-#login input[type=submit] {
+#login button[type=submit] {
 	height: 50px;
 }

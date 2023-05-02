@@ -104,7 +104,7 @@
 				<span data-href="${root}/admin/dlvy/complete">배송완료</span>
 			</td>
 		</tr>
-		<tr><td class="navMargin"></td></tr>
+		<%-- <tr><td class="navMargin"></td></tr>
 		<tr>
 			<td>
 				<img src="${root}/img/admin/arrow.png" class="groupBullet"/>
@@ -128,7 +128,7 @@
 				<img src="${root}/img/admin/arrow.png" class="bullet"/>
 				<span data-href="${root}/admin/rtn/complete">반품완료</span>
 			</td>
-		</tr>
+		</tr> --%>
 		<tr><td class="navMargin"></td></tr>
 		<tr>
 			<td>

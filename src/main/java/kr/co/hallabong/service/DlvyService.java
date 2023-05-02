@@ -1,5 +1,7 @@
 package kr.co.hallabong.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,22 @@ import kr.co.hallabong.dao.DlvyDAO;
 public class DlvyService {
 	@Autowired
 	private DlvyDAO dlvyDAO;
+	
+	public List<DlvyBean> getDlvyListReady() {
+		return dlvyDAO.selectDlvyList("READY");
+	}
+	
+	public List<DlvyBean> getDlvyListWait() {
+		return dlvyDAO.selectDlvyList("WAIT");
+	}
+	
+	public List<DlvyBean> getDlvyListProcess() {
+		return dlvyDAO.selectDlvyList("PROCESS");
+	}
+	
+	public List<DlvyBean> getDlvyListComplete() {
+		return dlvyDAO.selectDlvyList("COMPLETE");
+	}
 	
 	public void addDlvy(DlvyBean bean) {
 		dlvyDAO.insertDlvy(bean);

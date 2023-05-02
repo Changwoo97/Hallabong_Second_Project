@@ -1,5 +1,7 @@
 package kr.co.hallabong.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +12,10 @@ import kr.co.hallabong.mapper.DlvyMapper;
 public class DlvyDAO {
 	@Autowired
 	private DlvyMapper dlvyMapper;
+	
+	public List<DlvyBean> selectDlvyList(String sta) {
+		return dlvyMapper.selectDlvyList(sta);
+	} 
 	
 	public void insertDlvy(DlvyBean bean) {
 		dlvyMapper.insertDlvy(bean);

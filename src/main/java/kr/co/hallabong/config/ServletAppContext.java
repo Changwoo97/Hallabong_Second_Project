@@ -29,6 +29,7 @@ import kr.co.hallabong.mapper.AdminMapper;
 import kr.co.hallabong.mapper.CatMapper;
 import kr.co.hallabong.mapper.DlvyMapper;
 import kr.co.hallabong.mapper.NotiMapper;
+import kr.co.hallabong.mapper.ODPDMapper;
 import kr.co.hallabong.mapper.OrdMapper;
 import kr.co.hallabong.mapper.ProdMapper;
 import kr.co.hallabong.mapper.QAMapper;
@@ -166,6 +167,13 @@ public class ServletAppContext implements WebMvcConfigurer {
 	@Bean
 	public MapperFactoryBean<OrdMapper> getOrdMapper(SqlSessionFactory factory) throws Exception{
 		MapperFactoryBean<OrdMapper> factoryBean = new MapperFactoryBean<>(OrdMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<ODPDMapper> getODPDMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<ODPDMapper> factoryBean = new MapperFactoryBean<>(ODPDMapper.class);
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}

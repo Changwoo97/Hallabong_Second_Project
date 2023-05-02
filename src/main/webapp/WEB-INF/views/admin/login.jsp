@@ -14,13 +14,19 @@
 		<table id="login">
 			<tr><td class="top" colspan="3"></td></tr>
 			<tr>
-				<th>아이디</th>
-				<td><form:input path="id"/></td>
-				<td rowspan="2"><form:button>로그인</form:button></td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><form:password path="pw"/></td>
+				<td> 
+					<table>
+						<tr>
+							<th>아이디</th>
+							<td><form:input path="id"/></td>
+						</tr>
+						<tr>
+							<th>비밀번호</th>
+							<td><form:password path="pw"/></td>
+						</tr>	
+					</table>
+				</td>	
+				<td><form:button>로그인</form:button></td>
 			</tr>
 		</table>
 	</form:form>
