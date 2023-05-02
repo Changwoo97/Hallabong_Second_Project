@@ -12,8 +12,8 @@
 <body>
 <div id="header-wrap">
    <div class="top1">
-      <span>회원가입</span>
-      <span><a href="${root }user/login">로그인</a></span>
+      <span><a href="${root }cust/join">회원가입</a></span>
+      <span><a href="${root }cust/login">로그인</a></span>
       <span>고객센터</span>
    </div>
    
