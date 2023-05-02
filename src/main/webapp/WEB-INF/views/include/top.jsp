@@ -48,10 +48,7 @@
          <span class="logo-icon-detail"><img src="${root}img/장바구니.png"/></span>   
          <span class="logo-icon-detail"><img src="${root}img/장바구니.png"/></span>
       </div>
-   </div>
-
-   
+   </div>  
 </div>
-
 </body>
 </html>

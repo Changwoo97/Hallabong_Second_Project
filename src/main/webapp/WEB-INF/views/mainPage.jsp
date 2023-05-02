@@ -31,7 +31,6 @@
 				<img src="img/9174a938-1c00-4709-84f7-a41d8858b750.jpg">
 			</div>
 		</article>
-			
 		<article>
 			<div class="gab"></div>
 			<h4 class="card-title2">공지사항</h4>
@@ -226,7 +225,6 @@
 		<article id="newProduct">
 			<div class="gab"></div>
 			<a name="mainNew"></a>
-
 			<div class="Info">
 				<h2>신상품</h2>
 			</div>
@@ -265,7 +263,6 @@
 	<footer>
 		<c:import url="/WEB-INF/views/include/bottom_info.jsp"></c:import>
 		<a href="${root}admin">관리자페이지</a>
-		
 	</footer>
 </body>
 </html>

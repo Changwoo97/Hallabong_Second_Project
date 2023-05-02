@@ -8,12 +8,10 @@ a{
 ul li{
    list-style-type: none;
    text-align: center;
-   
 }
 
 ul{
    text-align: center;
-   
    padding: 0;
    margin: 0 auto;
 }
@@ -22,14 +20,11 @@ section{
    margin: 0px 200px 0px;
 }
 
-
-
 #banner{
    text-align: center;
    justify-content: center;
    
 }
-
 
 #category{
    text-align: center;
@@ -46,17 +41,14 @@ section{
 
 #newProduct{
    text-align: center;
-   
    display: flex;
    justify-content: center;
    flex-direction: column;
    background-color: white;
-   
 }
 
 #banner div img{
-   width: 100%;
-   
+   width: 100%; 
 }
 
 .categoryIcon{
@@ -66,49 +58,44 @@ section{
 	display: flex;
 	justify-content: space-between;
 	text-align: center;
-   
 }
 
-
-.info{
+.info {
    padding: 0;   
-   }
-
-.card-body{
-   border: solid orange;
-   
 }
 
-.btn btn-primary{
+.card-body {
+   border: solid orange; 
+}
+
+.btn btn-primary {
    background-color: orange;
     border-color: orange;
    
 }
 
-.newProduct-list{   
+.newProduct-list {   
    display: flex;
    justify-content: space-between;
    text-align: center;
 }
 
-.newProduct-list li img{
-   
+.newProduct-list li img{   
    width: 170px;
    height: 200px;
-   border: 1px solid orange;
-   
+   border: 1px solid orange;  
 }
 
-.catrgoryDetail{
+.catrgoryDetail {
    display: flex;
    flex-direction: column;
 }
 
-.gab{
+.gab {
 	padding: 30px 0px 0px 0px
 }
 
-.navigator{
+.navigator {
 	height: 50px;
 	background-color: #f9d9a1;
 	position: sticky;
@@ -119,21 +106,21 @@ section{
 	z-index: 10;
 }
 
-.navigator ul{
+.navigator ul {
 	text-align:center;
 	display: flex;
 	justify-content: space-around;
 	padding: 15px;
 }
 
-.navigator-link{
+.navigator-link {
 	display:inline-block;
 }
 
-.navigator-link a{
+.navigator-link a {
  	color: green;
  	text-decoration-line: none;
- }
+}
  
 .card-title2{
  	margin-bottom: 0.75rem;

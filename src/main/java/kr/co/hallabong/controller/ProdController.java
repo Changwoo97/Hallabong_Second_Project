@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.co.hallabong.bean.PageBean;
 import kr.co.hallabong.bean.ProdBean;
 import kr.co.hallabong.bean.RevBean;
 import kr.co.hallabong.service.ProdService;
@@ -26,9 +25,7 @@ public class ProdController {
 	@GetMapping("/search")
 	public String searchProductList(@RequestParam("name")String name,
 									Model model) {
-		
-		
-		
+
 		Map<String, String> categoryMap = new HashMap<>();
 		categoryMap.put("1", "채소");
 		categoryMap.put("2", "과일");

@@ -1,5 +1,6 @@
 package kr.co.hallabong.config;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -24,9 +25,11 @@ import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import kr.co.hallabong.bean.AdminBean;
+import kr.co.hallabong.bean.CustBean;
 import kr.co.hallabong.interceptor.AdminInterceptor;
 import kr.co.hallabong.mapper.AdminMapper;
 import kr.co.hallabong.mapper.CatMapper;
+import kr.co.hallabong.mapper.CustMapper;
 import kr.co.hallabong.mapper.DlvyMapper;
 import kr.co.hallabong.mapper.NotiMapper;
 import kr.co.hallabong.mapper.ODPDMapper;
@@ -37,11 +40,12 @@ import kr.co.hallabong.mapper.QAMapper;
 @Configuration
 @EnableWebMvc //Controller로 등록되어 있는 클래스 셋팅
 @ComponentScan("kr.co.hallabong.controller") //스캔할 패키지
+@ComponentScan("kr.co.hallabong.config") //스캔할 패키지
 @ComponentScan("kr.co.hallabong.dao") //스캔할 패키지
 @ComponentScan("kr.co.hallabong.service") //스캔할 패키지
-@ComponentScan("kr.co.hallabong.rowMapper")
 @PropertySource("/WEB-INF/properties/db.properties")
 public class ServletAppContext implements WebMvcConfigurer {
+	
 	@Value("${db.classname}")
 	private String db_classname;
 	
@@ -54,8 +58,12 @@ public class ServletAppContext implements WebMvcConfigurer {
 	@Value("${db.password}")
 	private String db_password;
 	
+
 	@Autowired
 	private AdminBean adminBean;
+
+	@Resource(name="loginCustBean")
+	private CustBean loginCustBean;
 	
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
@@ -178,6 +186,13 @@ public class ServletAppContext implements WebMvcConfigurer {
 		return factoryBean;
 	}
 	
+	@Bean
+	public MapperFactoryBean<CustMapper> getCustMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<CustMapper> factoryBean = new MapperFactoryBean<>(CustMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
 	@Bean 
 	public ReloadableResourceBundleMessageSource messageSource() {
 		ReloadableResourceBundleMessageSource res = new ReloadableResourceBundleMessageSource();
@@ -191,4 +206,6 @@ public class ServletAppContext implements WebMvcConfigurer {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
 }
-
+	      
+		
+		
