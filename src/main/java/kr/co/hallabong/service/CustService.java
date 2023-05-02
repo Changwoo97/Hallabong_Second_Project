@@ -98,11 +98,7 @@ public class CustService {
 
    }
 
-	public CustBean updatepw(CustBean updatepw) {
-		return custDao.updatepw(updatepw);
-	}
-	
-	
+
 }
 
 // 이메일중복확인

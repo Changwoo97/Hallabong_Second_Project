@@ -39,9 +39,7 @@ public class CustDao {
 		return custMapper.findPw(findpw);
 	}
 	
-	public CustBean updatepw(CustBean findpw) {
-		return custMapper.updatepw(findpw);
-	}
+
 	
 	//이메일
 //	public CustBean getCheckCustEmailInfo(String Email) {

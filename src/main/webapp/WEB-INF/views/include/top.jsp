@@ -12,7 +12,21 @@
 </head>
 <body>
 	<div id="header-wrap">
-
+	
+	<c:if test = "${kakaonickname != null}">
+ 
+								${kakaonickname}님이 로그인 하셨습니다.<br><br>
+								<%--  
+								<form action = "kakao_logout.do" method = "post">
+								<button type = "submit" name = "submit">로그아웃</button></form><br><br>
+								 
+								<form action = "authentication.do" method = "post">
+								<button type = "submit" name = "submit">회원 인증하기 (인증을 해야 각종 기능들 사용 가능)</button></form><br><br>
+								 
+								<form action = "kakao_member_profile.do" method = "post">
+								<button type = "submit" name = "submit">나의 프로필 확인</button></form><br><br> --%>
+								 
+							</c:if> 
 		<c:choose>
 			<c:when test="${loginCustBean.custLogin == true}">
 			<div class="top1">

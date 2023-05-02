@@ -52,6 +52,9 @@ public class CustBean {
 	
 	
 	private String dob;
+	private String dob_year;
+	private String dob_month;
+	private String dob_day;
 	
 
 

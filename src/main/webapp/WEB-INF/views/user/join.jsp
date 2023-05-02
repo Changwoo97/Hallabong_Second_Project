@@ -114,7 +114,49 @@ function resetUsertelExist() {
  }
  
 </script>
-
+<style type="text/css">
+	.aa{
+	min-width: 24px;
+    min-height: 24px;
+    display: inline-block;
+    position: relative;
+    border-radius: 50%;
+    background-color: #F7D358 ;
+    }
+.input_box{
+width: 100%;
+    height: 40px;
+    padding: 0px 11px 1px 15px;
+    border-radius: 4px;
+    border: 1px solid rgb(221, 221, 221);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 38px;
+    color: rgb(51, 51, 51);
+    border-style:none;
+    box-sizing: border-box;
+}
+.dob_box{
+    height: 44px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 3px;
+    padding: 0px 15px;
+}
+.check_button{
+	background-color: display: block;
+	padding: 0px 10px;
+	text-align: center;
+	overflow: hidden;
+	border-radius: 3px;
+	color: rgb(0,0,0);
+	background-color: #F7D358;
+	border: 0px none;
+}
+</style>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/top.jsp" />
@@ -133,7 +175,7 @@ function resetUsertelExist() {
 							<!-- onkeypress : 클라이언트가 이벤트(키보드 또는 마우스)를 발생시키면 자동으로 동작 -->
 								<form:input path="id" class="form-control" onkeypress="resetUserIdExist()"/>
 								<div class="input-group-append">
-									<button type="button" class="btn btn-primary" onclick='checkUserIDExist()'>중복확인</button>
+									<button type="button" class="btn btn-primary" onclick='checkUserIDExist()' style="background-color: #F7D358; border-style: none; color: black;">중복확인</button>
 								</div>
 							</div>
 							<form:errors path="id" style="color:red"/>
@@ -160,53 +202,65 @@ function resetUsertelExist() {
 						</div>
 
 						<div class="form-group">
-							<form:label path="tel">전화번호</form:label>
+						<form:label path="tel">전화번호</form:label>
+						<div class="input-group">
+							
 							<form:input path="tel" class="form-control"/>
-							<form:errors path="tel" style="color:red"/>
-						</div>
-						<div>
-							<input type="button" id="tell" value="인증번호 전송"/>
 							
+						<div class="input-group-append">
+							<input type="button" id="tell" value="인증번호 전송" class="check_button"/>
 						</div>
-						<div class="form-group">
-							<form:label path="tel2">인증번호 입력</form:label>
-							<form:input path="tel2" class="form-control"/>
-							<form:errors path="tel2" style="color:red"/>
+						<form:errors path="tel" style="color:red"/>
 						</div>
-						<div>
-							<input type="button" id="tell2" onclick='resetUsertelExist()' value="인증번호 확인"/>
-						</div>
-						<div class="form-group">
-						<form:label path="addr1">주소</form:label>
-							<form:input path="addr1" size="30" readonly="true" />
-							<form:errors path="addr1" style="color:red"/>
-						</div>
-						<div>
-						<form:label path="addr_detail">상세주소</form:label>
-							<form:input path="addr_detail" size="30" />	
-							<form:errors path="addr_detail"  style="color:red"/>
-						</div>
-					
-						<div class="form-group">
-							<form:label path="gender">성별</form:label>
-							
-							<p>
-							<form:label path="gender">남자</form:label> 
-							<form:radiobutton path="gender" class="form-control" value="m"/>
-							<form:label path="gender">여자</form:label>
-							<form:radiobutton path="gender" class="form-control" value="f"/>
-							<form:errors path="gender" style="color:red"/>
 						</div>
 						
 						<div class="form-group">
-							<form:label path="dob">생일</form:label>
-							<form:input path="dob" class="form-control"/>
-							<form:errors path="dob" style="color:red"/>
+						<form:label path="tel2">인증번호 입력</form:label>
+						<div class="input-group">
+							<form:input path="tel2" class="form-control"/>
+						<div class="input-group-append">
+							<input type="button" id="tell2" onclick='resetUsertelExist()'class="check_button" value="인증번호 확인"/>
+						</div>
+							<form:errors path="tel2" style="color:red"/>
+						</div>
+						</div>
+						<div class="form-group">
+							<form:label path="addr1">주소</form:label>
+							<div class="input-group">
+							<form:input path="addr1" readonly="true"  class="form-control"/>
+							</div>
+							<form:errors path="addr1" style="color:red"/>
+						</div>
+						<div class="form-group">
+							<form:label path="addr_detail">상세주소</form:label>
+							<div class="input-group">
+							<form:input path="addr_detail" class="form-control"/>	
+							</div>
+							<form:errors path="addr_detail"  style="color:red"/>
+						</div>
+					
+						<div class="form-group" >
+							<form:label path="gender">성별</form:label>
+						</div>
+						<div class="form-group">
+							<form:radiobutton path="gender" value="m" class="aa"/>&nbsp;&nbsp;&nbsp;남자 &nbsp;&nbsp;&nbsp;
+							<form:radiobutton path="gender" value="f" class="aa"/>&nbsp;&nbsp;&nbsp;여자 &nbsp;&nbsp;&nbsp;
+							<form:radiobutton path="gender" value="X" class="aa"/>&nbsp;&nbsp;&nbsp;선택안함
+						</div>
+						<div class="form-group">
+						<form:label path="dob">생일</form:label>
+						<div class="dob_box">
+							<form:input path="dob_year" class="input_box" placeholder="yyyy"/>
+							/
+							<form:input path="dob_month" class="input_box" placeholder="mm"/>
+							/
+							<form:input path="dob_day" class="input_box" placeholder="dd"/>
+							</div>
 						</div>
 						
 						<div class="form-group">
 							<div class="text-right">
-								<form:button class="btn btn-primary">회원가입</form:button>
+								<form:button class="btn btn-primary" style="background-color: #F7D358; border-style: none; color: black;">회원가입</form:button>
 							</div>
 						</div>
 	

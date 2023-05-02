@@ -4,8 +4,39 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="root" value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
+
 <html>
 <head>
+<style type="text/css">
+.find_button{
+
+	background-color: display: block;
+	padding: 0px 10px;
+	text-align: center;
+	overflow: hidden;
+	width: 300px;
+	height: 54px;
+	border-radius: 3px;
+	color: rgb(0, 0, 0);
+	background-color: #F7D358;
+	border: 0px none;
+
+
+}
+.inputbox {
+	width: 100%;
+	height: 46px;
+	padding: 0 11px 1px 15px;
+	border-radius: 4px;
+	border: 1px solid #ddd;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.5;
+	color: #333;
+	outline: none;
+	box-sizing: border-box;
+} 
+</style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>미니 프로젝트</title>
@@ -22,24 +53,38 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/top.jsp" />
+	<div class="container" style="margin-top: 100px">
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+				<div class="card shadow">
+					<div class="card-body">
 	<center>
 	<h1>비밀번호 찾기</h1>	
 	<form:form action="find_pw_pro" method="post" modelAttribute="findpw" >
-		<div>
-				
-			<form:label path="id">아이디</form:label>		
-			<form:input path="id" placeholder="아이디를 입력해주세요"/>
+		<div class="form-group">
+			<form:label path="id">아이디</form:label>	
+			<div>	
+			<form:input path="id" placeholder="아이디를 입력해주세요" class="inputbox"/>
+			</div>
 		</div>
-		<div>
+		<div class="form-group">
 			<form:label path="tel">휴대폰번호</form:label>
-			<form:input path="tel" placeholder="휴대폰 번호를 입력해주세요"/>
+			<div>
+			<form:input path="tel" placeholder="휴대폰 번호를 입력해주세요" class="inputbox"/>
+			</div>
 		</div>
 		<div>
-			<form:button>찾기</form:button>
+			<form:button class="find_button">찾기</form:button>
 		</div>
 		</form:form>
 	</center>
 	</div>
+</div>
+</div>
+</div>
+</div>
+
 
 	<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 </body>

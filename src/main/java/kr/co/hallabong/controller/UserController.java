@@ -57,7 +57,8 @@ public class UserController {
 		}
 		
 		model.addAttribute(CustBean);
-		tempLoginUserBean.setPw(SHA256.encodeSha256(tempLoginUserBean.getPw()));
+		// 비밀번호 암호하시켜서 대조하여 로그인
+//		tempLoginUserBean.setPw(SHA256.encodeSha256(tempLoginUserBean.getPw()));
 		custService.getLoginCustInfo(tempLoginUserBean);
 		
 		if(CustBean.isCustLogin() == true) {
@@ -91,7 +92,9 @@ public class UserController {
 	public String join_pro(@Valid @ModelAttribute("joinusecuCustBean") CustBean joinusecuCustBean,
 			BindingResult result) {
 		
-		joinusecuCustBean.setPw(SHA256.encodeSha256(joinusecuCustBean.getPw()));
+		//비밀번호 암호화 시켜서 데이터베이스에 저장
+//		joinusecuCustBean.setPw(SHA256.encodeSha256(joinusecuCustBean.getPw()));
+		joinusecuCustBean.setDob(joinusecuCustBean.getDob_year()+"-"+joinusecuCustBean.getDob_month()+"-"+joinusecuCustBean.getDob_day());
 		joinusecuCustBean.setAddr(joinusecuCustBean.getAddr1()+" "+joinusecuCustBean.getAddr_detail());
 		if (result.hasErrors()) {
 			return "user/join";
