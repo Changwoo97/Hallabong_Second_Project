@@ -2,6 +2,7 @@ package kr.co.hallabong.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,8 +19,12 @@ public class ProdDAO {
 		return prodMapper.selectProdList();
 	}
 	
-	public ProdBean selectProd(String no) {
+	/*public ProdBean selectProd(String no) {
 		return prodMapper.selectProd(no);
+	}*/
+	
+	public ProdBean selectProd(String prod_No) {
+		return prodMapper.selectProd(prod_No);
 	}
 	
 	public void insertProd(ProdBean bean) {
@@ -39,13 +44,18 @@ public class ProdDAO {
 		return searchProductList;
 	}
 	
-	public List<ProdBean> getProdInfoPage(String prod_No) {
-		List<ProdBean> ProdInfoPage = prodMapper.getProdInfoPage(prod_No);
-		return ProdInfoPage;
-	}
 	
-	public List<RevBean> getReviewList(String prod_No) {
-		List<RevBean> ReviewList = prodMapper.getReviewList(prod_No);
+	public List<RevBean> getReviewList(String prod_No, RowBounds rowBounds) {
+		List<RevBean> ReviewList = prodMapper.getReviewList(prod_No, rowBounds);
 		return ReviewList;
 	}
+	
+	public int getReviewCnt(String Prod_No) {
+		return prodMapper.getReviewCnt(Prod_No);
+	}
+	
+	public List<ProdBean> getNewProdList() {
+		return prodMapper.getNewProdList();
+	}
+	
 }

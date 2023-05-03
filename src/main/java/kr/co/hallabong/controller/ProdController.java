@@ -23,6 +23,7 @@ public class ProdController {
 	private ProdService prodService;
 	
 	@GetMapping("/search")
+
 	public String searchProductList(@RequestParam("name")String name, Model model) {
 		Map<String, String> categoryMap = new HashMap<>();
 		categoryMap.put("1", "채소");
@@ -37,17 +38,24 @@ public class ProdController {
 		return "prod/search";
 	}
 	
-	
 	@GetMapping("/product")
-	public String ProdInfoPage(@RequestParam("prod_No")String prod_No, Model model) {
+	public String ProdInfoPage(@RequestParam("prod_No")String prod_No, 
+							   @RequestParam(name = "page", defaultValue = "1") int page, 
+							   Model model) {
 		
 		model.addAttribute("prod_No", prod_No);
-		List <ProdBean> prodInfoPage = prodService.getProdInfoPage(prod_No);
-		model.addAttribute("prodInfoPage", prodInfoPage);
+		model.addAttribute("page", page);
 		
-		List<RevBean> ReviewList = prodService.getReviewList(prod_No);
+		ProdBean ProdBean = prodService.getProd(prod_No);
+		model.addAttribute("ProdBean", ProdBean);
+		
+		List<RevBean> ReviewList = prodService.getReviewList(prod_No, page);
 		model.addAttribute("ReviewList", ReviewList);
+    
+		PageBean pageBean = prodService.getReviewCnt(prod_No, page);
+		model.addAttribute("pageBean", pageBean);
+		
 		return "prod/product";
-	}
+	}	
 	
 }
