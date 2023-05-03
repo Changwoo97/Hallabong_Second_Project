@@ -37,6 +37,9 @@ public class CustService {
 	// 회원정보수정
 	public int updateCustInfo(NewCustBean paramLoginCustBean) {
 		paramLoginCustBean.setUpd_id(paramLoginCustBean.getCust_id());
+		if(!"".equals(paramLoginCustBean.getNew_pwd())) {
+			paramLoginCustBean.setPasswd(paramLoginCustBean.getNew_pwd());
+		}
 		return custDAO.updateCustInfo(paramLoginCustBean);
 	}
 

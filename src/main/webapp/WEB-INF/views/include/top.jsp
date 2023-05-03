@@ -31,6 +31,7 @@
 		<c:otherwise>
 	    <a href="${root}cust/login"><span>로그인</span></a>
 	    <a href="${root}cust/join"><span>회원가입</span></a>
+	    <a href="${root}cust/update_login/form"><span>임시회원정보수정</span></a>
 		</c:otherwise>
 		</c:choose>
 		</div>

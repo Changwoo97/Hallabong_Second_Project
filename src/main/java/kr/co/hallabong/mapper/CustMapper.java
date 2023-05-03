@@ -82,6 +82,7 @@ public interface CustMapper {
 		  + "     , ADDR = #{addr}"
 		  + "     , GENDER = #{gender}"
 		  + "     , DOB = #{dob}"
+		  + "     , PASSWD = #{passwd}"		  
 		  + "     , UPD_ID = #{upd_id}"
 		  + "     , UPD_DT = SYSDATE"
 		  + " WHERE CUST_IDX = #{cust_idx}")

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
@@ -35,7 +36,7 @@
 						</tr>
 						<tr>
 							<th>현재 비밀번호</th>
-							<td><input type="password" id="now_pwd" name="now_pwd" value="${custInfo.passwd}"> 
+							<td><input type="password" id="passwd" name="passwd" value="${custInfo.passwd}"> 
 								<input type="hidden" id="now_chk_pwd" name="now_chk_pwd" value="${custInfo.passwd}">
 							</td>
 						</tr>
@@ -63,14 +64,14 @@
 							<th>주소</th>
 							<td>
 								<%-- <input type="text" id="addr" name="addr" value="${custInfo.addr}"> --%>
-								<input type="text" id="addr" name="addr" value="${custInfo.addr}" >
+								<input type="text" id="addr1" name="addr1" value="${custInfo.addr}" readonly >
 							</td>
 						</tr>
 						
 						<tr>
 							<th>상세 주소</th>
 							<td>
-								<input type="text" id="addr_detail" name="addr">
+								<input type="text" id="addr_detail" name="addr_detail">
 							</td>
 						</tr>
 
@@ -116,11 +117,11 @@
 
 	//주소 API
 	window.onload = function(){
-		document.getElementById("addr").addEventListener("click", function(){ //주소입력칸을 클릭하면 지도 발생
+		document.getElementById("addr1").addEventListener("click", function(){ //주소입력칸을 클릭하면 지도 발생
 			
 			new daum.Postcode({
 				oncomplete: function(data) { //선택시 입력값 세팅
-				document.getElementById("addr").value = data.address; // 주소 넣기
+				document.getElementById("addr1").value = data.address; // 주소 넣기
                 document.querySelector("input[name=addr_detail]").focus(); //상세입력 포커싱
 			}
 			}).open();
@@ -129,16 +130,16 @@
 	
    function fnValidation(){
       // 현재 비밀번호 체크      
-      var now_pwd   = document.getElementById("now_pwd").value;
+      var passwd   = document.getElementById("passwd").value;
       var now_chk_pwd = document.getElementById("now_chk_pwd").value;
-      if(now_pwd != now_chk_pwd){
+      if(passwd != now_chk_pwd){
          alert("현재 비밀번호가 맞지 않습니다.\n다시 입력해 주세요.");
          return false;
       }
       
 	  var new_pwd   = document.getElementById("new_pwd").value;
       var new_chk_pwd = document.getElementById("new_chk_pwd").value;
-      //var passwdRegExp = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}/;  문자 대소문자 반드시 입력  
+      //var passwdRegExp = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}/;  문자 대소문자 '반드시' 입력  
       var passwdRegExp = /^[A-Za-z0-9]{4,20}$/; 
       if((new_pwd != null && new_pwd != "") || (new_chk_pwd != null && new_chk_pwd != "")){
     	  if(new_pwd != new_chk_pwd){
@@ -147,7 +148,7 @@
     	  } else {
     		  if ((passwdRegExp.test(new_pwd) == false) || (passwdRegExp.test(new_chk_pwd) == false)) {
     	    	    //정규식에 맞지않으면 return null
-    	    	    alert("비밀번호는 영문대소문자와 숫자를 포함하여 4자리에서 20자리 이내로 입력해 주세요."); 
+    	    	    alert("비밀번호는 영문, 숫자를 허용하며 4자리에서 20자리 이내로 입력해 주세요."); 
     	    	    return false;
     	      }
     	  }    	  
