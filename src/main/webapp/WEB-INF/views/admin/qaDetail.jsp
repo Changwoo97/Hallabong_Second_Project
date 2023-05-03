@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
 	<title>qaDetail</title>
 	<link rel="stylesheet" href="${root}/css/admin/detail.css" />
 </head>
@@ -38,25 +38,25 @@
 					</td>
 				</tr>
 				<c:if test="${showAnswerArea}">
-					<c:if test="${qaBean.a_reg_tm != null}">
-					<tr>
-						<th>답변일</th>
-						<td>${qaBean.a_reg_tm}</td>
-					</tr>
-					</c:if>
-					<tr>
-						<th>답변내용</th>
-						<td>
-							<c:choose>
-								<c:when test="${isModifyMode}">
-									<form:textarea path="a" cols="50" rows="25"></form:textarea>
-								</c:when>
-								<c:otherwise>
-									<form:textarea path="a" cols="50" rows="25" readonly="true"></form:textarea>
-								</c:otherwise>
-							</c:choose>
-						</td>
-					</tr>
+				<c:if test="${qaBean.a_reg_tm != null}">
+				<tr>
+					<th>답변일</th>
+					<td>${qaBean.a_reg_tm}</td>
+				</tr>
+				</c:if>
+				<tr>
+					<th>답변내용</th>
+					<td>
+					<c:choose>
+					<c:when test="${isModifyMode}">
+					<form:textarea path="a" cols="50" rows="25"></form:textarea>
+					</c:when>
+					<c:otherwise>
+					<form:textarea path="a" cols="50" rows="25" readonly="true"></form:textarea>
+					</c:otherwise>
+					</c:choose>
+					</td>
+				</tr>
 				</c:if>
 				<tr>
 					<td class="detailBottom" colspan="2">

@@ -23,9 +23,7 @@ public class ProdController {
 	private ProdService prodService;
 	
 	@GetMapping("/search")
-	public String searchProductList(@RequestParam("name")String name,
-									Model model) {
-
+	public String searchProductList(@RequestParam("name")String name, Model model) {
 		Map<String, String> categoryMap = new HashMap<>();
 		categoryMap.put("1", "채소");
 		categoryMap.put("2", "과일");
@@ -50,10 +48,6 @@ public class ProdController {
 		List<RevBean> ReviewList = prodService.getReviewList(prod_No);
 		model.addAttribute("ReviewList", ReviewList);
 		return "prod/product";
-		
-
 	}
-	
-	
 	
 }

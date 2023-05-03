@@ -13,7 +13,7 @@ public class RestApiController {
 	@Autowired
 	private CustService custService;
 	
-	@GetMapping("/user/checkUserIDExist/{id}")
+	@GetMapping("/cust/checkUserIDExist/{id}")
 	public String checkUserIDExist(@PathVariable String id) {
 		boolean chk = custService.checkUserIDExist(id);
 		return chk + ""; // jsp X, 데이터를 넘김

@@ -2,12 +2,9 @@ package kr.co.hallabong.controller.admin;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,11 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.hallabong.util.Format;
 import kr.co.hallabong.util.Pair;
-import oracle.sql.DATE;
 
 @Controller
 @RequestMapping("/admin/stlm")
@@ -32,39 +27,10 @@ public class AdminStlmController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	@GetMapping("/check")
-	public String check(Model model,
-			@ModelAttribute("ord_no") String ord_no, 
-			@ModelAttribute("reg_tmBeginDate") String reg_tmBeginDate, 
-			@ModelAttribute("reg_tmEndDate") String reg_tmEndDate, 
-			@ModelAttribute("stlm_tmBeginDate") String stlm_tmBeginDate, 
-			@ModelAttribute("stlm_tmEndDate") String stlm_tmEndDate) {		
-		System.out.println("aa " + reg_tmBeginDate);
-		if (reg_tmBeginDate.length() + reg_tmEndDate.length()
-			+ stlm_tmBeginDate.length() + stlm_tmEndDate.length() <= 0) {
-			LocalDateTime today = LocalDateTime.now();
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			
-			reg_tmBeginDate = today.minusMonths(1).format(formatter);
-			reg_tmEndDate = today.format(formatter);
-			
-			model.addAttribute("reg_tmBeginDate", reg_tmBeginDate);
-			model.addAttribute("reg_tmEndDate", reg_tmEndDate);
-		}
-		
-		List<Map<String, String>> thead = new ArrayList<>();
-		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
-		thead.add(Format.getMap("title=신청일&type=date&name=reg_tm"));
-		thead.add(Format.getMap("title=정산일&type=date&name=stlm_tm"));
-		thead.add(Format.getMap("title=배송료"));
-		thead.add(Format.getMap("title=차감배송료"));
-		thead.add(Format.getMap("title=원가"));
-		thead.add(Format.getMap("title=판매금액"));
-		thead.add(Format.getMap("title=순수익"));
+	private String sql;
+	private RowMapper<Map<String, String>> rowMapper;
 	
-		List<List<String>> tbody = new ArrayList<>();
-		List<String> tfoot = new ArrayList<>();
-		
+	public AdminStlmController() {
 		StringBuilder sql = new StringBuilder();
 		sql.append("WITH                                                                    ");
 		sql.append("    ORD_DLVY AS (SELECT ord.no                 AS ord_no                ");
@@ -92,8 +58,9 @@ public class AdminStlmController {
 		sql.append("     , sp                                                               ");
 		sql.append("     , cost - sp - fee + deducted_fee AS net_income                     ");
 		sql.append("FROM ORD_DLVY                                                           ");
-
-		List<Map<String, String>> selectResults = jdbcTemplate.query(sql.toString(), new RowMapper<Map<String, String>>() {
+		this.sql = sql.toString();
+		
+		this.rowMapper = new RowMapper<Map<String, String>>() {
 			@Override
 			public Map<String, String> mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Map<String, String> map = new HashMap<>();
@@ -108,7 +75,42 @@ public class AdminStlmController {
 				
 				return map;
 			}
-		});
+		};
+	}
+	
+	@GetMapping("/check")
+	public String check(Model model,
+			@ModelAttribute("ord_no") String ord_no, 
+			@ModelAttribute("reg_tmBeginDate") String reg_tmBeginDate, 
+			@ModelAttribute("reg_tmEndDate") String reg_tmEndDate, 
+			@ModelAttribute("stlm_tmBeginDate") String stlm_tmBeginDate, 
+			@ModelAttribute("stlm_tmEndDate") String stlm_tmEndDate) {		
+		if (reg_tmBeginDate.length() + reg_tmEndDate.length()
+			+ stlm_tmBeginDate.length() + stlm_tmEndDate.length() <= 0) {
+			LocalDateTime today = LocalDateTime.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			
+			reg_tmBeginDate = today.minusMonths(1).format(formatter);
+			reg_tmEndDate = today.format(formatter);
+			
+			model.addAttribute("reg_tmBeginDate", reg_tmBeginDate);
+			model.addAttribute("reg_tmEndDate", reg_tmEndDate);
+		}
+		
+		List<Map<String, String>> thead = new ArrayList<>();
+		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
+		thead.add(Format.getMap("title=신청일&type=date&name=reg_tm"));
+		thead.add(Format.getMap("title=정산일&type=date&name=stlm_tm"));
+		thead.add(Format.getMap("title=배송료"));
+		thead.add(Format.getMap("title=차감배송료"));
+		thead.add(Format.getMap("title=원가"));
+		thead.add(Format.getMap("title=판매금액"));
+		thead.add(Format.getMap("title=순수익"));
+	
+		List<List<String>> tbody = new ArrayList<>();
+		List<String> tfoot = new ArrayList<>();
+
+		List<Map<String, String>> selectResults = jdbcTemplate.query(sql, rowMapper);
 		
 		for (int i = selectResults.size() - 1; i >= 0; i--) {
 			Map<String, String> selectResult = selectResults.get(i);
@@ -118,6 +120,7 @@ public class AdminStlmController {
 					&& (stlm_tmBeginDate.isBlank() || selectResult.get("stlm_tm").compareTo(stlm_tmBeginDate) >= 0)
 					&& (stlm_tmEndDate.isBlank() || selectResult.get("stlm_tm").compareTo(stlm_tmEndDate) <= 0))
 				continue;
+			
 			selectResults.remove(selectResult);
 		}
 

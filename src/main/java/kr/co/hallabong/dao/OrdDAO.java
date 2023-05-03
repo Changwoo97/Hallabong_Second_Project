@@ -1,5 +1,7 @@
 package kr.co.hallabong.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,5 +19,9 @@ public class OrdDAO {
 	
 	public void updateOrdSta(String no, String sta) {
 		ordMapper.updateOrdSta(no, sta);
+	}
+	
+	public List<OrdBean> getOrdList(String cust_id) {
+		return ordMapper.getOrdList(cust_id);
 	}
 }

@@ -36,4 +36,8 @@ public class QADAO {
 	public void deleteQA(String no) {
 		qaMapper.deleteQA(no);
 	}
+	
+	public List<QABean> getQAList(String cust_id) {
+		return qaMapper.getQAList(cust_id);
+	}
 }

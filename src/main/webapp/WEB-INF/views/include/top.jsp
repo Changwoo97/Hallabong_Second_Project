@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<c:set var='root' value="${pageContext.request.contextPath }/" />
+<c:set var='root' value="${pageContext.request.contextPath}/" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,12 +11,18 @@
 </head>
 <body>
 <div id="header-wrap">
-   <div class="top1">
-      <span><a href="${root }cust/join">회원가입</a></span>
-      <span><a href="${root }cust/login">로그인</a></span>
-      <span>고객센터</span>
-   </div>
-   
+	<div class="top1">
+	<c:choose>
+		<c:when test="${loginCustBean.custLogin}">
+		<a href="${root}cust/join">회원가입</a>
+        <a href="${root}cust/login"><span>로그인</span></a>
+		</c:when>
+		<c:otherwise>
+		<span>${loginCustBean.id}님</span>
+		<a href="${root}mypage/mypage"><span>마이페이지</span></a>
+		</c:otherwise>
+	</c:choose>
+	</div>
    <div class="logo">
       <div class="logo-title">
       	<a href="${root }" >

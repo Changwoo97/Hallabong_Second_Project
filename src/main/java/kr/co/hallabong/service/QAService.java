@@ -32,4 +32,8 @@ public class QAService {
 	public void setA(QABean bean) {
 		qaDAO.updateA(bean);
 	}
+	
+	public List<QABean> getQAList(String cust_id) {
+		return qaDAO.getQAList(cust_id);
+	 }
 }

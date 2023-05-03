@@ -1,5 +1,7 @@
 package kr.co.hallabong.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -15,4 +17,7 @@ public interface OrdMapper {
 			+ "SET sta = #{sta} "
 			+ "WHERE no = #{no} ")
 	void updateOrdSta(String no, String sta);
+	
+	 @Select("SELECT * FROM ord WHERE cust_id = #{cust_id} ")
+	 List<OrdBean> getOrdList(String cust_id);
 }

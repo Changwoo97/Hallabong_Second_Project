@@ -109,7 +109,7 @@
 				</ul>
 				<ul>
 					<li><img src="img/fish.png"></li>
-					<li><a href="${root }cat/main?cat_No=4">헤산물</a></li>
+					<li><a href="${root }cat/main?cat_No=4">해산물</a></li>
 					<li>썪은 동태 눈깔</li>
 				</ul> 
 			</div> 
@@ -263,8 +263,7 @@
 	</section>
 	
 	<footer>
-		<c:import url="/WEB-INF/views/include/bottom_info.jsp"></c:import>
-		<a href="${root}admin">관리자페이지</a>
+		<c:import url="/WEB-INF/views/include/bottom.jsp"></c:import>
 	</footer>
 </body>
 </html>
