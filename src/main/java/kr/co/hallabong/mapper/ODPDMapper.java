@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
-import kr.co.hallabong.bean.ODPDBean;
+import kr.co.hallabong.bean.join.ODPDBean;
 
 public interface ODPDMapper {
 	@Select("WITH " + 

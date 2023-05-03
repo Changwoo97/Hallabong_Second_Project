@@ -32,7 +32,6 @@ public class CustController {
 	@Autowired
 	private CustService custService;
 
-	
 	@Resource(name = "loginCustBean")
 	private CustBean loginCustBean;
 	
@@ -212,22 +211,27 @@ public class CustController {
 	
 	@GetMapping("/join")
 	public String join(@ModelAttribute("joinusecuCustBean") CustBean joinusecuCustBean) {
-
+		joinusecuCustBean.setGender("X");
 		return "cust/join";
 	}
 
 	@PostMapping("/join_pro")
 	public String join_pro(@Valid @ModelAttribute("joinusecuCustBean") CustBean joinusecuCustBean,
 			BindingResult result) {
-		
-		//비밀번호 암호화 시켜서 데이터베이스에 저장
-//		joinusecuCustBean.setPw(SHA256.encodeSha256(joinusecuCustBean.getPw()));
-		joinusecuCustBean.setDob(joinusecuCustBean.getDob_year()+"-"+joinusecuCustBean.getDob_month()+"-"+joinusecuCustBean.getDob_day());
-		joinusecuCustBean.setAddr(joinusecuCustBean.getAddr1()+" "+joinusecuCustBean.getAddr_detail());
 		if (result.hasErrors()) {
 			return "cust/join";
 		}
-				
+		
+		//비밀번호 암호화 시켜서 데이터베이스에 저장
+//		joinusecuCustBean.setPw(SHA256.encodeSha256(joinusecuCustBean.getPw()));
+		joinusecuCustBean.setDob(joinusecuCustBean.getDob_year() + "-" + joinusecuCustBean.getDob_month() + "-" + joinusecuCustBean.getDob_day());
+		joinusecuCustBean.setAddr(joinusecuCustBean.getAddr1() + " " + joinusecuCustBean.getAddr_detail());
+
+		String gender = joinusecuCustBean.getGender();
+		if (gender != null && (gender.equals("M") || gender.equals("F"))) {
+			joinusecuCustBean.setGender(null);
+		}
+		
 		custService.addjoinUserInfo(joinusecuCustBean);
 		return "cust/join_success";
 	}
@@ -272,28 +276,26 @@ public class CustController {
 	}
 
 	@InitBinder
-	   public void initBinder(WebDataBinder binder) {
-	      CustValidator validator = new CustValidator();
-	      binder.addValidators(validator);
-	   }
+    public void initBinder(WebDataBinder binder) {
+       CustValidator validator = new CustValidator();
+       binder.addValidators(validator);
+    }
 	
 	@RequestMapping("/sendSMS1.do") //jsp 페이지 넘긴 mapping 값
 	@ResponseBody    
-	    public String sendSMS(String tel) {
-	 
-	        Random rand  = new Random(); //랜덤숫자 생성하기 !!
-	        String numStr = "";
-	        for(int i=0; i<4; i++) {
-	            String ran = Integer.toString(rand.nextInt(10));
-	            numStr+=ran;
-	        }
-	        
-	        
-	          custService.certifiedPhoneNumber(tel, numStr); //휴대폰 api 쪽으로 가기 !!
-	// // 밑에 자세한 설명나옴
-	         
-	          return numStr;
-	    }
-
+    public String sendSMS(String tel) {
+ 
+        Random rand  = new Random(); //랜덤숫자 생성하기 !!
+        String numStr = "";
+        for(int i=0; i<4; i++) {
+            String ran = Integer.toString(rand.nextInt(10));
+            numStr+=ran;
+        }
+        
+        custService.certifiedPhoneNumber(tel, numStr); //휴대폰 api 쪽으로 가기 !!
+        // // 밑에 자세한 설명나옴
+         
+        return numStr;
+    }
 	
 }

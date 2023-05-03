@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.hallabong.bean.CatBean;
-import kr.co.hallabong.bean.ProdBean;
+import kr.co.hallabong.bean.join.ProdCatBean;
 import kr.co.hallabong.mapper.CatMapper;
 
 @Repository
@@ -34,8 +34,7 @@ public class CatDAO {
 		catMapper.deleteCat(no);
 	}
 	
-	public List<ProdBean> getcatMainPage(String Cat_No) {
-		List<ProdBean> catMainPage = catMapper.getcatMainPage(Cat_No);
-		return catMainPage;
+	public List<ProdCatBean> getcatMainPage(String Cat_No) {
+		return catMapper.getcatMainPage(Cat_No);
 	}
 }

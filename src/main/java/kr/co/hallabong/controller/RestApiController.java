@@ -19,5 +19,4 @@ public class RestApiController {
 		return chk + ""; // jsp X, 데이터를 넘김
 	}
 	
-	
 }

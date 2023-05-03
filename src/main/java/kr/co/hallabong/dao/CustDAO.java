@@ -26,6 +26,18 @@ public class CustDAO {
 	public void addjoin(CustBean joinusecuCustBean){
 		custMapper.addjoin(joinusecuCustBean);
 	}
+	
+	public void addjoinGenderNull(CustBean joinusecuCustBean){
+		custMapper.addjoinGenderNull(joinusecuCustBean);
+	}
+	
+	public void addjoinDobNull(CustBean joinusecuCustBean){
+		custMapper.addjoinDobNull(joinusecuCustBean);
+	}
+	
+	public void addjoinGenderNullDobNull(CustBean joinusecuCustBean){
+		custMapper.addjoinGenderNullDobNull(joinusecuCustBean);
+	}
 
 	public CustBean findId(CustBean findid) {
 		return custMapper.findId(findid);

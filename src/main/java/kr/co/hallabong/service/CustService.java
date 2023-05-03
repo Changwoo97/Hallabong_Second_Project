@@ -1,5 +1,6 @@
 package kr.co.hallabong.service;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
@@ -48,12 +49,26 @@ public class CustService {
 			custBean.setId(tempLoginUserBean2.getId());
 			custBean.setName(tempLoginUserBean2.getName());
 			custBean.setCustLogin(true); // 최초에 false로 되음. 로그인성공
-
 		}
 	}
 
 	public void addjoinUserInfo(CustBean joinusecuCustBean) {
-		custDAO.addjoin(joinusecuCustBean);
+		String gender = joinusecuCustBean.getGender();
+		String dob = joinusecuCustBean.getDob();
+		try {
+			LocalDate.parse(dob);
+		} catch (Exception e) {
+			dob = null;
+		}
+		
+		if (gender == null && dob == null) 
+			custDAO.addjoinGenderNullDobNull(joinusecuCustBean);
+		else if (gender != null && dob == null)
+			custDAO.addjoinDobNull(joinusecuCustBean);
+		else if (gender == null && dob != null)
+			custDAO.addjoinGenderNull(joinusecuCustBean);
+		else 
+			custDAO.addjoin(joinusecuCustBean);
 	}
 
 	public boolean checkUserIDExist(String id) {
@@ -64,7 +79,6 @@ public class CustService {
 		} else {
 			return false;
 		}
-
 	}
 	
 	// 이메일중복확인
@@ -81,42 +95,41 @@ public class CustService {
 		CustBean findid2 = custDAO.findId(findid);
 		if (findid2 != null) {
 			findid.setId(findid2.getId());
-		}else {
+		} else {
 			findid.setId("찾으시는 정보의 아이디가 없습니다");
 		}
 	}
 
 	public void findPw(CustBean findpw) {
 		CustBean findpw2 = custDAO.findPw(findpw);
+		
 		if (findpw2 != null) {
 			findpw.setPw(findpw2.getPw());
-		}else {
+		} else {
 			findpw.setPw("찾으시는 정보의 비밀번호가 없습니다 다시 확인해주세요");
 		}
 	}
 	
 	public void certifiedPhoneNumber(String tel, String numStr) {
-		 
         String api_key = "NCSH4IG8IK8VCXJO";
-          String api_secret = "ORIXGKSEC2WG3BLW314EJQATXXMJVFEK";
-          Message coolsms = new Message(api_key, api_secret);
+        String api_secret = "ORIXGKSEC2WG3BLW314EJQATXXMJVFEK";
+        Message coolsms = new Message(api_key, api_secret);
 
-        
-          HashMap<String, String> params = new HashMap<String, String>();
-          params.put("to", tel);    
-          params.put("from", "010-4129-9680");   
-          params.put("type", "SMS");
-          params.put("text", "  작성할내용 ["+numStr+"] 내용 ");
-          params.put("app_version", "test app 1.2"); // application name and version
 
-          try {
-              JSONObject obj = (JSONObject) coolsms.send(params);
-              System.out.println(obj.toString());
-          } catch (CoolsmsException e) {
-              System.out.println(e.getMessage());
-              System.out.println(e.getCode());
-          }
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("to", tel);    
+        params.put("from", "010-4129-9680");   
+        params.put("type", "SMS");
+        params.put("text", "  작성할내용 ["+numStr+"] 내용 ");
+        params.put("app_version", "test app 1.2"); // application name and version
 
+        try {
+	        JSONObject obj = (JSONObject) coolsms.send(params);
+	        System.out.println(obj.toString());
+        } catch (CoolsmsException e) {
+        	System.out.println(e.getMessage());
+	        System.out.println(e.getCode());
+        }
    }
 }
 

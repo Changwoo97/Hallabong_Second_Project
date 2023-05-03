@@ -1,16 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>한라봉 프로젝트</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<link type="text/css" rel="stylesheet" href="${root}css/mainPage.css" />
+	<meta charset="UTF-8">
+	<title>한라봉 프로젝트</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="${root}css/mainPage.css" />
 </head>
 
 <body>
@@ -96,24 +94,25 @@
 			<div class="categoryIcon">
 				<ul class="catrgoryDetail">
 					<li><img src="img/vegetable1.png"></li>
-					<li><a href="${root }cat/main?cat_No=1">채소</a></li>
+					<li><a href="${root }cat/main?cat_no=1">채소</a></li>
 					<li>채소</li>
 				</ul>
 				<ul class="catrgoryDetail">
 					<li><img src="img/basket1.png"></li>
-					<li><a href="${root }cat/main?cat_No=2">과일</a></li>
+					<li><a href="${root }cat/main?cat_no=2">과일</a></li>
 					<li>과일</li>
 				</ul>
 				<ul class="catrgoryDetail">
 					<li><img src="img/meat1.png"></li>
-					<li><a href="${root }cat/main?cat_No=3">육류</a></li>
+					<li><a href="${root }cat/main?cat_no=3">육류</a></li>
 					<li>고기</li>
 				</ul>
 				<ul>
 					<li><img src="img/fish.png"></li>
-					<li><a href="${root }cat/main?cat_No=4">해산물</a></li>
+					<li><a href="${root }cat/main?cat_no=4">해산물</a></li>
 					<li>해산물</li>
 				</ul>
+			</div>
 		</article>
 
 		<article id="newProduct">
@@ -124,13 +123,12 @@
 			</div>
 			<div class="newProduct-list" style="margin-top: 10px">
 
-				<c:forEach var="NewProduct" items="${newProdList}">
+				<c:forEach var="newProduct" items="${newProdList}">
 					<ul class="newProduct-listDeatil">
-						<li><img src="${root}${NewProduct.s_img}"
-							alt="${NewProduct.name} 이미지"></li>
-						<li><a href="${root}prod/product?prod_No=${NewProduct.no}">${NewProduct.name}</a>
+						<li><img src="${root}upload/${newProduct.s_img}" alt="${newProduct.name} 이미지"></li>
+						<li><a href="${root}prod/product?prod_no=${newProduct.no}">${newProduct.name}</a>
 						</li>
-						<li>${NewProduct.cost}원</li>
+						<li>${newProduct.cost}원</li>
 					</ul>
 
 				</c:forEach>

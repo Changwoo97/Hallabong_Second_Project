@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.hallabong.bean.PageBean;
 import kr.co.hallabong.bean.ProdBean;
 import kr.co.hallabong.bean.RevBean;
 import kr.co.hallabong.service.ProdService;
@@ -39,20 +40,19 @@ public class ProdController {
 	}
 	
 	@GetMapping("/product")
-	public String ProdInfoPage(@RequestParam("prod_No")String prod_No, 
-							   @RequestParam(name = "page", defaultValue = "1") int page, 
-							   Model model) {
-		
-		model.addAttribute("prod_No", prod_No);
+	public String prodInfoPage(Model model, 
+			@RequestParam("prod_no")String prod_no, 
+			@RequestParam(name = "page", defaultValue = "1") int page) {
+		model.addAttribute("prod_no", prod_no);
 		model.addAttribute("page", page);
 		
-		ProdBean ProdBean = prodService.getProd(prod_No);
-		model.addAttribute("ProdBean", ProdBean);
+		ProdBean prodBean = prodService.getProd(prod_no);
+		model.addAttribute("prodBean", prodBean);
 		
-		List<RevBean> ReviewList = prodService.getReviewList(prod_No, page);
-		model.addAttribute("ReviewList", ReviewList);
-    
-		PageBean pageBean = prodService.getReviewCnt(prod_No, page);
+		List<RevBean> ReviewList = prodService.getReviewList(prod_no, page);
+		model.addAttribute("reviewList", ReviewList);
+		
+		PageBean pageBean = prodService.getReviewCnt(prod_no, page);
 		model.addAttribute("pageBean", pageBean);
 		
 		return "prod/product";

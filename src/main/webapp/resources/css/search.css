@@ -47,20 +47,17 @@
 	border: 1px solid #ddd;
 }
 
-
 .products {
-	width: 100%;
 	border-collapse: collapse;
 	margin-top: 20px;
 }
 
 .product-filter{
 	text-align: right;
-	
 }
 
 .products th, .products td {
-	padding: 8px;
+	padding: 4px;
 	text-align: center;
 }
 
@@ -77,9 +74,9 @@
 	width: 100px;
 }
 
-.product-img {
-	width: 150px;
-}
+/* .product-img {
+	width: 110px;
+} */
 
 .product-name {
 	width: 250px;

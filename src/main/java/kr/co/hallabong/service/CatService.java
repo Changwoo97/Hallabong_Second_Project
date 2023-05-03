@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.hallabong.bean.CatBean;
-import kr.co.hallabong.bean.ProdBean;
+import kr.co.hallabong.bean.join.ProdCatBean;
 import kr.co.hallabong.dao.CatDAO;
 
 @Service
@@ -34,8 +34,7 @@ public class CatService {
 		catDAO.deleteCat(no);
 	}
 	
-	public List<ProdBean> getcatMainPage(String Cat_No) {
-		List<ProdBean> catMainPage = catDAO.getcatMainPage(Cat_No);
-		return catMainPage;
+	public List<ProdCatBean> getcatMainPage(String Cat_No) {
+		return catDAO.getcatMainPage(Cat_No);
 	}
 }

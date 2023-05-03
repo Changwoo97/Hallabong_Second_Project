@@ -43,17 +43,27 @@ public interface CustMapper {
 	NewCustBean getLoginCustDetailInfo(int paramCustIdx); 
     
     /*탈퇴하기*/
-    @Delete("DELETE FROM CUST " +
-		    " WHERE cust_idx = #{cust_idx}")
+    @Delete("DELETE FROM cust " +
+		    "WHERE cust_idx = #{cust_idx} ")
 	int deleteCust(int cust_idx);	
 
-	@Select("SELECT id,name "
-			+ "FROM CUST "
-			+ "WHERE ID = #{id} and PW = #{pw}")
+	@Select("SELECT id, name "
+			+ "FROM cust "
+			+ "WHERE id = #{id} and pw = #{pw} ")
 	CustBean getLoginCustInfo(CustBean tempLoginUserBean); //tempLoginCustBean은 request영역
 	//회원가입
-	@Insert("insert into cust values (#{id},#{pw},#{name},#{email},#{tel},#{addr},#{gender},#{dob},default,default,'REG')")
+	@Insert("INSERT INTO cust VALUES (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr}, #{gender}, TO_DATE(#{dob}, 'YYYY-MM-DD'), DEFAULT, DEFAULT, 'REG') ")
 	void addjoin(CustBean joinusecuCustBean);
+	
+	@Insert("INSERT INTO cust VALUES (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr}, NULL, TO_DATE(#{dob}, 'YYYY-MM-DD'), DEFAULT, DEFAULT, 'REG') ")
+	void addjoinGenderNull(CustBean joinusecuCustBean);
+	
+	@Insert("INSERT INTO cust VALUES (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr}, #{gender}, NULL, DEFAULT, DEFAULT, 'REG') ")
+	void addjoinDobNull(CustBean joinusecuCustBean);
+	
+	@Insert("INSERT INTO cust VALUES (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr}, NULL, NULL, DEFAULT, DEFAULT, 'REG') ")
+	void addjoinGenderNullDobNull(CustBean joinusecuCustBean);
+	
 	//아이디 
 	@Select("select name from cust where id=#{id}")
 	String checkUserIDExist(String id);

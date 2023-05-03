@@ -51,16 +51,16 @@ public class ProdService {
 		return prodDAO.searchProductList(name);
 	}
 	
-	public List<RevBean> getReviewList(String prod_No, int page) {
+	public List<RevBean> getReviewList(String prod_no, int page) {
 		int start = (page - 1) * page_listcnt;
 		RowBounds rowBounds = new RowBounds(start, page_listcnt);
-		List<RevBean> ReviewList = prodDAO.getReviewList(prod_No, rowBounds);
+		List<RevBean> ReviewList = prodDAO.getReviewList(prod_no, rowBounds);
 		return ReviewList;		
 	}
 	
-	public PageBean getReviewCnt(String prod_No, int currentPage) {
+	public PageBean getReviewCnt(String prod_no, int currentPage) {
 		       
-		int content_cnt = prodDAO.getReviewCnt(prod_No);
+		int content_cnt = prodDAO.getReviewCnt(prod_no);
 		
 		PageBean pageBean = new PageBean(content_cnt, currentPage, page_listcnt, page_paginationcnt);
 		

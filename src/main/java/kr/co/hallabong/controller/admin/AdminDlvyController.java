@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.hallabong.bean.DlvyBean;
-import kr.co.hallabong.bean.ODPDBean;
 import kr.co.hallabong.bean.OrdBean;
+import kr.co.hallabong.bean.join.ODPDBean;
 import kr.co.hallabong.service.DlvyService;
 import kr.co.hallabong.service.ODPDService;
 import kr.co.hallabong.service.OrdService;
