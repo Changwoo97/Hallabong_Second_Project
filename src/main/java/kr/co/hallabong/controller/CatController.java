@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.co.hallabong.bean.ProdBean;
+import kr.co.hallabong.bean.join.ProdCatBean;
 import kr.co.hallabong.service.CatService;
 
 @Controller
@@ -20,10 +20,10 @@ public class CatController {
     private CatService catService;
     
     @GetMapping("/main")
-    public String catMainPage(@RequestParam("cat_No") String cat_No, Model model) {
-    	model.addAttribute("cat_No", cat_No);
+    public String catMainPage(@RequestParam("cat_no") String cat_no, Model model) {
+    	model.addAttribute("cat_no", cat_no);
     	
-    	List<ProdBean> catMainPage = catService.getcatMainPage(cat_No);
+    	List<ProdCatBean> catMainPage = catService.getcatMainPage(cat_no);
     	model.addAttribute("catMainPage", catMainPage);
     	
         return "cat/main";

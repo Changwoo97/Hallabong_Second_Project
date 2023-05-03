@@ -30,38 +30,28 @@ public class MypageController {
     	model.addAttribute("cartList",cartList);
     	return "mypage/cart";
     }
-    
-    
-    
+       
     @GetMapping("/mypage")
     public String mypage() {
     	return "mypage/mypage";
     }
-
-
 	
 	@Autowired
 	private OrdService ordService;
-	
-	 
-	
+		
     @GetMapping("/Orders")
     public String Orders(@RequestParam("cust_id")String cust_id,Model model) {
     	model.addAttribute("cust_id",cust_id);
 	
-    	
     	List<OrdBean> OrdList=ordService.getOrdList(cust_id);
     	model.addAttribute("OrdList",OrdList);
 
     	return "mypage/Orders";
     }
     
-	
 	@Autowired
 	private QAService qaService;
-	
-	 
-	
+		
     @GetMapping("/QAList")
     public String QAList(@RequestParam("cust_id")String cust_id, Model model) {
     	model.addAttribute("cust_id",cust_id);

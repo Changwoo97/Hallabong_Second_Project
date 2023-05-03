@@ -4,6 +4,6 @@
 		<p>http://www.softSoldesk.co.kr</p>
 		<p>게시판 예제</p>
 		<p>사업자번호 : 000-111-222</p>
-		<a href="${root}admin" style="font-size: 5pt; color: gray">관리자페이지</a>
+		<a href="${root}admin" target="_blank" style="font-size: 5pt; color: gray">관리자페이지</a>
 	</div>
 </div>

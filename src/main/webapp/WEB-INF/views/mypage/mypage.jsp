@@ -24,9 +24,9 @@
     <!-- 왼쪽 리스트 -->
     <div class="mypage-nav">
         <ul>
-            <li><a href="${root }mypage/Orders?cust_id=${cust_id}">주문내역</a></li>
-            <li><a href="${root }mypage/cart?cust_id=${cust_id}">장바구니</a></li>
-            <li><a href="${root }mypage/QAList?cust_id=${cust_id}">문의내역</a></li>
+            <li><a href="${root}mypage/Orders?cust_id=${cust_id}">주문내역</a></li>
+            <li><a href="${root}mypage/cart?cust_id=${cust_id}">장바구니</a></li>
+            <li><a href="${root}mypage/QAList?cust_id=${cust_id}">문의내역</a></li>
         </ul>
     </div>
 
@@ -44,10 +44,10 @@
 			<tbody>
 				<c:forEach var="obj" items="${cartList}">
 					<tr>
-						<td class="text-center d-none d-md-table-cell">${obj.prod_no }</td>
+						<td class="text-center d-none d-md-table-cell">${obj.prod_no}</td>
 						<td class="text-center d-none d-md-table-cell">${obj.cust_id}</td>
-						<td class="text-center d-none d-md-table-cell">${obj.qnty }</td>
-						<td class="text-center d-none d-md-table-cell">${obj.reg_tm }</td>
+						<td class="text-center d-none d-md-table-cell">${obj.qnty}</td>
+						<td class="text-center d-none d-md-table-cell">${obj.reg_tm}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

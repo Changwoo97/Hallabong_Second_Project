@@ -94,27 +94,25 @@
 			<div class="categoryIcon">
 				<ul class="catrgoryDetail">
 					<li><img src="img/vegetable1.png"></li>
-					<li><a href="${root }cat/main?cat_No=1">채소</a></li>
+					<li><a href="${root}cat/main?cat_no=1">채소</a></li>
 					<li>신선하고 맛없는 채소</li>
 				</ul>
 				<ul class="catrgoryDetail">
 					<li><img src="img/basket1.png"></li>
-					<li><a href="${root }cat/main?cat_No=2">과일</a></li>
+					<li><a href="${root}cat/main?cat_no=2">과일</a></li>
 					<li>당많은 과일</li>
 				</ul>
 				<ul class="catrgoryDetail">
 					<li><img src="img/meat1.png"></li>
-					<li><a href="${root }cat/main?cat_No=3">육류</a></li>
+					<li><a href="${root}cat/main?cat_no=3">육류</a></li>
 					<li>소화 잘되는 고기</li>
 				</ul>
 				<ul>
 					<li><img src="img/fish.png"></li>
-					<li><a href="${root }cat/main?cat_No=4">해산물</a></li>
+					<li><a href="${root}cat/main?cat_no=4">해산물</a></li>
 					<li>썪은 동태 눈깔</li>
 				</ul> 
 			</div> 
-			
-
 		</article>
 
 

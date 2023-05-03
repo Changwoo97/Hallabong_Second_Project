@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.hallabong.bean.ODPDBean;
+import kr.co.hallabong.bean.join.ODPDBean;
 import kr.co.hallabong.dao.ODPDDAO;
 
 @Service

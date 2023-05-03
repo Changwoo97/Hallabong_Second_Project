@@ -76,8 +76,6 @@
 
 		<c:import url="/WEB-INF/views/include/filter.jsp" />
 		
-		
-		
 		<table class="products">
 			<thead>
 				<tr>
@@ -91,9 +89,8 @@
 			<tbody>
 				<c:forEach var="product" items="${catMainPage}">
 					<tr>
-						<td>${product.category}</td>
-						<td class="product-img"><img src="${root}${product.s_img}"
-							alt="${product.name} 이미지"></td>
+						<td>${product.cat_name}</td>
+						<td class="product-img"><img src="${root}upload/${product.s_img}" alt="${product.name} 이미지" style="width: 100px"></td>
 						<td><a href="${root}prod/product?prod_No=${product.no}">${product.name}</a></td>
 						<td>${product.sp}원</td>
 						<td>${product.reg_tm}</td>

@@ -47,18 +47,14 @@ public class CustBean {
 
 	private String gender;
 	
-	
 	private String dob;
 	private String dob_year;
 	private String dob_month;
 	private String dob_day;
 	
-
-
 	private boolean custIdExist;
 	private boolean custLogin;
 	private boolean custtelExist;
-	
 	
 	public CustBean() {
 		this.custIdExist=false;

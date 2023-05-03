@@ -37,16 +37,15 @@ public class ProdController {
 		return "prod/search";
 	}
 	
-	
 	@GetMapping("/product")
-	public String ProdInfoPage(@RequestParam("prod_No")String prod_No, Model model) {
+	public String prodInfoPage(@RequestParam("prod_no")String prod_no, Model model) {
 		
-		model.addAttribute("prod_No", prod_No);
-		List <ProdBean> prodInfoPage = prodService.getProdInfoPage(prod_No);
+		model.addAttribute("prod_no", prod_no);
+		List <ProdBean> prodInfoPage = prodService.getProdInfoPage(prod_no);
 		model.addAttribute("prodInfoPage", prodInfoPage);
 		
-		List<RevBean> ReviewList = prodService.getReviewList(prod_No);
-		model.addAttribute("ReviewList", ReviewList);
+		List<RevBean> ReviewList = prodService.getReviewList(prod_no);
+		model.addAttribute("reviewList", ReviewList);
 		return "prod/product";
 	}
 	
