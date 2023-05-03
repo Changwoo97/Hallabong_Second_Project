@@ -15,6 +15,8 @@
       <span>로그인</span>
       <span>고객센터</span>
       <a href="${root }cust/update_login/form"><span>임시회원정보수정</span></a>
+      <a href="${root }order/list/form"><span>주문내역</span></a>
+      
    </div>
    
    <div class="logo">

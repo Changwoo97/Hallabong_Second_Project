@@ -19,9 +19,7 @@ public interface CustMapper {
 		   + "FROM CUST "
 		   + "WHERE CUST_ID = #{cust_id} "
 		   + "AND PASSWD = #{passwd}")
-	int getLoginCustIdx(NewCustBean paramLoginCustBean); 
-	//메서드는 NewCustBean 타입의 매개변수 paramLoginCustBean을 받고, int 타입의 CUST_IDX를 반환
-	//즉, 이 메서드는 paramLoginCustBean 객체에 저장된 사용자 ID와 비밀번호를 이용하여 로그인한 사용자의 인덱스 값을 반환
+	int getLoginCustIdx(NewCustBean paramLoginCustBean); //tempLoginCustBean은 request영역
 	
 	/*개인정보 상세정보 조회*/
     @Select("SELECT CUST_IDX "
@@ -42,7 +40,7 @@ public interface CustMapper {
 		    + "   , TO_CHAR(UPD_DT, 'YYYY-MM-DD') AS UPD_DT "
 		    + "FROM CUST "
 		    + "WHERE CUST_IDX = #{cust_idx}")
-	NewCustBean getLoginCustDetailInfo(int paramCustIdx); 
+	NewCustBean getLoginCustDetailInfo(int paramCustIdx); //tempLoginCustBean은 request영역
     
     /*탈퇴하기*/
     @Delete("DELETE FROM CUST " +
@@ -57,6 +55,7 @@ public interface CustMapper {
 		  + "     , ADDR = #{addr}"
 		  + "     , GENDER = #{gender}"
 		  + "     , DOB = #{dob}"
+		  + "     , PASSWD = #{passwd}"		  
 		  + "     , UPD_ID = #{upd_id}"
 		  + "     , UPD_DT = SYSDATE"
 		  + " WHERE CUST_IDX = #{cust_idx}")
@@ -67,9 +66,16 @@ public interface CustMapper {
 		  + "  FROM CUST "
 		  + " WHERE EMAIL = #{email}"
 		  + " AND CUST_IDX <> #{cust_idx}")
-	int getEmailDupCheck(NewCustBean paramLoginCustBean);
+	int getEmailDupCheck(NewCustBean paramLoginCustBean); //tempLoginCustBean은 request영역
 
 	
 
+	 // 이메일 중복 체크
+	/*@Select("SELECT count(*) "
+			+ "	FROM cust "
+			+ "	WHERE email = #{email}")
+	String emaildoublecheck(String email);
+	
+	*/
 }
 

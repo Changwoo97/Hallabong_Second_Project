@@ -3,18 +3,12 @@ package kr.co.hallabong.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.hallabong.bean.NewCustBean;
@@ -35,11 +29,11 @@ public class CustController {
 	 * @author 
 	 * @since  
 	 */
-	@RequestMapping("/update_login/form") // top에서 가려는 집주소(경로에 대한 요청 처리)
+	@RequestMapping("/update_login/form") // top에서 옴(경로에 대한 요청 처리)
 	public String updateLoginForm(Model model) { //"updateLoginForm" 메서드는 "Model" 객체를 매개변수로 받아서
 
 		// 추후 아마도 session에 담긴 id 값을 가지고 내려가면 됨.
-		model.addAttribute("cust_id", "tester3333"); //"custId"라는 이름으로 "tester2222" 값을 모델에 추가
+		model.addAttribute("cust_id", "tester3333"); //"custId"라는 이름으로 "tester3333" 값을 모델에 추가
 
 		return "cust/UpdateLogin"; // 띄우는 화면 "cust/UpdateLogin" 뷰(View)를 반환 
 
@@ -69,10 +63,10 @@ public class CustController {
 	}
 	
 	/**
-	 * 개인정보 수정페이지
+	 * 개인정보 수정페이지 이동 및 개인상세정보 조회
 	 * 
 	 * @param model
-	 * @return
+	 * @ret
 	 * @author
 	 * @since
 	 */
@@ -120,7 +114,9 @@ public class CustController {
 	 */
 	@RequestMapping("/update") // 집주소
 	@ResponseBody
-	public Map<String, Object> updateCust(NewCustBean paramLoginCustBean, Model model) {		
+	public Map<String, Object> updateCust(NewCustBean paramLoginCustBean, Model model) {	
+		
+		paramLoginCustBean.setAddr(paramLoginCustBean.getAddr1()+" / "+paramLoginCustBean.getAddr_detail());
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {

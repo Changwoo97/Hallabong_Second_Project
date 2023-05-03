@@ -49,7 +49,7 @@
 			
 		} else if (!regExp.test(passwd)) {
 	    	//비밀번호 정규표현식(숫자와 영문대소문자 포함 형태의 4~20자리 이내의 암호 정규식-필수 아님)
-	        alert("비밀번호는 영문대소문자와 숫자를 포함하여 4자리에서 20자리 이내로 입력하세요."); 
+	        alert("비밀번호는 영문, 숫자를 허용하며 4자리에서 20자리 이내로 입력하세요."); 
 	        return false;
 	    }  
 		
@@ -78,7 +78,7 @@
                     if(data.cust_idx > 0){
                     	// update 페이지로 이동
                     	var cust_idx = data.cust_idx;
-                    	$("#updateForm #cust_idx").val(cust_idx);
+                    	$("#updateForm #cust_idx").val(cust_idx); // *id가 cust_idx인 요소 선택, 해당 요소의 값을 방금 할당한 cust_idx 변수로 설정
                     	$("#updateForm").submit();
                     } else {
                     	alert("비밀번호를 다시 확인해주시기 바랍니다.");
