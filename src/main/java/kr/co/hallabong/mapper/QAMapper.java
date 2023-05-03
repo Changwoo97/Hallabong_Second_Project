@@ -36,4 +36,7 @@ public interface QAMapper {
 	@Delete("DELETE FROM qa "
 			+ "WHERE no = #{no} ")
 	void deleteQA(String no);
+	
+	@Select("SELECT * FROM qa WHERE cust_id= #{cust_id} ")
+	List<QABean> getQAList(String cust_id);
 }

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Format {
+	private Format() {}
+	
 	public static Map<String, String> getMap(String str) {
 		Map<String, String> map = new HashMap<>();
 		

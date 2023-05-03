@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var='root' value="${pageContext.request.contextPath }/"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:set var='root' value="${pageContext.request.contextPath}/" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +11,18 @@
 </head>
 <body>
 <div id="header-wrap">
-   <div class="top1">
-      <span>회원가입</span>
-      <span><a href="${root }user/login">로그인</a></span>
-      <span>고객센터</span>
-   </div>
-   
+	<div class="top1">
+	<c:choose>
+		<c:when test="${loginCustBean.custLogin}">
+		<a href="${root}cust/join">회원가입</a>
+        <a href="${root}cust/login"><span>로그인</span></a>
+		</c:when>
+		<c:otherwise>
+		<span>${loginCustBean.id}님</span>
+		<a href="${root}mypage/mypage"><span>마이페이지</span></a>
+		</c:otherwise>
+	</c:choose>
+	</div>
    <div class="logo">
       <div class="logo-title">
       	<a href="${root }" >
@@ -48,10 +55,61 @@
          <span class="logo-icon-detail"><img src="${root}img/장바구니.png"/></span>   
          <span class="logo-icon-detail"><img src="${root}img/장바구니.png"/></span>
       </div>
-   </div>
-
-   
+   </div>  
 </div>
 
+	<%-- <div id="header-wrap">
+	
+	<c:if test = "${kakaonickname != null}">
+ 
+		${kakaonickname}님이 로그인 하셨습니다.<br><br>
+		 
+		<form action = "kakao_logout.do" method = "post">
+		<button type = "submit" name = "submit">로그아웃</button></form><br><br>
+		 
+		<form action = "authentication.do" method = "post">
+		<button type = "submit" name = "submit">회원 인증하기 (인증을 해야 각종 기능들 사용 가능)</button></form><br><br>
+		 
+		<form action = "kakao_member_profile.do" method = "post">
+		<button type = "submit" name = "submit">나의 프로필 확인</button></form><br><br>
+		 
+	</c:if>  
+		<c:choose>
+			<c:when test="${loginCustBean.custLogin == true}">
+			<div class="top1">
+				<!-- 로그인 시 -->
+				<span><a href="${root }user/modify" class="nav-link">정보수정</a></span>
+				<span><a href="${root }user/logout" class="nav-link">로그아웃</a></span>
+				<span>${tempLoginUserBean.name }</span>
+		</div>
+			</c:when>
+			<c:otherwise>
+				<div class="top1">
+					<span><a href="${root }user/join" class="nav-link">회원가입</a></span>
+					<span><a href="${root }user/login">로그인</a></span>
+					
+				</div>
+			</c:otherwise>
+		</c:choose>
+
+		<div class="logo">
+			<div class="logo-title">
+				<img src="${root}img/한라봉.png" />
+			</div>
+			<div class="search">
+				<input type="text"> <img
+					src="${root}img/free-icon-search-4443186.png">
+			</div>
+			<div class="logo-icon">
+				<span class="logo-icon-detail"><img src="${root}img/로그인.png" /></span>
+				<span class="logo-icon-detail"><img src="${root}img/장바구니.png" /></span>
+				<span class="logo-icon-detail"><img src="${root}img/장바구니.png" /></span>
+
+			</div>
+		</div>
+
+
+	</div>
+ --%>
 </body>
 </html>

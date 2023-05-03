@@ -1,5 +1,7 @@
 package kr.co.hallabong.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +23,9 @@ public class OrdService {
 	
 	public void setOrdStaComplete(String no) {
 		ordDAO.updateOrdSta(no, "COMPLETE");
+	}
+	
+	public List<OrdBean> getOrdList(String cust_id) {
+		return ordDAO.getOrdList(cust_id);
 	}
 }

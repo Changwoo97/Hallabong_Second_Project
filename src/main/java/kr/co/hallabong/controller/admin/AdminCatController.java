@@ -26,6 +26,8 @@ public class AdminCatController {
 	@Autowired
 	private CatService catService;
 	
+	private final int ROW_SIZE = 2;
+	
 	@GetMapping("/registration")
 	public String registration(@ModelAttribute CatBean catBean ,Model model) {
 		model.addAttribute("content", "/WEB-INF/views/admin/catDetail.jsp");
@@ -49,10 +51,6 @@ public class AdminCatController {
 			@ModelAttribute("no") String no, 
 			@ModelAttribute("name") String name, 
 			@RequestParam(name = "selectedPageNum", defaultValue = "1") int selectedPageNum) {
-		final int ROW_SIZE = 2;
-
-		no = (no == null) ? "" : no.trim();
-		name = (name == null) ? "" : name.trim();
 		selectedPageNum = (selectedPageNum > 0) ? selectedPageNum : 1;
 		
 		List<Map<String, String>> thead = new ArrayList<>();

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.co.hallabong.bean.PageBean;
 import kr.co.hallabong.bean.ProdBean;
 import kr.co.hallabong.bean.RevBean;
 import kr.co.hallabong.service.ProdService;
@@ -24,9 +23,8 @@ public class ProdController {
 	private ProdService prodService;
 	
 	@GetMapping("/search")
-	public String searchProductList(@RequestParam("name")String name,
-									Model model) {
-		
+
+	public String searchProductList(@RequestParam("name")String name, Model model) {
 		Map<String, String> categoryMap = new HashMap<>();
 		categoryMap.put("1", "채소");
 		categoryMap.put("2", "과일");
@@ -53,13 +51,11 @@ public class ProdController {
 		
 		List<RevBean> ReviewList = prodService.getReviewList(prod_No, page);
 		model.addAttribute("ReviewList", ReviewList);
-		
+    
 		PageBean pageBean = prodService.getReviewCnt(prod_No, page);
 		model.addAttribute("pageBean", pageBean);
 		
-		
 		return "prod/product";
 	}	
-	
 	
 }

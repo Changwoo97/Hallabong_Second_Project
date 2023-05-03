@@ -17,7 +17,9 @@
 	<header>
 		<c:import url="/WEB-INF/views/include/top.jsp"></c:import>
 	</header>
+<div>
 
+</div>
 	<nav class="navigator">
 		<ul>
 			<li class="navigator-link"><a href="#mainNotice">공지사항</a></li>
@@ -33,7 +35,7 @@
 				<img src="img/9174a938-1c00-4709-84f7-a41d8858b750.jpg">
 			</div>
 		</article>
-
+    
 		<article>
 			<div class="gab"></div>
 			<h4 class="card-title2">공지사항</h4>
@@ -51,27 +53,27 @@
 					<tbody>
 						<tr>
 							<td class="text-center">5</td>
-							<th><a href='#'>5월12일 지구종말</a></th>
+							<th><a href='#'></a></th>
 							<td class="text-center d-none d-xl-table-cell">2018-12-12</td>
 						</tr>
 						<tr>
 							<td class="text-center">5</td>
-							<th><a href='board_read.html'>하기싫어</a></th>
+							<th><a href='board_read.html'></a></th>
 							<td class="text-center d-none d-xl-table-cell">2018-12-12</td>
 						</tr>
 						<tr>
 							<td class="text-center">5</td>
-							<th><a href='board_read.html'>귀찮아</a></th>
+							<th><a href='board_read.html'></a></th>
 							<td class="text-center d-none d-xl-table-cell">2018-12-12</td>
 						</tr>
 						<tr>
 							<td class="text-center">5</td>
-							<th><a href='board_read.html'>졸려</a></th>
+							<th><a href='board_read.html'></a></th>
 							<td class="text-center d-none d-xl-table-cell">2018-12-12</td>
 						</tr>
 						<tr>
 							<td class="text-center">5</td>
-							<th><a href='board_read.html'>집에 가고 싶다</a></th>
+							<th><a href='board_read.html'></a></th>
 							<td class="text-center d-none d-xl-table-cell">2018-12-12</td>
 						</tr>
 					</tbody>
@@ -105,22 +107,18 @@
 				<ul class="catrgoryDetail">
 					<li><img src="img/meat1.png"></li>
 					<li><a href="${root }cat/main?cat_No=3">육류</a></li>
-					<li>소화 고기</li>
+					<li>고기</li>
 				</ul>
 				<ul>
 					<li><img src="img/fish.png"></li>
-					<li><a href="${root }cat/main?cat_No=4">헤산물</a></li>
+					<li><a href="${root }cat/main?cat_No=4">해산물</a></li>
 					<li>해산물</li>
 				</ul>
-			</div>
-
-
 		</article>
 
 		<article id="newProduct">
 			<div class="gab"></div>
 			<a name="mainNew"></a>
-
 			<div class="Info">
 				<h2>신상품</h2>
 			</div>
@@ -137,15 +135,11 @@
 
 				</c:forEach>
 			</div>
-
-
 		</article>
 	</section>
 
 	<footer>
-		<c:import url="/WEB-INF/views/include/bottom_info.jsp"></c:import>
-		<a href="${root}admin">관리자페이지</a>
-
+		<c:import url="/WEB-INF/views/include/bottom.jsp"></c:import>
 	</footer>
 </body>
 </html>

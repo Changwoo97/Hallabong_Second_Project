@@ -49,7 +49,7 @@
 					<th>소이미지</th>
 					<td>
 						<c:if test="${prodBean.s_img != null}">
-							<img src="${root}/upload/${prodBean.s_img}" /><br/>
+						<img src="${root}/upload/${prodBean.s_img}" /><br/>
 						</c:if>
 						<form:input type="file" path="s_img_file" accept="image/*" />
 					</td>
@@ -58,7 +58,7 @@
 					<th>상세이미지</th>
 					<td>
 						<c:if test="${prodBean.l_img != null}">
-							<img src="${root}/upload/${prodBean.l_img}" /><br/>
+						<img src="${root}/upload/${prodBean.l_img}" /><br/>
 						</c:if>
 						<form:input type="file" path="l_img_file" accept="image/*" />
 					</td>
@@ -73,8 +73,8 @@
 				</tr>
 				<tr>
 					<c:if test="${prodBean.reg_tm != null}">
-						<th>등록일</th>
-						<td>${prodBean.reg_tm}</td>
+					<th>등록일</th>
+					<td>${prodBean.reg_tm}</td>
 					</c:if>
 				</tr>
 				<tr>

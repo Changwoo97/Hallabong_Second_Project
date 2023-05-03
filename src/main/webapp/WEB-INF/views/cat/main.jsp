@@ -73,7 +73,7 @@
 		</table>
 	</section>
 	<footer>
-		<jsp:include page="/WEB-INF/views/include/bottom_info.jsp" />
+		<jsp:include page="/WEB-INF/views/include/bottom.jsp" />
 	</footer>
 </body>
 </html>

@@ -26,6 +26,8 @@ public class AdminNotiController {
 	@Autowired 
 	NotiService notiService;
 	
+	private final int ROW_SIZE = 2;
+	
 	@GetMapping("/registration") 
 	public String registration(@ModelAttribute NotiBean notiBean, Model model) {
 		model.addAttribute("content", "/WEB-INF/views/admin/notiDetail.jsp");
@@ -52,7 +54,7 @@ public class AdminNotiController {
 			@ModelAttribute("tit") String tit, 
 			@ModelAttribute("cont") String cont, 
 			@RequestParam(name = "selectedPageNum", defaultValue = "1") int selectedPageNum) {
-		final int ROW_SIZE = 2;
+		selectedPageNum = (selectedPageNum > 0) ? selectedPageNum : 1;
 		
 		List<Map<String, String>> thead = new ArrayList<>();
 		thead.add(Format.getMap("title=공지번호&type=keyword&name=no"));
@@ -63,13 +65,6 @@ public class AdminNotiController {
 		thead.add(Format.getMap("title=삭제하기"));
 
 		List<List<String>> tbody = new ArrayList<>();
-
-		no = (no == null) ? "" : no.trim();
-		tit = (tit == null) ? "" : tit.trim();
-		cont = (cont == null) ? "" : cont.trim();
-		reg_tmBeginDate = (reg_tmBeginDate == null) ? "" : reg_tmBeginDate;
-		reg_tmEndDate = (reg_tmEndDate == null) ? "" : reg_tmEndDate;
-		selectedPageNum = (selectedPageNum > 0) ? selectedPageNum : 1;
 		
 		List<NotiBean> notiList = notiService.getNotiList();
 		for (int i = notiList.size() - 1; i >= 0; i--) {

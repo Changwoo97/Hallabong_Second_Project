@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>카테고리 페이지</title>
-<link type="text/css" rel="stylesheet"
-	href="${root}css/categoryMain.css?after" />
+<link type="text/css" rel="stylesheet" href="${root}css/categoryMain.css?after" />
 </head>
 <body>
 
@@ -259,7 +258,6 @@
 	<footer>
 		<c:import url="/WEB-INF/views/include/bottom_info.jsp"></c:import>
 	</footer>
-
 
 </body>
 </html>

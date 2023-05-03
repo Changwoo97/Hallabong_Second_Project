@@ -27,19 +27,15 @@ public class AdminQaController {
 	@Autowired
 	private QAService qaService;
 	
+	private final int ROW_SIZE = 2;
+	
 	@GetMapping("/request")
 	public String request(HttpServletRequest request, Model model,
 			@ModelAttribute("no") String no,
 			@ModelAttribute("cust_id") String cust_id,
 			@ModelAttribute("q_reg_tmBeginDate") String q_reg_tmBeginDate,
 			@ModelAttribute("q_reg_tmEndDate") String q_reg_tmEndDate,
-			@RequestParam(name = "selectedPageNum", defaultValue = "1") int selectedPageNum) {
-		final int ROW_SIZE = 2;
-		
-		no = (no == null) ? "" : no.trim();
-		cust_id = (cust_id == null) ? "" : cust_id.trim();
-		q_reg_tmBeginDate = (q_reg_tmBeginDate == null) ? "" : q_reg_tmBeginDate;
-		q_reg_tmEndDate = (q_reg_tmEndDate == null) ? "" : q_reg_tmEndDate;
+			@RequestParam(name = "selectedPageNum", defaultValue = "1") int selectedPageNum) {		
 		selectedPageNum = (selectedPageNum > 0) ? selectedPageNum : 1;
 		
 		List<Map<String, String>> thead = new ArrayList<>();
@@ -140,14 +136,6 @@ public class AdminQaController {
 			@ModelAttribute("a_reg_tmBeginDate") String a_reg_tmBeginDate,
 			@ModelAttribute("a_reg_tmEndDate") String a_reg_tmEndDate,
 			@RequestParam(name = "selectedPageNum", defaultValue = "1") int selectedPageNum) {
-		final int ROW_SIZE = 2;
-		
-		no = (no == null) ? "" : no.trim();
-		cust_id = (cust_id == null) ? "" : cust_id.trim();
-		q_reg_tmBeginDate = (q_reg_tmBeginDate == null) ? "" : q_reg_tmBeginDate;
-		q_reg_tmEndDate = (q_reg_tmEndDate == null) ? "" : q_reg_tmEndDate;
-		a_reg_tmBeginDate = (a_reg_tmBeginDate == null) ? "" : a_reg_tmBeginDate;
-		a_reg_tmEndDate = (a_reg_tmEndDate == null) ? "" : a_reg_tmEndDate;
 		selectedPageNum = (selectedPageNum > 0) ? selectedPageNum : 1;
 		
 		List<Map<String, String>> thead = new ArrayList<>();

@@ -47,6 +47,63 @@ public class AdminDlvyController {
 	
 	private final int ROW_SIZE = 2;
 	
+	private String requestSql;
+	private RowMapper<Map<String, String>> requestRowMapper;
+	
+	public AdminDlvyController() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("WITH                                                           ");
+		sql.append("    odp AS (SELECT o.reg_tm    AS reg_tm                       ");
+		sql.append("                 , o.no        AS ord_no                       ");
+		sql.append("                 , d.prod_no   AS prod_no                      ");
+		sql.append("                 , p.name      AS prod_name                    ");
+		sql.append("                 , d.prod_qnty AS prod_qnty                    ");
+		sql.append("                 , o.ordr_name AS ordr_name                    ");
+		sql.append("                 , o.ordr_tel  AS ordr_tel                     ");
+		sql.append("                 , o.ordr_addr AS ordr_addr                    ");
+		sql.append("                 , o.recv_name AS recv_name                    ");
+		sql.append("                 , o.recv_tel  AS recv_tel                     ");
+		sql.append("                 , o.recv_addr AS recv_addr                    ");
+		sql.append("           FROM ord o INNER JOIN ord_dtl d ON o.no = d.ord_no  ");
+		sql.append("                      INNER JOIN prod p    ON d.prod_no = p.no ");
+		sql.append("           WHERE sta = 'REQUEST'                               ");
+		sql.append("           ORDER BY reg_tm DESC)                               ");
+		sql.append("SELECT TO_CHAR(reg_tm, 'YYYY-MM-DD') AS reg_tm                 ");
+		sql.append("     , ord_no                                                  ");
+		sql.append("     , prod_no                                                 ");
+		sql.append("     , prod_name                                               ");
+		sql.append("     , prod_qnty                                               ");
+		sql.append("     , ordr_name                                               ");
+		sql.append("     , ordr_tel                                                ");
+		sql.append("     , ordr_addr                                               ");
+		sql.append("     , recv_name                                               ");
+		sql.append("     , recv_tel                                                ");
+		sql.append("     , recv_addr                                               ");
+		sql.append("FROM odp                                                       ");
+		requestSql = sql.toString();
+		
+		requestRowMapper = new RowMapper<Map<String, String>>() {
+			@Override
+			public Map<String, String> mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Map<String, String> map = new HashMap<>();
+
+				map.put("reg_tm", rs.getString("reg_tm"));
+				map.put("ord_no", rs.getString("ord_no"));
+				map.put("prod_no", rs.getString("prod_no"));
+				map.put("prod_name", rs.getString("prod_name"));
+				map.put("prod_qnty", rs.getString("prod_qnty"));
+				map.put("ordr_name", rs.getString("ordr_name"));
+				map.put("ordr_tel", rs.getString("ordr_tel"));
+				map.put("ordr_addr", rs.getString("ordr_addr"));
+				map.put("recv_name", rs.getString("recv_name"));
+				map.put("recv_tel", rs.getString("recv_tel"));
+				map.put("recv_addr", rs.getString("recv_addr"));
+
+				return map;
+			}
+		};
+	}
+	
 	@GetMapping("/request")
 	public String dlvyRequest(HttpServletRequest request, Model model,
 			@ModelAttribute("reg_tmBeginDate") String reg_tmBeginDate,
@@ -79,58 +136,7 @@ public class AdminDlvyController {
 	
 		List<List<String>> tbody = new ArrayList<>();
 		
-		StringBuilder sql = new StringBuilder();
-		sql.append("WITH                                                           ");
-		sql.append("    odp AS (SELECT o.reg_tm    AS reg_tm                       ");
-		sql.append("                 , o.no        AS ord_no                       ");
-		sql.append("                 , d.prod_no   AS prod_no                      ");
-		sql.append("                 , p.name      AS prod_name                    ");
-		sql.append("                 , d.prod_qnty AS prod_qnty                    ");
-		sql.append("                 , o.ordr_name AS ordr_name                    ");
-		sql.append("                 , o.ordr_tel  AS ordr_tel                     ");
-		sql.append("                 , o.ordr_addr AS ordr_addr                    ");
-		sql.append("                 , o.recv_name AS recv_name                    ");
-		sql.append("                 , o.recv_tel  AS recv_tel                     ");
-		sql.append("                 , o.recv_addr AS recv_addr                    ");
-		sql.append("           FROM ord o INNER JOIN ord_dtl d ON o.no = d.ord_no  ");
-		sql.append("                      INNER JOIN prod p    ON d.prod_no = p.no ");
-		sql.append("           WHERE sta = 'REQUEST'                               ");
-		sql.append("           ORDER BY reg_tm DESC)                               ");
-		sql.append("SELECT TO_CHAR(reg_tm, 'YYYY-MM-DD') AS reg_tm                 ");
-		sql.append("     , ord_no                                                  ");
-		sql.append("     , prod_no                                                 ");
-		sql.append("     , prod_name                                               ");
-		sql.append("     , prod_qnty                                               ");
-		sql.append("     , ordr_name                                               ");
-		sql.append("     , ordr_tel                                                ");
-		sql.append("     , ordr_addr                                               ");
-		sql.append("     , recv_name                                               ");
-		sql.append("     , recv_tel                                                ");
-		sql.append("     , recv_addr                                               ");
-		sql.append("FROM odp                                                       ");
-		
-		List<Map<String, String>> selectResults = jdbcTemplate.query(sql.toString(), new RowMapper<Map<String, String>>() {
-
-			@Override
-			public Map<String, String> mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Map<String, String> map = new HashMap<>();
-
-				map.put("reg_tm", rs.getString("reg_tm"));
-				map.put("ord_no", rs.getString("ord_no"));
-				map.put("prod_no", rs.getString("prod_no"));
-				map.put("prod_name", rs.getString("prod_name"));
-				map.put("prod_qnty", rs.getString("prod_qnty"));
-				map.put("ordr_name", rs.getString("ordr_name"));
-				map.put("ordr_tel", rs.getString("ordr_tel"));
-				map.put("ordr_addr", rs.getString("ordr_addr"));
-				map.put("recv_name", rs.getString("recv_name"));
-				map.put("recv_tel", rs.getString("recv_tel"));
-				map.put("recv_addr", rs.getString("recv_addr"));
-
-				return map;
-			}  
-			
-		});
+		List<Map<String, String>> selectResults = jdbcTemplate.query(requestSql, requestRowMapper);
 		
 		for (int i = selectResults.size() - 1; i >= 0; i--) {
 			Map<String, String> selectResult = selectResults.get(i);

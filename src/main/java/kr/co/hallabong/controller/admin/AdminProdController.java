@@ -39,6 +39,7 @@ public class AdminProdController {
 	@Autowired
 	private CatService catService;
 	
+	private final int ROW_SIZE = 2;
 	
 	@GetMapping("/registration")
 	public String registration(@ModelAttribute ProdBean prodBean , Model model) {		
@@ -86,13 +87,7 @@ public class AdminProdController {
 			@ModelAttribute("reg_tmBeginDate") String reg_tmBeginDate, 
 			@ModelAttribute("reg_tmEndDate") String reg_tmEndDate, 
 			@RequestParam(name = "selectedPageNum", defaultValue = "1") int selectedPageNum) {
-		final int ROW_SIZE = 2;
-		
-		no = (no == null) ? "" : no.trim();
-		fs = (fs == null || fs.equals("T")) ? "" : fs;
-		name = (name == null) ? "" : name.trim();
-		reg_tmBeginDate = (reg_tmBeginDate == null) ? "" : reg_tmBeginDate;
-		reg_tmEndDate = (reg_tmEndDate == null) ? "" : reg_tmEndDate;
+		fs = fs.equals("T") ? "" : fs;
 		selectedPageNum = (selectedPageNum > 0) ? selectedPageNum : 1;
 		
 		List<Map<String, String>> thead = new ArrayList<>();

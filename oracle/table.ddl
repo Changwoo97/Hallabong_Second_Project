@@ -128,7 +128,7 @@ ALTER TABLE noti ADD CONSTRAINT noti_pk PRIMARY KEY ( no );
 
 ALTER TABLE cart
     ADD CONSTRAINT cart_cust_fk FOREIGN KEY ( cust_id )
-        REFERENCES cust ( id );
+        REFERENCES cust ( id ) ON DELETE CASCADE;
 
 ALTER TABLE cart
     ADD CONSTRAINT cart_prod_fk FOREIGN KEY ( prod_no )
@@ -140,7 +140,7 @@ ALTER TABLE dlvy
 
 ALTER TABLE ord
     ADD CONSTRAINT ord_cust_fk FOREIGN KEY ( cust_id )
-        REFERENCES cust ( id );
+        REFERENCES cust ( id ) ON DELETE SET NULL;
 
 ALTER TABLE ord_dtl
     ADD CONSTRAINT ord_dtl_ord_fk FOREIGN KEY ( ord_no )
@@ -156,11 +156,11 @@ ALTER TABLE prod
 
 ALTER TABLE qa
     ADD CONSTRAINT qa_cust_fk FOREIGN KEY ( cust_id )
-        REFERENCES cust ( id );
+        REFERENCES cust ( id ) ON DELETE CASCADE;
 
 ALTER TABLE rev
     ADD CONSTRAINT rev_cust_fk FOREIGN KEY ( cust_id )
-        REFERENCES cust ( id );
+        REFERENCES cust ( id ) ON DELETE CASCADE;
 
 ALTER TABLE rev
     ADD CONSTRAINT rev_prod_fk FOREIGN KEY ( prod_no )
