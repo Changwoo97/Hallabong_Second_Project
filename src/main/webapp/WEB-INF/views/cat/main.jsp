@@ -8,63 +8,6 @@
 <title>상품 리스트</title>
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <link type="text/css" rel="stylesheet" href="${root}css/search.css" />
-<!-- <style type="text/css">
-.productList {
-	margin: 0px 200px 0px;
-}
-
-.productList h2 {
-	font-size: 24px;
-	font-weight: bold;
-	margin: 20px 0;
-}
-
-.products {
-	width: 100%;
-	border-collapse: collapse;
-	margin-top: 20px;
-}
-
-.products th, .products td {
-	padding: 8px;
-	text-align: center;
-}
-
-.products th {
-	background-color: #f9d9a1;
-	font-weight: bold;
-}
-
-.products td {
-	border: 1px solid #ddd;
-}
-
-.product-no {
-	width: 100px;
-}
-
-.product-img {
-	width: 150px;
-}
-
-.product-name {
-	width: 250px;
-}
-
-.product-price {
-	width: 100px;
-}
-
-.product-date {
-	width: 200px;
-}
-
-.product-img img {
-	width: 100%;
-	height: auto;
-	display: block;
-}
-</style> -->
 </head>
 <body>
 
@@ -73,11 +16,38 @@
 	</header>
 	<section class="productList">
 		<h1>상품 리스트</h1>
+		
+		<table class="category-filter">
+				<thead>
+					<tr>
+						<td colspan="5">카테고리</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<button class="filter-button" type="button" onclick="location.href='${root }cat/main?cat_No=1'">
+								채소
+							</button>
+						</td>
+						<td>
+							<button class="filter-button" type="button" onclick="location.href='${root }cat/main?cat_No=2'">
+								과일
+							</button>
+						</td>
+						<td>
+							<button class="filter-button" type="button" onclick="location.href='${root }cat/main?cat_No=3'">
+								육류
+							</button></td>
+						<td>
+							<button class="filter-button" type="button" onclick="location.href='${root }cat/main?cat_No=4'">
+								헤산물
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 
-		<c:import url="/WEB-INF/views/include/filter.jsp" />
-		
-		
-		
 		<table class="products">
 			<thead>
 				<tr>
@@ -91,11 +61,11 @@
 			<tbody>
 				<c:forEach var="product" items="${catMainPage}">
 					<tr>
-						<td>${product.category}</td>
+						<td>${categoryMap[product.cat_no]}</td>
 						<td class="product-img"><img src="${root}${product.s_img}"
 							alt="${product.name} 이미지"></td>
 						<td><a href="${root}prod/product?prod_No=${product.no}">${product.name}</a></td>
-						<td>${product.sp}원</td>
+						<td>${product.cost}원</td>
 						<td>${product.reg_tm}</td>
 					</tr>
 				</c:forEach>

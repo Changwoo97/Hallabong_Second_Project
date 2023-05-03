@@ -26,7 +26,7 @@ public interface CatMapper {
 	@Delete("DELETE FROM cat WHERE no = #{no} ")
 	void deleteCat(String no);
 	
-	@Select("select cat_no, prod.no, cat.name, prod.name, prod.cost, prod.fs as, prod.reg_tm, prod.s_img "
+	@Select("select cat_no, prod.no, prod.name, prod.cost, prod.fs as, prod.reg_tm, prod.s_img "
 			+ "from cat, prod "
 			+ "where cat.no=prod.cat_no and cat_no=#{cat_No} ")
 	List<ProdBean> getcatMainPage(String cat_No);
