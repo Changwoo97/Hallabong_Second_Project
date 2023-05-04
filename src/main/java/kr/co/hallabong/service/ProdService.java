@@ -13,7 +13,6 @@ import kr.co.hallabong.bean.ProdBean;
 import kr.co.hallabong.bean.RevBean;
 import kr.co.hallabong.dao.ProdDAO;
 
-
 @Service
 @PropertySource("/WEB-INF/properties/option.properties")
 public class ProdService {
@@ -29,7 +28,6 @@ public class ProdService {
 	public List<ProdBean> getProdList() {
 		return prodDAO.selectProdList();
 	}
-	
 	
 	public ProdBean getProd(String prod_No) {
 		return prodDAO.selectProd(prod_No);

@@ -13,6 +13,10 @@ public class DlvyService {
 	@Autowired
 	private DlvyDAO dlvyDAO;
 	
+	public DlvyBean getDlvy(String no) {
+		return dlvyDAO.selectDlvy(no);
+	}
+	
 	public List<DlvyBean> getDlvyListReady() {
 		return dlvyDAO.selectDlvyList("READY");
 	}

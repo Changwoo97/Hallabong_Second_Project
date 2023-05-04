@@ -1,6 +1,5 @@
 package kr.co.hallabong.controller.admin;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -10,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -17,8 +18,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.hallabong.service.OrdService;
 import kr.co.hallabong.util.Format;
 import kr.co.hallabong.util.Pair;
 
@@ -27,6 +30,9 @@ import kr.co.hallabong.util.Pair;
 public class AdminStlmController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private OrdService ordService;
 	
 	private String requestSql;
 	private String completeSql;
@@ -63,8 +69,8 @@ public class AdminStlmController {
 		
 		String sql = sb.toString();
 
-		requestSql = sql.replace("?", "'COMPLETE'");
-		completeSql = sql.replace("?", "'STLM_COMPLETE'");
+		requestSql = sql.replace("?", "'SEMI-COMPLETE'");
+		completeSql = sql.replace("?", "'COMPLETE'");
 		
 		this.rowMapper = new RowMapper<Map<String, String>>() {
 			@Override
@@ -85,7 +91,7 @@ public class AdminStlmController {
 	}
 	
 	@GetMapping("/request")
-	public String request(Model model,
+	public String request(HttpServletRequest request, Model model,
 			@ModelAttribute("ord_no") String ord_no, 
 			@ModelAttribute("reg_tmBeginDate") String reg_tmBeginDate, 
 			@ModelAttribute("reg_tmEndDate") String reg_tmEndDate, 
@@ -112,6 +118,7 @@ public class AdminStlmController {
 		thead.add(Format.getMap("title=원가"));
 		thead.add(Format.getMap("title=판매금액"));
 		thead.add(Format.getMap("title=순수익"));
+		thead.add(Format.getMap("title=정산하기"));
 	
 		List<List<String>> tbody = new ArrayList<>();
 		List<String> tfoot = new ArrayList<>();
@@ -144,13 +151,19 @@ public class AdminStlmController {
 				row.add(selectResult.get("sp"));
 				row.add(selectResult.get("net_income"));
 				
+				StringBuilder sb = new StringBuilder();
+				sb.append("<form action=\"" + request.getContextPath() + "/admin/stlm/request_proc\" method=\"post\"/>");
+				sb.append("\t<input type=\"hidden\" name=\"ord_no\" value=\"" + selectResult.get(ord_no) + "\" />");
+				sb.append("\t<input type=\"submit\" value=\"정산하기\" />");
+				sb.append("</form>");
+				row.add(sb.toString());
+				
+				tbody.add(row);
 				try { feeSum += Integer.parseInt(selectResult.get("fee")); } catch(Exception e) {}
 				try { deducted_feeSum += Integer.parseInt(selectResult.get("deducted_fee")); } catch(Exception e) {}
 				try { costSum += Integer.parseInt(selectResult.get("cost")); } catch(Exception e) {}
 				try { spSum += Integer.parseInt(selectResult.get("sp")); } catch(Exception e) {}
 				try { net_incomeSum += Integer.parseInt(selectResult.get("net_income")); } catch(Exception e) {}
-				
-				tbody.add(row);
 			}
 			
 			tfoot.add("");
@@ -161,9 +174,11 @@ public class AdminStlmController {
 			tfoot.add(costSum.toString());
 			tfoot.add(spSum.toString());
 			tfoot.add(net_incomeSum.toString());
+			tfoot.add("");
 		} else {
 			List<String> row = new ArrayList<>();
 			row.add("결과없음");
+			row.add("");
 			row.add("");
 			row.add("");
 			row.add("");
@@ -181,6 +196,7 @@ public class AdminStlmController {
 			tfoot.add("원가");
 			tfoot.add("판매금액");
 			tfoot.add("순수익");
+			tfoot.add("");
 		}
 		
 		List<Pair<String, String>> searchKeyAndValues = new ArrayList<>();
@@ -198,6 +214,15 @@ public class AdminStlmController {
 		model.addAttribute("tbody", tbody);
 		model.addAttribute("tfoot", tfoot);
 		return "admin/admin";
+	}
+	
+	@PostMapping("/request_proc")
+	public String request_proc(Model model, String ord_no) {
+		ordService.setOrdStaComplete(ord_no);
+		
+		model.addAttribute("message", "주문정산이 완료되었습니다.");
+		model.addAttribute("path", "/admin/stlm/request");
+		return "admin/alert";
 	}
 	
 	@GetMapping("/complete")
@@ -232,10 +257,11 @@ public class AdminStlmController {
 		List<List<String>> tbody = new ArrayList<>();
 		List<String> tfoot = new ArrayList<>();
 
-		List<Map<String, String>> selectResults = jdbcTemplate.query(requestSql, rowMapper);
+		List<Map<String, String>> selectResults = jdbcTemplate.query(completeSql, rowMapper);
 		
 		for (int i = selectResults.size() - 1; i >= 0; i--) {
 			Map<String, String> selectResult = selectResults.get(i);
+			
 			if ((ord_no.isBlank() || selectResult.get("ord_no").contains(ord_no))
 					&& (reg_tmBeginDate.isBlank() || selectResult.get("reg_tm").compareTo(reg_tmBeginDate) >= 0)
 					&& (reg_tmEndDate.isBlank() || selectResult.get("reg_tm").compareTo(reg_tmEndDate) <= 0)

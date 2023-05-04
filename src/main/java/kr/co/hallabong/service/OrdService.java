@@ -21,6 +21,10 @@ public class OrdService {
 		ordDAO.updateOrdSta(no, "PROCESS");
 	}
 	
+	public void setOrdStaSemiComplete(String no) {
+		ordDAO.updateOrdSta(no, "SEMI-COMPLETE");
+	}
+	
 	public void setOrdStaComplete(String no) {
 		ordDAO.updateOrdSta(no, "COMPLETE");
 	}

@@ -21,5 +21,5 @@ public class OrdBean {
 	private String cont; // 기타내용(교환사유, 환불사유)
 	private String reg_tm; // 주문일(YYYY-MM-DD) default 이용
 	private String stlm_tm;	 // 정산일(YYYY-MM-DD) default 이용
-	private String sta; // 주문상태(요청:  -> 배송: DLVY -> 완료: COMPLETE)
+	private String sta; // 주문상태(요청:REQUEST  -> 배송: PROCESS -> 정산전: SEMI-COMPLETE -> 정산후: COMPLETE)
 }

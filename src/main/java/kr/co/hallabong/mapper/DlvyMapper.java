@@ -10,6 +10,11 @@ import org.apache.ibatis.annotations.Update;
 import kr.co.hallabong.bean.DlvyBean;
 
 public interface DlvyMapper {
+	@Select("SELECT no, send_name, send_tel, send_addr, recv_name, recv_tel, recv_addr, fee, reg_tm, dep_tm, arr_tm, sta, ord_no " + 
+			"FROM dlvy " +
+			"WHERE no = #{no} ")
+	DlvyBean selectDlvy(String no);
+	
 	@Select("SELECT no, send_name, send_tel, send_addr, recv_name, recv_tel, recv_addr, fee, reg_tm, dep_tm, arr_tm, sta, ord_no "
 			+ "FROM dlvy "
 			+ "WHERE sta = #{sta} ")

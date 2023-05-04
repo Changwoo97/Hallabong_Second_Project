@@ -2,41 +2,37 @@
 
 html, body {
 	margin: 0px;
-	height: 100%;
 }
 
-#frame {
-	width: 100%;
-	height: 100%;
-	border-collapse: collapse;
-	font-weight: bold;
-}
-
-#header th {
-	border-bottom: 2px solid black;
+#header {
 	position: sticky;
 	left: 0px;
 	top: 0px;
+	border-bottom: 2px solid black;
+	width: 100%;
 	height: 40px;
-}
-
-#frame thead {
-	position: sticky;
-	left: 0px;
-	top: 40px;
+	border-collapse: collapse;
+	font-weight: bold;
+	white-space: nowrap;
 }
 
 .headerCell {
 	width: 100px;
 }
 
-.contentCell {
-	overflow: auto;
-	vertical-align: top;
+#content {
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: collapse;
 }
 
-.contentCell table {
-	border-collapse: collapse;
+#content th, #content td {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#content th {
+	border: 1px solid black;
 }
 
 .contentCell table th {
@@ -45,9 +41,4 @@ html, body {
 
 .contentCell table td {
 	border: 1px solid gray;
-}
-
-.contentCell th, .contentCell td {
-	padding-left: 5px;
-	padding-right: 5px;
 }

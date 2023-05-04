@@ -250,8 +250,9 @@ public class AdminDlvyController {
 	
 	@PostMapping("/request_proc")
 	public String dlvyRequest_proc(Model model, String no) {
-		OrdBean ordBean = ordService.getOrd(no);
 		ordService.setOrdStaProcess(no);
+		
+		OrdBean ordBean = ordService.getOrd(no);
 		
 		DlvyBean dlvyBean = new DlvyBean();
 		dlvyBean.setSend_name(ordBean.getOrdr_name());

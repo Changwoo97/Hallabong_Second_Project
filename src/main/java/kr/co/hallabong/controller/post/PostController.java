@@ -14,13 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.hallabong.bean.DlvyBean;
+import kr.co.hallabong.bean.OrdBean;
 import kr.co.hallabong.service.DlvyService;
+import kr.co.hallabong.service.OrdService;
 
 @Controller
 @RequestMapping("/post")
 public class PostController {
 	@Autowired
 	private DlvyService dlvyService;
+	
+	@Autowired
+	private OrdService ordService;
 	
 	@GetMapping("") 
 	public String post() {
@@ -127,6 +132,9 @@ public class PostController {
 	@PostMapping("/process_proc")
 	public String postProcess_proc(@RequestParam(name = "no") String no, Model model) {
 		dlvyService.setDlvyComplete(no);
+		
+		DlvyBean tempDlvy = dlvyService.getDlvy(no);
+		ordService.setOrdStaSemiComplete(tempDlvy.getOrd_no());
 		
 		model.addAttribute("message", "택배배송이 완료되었습니다.");
 		model.addAttribute("path", "/admin/post/process");
