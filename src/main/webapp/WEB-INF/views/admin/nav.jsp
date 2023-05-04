@@ -139,7 +139,13 @@
 		<tr>
 			<td class="indent">
 				<img src="${root}/img/admin/arrow.png" class="bullet"/>
-				<span data-href="${root}/admin/stlm/check">정산조회</span>
+				<span data-href="${root}/admin/stlm/request">정산요청</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="indent">
+				<img src="${root}/img/admin/arrow.png" class="bullet"/>
+				<span data-href="${root}/admin/stlm/complete">정산완료</span>
 			</td>
 		</tr>
 		<tr><td class="navMargin"></td></tr>

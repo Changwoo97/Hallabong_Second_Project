@@ -25,7 +25,7 @@ public interface NotiMapper {
 	
 	@Update("UPDATE noti "
 			+ "SET tit = #{tit}, cont = #{cont} "
-			+ "WHERE no = ${no} ")
+			+ "WHERE no = #{no} ")
 	public void updateNoti(NotiBean bean);
 	
 	@Delete("DELETE FROM noti "

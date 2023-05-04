@@ -3,6 +3,7 @@ package kr.co.hallabong.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -21,7 +22,7 @@ public interface DlvyMapper {
 	@Update("UPDATE dlvy "
 			+ "SET sta = #{sta} "
 			+ "WHERE no = #{no} ")
-	void updateDlvySta(String no, String sta);
+	void updateDlvySta(@Param("no") String no, @Param("sta") String sta);
 	
 	@Update("UPDATE dlvy "
 			+ "SET dep_tm = DEFAULT "
