@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.hallabong.bean.CustBean;
-import kr.co.hallabong.bean.NewCustBean;
 import kr.co.hallabong.service.CustService;
 import kr.co.hallabong.validator.CustValidator;
 
@@ -60,12 +59,12 @@ public class CustController {
 	 */
 	@RequestMapping("/login/check") // 집주소(경로에 대한요청 처리)
 	@ResponseBody // @Responsebody 어노테이션을 사용하면 http요청 body를 자바 객체로 전달받을 수 있다.
-	public Map<String, Object> loginCheck(NewCustBean paramLoginCustBean, Model model) { // Model 객체를 사용하여 View로 데이터를 전달
+	public Map<String, Object> loginCheck(CustBean paramLoginCustBean, Model model) { // Model 객체를 사용하여 View로 데이터를 전달
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
-			int custIdx = custService.getLoginCustIdx(paramLoginCustBean); // 회원여부
-			resultMap.put("cust_idx", custIdx);
+			String custId = custService.getLoginCustIdx(paramLoginCustBean); // 회원여부
+			resultMap.put("cust_id", custId);
 		} catch (Exception e) {
 			resultMap.put("message", e.getMessage());
 		}
@@ -82,13 +81,13 @@ public class CustController {
 	 * @since
 	 */
 	@RequestMapping("/update/form")
-	public String updateCustForm(NewCustBean paramLoginCustBean, Model model) {
+	public String updateCustForm(CustBean paramLoginCustBean, Model model) {
 
 		// 추후 아마도 session에 담긴 id 값을 가지고 내려가면 됨.
-		NewCustBean custInfo = custService.getLoginCustDetailInfo(paramLoginCustBean.getCust_idx());
+		CustBean custInfo = custService.getLoginCustDetailInfo(paramLoginCustBean.getId());
 		model.addAttribute("custInfo", custInfo);
 
-		return "cust/Update"; // 띄우는 화면
+		return "cust/update"; // 띄우는 화면
 	}
 
 	/**
@@ -101,7 +100,7 @@ public class CustController {
 	 */
 	@RequestMapping("/email/check") // 집주소
 	@ResponseBody
-	public Map<String, Object> emailCheck(NewCustBean paramLoginCustBean, Model model) {
+	public Map<String, Object> emailCheck(CustBean paramLoginCustBean, Model model) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
 			int emailCount = custService.getEmailDupCheck(paramLoginCustBean);
@@ -122,7 +121,7 @@ public class CustController {
 	 */
 	@RequestMapping("/update") // 집주소
 	@ResponseBody
-	public Map<String, Object> updateCust(NewCustBean paramLoginCustBean, Model model) {
+	public Map<String, Object> updateCust(CustBean paramLoginCustBean, Model model) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
 			int result = custService.updateCustInfo(paramLoginCustBean);
@@ -150,11 +149,11 @@ public class CustController {
 	 */
 	@RequestMapping("/quit") // 집주소
 	@ResponseBody
-	public Map<String, Object> quitCust(NewCustBean paramLoginCustBean, Model model) {
+	public Map<String, Object> quitCust(CustBean paramLoginCustBean, Model model) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
-			int delCount = custService.deleteCust(paramLoginCustBean.getCust_idx());
+			int delCount = custService.deleteCust(paramLoginCustBean.getId());
 			resultMap.put("delCount", delCount);
 		} catch (Exception e) {
 			resultMap.put("message", e.getMessage());
@@ -164,7 +163,7 @@ public class CustController {
 	}
 
 	@GetMapping("/resign/check")
-	public String resigncheck(@ModelAttribute("paramLoginCustBean") NewCustBean paramLoginCustBean) {
+	public String resigncheck(@ModelAttribute("paramLoginCustBean") CustBean paramLoginCustBean) {
 		return "cust/Resign"; // 띄우는 화면
 	}
 	
@@ -177,16 +176,14 @@ public class CustController {
 	}
 
 	@PostMapping("/login_pro")
-	public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") CustBean tempLoginUserBean, BindingResult result,Model model) {
-		
+	public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") CustBean tempLoginUserBean, BindingResult result, Model model) {
 		if(result.hasErrors()) {
 			return "cust/login";
 		}
 		
-		model.addAttribute(loginCustBean);
+		custService.getLoginCustInfo(tempLoginUserBean);
 		// 비밀번호 암호하시켜서 대조하여 로그인
 //		tempLoginUserBean.setPw(SHA256.encodeSha256(tempLoginUserBean.getPw()));
-		custService.getLoginCustInfo(tempLoginUserBean);
 		
 		if(loginCustBean.isCustLogin() == true) {
 			return "cust/login_success";

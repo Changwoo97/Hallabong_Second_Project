@@ -2,13 +2,18 @@ package kr.co.hallabong.controller;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import kr.co.hallabong.bean.CartBean;
+import kr.co.hallabong.bean.CustBean;
 import kr.co.hallabong.bean.OrdBean;
 import kr.co.hallabong.bean.QABean;
 import kr.co.hallabong.service.CartService;
@@ -22,14 +27,33 @@ public class MypageController {
     @Autowired
     private CartService cartService;
     
+    @Resource(name = "loginCustBean")
+    private CustBean loginCustBean;
+    
     @GetMapping("/cart")
-    public String cart(@RequestParam("cust_id") String cust_id, Model model) {
-    	model.addAttribute("cust_id",cust_id);
-    	
-    	List<CartBean> cartList=cartService.getCartList(cust_id);
+    public String cart(Model model) {
+    	List<CartBean> cartList=cartService.getCartList(loginCustBean.getId());
     	model.addAttribute("cartList",cartList);
     	return "mypage/cart";
     }
+    
+    @GetMapping("/delete")
+    public String delete(@RequestParam("prod_no") String prod_no, Model model) {
+       
+       model.addAttribute("prod_no", prod_no);
+       
+       cartService.deleteCart(loginCustBean.getId(), prod_no);
+       
+       return "mypage/delete";
+    }
+    
+    @PostMapping("/Orders_complete")
+    public String completeOrder(@ModelAttribute("no") String no) {
+       ordService.setOrdStaComplete(no);
+       
+      return "redirect:/mypage/Orders";
+    }
+    
        
     @GetMapping("/mypage")
     public String mypage() {
@@ -40,11 +64,10 @@ public class MypageController {
 	private OrdService ordService;
 		
     @GetMapping("/Orders")
-    public String Orders(@RequestParam("cust_id")String cust_id,Model model) {
-    	model.addAttribute("cust_id",cust_id);
-	
-    	List<OrdBean> OrdList=ordService.getOrdList(cust_id);
-    	model.addAttribute("OrdList",OrdList);
+    public String Orders(Model model) {
+    	List<OrdBean> OrdList=ordService.getOrdList(loginCustBean.getId());
+    	
+    	model.addAttribute("OrdList", OrdList);
 
     	return "mypage/Orders";
     }
@@ -53,11 +76,10 @@ public class MypageController {
 	private QAService qaService;
 		
     @GetMapping("/QAList")
-    public String QAList(@RequestParam("cust_id")String cust_id, Model model) {
-    	model.addAttribute("cust_id",cust_id);
+    public String QAList(Model model) {
+    	List<QABean> qaList=qaService.getQAList(loginCustBean.getId());
     	
-    	List<QABean> qaList=qaService.getQAList(cust_id);
-    	model.addAttribute("qaList",qaList);
+    	model.addAttribute("qaList", qaList);
     	
     	return "mypage/QAList";
     }

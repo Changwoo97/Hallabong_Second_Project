@@ -18,6 +18,9 @@ public class CartService {
 		return cartDAO.getCartList(cust_id);
 	}
     
+    public void deleteCart(String cust_id, String prod_no) {
+        cartDAO.deleteCart(cust_id, prod_no);
+    }
 }
 
 

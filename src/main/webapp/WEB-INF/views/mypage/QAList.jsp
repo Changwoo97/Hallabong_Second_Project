@@ -24,7 +24,7 @@
 	    <div class="mypage-nav">
 	        <ul>
 	            <li><a href="${root }mypage/Orders?cust_id=아이디">주문내역</a></li>
-	            <li><a href="${root }mypage/cart?cust_id=아이디">장바구니</a></li>
+	            <li><a href="${root }mypage/cart?prod_no=${prod_no}">장바구니</a></li>
 	            <li><a href="${root }mypage/QAList?cust_id=아이디">문의내역</a></li>
 	        </ul>
 	    </div>
@@ -88,8 +88,8 @@
 			</div>
 		</div>
 	
-	
-<!-- 하단타이틀 -->
-<c:import url="/WEB-INF/views/include/bottom.jsp" />
-</body>
+		
+		<!-- 하단타이틀 -->
+		<c:import url="/WEB-INF/views/include/bottom.jsp" />
+	</body>
 </html>

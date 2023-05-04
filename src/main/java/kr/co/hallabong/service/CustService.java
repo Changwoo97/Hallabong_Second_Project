@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.hallabong.bean.CustBean;
-import kr.co.hallabong.bean.NewCustBean;
 import kr.co.hallabong.dao.CustDAO;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import net.nurigo.java_sdk.api.Message;
@@ -25,21 +24,39 @@ public class CustService {
 	private CustBean custBean;
 	
 	// 로그인정보확인
-	public int getLoginCustIdx(NewCustBean paramLoginCustBean) {
+	public String getLoginCustIdx(CustBean paramLoginCustBean) {
 		return custDAO.getLoginCustIdx(paramLoginCustBean);
 	}
 	
 	// 회원상세정보 조회
-	public NewCustBean getLoginCustDetailInfo(int paramCustIdx) {
-		return custDAO.getLoginCustDetailInfo(paramCustIdx);
+	public CustBean getLoginCustDetailInfo(String no) {
+		return custDAO.getLoginCustDetailInfo(no);
 	}
 	
 	// 회원정보수정
-	public int updateCustInfo(NewCustBean paramLoginCustBean) {
-		paramLoginCustBean.setUpd_id(paramLoginCustBean.getCust_id());
-		if(!"".equals(paramLoginCustBean.getNew_pwd())) {
-			paramLoginCustBean.setPasswd(paramLoginCustBean.getNew_pwd());
+	public int updateCustInfo(CustBean paramLoginCustBean) {
+		// paramLoginCustBean.setUpd_id(paramLoginCustBean.getCust_id());
+		if(!paramLoginCustBean.getNew_pwd().isBlank()) {
+			paramLoginCustBean.setPw(paramLoginCustBean.getNew_pwd());
 		}
+		
+		CustBean temp = custDAO.getLoginCustDetailInfo(paramLoginCustBean.getId());
+		paramLoginCustBean.setName(paramLoginCustBean.getName() == null ? temp.getName() : paramLoginCustBean.getName());
+		paramLoginCustBean.setEmail(paramLoginCustBean.getEmail() == null ? temp.getEmail() : paramLoginCustBean.getEmail());
+		paramLoginCustBean.setTel(paramLoginCustBean.getTel() == null ? temp.getTel() : paramLoginCustBean.getTel());
+		paramLoginCustBean.setGender(paramLoginCustBean.getGender() == null ? temp.getGender() : paramLoginCustBean.getGender());
+		paramLoginCustBean.setDob(paramLoginCustBean.getDob() == null ? temp.getDob() : paramLoginCustBean.getDob());
+		paramLoginCustBean.setPw(paramLoginCustBean.getPw() == null ? temp.getPw() : paramLoginCustBean.getPw());
+		
+		String addr1 = paramLoginCustBean.getAddr1();
+		String addr_detail = paramLoginCustBean.getAddr_detail();
+
+		if (addr1 != null && addr_detail != null) {
+			paramLoginCustBean.setAddr(addr1 + " " + addr_detail);
+		} else {
+			paramLoginCustBean.setAddr(temp.getAddr());
+		}
+		
 		return custDAO.updateCustInfo(paramLoginCustBean);
 	}
 
@@ -85,13 +102,13 @@ public class CustService {
 	}
 	
 	// 이메일중복확인
-	public int getEmailDupCheck(NewCustBean paramLoginCustBean) {
+	public int getEmailDupCheck(CustBean paramLoginCustBean) {
 		return custDAO.getEmailDupCheck(paramLoginCustBean);
 	}
 	
 	// 탈퇴하기
-	public int deleteCust(int paramCustIdx) {
-		return custDAO.deleteCust(paramCustIdx);
+	public int deleteCust(String no) {
+		return custDAO.deleteCust(no);
 	}
 	
 	public void findId(CustBean findid) {
@@ -123,7 +140,7 @@ public class CustService {
         params.put("to", tel);    
         params.put("from", "010-4129-9680");   
         params.put("type", "SMS");
-        params.put("text", "  작성할내용 ["+numStr+"] 내용 ");
+        params.put("text", "인증번호는 " + numStr + "입니다.정확히 입력해주세요.");
         params.put("app_version", "test app 1.2"); // application name and version
 
         try {

@@ -29,7 +29,7 @@ public class CustValidator implements Validator {
 			if (custBean.isCustIdExist() == false) {
 				errors.rejectValue("id", "DonCheckUserIDExist");
 			}
-			if (custBean.isCusttelExist() == false) {
+			if (custBean.isCustTelExist() == false) {
 				errors.rejectValue("tel", "DonCheckUserTelExist");
 			}
 		}

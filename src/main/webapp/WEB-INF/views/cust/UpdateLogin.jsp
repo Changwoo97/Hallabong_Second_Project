@@ -21,15 +21,15 @@
 	<hr class="hr1"/>
 	
  	<div class="login-form"> 	  
-     <form id="chkForm" action="${root }cust/login/check" method="post">
-	     <label>  아이디 <input type="text" name="cust_id" id="cust_id" class="text-field" value="${cust_id}" placeholder="아이디" readonly></label><br/>      
-	     <label>  비밀번호 <input type="password" name="passwd" id="passwd" class="text-field" placeholder="현재 비밀번호를 입력하세요"></label><br/>
+     <form id="chkForm" action="${root}cust/update/form" method="post">
+	     <label>  아이디 <input type="text" name="id" id="id" class="text-field" value="${cust_id}" placeholder="아이디" readonly></label><br/>      
+	     <label>  비밀번호 <input type="password" name="pw" id="pw" class="text-field" placeholder="현재 비밀번호를 입력하세요"></label><br/>
 		 <button type="button" onclick="fnGotoUpdate();" class="submit-btn">확인</button>     
      </form>
      
-     <form id="updateForm" action="${root }cust/update/form" method="post">
-	     <input type="hidden" name="cust_idx" id="cust_idx" />     
-     </form>
+<%--      <form id="updateForm" action="${root}cust/update/form" method="post">
+	     <input type="hidden" name="id" id="id" value="${cust_id}"/>     
+     </form> --%>
    </div>
 
 
@@ -39,7 +39,7 @@
 
 	function fnValidation(){
 		//비밀번호 값이 비었을 때 
-		var passwd = document.getElementById("passwd").value;
+		var passwd = document.getElementById("pw").value;
 		var regExp = /^[A-Za-z0-9]{4,20}$/; 
 		//var regExp = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}/; 문자 대소문자 반드시 입력
 		
@@ -68,21 +68,22 @@
             console.log("params=" + params);
             $.ajax({
                 type: "post",
-                url: "/cust/login/check",
+                url: "${root}cust/login/check",
                 data: params,
                 dataType: 'json',
                 success: function (data) {
+                	var sdata = JSON.parse(JSON.stringify(data));
                     console.log("success_data_origin= " + data);
                     console.log("success_data_str= " + JSON.stringify(data));// Object로 받아온 것을 문자열의 형태로 풀어서 보여주는 것
-                    console.log("success_data3_ex= " + data.cust_idx);
-                    if(data.cust_idx > 0){
+                    console.log("success_data3_ex= " + sdata.cust_id);
+                    console.log("success_data3_ex= " + sdata.cust_id);
+             	if(sdata.cust_id.length > 0){
                     	// update 페이지로 이동
-                    	var cust_idx = data.cust_idx;
-                    	$("#updateForm #cust_idx").val(cust_idx);
-                    	$("#updateForm").submit();
+                    	// $("#updateForm #cust_idx").val(custId);
+                    	$("#chkForm").submit();
                     } else {
                     	alert("비밀번호를 다시 확인해주시기 바랍니다.");
-                    }
+                    } 
                 },
                 error: function (request, status, error) {                	
                     console.log("error= code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

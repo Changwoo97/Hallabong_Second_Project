@@ -143,15 +143,15 @@
 		$("#tell2").click(function() {
 		    if($("#tel2").val() == code2) { // 위에서 저장한값을 ㅣ교함
 	    		alert('인증성공');
-	            $("#custtelExist").val('true');
+	            $("#custTelExist").val('true');
 		    } else {
 	        	alert('인증실패');
-	          	$("#custtelExist").val('false');
+	          	$("#custTelExist").val('false');
 		    }
 		});
 		
-		function resetUsertelExist() {
-		    $("#custtelExist").val('true');
+		function resetCustTelExist() {
+		    $("#custTelExist").val('true');
 		}
 	</script>
 </head>
@@ -165,7 +165,7 @@
 					<div class="card-body">
 						<form:form action="${root}cust/join_pro" method="post" modelAttribute="joinusecuCustBean">
 						<form:hidden path="custIdExist"/>
-						<form:hidden path="custtelExist"/>
+						<form:hidden path="custTelExist"/>
 							<div class="form-group">
 								<form:label path="id">아이디</form:label>
 									<div class="input-group">
@@ -216,7 +216,7 @@
 							<div class="input-group">
 								<form:input path="tel2" class="form-control"/>
 							<div class="input-group-append">
-								<input type="button" id="tell2" onclick='resetUsertelExist()'class="check_button" value="인증번호 확인"/>
+								<input type="button" id="tell2" onclick='resetCustTelExist()'class="check_button" value="인증번호 확인"/>
 							</div>
 								<form:errors path="tel2" style="color:red"/>
 							</div>

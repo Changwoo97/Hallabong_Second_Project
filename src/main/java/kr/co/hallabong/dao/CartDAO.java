@@ -16,4 +16,8 @@ public class CartDAO {
     public List<CartBean> getCartList(String cust_id) {
 		return cartMapper.getCartList(cust_id);			
 	}
+    
+    public void deleteCart(String cust_id, String prod_no){
+        cartMapper.deleteCart(cust_id, prod_no);
+    }
 }

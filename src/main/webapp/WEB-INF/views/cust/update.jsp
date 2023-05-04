@@ -19,7 +19,7 @@
 	<hr class="hr1" />
 	<br>
 
-	<form id="contact-form" action="${root }cust/update" method="post">
+	<form id="contact-form" action="${root}cust/update" method="post">
 		<div class="formDiv">
 			<table>
 				<colgroup>
@@ -30,14 +30,13 @@
 						<tr>
 							<th>아이디</th>
 							<td>
-								<input type="text" id="cust_id" name="cust_id" value="${custInfo.cust_id}" />
-								<input type="hidden" id="cust_idx" name="cust_idx" value="${custInfo.cust_idx}" />
+								<input type="text" id="id" name="id" value="${custInfo.id}" />
 							</td>
 						</tr>
 						<tr>
 							<th>현재 비밀번호</th>
-							<td><input type="password" id="passwd" name="passwd" value="${custInfo.passwd}"> 
-								<input type="hidden" id="now_chk_pwd" name="now_chk_pwd" value="${custInfo.passwd}">
+							<td><input type="password" id="pw" name="pw" value="${custInfo.pw}"> 
+								<input type="hidden" id="now_chk_pwd" name="now_chk_pwd" value="${custInfo.pw}">
 							</td>
 						</tr>
 
@@ -56,7 +55,7 @@
 						<tr>
 							<th>이름</th>
 							<td>
-								<input type="text" id="cust_nm" name="cust_nm" value="${custInfo.cust_nm}">
+								<input type="text" id="name" name="name" value="${custInfo.name}">
 							</td>
 						</tr>
 						
@@ -130,7 +129,7 @@
 	
    function fnValidation(){
       // 현재 비밀번호 체크      
-      var passwd   = document.getElementById("passwd").value;
+      var passwd   = document.getElementById("pw").value;
       var now_chk_pwd = document.getElementById("now_chk_pwd").value;
       if(passwd != now_chk_pwd){
          alert("현재 비밀번호가 맞지 않습니다.\n다시 입력해 주세요.");
@@ -154,7 +153,7 @@
     	  }    	  
       } 
       
-      var custNm = $("#cust_nm").val();
+      var custNm = $("#name").val();
       if (custNm == "") {
    	     alert("이름을 입력해 주세요.");
    	     return false;
@@ -186,19 +185,20 @@
 			console.log("params=" + JSON.stringify(params));
             $.ajax({
                 type: "post",
-                url: "/cust/update",
+                url: "${root}cust/update",
                 data: params,
                 dataType: 'json',
                 success: function (data) {
-                    console.log("success_data_origin= " + data);
-                    console.log("success_data_str= " + JSON.stringify(data));// Object로 받아온 것을 문자열의 형태로 풀어서 보여주는 것
-                    if(data.result > 0){
+                	var sdata = JSON.parse(JSON.stringify(data));
+                    console.log("success_data_origin= " + JSON.stringify(data));
+                    console.log("success_data_str= " + sdata);// Object로 받아온 것을 문자열의 형태로 풀어서 보여주는 것
+                    if(sdata.result > 0){
                     	// 정상적으로 수정되었을 경우
                     	alert("수정 되었습니다.");
                     }
                 },
                 error: function (request, status, error) {                	
-                    console.log("error= code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                    console.log("error= code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
                 }
             });
         }
@@ -230,22 +230,22 @@
     	
     	//key : value 형식의 data를 직접 입력
     	var params = {
-        		cust_idx: $("#cust_idx").val()
+        		id: $("#id").val()
         		, email: email
         }
             
         // ajax 통신
         $.ajax({
             type : "POST",      // HTTP method type(GET, POST) 형식
-            url : "/cust/email/check", // 컨트롤러에 구현해놓은 URL 주소
+            url : "${root}cust/email/check", // 컨트롤러에 구현해놓은 URL 주소
             data : params,           
-            success : function(result){ 
+            success : function(result) { 
                 // 여기로 들어오는 자체가 ajax 자체는 성공!
-                if(result.emailCount == 0){
+                var json = JSON.parse(JSON.stringify(result));
+                if (json.emailCount == 0) {
                 	alert("사용가능한 이메일 입니다.");
                 	$("#emailChkBtn").addClass('disabled');
                 	$("#emailChkBtn").prop('disabled', true);
-                	
                 } else {
                 	alert("중복된 이메일이 존재합니다.");
                 }
@@ -264,20 +264,21 @@
 	        // 예를 눌렀을 경우
 	        // 아래의 params는 파라미터로 보낼값(아래는 json 형태로 구현)
 	        var params = {
-	        		cust_idx: $("#cust_idx").val()
+	        		id: $("#id").val()
 	        }
 	            
 	        // ajax 통신
 	        $.ajax({
 	            type : "POST",      // HTTP method type(GET, POST) 형식
-	            url : "/cust/quit", // 컨트롤러에 구현해놓은 URL 주소
+	            url : "${root}cust/quit", // 컨트롤러에 구현해놓은 URL 주소
 	            data : params,           
-	            success : function(result){ 
+	            success : function(result) { 
+	            	var json = JSON.parse(JSON.stringify(result));
 	                // 여기로 들어오는 자체가 ajax 자체는 성공!
-	                if(result.delCount > 0){
+	                if(json.delCount > 0){
 	                	alert("탈퇴 처리 되었습니다.");
 	                	// 로그아웃(세션삭제) 처리하고 메인으로 보내버리면됨.
-	                	location.href = '/';
+	                	location.href = '${root}';
 	                }
 	            },
 	            error : function(XMLHttpRequest, textStatus, errorThrown){

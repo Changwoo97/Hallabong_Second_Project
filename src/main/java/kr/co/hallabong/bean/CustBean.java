@@ -15,17 +15,26 @@ public class CustBean {
 	@Pattern(regexp = "[a-zA-Z0-9]*")
 	@NotBlank
 	private String id;
-	@Size(min=2,max=4)
-	@Pattern(regexp = "[가-힣]*")
+	
+	@Size(min=4, max=20)
+	@Pattern(regexp = "[a-zA-Z0-9]*")
 	private String pw;
-	@Size(min=4,max = 20)
-	@Pattern(regexp = "[a-zA-Z0-9]*")
+	
 	private String pw2;
+	private String new_pwd;
+	private String new_chk_pwd;
+	
+	@Size(min=2, max=4)
+	@Pattern(regexp = "[가-힣]*")
 	private String name;  	
+	
 	@Size(min=4,max = 20)
-	@Pattern(regexp = "[a-zA-Z0-9]*")
-	private String email;	
+	// @Pattern(regexp = "\\\\w+@\\\\w+\\\\.\\\\w+(\\\\.\\\\w+)?")
+	private String email;
+	
+	@Pattern(regexp = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$")
 	private String tel;
+	
 	private String tel2;
 	private String addr;
 	private String addr1;

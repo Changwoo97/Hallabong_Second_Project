@@ -27,7 +27,7 @@
     <div class="mypage-nav">
         <ul>
             <li><a href="${root }mypage/Orders?cust_id=아이디">주문내역</a></li>
-            <li><a href="${root }mypage/cart?cust_id=아이디">장바구니</a></li>
+            <li><a href="${root }mypage/cart?prod_no=제품번호">장바구니</a></li>
             <li><a href="${root }mypage/QAList?cust_id=아이디">문의내역</a></li>
         </ul>
     </div>
@@ -53,10 +53,10 @@
 				        	 <div class="card shadow" style="width: 900px">
 					            <div class="card-body">
 									<div>
-								 		<table>
+								 		<table style="width: 850px;">
 											<tr height="40">
 												<td width="200" rowspan="4"> <img src=""> </td>
-												<td width="350" align="left" >제품 번호 : ${obj.prod_no  }</td>
+												<td width="330" align="left" >제품 번호 : ${obj.prod_no  }</td>
 												<td align="right" colspan="2"></td>
 												
 											</tr>
@@ -66,23 +66,32 @@
 											</tr>
 											<tr height="40">
 												<td />
-												<td width="250" colspan="2" align="right" >수량 : ${obj.qnty }개</td>
+												<td  colspan="2" align="right" >수량 : ${obj.qnty }개</td>
 											</tr>	
 											<tr height="40">
 												<td />
-												<td width="250" colspan="2" align="right">주문 시간 : ${obj.reg_tm }</td>
+												<td width="300" colspan="2" align="right">주문 시간 : ${obj.reg_tm }</td>
 											</tr>										
 										</table>
-										<a href="${root }board/delete?board_info_idx=${board_info_idx}&content_idx=${content_idx }" class="btn btn-danger">삭제하기</a>						
+										
+										 <!-- 체크박스 추가 -->
+					                    <div>
+					                        <input type="checkbox" name="cartList" value="${obj.prod_no}">
+					                        <label>선택</label>
+					                    </div>
+                    
+										<a href="${root }mypage/delete?prod_no=${obj.prod_no}" class="btn btn-danger" style="margin-left: 730px; height : 40px;">삭제</a>	
+										<a href="${root }mypage/orders?prod_no=${obj.prod_no}" class="btn btn-danger">주문</a>						
 									</div>	
 								</div>
 							</div>
 						</div>
 					</c:forEach>			
-			</form:form>
-				
+			</form:form>				
 		</div>
-	</div>
-	
-</body>
+	</div>	
+	<!-- 하단타이틀 -->
+	<c:import url="/WEB-INF/views/include/bottom.jsp" />		
+	</body>
 </html>
+	

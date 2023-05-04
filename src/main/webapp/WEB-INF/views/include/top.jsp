@@ -27,11 +27,11 @@
 		<span>${loginCustBean.id}님</span>
 		<a href="${root}mypage/mypage"><span>마이페이지</span></a>
 		<a href="${root}cust/logout"><span>로그아웃</span></a>
+		<a href="${root}cust/update_login/form"><span>임시회원정보수정</span></a>
 		</c:when>
 		<c:otherwise>
 	    <a href="${root}cust/login"><span>로그인</span></a>
 	    <a href="${root}cust/join"><span>회원가입</span></a>
-	    <a href="${root}cust/update_login/form"><span>임시회원정보수정</span></a>
 		</c:otherwise>
 		</c:choose>
 		</div>

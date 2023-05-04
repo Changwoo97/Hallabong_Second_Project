@@ -24,7 +24,7 @@
 		    <div class="mypage-nav">
 		        <ul>
 		            <li><a href="${root }mypage/Orders?cust_id=아이디">주문내역</a></li>
-		            <li><a href="${root }mypage/cart?cust_id=아이디">장바구니</a></li>
+		            <li><a href="${root }mypage/cart?prod_no=${prod_no}">장바구니</a></li>
 		            <li><a href="${root }mypage/QAList?cust_id=아이디">문의내역</a></li>
 		        </ul>
 		    </div>
@@ -80,17 +80,16 @@
 									</tr>
 									<tr height="40">
 										<td rowspan="2" align="center" >
-											<c:forEach var="aa" items="${list}">
-												<form action="" method="post">
-													<input type="hidden" name="no" value="${aa.no}">
-													<input type="submit" value="구매확정"/>
-												</form>
-											 <button class="e1bmghrs0 css-1roqgte e4nu7ef3" type="button" width="150" height="44" radius="3">
-											 
-												 <span class="css-ymwvow e4nu7ef1" > 구매 확정 </span>
-											 </button>
-											 </c:forEach>
+											<c:forEach var="com" items="${completeOrder }">
+										        <form method="post" action="${root }mypage/Orders_complete">
+										          <input type="hidden" name="no" value="${com.no}" />
+										          <input type="hidden"  value="주문확정" />
+										          <button type="submit" class="btn btn-primary" >주문 확정</button>
+										        </form>
+										    </c:forEach>
+									  
 										</td>
+										
 										<td align="right" colspan="2">가격 : ${obj.dlvy_fee }</td>
 									</tr>
 									<tr height="40">

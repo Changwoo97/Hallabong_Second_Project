@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.hallabong.bean.CustBean;
-import kr.co.hallabong.bean.NewCustBean;
 import kr.co.hallabong.mapper.CustMapper;
 
 @Repository
@@ -48,27 +47,27 @@ public class CustDAO {
 	}
 	
 	//수정	
-	public int updateCustInfo(NewCustBean updateCustBean) {
+	public int updateCustInfo(CustBean updateCustBean) {
 		return custMapper.updateCustInfo(updateCustBean);
 	}
 	
 	//로그인 사용자 idx 확인
-	public int getLoginCustIdx(NewCustBean paramLoginCustBean) {
+	public String getLoginCustIdx(CustBean paramLoginCustBean) {
 		return custMapper.getLoginCustIdx(paramLoginCustBean);
 	}
 	
 	//로그인
-	public NewCustBean getLoginCustDetailInfo(int paramCustIdx) {
-		return custMapper.getLoginCustDetailInfo(paramCustIdx);
+	public CustBean getLoginCustDetailInfo(String no) {
+		return custMapper.getLoginCustDetailInfo(no);
 	}
 	
 	//로그인 사용자 idx 확인
-	public int deleteCust(int paramCustIdx) {
-		return custMapper.deleteCust(paramCustIdx);
+	public int deleteCust(String no) {
+		return custMapper.deleteCust(no);
 	}
 	
 	//이메일 중복확인
-	public int getEmailDupCheck(NewCustBean paramLoginCustBean) {
+	public int getEmailDupCheck(CustBean paramLoginCustBean) {
 		return custMapper.getEmailDupCheck(paramLoginCustBean);
 	}
 	
