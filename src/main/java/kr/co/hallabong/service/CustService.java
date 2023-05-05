@@ -72,9 +72,9 @@ public class CustService {
 		}
 	}
 
-	public void addjoinUserInfo(CustBean joinusecuCustBean) {
-		String gender = joinusecuCustBean.getGender();
-		String dob = joinusecuCustBean.getDob();
+	public void addjoinUserInfo(CustBean joinCustBean) {
+		String gender = joinCustBean.getGender();
+		String dob = joinCustBean.getDob();
 		try {
 			LocalDate.parse(dob);
 		} catch (Exception e) {
@@ -82,13 +82,13 @@ public class CustService {
 		}
 		
 		if (gender == null && dob == null) 
-			custDAO.addjoinGenderNullDobNull(joinusecuCustBean);
+			custDAO.addjoinGenderNullDobNull(joinCustBean);
 		else if (gender != null && dob == null)
-			custDAO.addjoinDobNull(joinusecuCustBean);
+			custDAO.addjoinDobNull(joinCustBean);
 		else if (gender == null && dob != null)
-			custDAO.addjoinGenderNull(joinusecuCustBean);
+			custDAO.addjoinGenderNull(joinCustBean);
 		else 
-			custDAO.addjoin(joinusecuCustBean);
+			custDAO.addjoin(joinCustBean);
 	}
 
 	public boolean checkUserIDExist(String id) {

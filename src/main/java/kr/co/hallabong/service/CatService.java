@@ -34,7 +34,7 @@ public class CatService {
 		catDAO.deleteCat(no);
 	}
 	
-	public List<ProdCatBean> getcatMainPage(String Cat_No) {
-		return catDAO.getcatMainPage(Cat_No);
+	public List<ProdCatBean> getCatMainPage(String cat_no) {
+		return catDAO.getCatMainPage(cat_no);
 	}
 }

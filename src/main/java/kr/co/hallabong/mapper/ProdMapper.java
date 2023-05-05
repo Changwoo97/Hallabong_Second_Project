@@ -12,8 +12,28 @@ import kr.co.hallabong.bean.ProdBean;
 import kr.co.hallabong.bean.RevBean;
 
 public interface ProdMapper {
-	@Select("SELECT no, fs, name, cost, sp, s_img, l_img, cat_no, reg_tm "
-			+ "FROM prod ")
+	@Select("WITH " +
+			"    p AS (SELECT no\n" +
+			"               , fs\n" +
+			"               , name\n" +
+			"               , cost\n" +
+			"               , sp\n" +
+			"               , s_img\n" +
+			"               , l_img\n" +
+			"               , cat_no\n" +
+			"               , reg_tm\n" +
+			"          FROM prod\n" +
+			"          ORDER BY reg_tm DESC)\n" +
+			"SELECT no\n" + 
+			"     , fs\n" +
+			"     , name\n" +
+			"     , cost\n" +
+			"     , sp\n" +
+			"     , s_img\n" +
+			"     , l_img\n" +
+			"     , cat_no\n" +
+			"     , TO_CHAR(reg_tm, 'YYYY-MM-DD') AS reg_tm\n" +
+			"FROM p ")
 	List<ProdBean> selectProdList();
 	
 	/*public interface ProdMapper {
@@ -21,10 +41,10 @@ public interface ProdMapper {
 				+ "FROM (SELECT * FROM prod ORDER BY reg_tm DESC) ")
 		List<ProdBean> selectProdList();*/
 		
-	@Select("SELECT no, fs, name, cost, sp, s_img, l_img, cat_no, reg_tm "
-			+ "FROM prod "
-			+ "WHERE no = #{prod_No} ")
-	ProdBean selectProd(String prod_No);
+	@Select("SELECT no, fs, name, cost, sp, s_img, l_img, cat_no, reg_tm " + 
+			"FROM prod " + 
+			"WHERE no = #{prod_no} ")
+	ProdBean selectProd(String prod_no);
 	
 	/*@Select("SELECT no, fs, name, cost, sp, s_img, l_img, cat_no, TO_CHAR(reg_tm, 'YYYY-MM-DD') AS reg_tm "
 			+ "FROM prod "

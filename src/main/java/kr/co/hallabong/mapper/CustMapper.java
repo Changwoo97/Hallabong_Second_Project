@@ -46,17 +46,21 @@ public interface CustMapper {
 			+ "WHERE id = #{id} and pw = #{pw} ")
 	CustBean getLoginCustInfo(CustBean tempLoginUserBean); //tempLoginCustBean은 request영역
 	//회원가입
-	@Insert("INSERT INTO cust VALUES (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr}, #{gender}, TO_DATE(#{dob}, 'YYYY-MM-DD'), DEFAULT, DEFAULT, 'REG') ")
-	void addjoin(CustBean joinusecuCustBean);
+	@Insert("INSERT INTO cust (id, pw, name, email, tel, addr, gender, dob, reg_tm, quit_tm, sta) " + 
+			"VALUES (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr}, #{gender}, TO_DATE(#{dob}, 'YYYY-MM-DD'), DEFAULT, DEFAULT, 'REG') ")
+	void addjoin(CustBean joinCustBean);
 	
-	@Insert("INSERT INTO cust VALUES (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr}, NULL, TO_DATE(#{dob}, 'YYYY-MM-DD'), DEFAULT, DEFAULT, 'REG') ")
-	void addjoinGenderNull(CustBean joinusecuCustBean);
+	@Insert("INSERT INTO cust (id, pw, name, email, tel, addr, gender, dob, reg_tm, quit_tm, sta) " + 
+			"VALUES (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr}, NULL, TO_DATE(#{dob}, 'YYYY-MM-DD'), DEFAULT, DEFAULT, 'REG') ")
+	void addjoinGenderNull(CustBean joinCustBean);
 	
-	@Insert("INSERT INTO cust VALUES (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr}, #{gender}, NULL, DEFAULT, DEFAULT, 'REG') ")
-	void addjoinDobNull(CustBean joinusecuCustBean);
+	@Insert("INSERT INTO cust (id, pw, name, email, tel, addr, gender, dob, reg_tm, quit_tm, sta) " + 
+			"VALUES (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr}, #{gender}, NULL, DEFAULT, DEFAULT, 'REG') ")
+	void addjoinDobNull(CustBean joinCustBean);
 	
-	@Insert("INSERT INTO cust VALUES (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr}, NULL, NULL, DEFAULT, DEFAULT, 'REG') ")
-	void addjoinGenderNullDobNull(CustBean joinusecuCustBean);
+	@Insert("INSERT INTO cust (id, pw, name, email, tel, addr, gender, dob, reg_tm, quit_tm, sta) " + 
+			" VALUES (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr}, NULL, NULL, DEFAULT, DEFAULT, 'REG') ")
+	void addjoinGenderNullDobNull(CustBean joinCustBean);
 	
 	//아이디 
 	@Select("select name from cust where id=#{id}")

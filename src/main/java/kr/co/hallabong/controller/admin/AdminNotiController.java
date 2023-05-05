@@ -26,7 +26,7 @@ public class AdminNotiController {
 	@Autowired 
 	NotiService notiService;
 	
-	private final int ROW_SIZE = 2;
+	private final int ROW_SIZE = 25;
 	
 	@GetMapping("/registration") 
 	public String registration(@ModelAttribute NotiBean notiBean, Model model) {
@@ -91,8 +91,8 @@ public class AdminNotiController {
 				List<String> row = new ArrayList<>();
 				
 				row.add(noti.getNo());
-				row.add(noti.getTit());
-				row.add(noti.getCont());
+				row.add(noti.getTit().length() > 15 ? noti.getTit().substring(0, 12) + "..." : noti.getTit());
+				row.add(noti.getCont().length() > 15 ? noti.getCont().substring(0, 12) + "..." : noti.getCont());
 				row.add(noti.getReg_tm());
 				
 				StringBuilder sb = new StringBuilder();

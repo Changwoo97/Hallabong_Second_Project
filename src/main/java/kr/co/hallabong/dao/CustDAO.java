@@ -22,20 +22,20 @@ public class CustDAO {
 		return custMapper.checkUserIDExist(id);
 	}
 	
-	public void addjoin(CustBean joinusecuCustBean){
-		custMapper.addjoin(joinusecuCustBean);
+	public void addjoin(CustBean joinCustBean){
+		custMapper.addjoin(joinCustBean);
 	}
 	
-	public void addjoinGenderNull(CustBean joinusecuCustBean){
-		custMapper.addjoinGenderNull(joinusecuCustBean);
+	public void addjoinGenderNull(CustBean joinCustBean){
+		custMapper.addjoinGenderNull(joinCustBean);
 	}
 	
-	public void addjoinDobNull(CustBean joinusecuCustBean){
-		custMapper.addjoinDobNull(joinusecuCustBean);
+	public void addjoinDobNull(CustBean joinCustBean){
+		custMapper.addjoinDobNull(joinCustBean);
 	}
 	
-	public void addjoinGenderNullDobNull(CustBean joinusecuCustBean){
-		custMapper.addjoinGenderNullDobNull(joinusecuCustBean);
+	public void addjoinGenderNullDobNull(CustBean joinCustBean){
+		custMapper.addjoinGenderNullDobNull(joinCustBean);
 	}
 
 	public CustBean findId(CustBean findid) {

@@ -57,7 +57,7 @@ public class AdminProdController {
 	}
 	
 	@PostMapping("/registration_proc")
-	public String registration_proc(HttpServletRequest request, ProdBean prodBean, BindingResult result, Model model) {
+	public String registration_proc(ProdBean prodBean, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("message", "상품 등록에 실패했습니다.");
 			model.addAttribute("path", "/admin/prod/check");
@@ -66,12 +66,12 @@ public class AdminProdController {
 		
 		MultipartFile s_img_file = prodBean.getS_img_file();
 		if (s_img_file.getSize() > 0) {
-			String fileName = saveUploadFile(request, s_img_file);
+			String fileName = saveUploadFile(s_img_file);
 			prodBean.setS_img(fileName);
 		}
 		MultipartFile l_img_file = prodBean.getL_img_file();
 		if (l_img_file.getSize() > 0) {
-			String fileName = saveUploadFile(request, l_img_file);
+			String fileName = saveUploadFile(l_img_file);
 			prodBean.setL_img(fileName);
 		}
 		
@@ -200,17 +200,17 @@ public class AdminProdController {
 	}
 	
 	@PostMapping("/modify_proc") 
-	public String modify_proc(HttpServletRequest request, ProdBean prodBean, Model model) {
+	public String modify_proc(ProdBean prodBean, Model model) {
 		MultipartFile s_img_file = prodBean.getS_img_file();
 		if (s_img_file.getSize() > 0) {
-			deleteUploadFile(request, prodBean.getS_img());
-			prodBean.setS_img(saveUploadFile(request, s_img_file));
+			deleteUploadFile(prodBean.getS_img());
+			prodBean.setS_img(saveUploadFile(s_img_file));
 		}
 		
 		MultipartFile l_img_file = prodBean.getL_img_file();
 		if (l_img_file.getSize() > 0) {
-			deleteUploadFile(request, prodBean.getL_img());
-			prodBean.setL_img(saveUploadFile(request, l_img_file));
+			deleteUploadFile(prodBean.getL_img());
+			prodBean.setL_img(saveUploadFile(l_img_file));
 		}
 
 		prodService.setProd(prodBean);
@@ -220,7 +220,7 @@ public class AdminProdController {
 		return "admin/alert";
 	}
 	
-	private String saveUploadFile(HttpServletRequest request, MultipartFile uploadFile) {		
+	private String saveUploadFile(MultipartFile uploadFile) {		
 		//String file_name = System.currentTimeMillis() + "_" + upload_file.getOriginalFilename();
 		//경로 시스템오류시
 		String file_name = System.currentTimeMillis() +  "." + 
@@ -235,7 +235,7 @@ public class AdminProdController {
 		return file_name;
 	}
 	
-	private void deleteUploadFile (HttpServletRequest request, String fileName) {
+	private void deleteUploadFile (String fileName) {
 		File file = new File(path_upload + "/" + fileName);
 
 		if (file.exists()) {

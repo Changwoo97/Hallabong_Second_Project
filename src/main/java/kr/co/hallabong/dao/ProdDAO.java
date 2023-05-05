@@ -19,12 +19,8 @@ public class ProdDAO {
 		return prodMapper.selectProdList();
 	}
 	
-	/*public ProdBean selectProd(String no) {
+	public ProdBean selectProd(String no) {
 		return prodMapper.selectProd(no);
-	}*/
-	
-	public ProdBean selectProd(String prod_No) {
-		return prodMapper.selectProd(prod_No);
 	}
 	
 	public void insertProd(ProdBean bean) {

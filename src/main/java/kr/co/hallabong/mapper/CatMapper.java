@@ -17,7 +17,7 @@ public interface CatMapper {
 	@Select("SELECT no, name FROM cat WHERE no = #{no} ")
 	CatBean selectCat(String no);
 
-	@Insert("INSERT INTO cat(no, name) VALUES(DEFAULT, #{name}) ")
+	@Insert("INSERT INTO cat (no, name) VALUES (DEFAULT, #{name}) ")
 	void insertCat(CatBean bean);
 	
 	@Update("UPDATE cat SET name = #{name} WHERE no = #{no} ")
@@ -38,5 +38,5 @@ public interface CatMapper {
 			"     , TO_CHAR(p.reg_tm, 'YYYY-MM-DD') AS reg_tm   " + 
 			"FROM prod p INNER JOIN cat c ON p.cat_no = c.no    " + 
 			"WHERE cat_no = #{cat_no} AND p.fs = 'Y'            ")
-	List<ProdCatBean> getcatMainPage(String cat_no);
+	List<ProdCatBean> getCatMainPage(String cat_no);
 }

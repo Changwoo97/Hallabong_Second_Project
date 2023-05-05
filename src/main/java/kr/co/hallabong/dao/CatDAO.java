@@ -34,7 +34,7 @@ public class CatDAO {
 		catMapper.deleteCat(no);
 	}
 	
-	public List<ProdCatBean> getcatMainPage(String Cat_No) {
-		return catMapper.getcatMainPage(Cat_No);
+	public List<ProdCatBean> getCatMainPage(String cat_no) {
+		return catMapper.getCatMainPage(cat_no);
 	}
 }

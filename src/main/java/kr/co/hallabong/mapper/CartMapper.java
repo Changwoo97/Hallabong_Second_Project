@@ -12,6 +12,7 @@ public interface CartMapper {
 	@Select("SELECT * FROM cart WHERE cust_id = #{cust_id} ")
 	List<CartBean> getCartList(String cust_id);
 	
-	@Delete(" delete from CART where cust_id = #{cust_id} AND prod_no = #{prod_no} ")
+	@Delete("DELETE FROM cart " + 
+			"WHERE cust_id = #{cust_id} AND prod_no = #{prod_no} ")
 	void deleteCart(@Param("cust_id") String cust_id, @Param("prod_no") String prod_no);
 }

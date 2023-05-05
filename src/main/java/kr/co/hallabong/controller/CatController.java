@@ -1,8 +1,6 @@
 package kr.co.hallabong.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +23,7 @@ public class CatController {
     public String catMainPage(@RequestParam("cat_no") String cat_no, Model model) {
     	model.addAttribute("cat_no", cat_no);
     	
-    	List<ProdCatBean> catMainPage = catService.getcatMainPage(cat_no);
+    	List<ProdCatBean> catMainPage = catService.getCatMainPage(cat_no);
     	model.addAttribute("catMainPage", catMainPage);
     	
         return "cat/main";
