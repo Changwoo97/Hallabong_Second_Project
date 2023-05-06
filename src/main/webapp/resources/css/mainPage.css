@@ -1,5 +1,20 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'GangwonEduPowerExtraBoldA';
+}
+
+article{
+	margin-bottom: 50px;
+}
+
 a{
    color: orange;
    
@@ -35,17 +50,23 @@ section{
    background-color: white;
 }
 
-#board{
-   text-align: center;
-}
 
-#newProduct{
+
+#mainNew{
    text-align: center;
    display: flex;
    justify-content: center;
    flex-direction: column;
-   background-color: white;
 }
+
+#mainRev{
+   text-align: center;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+}
+
+
 
 #banner div img{
    width: 100%; 
@@ -54,14 +75,15 @@ section{
 .categoryIcon{
 	width: 100%;
 	margin: 0 200x;
-	padding: 20px 50px;
+	padding: 20px 0px;
 	display: flex;
 	justify-content: space-between;
 	text-align: center;
 }
 
 .info {
-   padding: 0;   
+   padding: 0;
+   text-align: center;  
 }
 
 .card-body {
@@ -70,30 +92,38 @@ section{
 
 .btn btn-primary {
    background-color: orange;
-    border-color: orange;
-   
+   border-color: orange;
 }
 
-.newProduct-list {   
+.product-list {   
    display: flex;
    justify-content: space-between;
    text-align: center;
 }
 
-.newProduct-list li img{   
-   width: 170px;
-   height: 200px;
-   border: 1px solid orange;  
+.product-list li img{   
+   width: 220px;
+   height: 250px; 
 }
+
+.bestProduct-list{
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+	
+}
+
+.bestProduct-list li img{
+	width: 250px;
+	height: 290px;
+}
+
 
 .catrgoryDetail {
    display: flex;
    flex-direction: column;
 }
 
-.gab {
-	padding: 30px 0px 0px 0px
-}
 
 .navigator {
 	height: 50px;
@@ -107,20 +137,42 @@ section{
 }
 
 .navigator ul {
-	text-align:center;
-	display: flex;
-	justify-content: space-around;
-	padding: 15px;
+	list-style-type: none;
+     display: flex;
+     align-items: center;
+     justify-content: space-around;
+     width: 100%;
+     max-width: 800px;
+     height: 50px;
+     margin: 0 auto;
+     padding: 0;
 }
 
 .navigator-link {
 	display:inline-block;
+	padding: 5px;
 }
 
 .navigator-link a {
- 	color: green;
- 	text-decoration-line: none;
+	 display: block;
+     height: 40px;
+     padding: 0 20px;
+     line-height: 40px;
+     text-decoration: none;
+     text-transform: uppercase;
+     color: #323232;
+     font-weight: bold;
+     border-radius: 4px;
+     transition: background-color 0.3s ease-in;
 }
+
+ nav a:hover, nav a:active, nav a:focus {
+     background-color: rgba(184,214,168,0.5);
+}
+
+ nav a.active {
+     background-color: rgba(184,214,168,0.5);
+} 
  
 .card-title2{
  	margin-bottom: 0.75rem;
@@ -128,7 +180,7 @@ section{
  }
 
 .card-body2 {
-    border: solid orange;
+    border: solid #f9d9a1;
     text-align: center;
 }
 
@@ -136,6 +188,14 @@ section{
     color: green;
     background-color: orange;
     border-color: orange;
+}
+
+.info {
+  z-index: -50;
+  font-size: 20px;
+  margin-left: 7px;
+  margin-top: 50px;
+  line-height: 40px;
 }
 
 

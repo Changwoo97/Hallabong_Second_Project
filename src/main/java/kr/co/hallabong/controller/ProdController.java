@@ -25,7 +25,7 @@ public class ProdController {
 	
 	@GetMapping("/search")
 
-	public String searchProductList(@RequestParam("name")String name, Model model) {
+	public String searchProductList(@RequestParam("name") String name, Model model) {
 		Map<String, String> categoryMap = new HashMap<>();
 		categoryMap.put("1", "채소");
 		categoryMap.put("2", "과일");
@@ -33,6 +33,7 @@ public class ProdController {
 		categoryMap.put("4", "해산물");
 		model.addAttribute("categoryMap", categoryMap);
 		
+		name = name.replaceAll(" ", ""); 
 		List<ProdBean> searchProductList = prodService.searchProductList(name);
 		model.addAttribute("searchProductList", searchProductList);
 		
@@ -41,7 +42,7 @@ public class ProdController {
 	
 	@GetMapping("/product")
 	public String prodInfoPage(Model model, 
-			@RequestParam("prod_no")String prod_no, 
+			@RequestParam("prod_no") String prod_no, 
 			@RequestParam(name = "page", defaultValue = "1") int page) {
 		model.addAttribute("prod_no", prod_no);
 		model.addAttribute("page", page);

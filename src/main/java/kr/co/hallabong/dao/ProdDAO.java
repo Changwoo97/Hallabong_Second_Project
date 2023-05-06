@@ -54,4 +54,7 @@ public class ProdDAO {
 		return prodMapper.getNewProdList();
 	}
 	
+	public List<ProdBean> getRevProdList() {
+		return prodMapper.getRevProdList();
+	}
 }

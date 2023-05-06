@@ -68,5 +68,8 @@ public class ProdService {
 	public List<ProdBean> getNewProdList() {
 		return prodDAO.getNewProdList();
 	}
-
+	
+	public List<ProdBean> getRevProdList() {
+		return prodDAO.getRevProdList();
+	}
 }

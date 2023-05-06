@@ -26,21 +26,21 @@
 				<tbody>
 					<tr>
 						<td>
-							<button class="filter-button" type="button" onclick="location.href='${root }cat/main?cat_No=1'">
+							<button class="filter-button" type="button" onclick="location.href='${root }cat/main?cat_no=1'">
 								채소
 							</button>
 						</td>
 						<td>
-							<button class="filter-button" type="button" onclick="location.href='${root }cat/main?cat_No=2'">
+							<button class="filter-button" type="button" onclick="location.href='${root }cat/main?cat_no=2'">
 								과일
 							</button>
 						</td>
 						<td>
-							<button class="filter-button" type="button" onclick="location.href='${root }cat/main?cat_No=3'">
+							<button class="filter-button" type="button" onclick="location.href='${root }cat/main?cat_no=3'">
 								육류
 							</button></td>
 						<td>
-							<button class="filter-button" type="button" onclick="location.href='${root }cat/main?cat_No=4'">
+							<button class="filter-button" type="button" onclick="location.href='${root }cat/main?cat_no=4'">
 								헤산물
 							</button>
 						</td>
@@ -61,9 +61,9 @@
 			<tbody>
 				<c:forEach var="product" items="${catMainPage}">
 					<tr>
-						<td>${product.cat_name}</td>
+						<td>${product.cat_no}</td>
 						<td class="product-img"><img src="${root}upload/${product.s_img}" alt="${product.name} 이미지" style="width: 100px"></td>
-						<td><a href="${root}prod/product?prod_No=${product.no}">${product.name}</a></td>
+						<td><a href="${root}prod/product?prod_no=${product.no}">${product.name}</a></td>
 						<td>${product.cost}원</td>
 						<td>${product.reg_tm}</td>
 					</tr>

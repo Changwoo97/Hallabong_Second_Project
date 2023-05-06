@@ -45,19 +45,45 @@
    width: 48px;
    height: 48px;
    right: 0px;
-   margin-top: -20px;
+   margin-top: -17px;
 }
 
 .logo-icon{
    margin: 75px 0px 20px 0px;
+   display: flex;
 }
 
-.logo-icon span{
+.logo-icon > div{
    padding: 0px 15px 0px;
 }
 
-.logo-icon-detail > img{
+.logo-icon-detail {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.icon-container {
+  display: flex; /* 내부 아이템을 가로 방향으로 정렬 */
+  flex-direction: column;
+  align-items: center; /* 아이콘과 텍스트를 수직 중앙 정렬 */
+}
+
+.icon-container > a > img{
    width: 50px;
    height: 50px;
 }
-   
+
+.icon-text {
+  opacity: 0;
+  transition: all ease 0.5s;
+  margin-left: 5px;
+}
+
+.logo-icon-detail:hover .icon-text {
+  display: block; /* 부모 요소에 마우스 오버 시 자식 요소인 p 태그를 보이도록 함 */
+}
+
+
+.logo-icon-detail:hover .icon-text {
+   opacity: 1; 	
+}

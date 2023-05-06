@@ -72,17 +72,24 @@ public interface ProdMapper {
 	
 	@Select("select r.no, r.cust_id, r.no, r.cont, r.reg_tm "
 			+ "from rev r, prod p "
-			+ "where r.prod_no = p.no and p.no = #{prod_No} ")
-	List<RevBean> getReviewList(String prod_No, RowBounds rowBounds);
+			+ "where r.prod_no = p.no and p.no = #{prod_no} ")
+	List<RevBean> getReviewList(String prod_no, RowBounds rowBounds);
 
 	@Select("select count(*) "
 			+ "from rev r, prod p "
-			+ "where r.prod_no = p.no and p.no = #{prod_No} " )
-	int getReviewCnt(String Prod_No);
+			+ "where r.prod_no = p.no and p.no = #{prod_no} " )
+	int getReviewCnt(String prod_no);
 	
 	@Select("SELECT no, name, cost, s_img, TO_DATE(reg_tm, 'YYYY-MM-DD') AS reg_tm "
 			+ "FROM prod "
 			+ "WHERE ROWNUM <= 6 "
 			+ "ORDER BY reg_tm DESC ")
 	List<ProdBean> getNewProdList();
+	
+	@Select("SELECT p.no, p.name, p.cost, p.s_img, COUNT(r.cust_id) as review_count "
+			+ "FROM prod p "
+			+ "LEFT JOIN rev r ON p.no = r.prod_no "
+			+ "GROUP BY p.no, p.fs, p.name, p.cost, p.sp, p.s_img, p.l_img, p.cat_no, p.reg_tm "
+			+ "ORDER BY review_count DESC ")
+	List<ProdBean> getRevProdList();
 }

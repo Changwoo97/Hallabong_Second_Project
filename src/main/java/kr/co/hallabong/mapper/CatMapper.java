@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import kr.co.hallabong.bean.CatBean;
-import kr.co.hallabong.bean.join.ProdCatBean;
+import kr.co.hallabong.bean.ProdBean;
 
 public interface CatMapper {
 	@Select("SELECT no, name FROM cat ORDER BY name ")
@@ -26,17 +26,8 @@ public interface CatMapper {
 	@Delete("DELETE FROM cat WHERE no = #{no} ")
 	void deleteCat(String no);
 	
-	@Select("SELECT p.no                            AS no       " + 
-			"     , p.fs                            AS fs       " + 
-			"     , p.name                          AS name     " + 
-			"     , p.cost                          AS cost     " + 
-			"     , p.sp                            AS sp       " + 
-			"     , p.s_img                         AS s_img    " + 
-			"     , p.l_img                         AS l_img    " + 
-			"     , c.no                            AS cat_no   " + 
-			"     , c.name                          AS cat_name " + 
-			"     , TO_CHAR(p.reg_tm, 'YYYY-MM-DD') AS reg_tm   " + 
-			"FROM prod p INNER JOIN cat c ON p.cat_no = c.no    " + 
-			"WHERE cat_no = #{cat_no} AND p.fs = 'Y'            ")
-	List<ProdCatBean> getCatMainPage(String cat_no);
+	@Select("select prod.cat_no, prod.no, prod.name, prod.cost, prod.fs as, prod.reg_tm, prod.s_img "
+			+ "from cat, prod "
+			+ "where cat.no=prod.cat_no and prod.cat_no=#{cat_no} ")
+	List<ProdBean> getCatMainPage(String cat_no);
 }

@@ -26,7 +26,7 @@ public class AdminCatController {
 	@Autowired
 	private CatService catService;
 	
-	private final int ROW_SIZE = 2;
+	private final int ROW_SIZE = 25;
 	
 	@GetMapping("/registration")
 	public String registration(@ModelAttribute CatBean catBean ,Model model) {
