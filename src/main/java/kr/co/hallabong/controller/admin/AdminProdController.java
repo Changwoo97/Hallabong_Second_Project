@@ -23,7 +23,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.hallabong.bean.CatBean;
 import kr.co.hallabong.bean.ProdBean;
+import kr.co.hallabong.bean.join.ProdCatBean;
 import kr.co.hallabong.service.CatService;
+import kr.co.hallabong.service.ProdCatService;
 import kr.co.hallabong.service.ProdService;
 import kr.co.hallabong.util.Format;
 import kr.co.hallabong.util.Pair;
@@ -36,6 +38,8 @@ public class AdminProdController {
 	private String path_upload;
 	@Autowired
 	private ProdService prodService;
+	@Autowired
+	private ProdCatService prodCatService;
 	@Autowired
 	private CatService catService;
 	
@@ -82,6 +86,7 @@ public class AdminProdController {
 	@GetMapping("/check")
 	public String check(HttpServletRequest request, Model model, 
 			@ModelAttribute("no") String no, 
+			@ModelAttribute("cat_no") String cat_no,
 			@ModelAttribute("fs") String fs, 
 			@ModelAttribute("name") String name, 
 			@ModelAttribute("reg_tmBeginDate") String reg_tmBeginDate, 
@@ -92,7 +97,27 @@ public class AdminProdController {
 		
 		List<Map<String, String>> thead = new ArrayList<>();
 		thead.add(Format.getMap("title=상품번호&type=keyword&name=no"));
-		thead.add(Format.getMap("title=판매상태&type=select&name=fs&selectValue1=Y&selectLabel1=판매중&selectValue2=N&selectLabel2=판매보류&selectEnd=2"));
+		
+		List<CatBean> catBeans = catService.getCatList();
+		StringBuilder map = new StringBuilder();
+		for (int i = 0; i < catBeans.size(); i++) {
+			CatBean catBean = catBeans.get(i);
+			
+			map.append("&selectValue");
+			map.append(i + 1);
+			map.append("=");
+			map.append(catBean.getNo());
+			map.append("&selectLabel");
+			map.append(i + 1);
+			map.append("=");
+			map.append(catBean.getName());
+		}
+		map.append("&selectEnd=");
+		map.append(catBeans.size());
+
+		thead.add(Format.getMap("title=카테고리&type=select&name=cat_no" + map.toString()));
+		
+		thead.add(Format.getMap("title=판매상태&type=select&name=fs&selectValue1=Y&selectLabel1=판매중&selectValue2=N&selectLabel2=판매보류&selectEnd=2"));		
 		thead.add(Format.getMap("title=상품명&type=keyword&name=name"));
 		thead.add(Format.getMap("title=원가"));
 		thead.add(Format.getMap("title=판매가"));
@@ -101,40 +126,42 @@ public class AdminProdController {
 	
 		List<List<String>> tbody = new ArrayList<>();
 		
-		List<ProdBean> prodList = prodService.getProdList();
-		for (int i = prodList.size() - 1; i >= 0; i--) {
-			ProdBean prod = prodList.get(i);
-			if ((no.isBlank() || prod.getNo().contains(no))
-					&& (fs.isBlank() || prod.getFs() == fs.charAt(0))
-					&& (name.isBlank() || prod.getName().contains(name)
-					&& (reg_tmBeginDate.isBlank() || prod.getReg_tm().compareTo(reg_tmBeginDate) >= 0)
-					&& (reg_tmEndDate.isBlank() || prod.getReg_tm().compareTo(reg_tmEndDate) <= 0)))
+		List<ProdCatBean> prodCatList = prodCatService.getProdCatList();
+		for (int i = prodCatList.size() - 1; i >= 0; i--) {
+			ProdCatBean prodCat = prodCatList.get(i);
+			if ((no.isBlank() || prodCat.getNo().contains(no))
+					&& (cat_no.isBlank() || prodCat.getCat_no().equals(cat_no))
+					&& (fs.isBlank() || prodCat.getFs() == fs.charAt(0))
+					&& (name.isBlank() || prodCat.getName().contains(name)
+					&& (reg_tmBeginDate.isBlank() || prodCat.getReg_tm().compareTo(reg_tmBeginDate) >= 0)
+					&& (reg_tmEndDate.isBlank() || prodCat.getReg_tm().compareTo(reg_tmEndDate) <= 0)))
 				continue;
-			prodList.remove(prod);
+			prodCatList.remove(prodCat);
 		}
 		
-		int pageSize = prodList.size() / ROW_SIZE + ((prodList.size() % ROW_SIZE) > 0 ? 1 : 0); 
+		int pageSize = prodCatList.size() / ROW_SIZE + ((prodCatList.size() % ROW_SIZE) > 0 ? 1 : 0); 
 		int startRowNum = (selectedPageNum - 1) * ROW_SIZE;
 		int endRowNum = (selectedPageNum) * ROW_SIZE;
 		
-		if (prodList.size() > 0) {
-			for (int i = startRowNum; i < prodList.size(); i++) {
+		if (prodCatList.size() > 0) {
+			for (int i = startRowNum; i < prodCatList.size(); i++) {
 				if (endRowNum <= i) break;
 				
-				ProdBean prod = prodList.get(i);
+				ProdCatBean prodCat = prodCatList.get(i);
 				
 				List<String> row = new ArrayList<>();
 	
-				row.add(prod.getNo());
-				row.add(String.valueOf(prod.getFs()));
-				row.add(prod.getName());
-				row.add(String.valueOf(prod.getCost()));
-				row.add(String.valueOf(prod.getSp()));
-				row.add(prod.getReg_tm());
+				row.add(prodCat.getNo());
+				row.add(prodCat.getCat_name());
+				row.add(String.valueOf(prodCat.getFs()));
+				row.add(prodCat.getName());
+				row.add(String.valueOf(prodCat.getCost()));
+				row.add(String.valueOf(prodCat.getSp()));
+				row.add(prodCat.getReg_tm());
 				
 				StringBuilder sb = new StringBuilder();
 				sb.append("<form action=\""+ request.getContextPath() +"/admin/prod/modify\" method=\"post\">");
-				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + prod.getNo() + "\" />");
+				sb.append("\t<input type=\"hidden\" name=\"no\" value=\"" + prodCat.getNo() + "\" />");
 				sb.append("\t<input type=\"submit\" value=\"수정하기\" />");
 				sb.append("</form>");
 				row.add(sb.toString());
@@ -150,18 +177,19 @@ public class AdminProdController {
 			row.add("");
 			row.add("");
 			row.add("");
+			row.add("");
 			tbody.add(row);
 		}
 		
 		List<Pair<String, String>> searchKeyAndValues = new ArrayList<>();
 		searchKeyAndValues.add(new Pair<String, String>("no", no));
+		searchKeyAndValues.add(new Pair<String, String>("cat_no", cat_no));
 		searchKeyAndValues.add(new Pair<String, String>("fs", fs));
 		searchKeyAndValues.add(new Pair<String, String>("name", name));
 		searchKeyAndValues.add(new Pair<String, String>("reg_tmBeginDate", reg_tmBeginDate));
 		searchKeyAndValues.add(new Pair<String, String>("reg_tmEndDate", reg_tmEndDate));
 		
 		model.addAttribute("searchKeyAndValues", searchKeyAndValues);
-		model.addAttribute("selectEnd", 2);
 		model.addAttribute("searchPath", "/admin/prod/check");
 		model.addAttribute("content", "/WEB-INF/views/admin/table.jsp");
 		model.addAttribute("frameName", "상품조회");

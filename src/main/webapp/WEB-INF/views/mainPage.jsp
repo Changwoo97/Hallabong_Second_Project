@@ -138,7 +138,7 @@
 				<c:forEach var="RevProdList" items="${RevProdList}">
 					<ul class="newProduct-listDeatil">
 						<li><img src="${root}upload/${RevProdList.s_img}" alt="${RevProdList.name} 이미지"></li>
-						<li><a href="${root}prod/product?prod_No=${RevProdList.no}">${RevProdList.name}</a>
+						<li><a href="${root}prod/product?prod_no=${RevProdList.no}">${RevProdList.name}</a>
 						</li>
 						<li>${RevProdList.cost}원</li>
 					</ul>

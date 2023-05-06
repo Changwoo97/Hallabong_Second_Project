@@ -17,6 +17,14 @@ public class CartDAO {
 		return cartMapper.getCartList(cust_id);			
 	}
     
+    public int insertCart(CartBean bean) {
+    	return cartMapper.insertCart(bean);
+    }
+    
+    public int updateCart(CartBean bean) {
+    	return cartMapper.updateCart(bean);
+    }
+    
     public void deleteCart(String cust_id, String prod_no){
         cartMapper.deleteCart(cust_id, prod_no);
     }

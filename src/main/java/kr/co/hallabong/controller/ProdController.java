@@ -24,7 +24,6 @@ public class ProdController {
 	private ProdService prodService;
 	
 	@GetMapping("/search")
-
 	public String searchProductList(@RequestParam("name") String name, Model model) {
 		Map<String, String> categoryMap = new HashMap<>();
 		categoryMap.put("1", "채소");

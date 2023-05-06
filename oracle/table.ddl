@@ -1,3 +1,15 @@
+DROP TABLE rev;
+DROP TABLE cart;
+DROP TABLE ord_dtl;
+DROP TABLE dlvy;
+DROP TABLE qa;
+DROP TABLE prod;
+DROP TABLE cat;
+DROP TABLE ord;
+DROP TABLE cust;
+DROP TABLE admin;
+DROP TABLE noti;
+
 CREATE TABLE cart (
     cust_id VARCHAR2(20) NOT NULL,
     prod_no VARCHAR2(20) NOT NULL,

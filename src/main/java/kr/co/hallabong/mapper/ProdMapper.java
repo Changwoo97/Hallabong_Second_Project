@@ -12,7 +12,7 @@ import kr.co.hallabong.bean.ProdBean;
 import kr.co.hallabong.bean.RevBean;
 
 public interface ProdMapper {
-	@Select("WITH " +
+	@Select("WITH\n" +
 			"    p AS (SELECT no\n" +
 			"               , fs\n" +
 			"               , name\n" +
@@ -41,8 +41,8 @@ public interface ProdMapper {
 				+ "FROM (SELECT * FROM prod ORDER BY reg_tm DESC) ")
 		List<ProdBean> selectProdList();*/
 		
-	@Select("SELECT no, fs, name, cost, sp, s_img, l_img, cat_no, reg_tm " + 
-			"FROM prod " + 
+	@Select("SELECT no, fs, name, cost, sp, s_img, l_img, cat_no, reg_tm\n" + 
+			"FROM prod\n" + 
 			"WHERE no = #{prod_no} ")
 	ProdBean selectProd(String prod_no);
 	
@@ -51,17 +51,16 @@ public interface ProdMapper {
 			+ "WHERE no = #{prod_No} ")
 	ProdBean selectProd(String prod_No);
 	*/
-	@Insert("INSERT INTO prod (no, fs, name, cost, sp, s_img, l_img, cat_no, reg_tm) "
+	@Insert("INSERT INTO prod (no, fs, name, cost, sp, s_img, l_img, cat_no, reg_tm)\n"
 			+ "VALUES (DEFAULT, #{fs}, #{name}, #{cost}, #{sp}, #{s_img}, #{l_img}, #{cat_no}, DEFAULT) ")
 	void insertProd(ProdBean bean);
 	
-	@Update("UPDATE prod "
-			+ "SET fs = #{fs}, name = #{name}, cost = #{cost}, sp = #{sp}, s_img = #{s_img}, l_img = #{l_img}, cat_no = #{cat_no} "
+	@Update("UPDATE prod\n"
+			+ "SET fs = #{fs}, name = #{name}, cost = #{cost}, sp = #{sp}, s_img = #{s_img}, l_img = #{l_img}, cat_no = #{cat_no}\n"
 			+ "WHERE no = #{no} ")
 	void updateProd(ProdBean bean);
 	
-	@Delete("DELETE FROM prod "
-			+ "WHERE no = ${no} ")
+	@Delete("DELETE FROM prod WHERE no = ${no} ")
 	void deleteProd(String no);
 	
 	@Select("select * "+

@@ -1,8 +1,10 @@
 package kr.co.hallabong.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,12 +39,11 @@ public class MypageController {
     	return "mypage/cart";
     }
     
-    @GetMapping("/delete")
-    public String delete(@RequestParam("prod_no") String prod_no, Model model) {
-       
-       model.addAttribute("prod_no", prod_no);
-       
-       cartService.deleteCart(loginCustBean.getId(), prod_no);
+    @PostMapping("/delete")
+    public String delete(@RequestParam(name = "cartList") List<String> cartList) {
+       for (String prod_no : cartList) {
+    	   cartService.deleteCart(loginCustBean.getId(), prod_no);
+       }
        
        return "mypage/delete";
     }

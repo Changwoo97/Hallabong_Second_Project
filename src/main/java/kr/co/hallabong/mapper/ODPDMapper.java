@@ -7,39 +7,39 @@ import org.apache.ibatis.annotations.Select;
 import kr.co.hallabong.bean.join.ODPDBean;
 
 public interface ODPDMapper {
-	@Select("WITH " + 
-			"    odpd AS (SELECT d.reg_tm     AS reg_tm                          " + 
-			"                  , d.dep_tm     AS dep_tm                          " +
-			"                  , d.arr_tm     AS arr_tm                          " +
-			"                  , d.no         AS dlvy_no                         " +
-			"                  , d.ord_no     AS ord_no                          " +
-			"                  , od.prod_no   AS prod_no                         " +
-			"                  , p.name       AS prod_name                       " +
-			"                  , od.prod_qnty AS prod_qnty                       " +
-			"                  , d.send_name  AS send_name                       " +
-			"                  , d.send_tel   AS send_tel                        " +
-			"                  , d.send_addr  AS send_addr                       " +
-			"                  , d.recv_name  AS recv_name                       " +
-			"                  , d.recv_tel   AS recv_tel                        " +
-			"                  , d.recv_addr  AS recv_addr                       " +
-			"          FROM dlvy d INNER JOIN ord_dtl od ON d.ord_no = od.ord_no " +
-			"                      INNER JOIN prod p     ON od.prod_no = p.no    " +
-			"          WHERE sta = #{sta}                                        " +
-			"          ORDER BY reg_tm DESC)                                     " + 
-			"SELECT TO_CHAR(reg_tm, 'YYYY-MM-DD') AS reg_tm                      " +
-			"     , TO_CHAR(dep_tm, 'YYYY-MM-DD') AS dep_tm                      " + 
-			"     , TO_CHAR(arr_tm, 'YYYY-MM-DD') AS arr_tm                      " +
-			"     , dlvy_no                                                      " +
-			"     , ord_no                                                       " +
-			"     , prod_no                                                      " +
-			"     , prod_name                                                    " +
-			"     , prod_qnty                                                    " +
-			"     , send_name                                                    " +
-			"     , send_tel                                                     " + 
-			"     , send_addr                                                    " +
-			"     , recv_name                                                    " +
-			"     , recv_tel                                                     " +
-			"     , recv_addr                                                    " +
-			"FROM odpd                                                           ")
+	@Select("WITH\n" + 
+			"    odpd AS (SELECT d.reg_tm\n" + 
+			"                  , d.dep_tm\n" +
+			"                  , d.arr_tm\n" +
+			"                  , d.no\n" +
+			"                  , d.ord_no\n" +
+			"                  , od.prod_no\n" +
+			"                  , p.name\n" +
+			"                  , od.prod_qnty\n" +
+			"                  , d.send_name\n" +
+			"                  , d.send_tel\n" +
+			"                  , d.send_addr\n" +
+			"                  , d.recv_name\n" +
+			"                  , d.recv_tel\n" +
+			"                  , d.recv_addr\n" +
+			"          FROM dlvy d INNER JOIN ord_dtl od ON d.ord_no = od.ord_no\n" +
+			"                      INNER JOIN prod p     ON od.prod_no = p.no\n" +
+			"          WHERE sta = #{sta}\n" +
+			"          ORDER BY reg_tm DESC)\n" + 
+			"SELECT TO_CHAR(reg_tm, 'YYYY-MM-DD') AS reg_tm\n" +
+			"     , TO_CHAR(dep_tm, 'YYYY-MM-DD') AS dep_tm\n" + 
+			"     , TO_CHAR(arr_tm, 'YYYY-MM-DD') AS arr_tm\n" +
+			"     , dlvy_no\n" +
+			"     , ord_no\n" +
+			"     , prod_no\n" +
+			"     , prod_name\n" +
+			"     , prod_qnty\n" +
+			"     , send_name\n" +
+			"     , send_tel\n" + 
+			"     , send_addr\n" +
+			"     , recv_name\n" +
+			"     , recv_tel\n" +
+			"     , recv_addr\n" +
+			"FROM odpd ")
 	List<ODPDBean> selectODPDList(String sta);  
 }
