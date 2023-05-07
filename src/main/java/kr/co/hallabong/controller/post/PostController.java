@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.hallabong.bean.DlvyBean;
-import kr.co.hallabong.bean.OrdBean;
 import kr.co.hallabong.service.DlvyService;
 import kr.co.hallabong.service.OrdService;
 
@@ -80,7 +79,7 @@ public class PostController {
 		dlvyService.setDlvyProcess(no);
 		
 		model.addAttribute("message", "택배수거가 완료되었습니다.");
-		model.addAttribute("path", "/admin/post/wait");
+		model.addAttribute("path", "/post/wait");
 		return "admin/alert";
 	}
 	
@@ -99,7 +98,7 @@ public class PostController {
 		thead.add("배송완료");
 		
 		List<List<String>> tbody = new ArrayList<>();
-		List<DlvyBean> dlvyList = dlvyService.getDlvyListWait();
+		List<DlvyBean> dlvyList = dlvyService.getDlvyListProcess();
 		
 		for (DlvyBean dlvy : dlvyList) {
 			List<String> row = new ArrayList<>();
@@ -137,7 +136,7 @@ public class PostController {
 		ordService.setOrdStaSemiComplete(tempDlvy.getOrd_no());
 		
 		model.addAttribute("message", "택배배송이 완료되었습니다.");
-		model.addAttribute("path", "/admin/post/process");
+		model.addAttribute("path", "/post/process");
 		return "admin/alert";
 	}
 	
@@ -156,7 +155,7 @@ public class PostController {
 		thead.add("수령인 주소");
 		
 		List<List<String>> tbody = new ArrayList<>();
-		List<DlvyBean> dlvyList = dlvyService.getDlvyListWait();
+		List<DlvyBean> dlvyList = dlvyService.getDlvyListComplete();
 		
 		for (DlvyBean dlvy : dlvyList) {
 			List<String> row = new ArrayList<>();

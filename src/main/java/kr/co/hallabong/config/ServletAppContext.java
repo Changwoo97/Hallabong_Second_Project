@@ -34,6 +34,7 @@ import kr.co.hallabong.mapper.CustMapper;
 import kr.co.hallabong.mapper.DlvyMapper;
 import kr.co.hallabong.mapper.NotiMapper;
 import kr.co.hallabong.mapper.ODPDMapper;
+import kr.co.hallabong.mapper.OrdDtlMapper;
 import kr.co.hallabong.mapper.OrdMapper;
 import kr.co.hallabong.mapper.ProdCatMapper;
 import kr.co.hallabong.mapper.ProdMapper;
@@ -194,6 +195,13 @@ public class ServletAppContext implements WebMvcConfigurer {
 	}
 
 	@Bean
+	public MapperFactoryBean<OrdDtlMapper> getOrdDtlMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<OrdDtlMapper> factoryBean = new MapperFactoryBean<>(OrdDtlMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean
 	public MapperFactoryBean<ODPDMapper> getODPDMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<ODPDMapper> factoryBean = new MapperFactoryBean<>(ODPDMapper.class);
 		factoryBean.setSqlSessionFactory(factory);
@@ -208,7 +216,7 @@ public class ServletAppContext implements WebMvcConfigurer {
 	}
 	
 	@Bean
-    public MapperFactoryBean<CartMapper> getcartMapper(SqlSessionFactory factory) throws Exception{
+    public MapperFactoryBean<CartMapper> getCartMapper(SqlSessionFactory factory) throws Exception{
   	  MapperFactoryBean<CartMapper> factoryBean = new MapperFactoryBean<>(CartMapper.class);
   	  factoryBean.setSqlSessionFactory(factory);
   	  return factoryBean;

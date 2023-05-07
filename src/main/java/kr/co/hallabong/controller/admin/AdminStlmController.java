@@ -40,32 +40,32 @@ public class AdminStlmController {
 	
 	public AdminStlmController() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("WITH                                                                    ");
-		sb.append("    ORD_DLVY AS (SELECT ord.no                 AS ord_no                ");
-		sb.append("                      , ord.reg_tm             AS reg_tm                ");
-		sb.append("                      , ord.stlm_tm            AS stlm_tm               ");
-		sb.append("                      , dlvy.fee               AS fee                   ");
-		sb.append("                      , ord.dlvy_fee           AS deducted_fee          ");
-		sb.append("                      , SUM(ord_dtl.prod_cost) AS cost                  ");
-		sb.append("                      , SUM(ord_dtl.prod_sp)   AS sp                    ");
-		sb.append("                 FROM ord INNER JOIN ord_dtl ON ord.no = ord_dtl.ord_no ");
-		sb.append("                          INNER JOIN dlvy    ON ord.no = dlvy.ord_no    ");
-		sb.append("                 WHERE ord.sta = ?                                      ");
-		sb.append("                 GROUP BY ord.no                                        ");
-		sb.append("                        , ord.reg_tm                                    ");
-		sb.append("                        , ord.stlm_tm                                   ");
-		sb.append("                        , dlvy.fee                                      ");
-		sb.append("                        , ord.dlvy_fee                                  ");
-		sb.append("                 ORDER BY reg_tm DESC)                                  ");
-		sb.append("SELECT ord_no                                                           ");
-		sb.append("     , TO_CHAR(reg_tm, 'YYYY-MM-DD')  AS reg_tm                         ");
-		sb.append("     , TO_CHAR(stlm_tm, 'YYYY-MM-DD') AS stlm_tm                        ");
-		sb.append("     , fee                                                              ");
-		sb.append("     , deducted_fee                                                     ");
-		sb.append("     , cost                                                             ");
-		sb.append("     , sp                                                               ");
-		sb.append("     , cost - sp - fee + deducted_fee AS net_income                     ");
-		sb.append("FROM ORD_DLVY                                                           ");
+		sb.append("WITH\n");
+		sb.append("    ORD_DLVY AS (SELECT ord.no                                     AS ord_no\n");
+		sb.append("                      , ord.reg_tm\n");
+		sb.append("                      , ord.stlm_tm\n");
+		sb.append("                      , dlvy.fee                                   AS fee\n");
+		sb.append("                      , ord.dlvy_fee                               AS deducted_fee\n");
+		sb.append("                      , SUM(ord_dtl.prod_cost * ord_dtl.prod_qnty) AS cost\n");
+		sb.append("                      , SUM(ord_dtl.prod_sp * ord_dtl.prod_qnty)   AS sp\n");
+		sb.append("                 FROM ord INNER JOIN ord_dtl ON ord.no = ord_dtl.ord_no\n");
+		sb.append("                          INNER JOIN dlvy    ON ord.no = dlvy.ord_no\n");
+		sb.append("                 WHERE ord.sta = ?\n");
+		sb.append("                 GROUP BY ord.no\n");
+		sb.append("                        , ord.reg_tm\n");
+		sb.append("                        , ord.stlm_tm\n");
+		sb.append("                        , dlvy.fee\n");
+		sb.append("                        , ord.dlvy_fee\n");
+		sb.append("                 ORDER BY reg_tm DESC)\n");
+		sb.append("SELECT ord_no\n");
+		sb.append("     , TO_CHAR(reg_tm, 'YYYY-MM-DD')  AS reg_tm\n");
+		sb.append("     , TO_CHAR(stlm_tm, 'YYYY-MM-DD') AS stlm_tm\n");
+		sb.append("     , fee\n");
+		sb.append("     , deducted_fee\n");
+		sb.append("     , cost\n");
+		sb.append("     , sp\n");
+		sb.append("     , sp - cost - fee + deducted_fee AS net_income\n");
+		sb.append("FROM ORD_DLVY\n");
 		
 		String sql = sb.toString();
 
@@ -145,15 +145,15 @@ public class AdminStlmController {
 				row.add(selectResult.get("ord_no"));
 				row.add(selectResult.get("reg_tm"));
 				row.add(selectResult.get("stlm_tm"));
-				row.add(selectResult.get("fee"));
-				row.add(selectResult.get("deducted_fee"));
-				row.add(selectResult.get("cost"));
-				row.add(selectResult.get("sp"));
-				row.add(selectResult.get("net_income"));
+				row.add(Format.numComma(selectResult.get("fee")));
+				row.add(Format.numComma(selectResult.get("deducted_fee")));
+				row.add(Format.numComma(selectResult.get("cost")));
+				row.add(Format.numComma(selectResult.get("sp")));
+				row.add(Format.numComma(selectResult.get("net_income")));
 				
 				StringBuilder sb = new StringBuilder();
 				sb.append("<form action=\"" + request.getContextPath() + "/admin/stlm/request_proc\" method=\"post\"/>");
-				sb.append("\t<input type=\"hidden\" name=\"ord_no\" value=\"" + selectResult.get(ord_no) + "\" />");
+				sb.append("\t<input type=\"hidden\" name=\"ord_no\" value=\"" + selectResult.get("ord_no") + "\" />");
 				sb.append("\t<input type=\"submit\" value=\"정산하기\" />");
 				sb.append("</form>");
 				row.add(sb.toString());
@@ -169,11 +169,11 @@ public class AdminStlmController {
 			tfoot.add("");
 			tfoot.add("");
 			tfoot.add("합계");
-			tfoot.add(feeSum.toString());
-			tfoot.add(deducted_feeSum.toString());
-			tfoot.add(costSum.toString());
-			tfoot.add(spSum.toString());
-			tfoot.add(net_incomeSum.toString());
+			tfoot.add(Format.numComma(feeSum));
+			tfoot.add(Format.numComma(deducted_feeSum));
+			tfoot.add(Format.numComma(costSum));
+			tfoot.add(Format.numComma(spSum));
+			tfoot.add(Format.numComma(net_incomeSum));
 			tfoot.add("");
 		} else {
 			List<String> row = new ArrayList<>();
@@ -208,7 +208,7 @@ public class AdminStlmController {
 		
 		model.addAttribute("searchKeyAndValues", searchKeyAndValues);
 		model.addAttribute("content", "/WEB-INF/views/admin/table.jsp");
-		model.addAttribute("frameName", "정산조회");
+		model.addAttribute("frameName", "정산요청");
 		model.addAttribute("pageSize", 0);
 		model.addAttribute("thead", thead);
 		model.addAttribute("tbody", tbody);
@@ -280,11 +280,11 @@ public class AdminStlmController {
 				row.add(selectResult.get("ord_no"));
 				row.add(selectResult.get("reg_tm"));
 				row.add(selectResult.get("stlm_tm"));
-				row.add(selectResult.get("fee"));
-				row.add(selectResult.get("deducted_fee"));
-				row.add(selectResult.get("cost"));
-				row.add(selectResult.get("sp"));
-				row.add(selectResult.get("net_income"));
+				row.add(Format.numComma(selectResult.get("fee")));
+				row.add(Format.numComma(selectResult.get("deducted_fee")));
+				row.add(Format.numComma(selectResult.get("cost")));
+				row.add(Format.numComma(selectResult.get("sp")));
+				row.add(Format.numComma(selectResult.get("net_income")));
 				
 				try { feeSum += Integer.parseInt(selectResult.get("fee")); } catch(Exception e) {}
 				try { deducted_feeSum += Integer.parseInt(selectResult.get("deducted_fee")); } catch(Exception e) {}
@@ -298,11 +298,11 @@ public class AdminStlmController {
 			tfoot.add("");
 			tfoot.add("");
 			tfoot.add("합계");
-			tfoot.add(feeSum.toString());
-			tfoot.add(deducted_feeSum.toString());
-			tfoot.add(costSum.toString());
-			tfoot.add(spSum.toString());
-			tfoot.add(net_incomeSum.toString());
+			tfoot.add(Format.numComma(feeSum));
+			tfoot.add(Format.numComma(deducted_feeSum));
+			tfoot.add(Format.numComma(costSum));
+			tfoot.add(Format.numComma(spSum));
+			tfoot.add(Format.numComma(net_incomeSum));
 		} else {
 			List<String> row = new ArrayList<>();
 			row.add("결과없음");
@@ -334,7 +334,7 @@ public class AdminStlmController {
 		
 		model.addAttribute("searchKeyAndValues", searchKeyAndValues);
 		model.addAttribute("content", "/WEB-INF/views/admin/table.jsp");
-		model.addAttribute("frameName", "정산조회");
+		model.addAttribute("frameName", "정산완료");
 		model.addAttribute("pageSize", 0);
 		model.addAttribute("thead", thead);
 		model.addAttribute("tbody", tbody);

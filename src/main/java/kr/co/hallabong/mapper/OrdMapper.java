@@ -2,6 +2,7 @@ package kr.co.hallabong.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -27,6 +28,10 @@ public interface OrdMapper {
 			"FROM ord\n" + 
 			"WHERE no = #{no} ")
 	OrdBean selectOrd(String no);
+	
+	@Insert("INSERT INTO ord (no, cust_id, type, ordr_name, ordr_tel, ordr_addr, recv_name, recv_tel, recv_addr, pay_meth, dlvy_fee, cont, reg_tm, stlm_tm, sta)\n" +
+			"VALUES (DEFAULT, #{cust_id}, #{type}, #{ordr_name}, #{ordr_tel}, #{ordr_addr}, #{recv_name}, #{recv_tel}, #{recv_addr}, #{pay_meth}, #{dlvy_fee}, NULL, DEFAULT, DEFAULT, 'REQUEST')")
+	void insertOrd(OrdBean bean);
 	
 	@Update("UPDATE ord\n" + 
 			"SET sta = #{sta}\n" + 

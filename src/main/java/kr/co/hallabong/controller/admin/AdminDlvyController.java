@@ -45,41 +45,41 @@ public class AdminDlvyController {
 	@Autowired
 	private ODPDService odpdService;
 	
-	private final int ROW_SIZE = 2;
+	private final int ROW_SIZE = 25;
 	
 	private String requestSql;
 	private RowMapper<Map<String, String>> requestRowMapper;
 	
 	public AdminDlvyController() {
 		StringBuilder sql = new StringBuilder();
-		sql.append("WITH                                                           ");
-		sql.append("    odp AS (SELECT o.reg_tm    AS reg_tm                       ");
-		sql.append("                 , o.no        AS ord_no                       ");
-		sql.append("                 , d.prod_no   AS prod_no                      ");
-		sql.append("                 , p.name      AS prod_name                    ");
-		sql.append("                 , d.prod_qnty AS prod_qnty                    ");
-		sql.append("                 , o.ordr_name AS ordr_name                    ");
-		sql.append("                 , o.ordr_tel  AS ordr_tel                     ");
-		sql.append("                 , o.ordr_addr AS ordr_addr                    ");
-		sql.append("                 , o.recv_name AS recv_name                    ");
-		sql.append("                 , o.recv_tel  AS recv_tel                     ");
-		sql.append("                 , o.recv_addr AS recv_addr                    ");
-		sql.append("           FROM ord o INNER JOIN ord_dtl d ON o.no = d.ord_no  ");
-		sql.append("                      INNER JOIN prod p    ON d.prod_no = p.no ");
-		sql.append("           WHERE sta = 'REQUEST'                               ");
-		sql.append("           ORDER BY reg_tm DESC)                               ");
-		sql.append("SELECT TO_CHAR(reg_tm, 'YYYY-MM-DD') AS reg_tm                 ");
-		sql.append("     , ord_no                                                  ");
-		sql.append("     , prod_no                                                 ");
-		sql.append("     , prod_name                                               ");
-		sql.append("     , prod_qnty                                               ");
-		sql.append("     , ordr_name                                               ");
-		sql.append("     , ordr_tel                                                ");
-		sql.append("     , ordr_addr                                               ");
-		sql.append("     , recv_name                                               ");
-		sql.append("     , recv_tel                                                ");
-		sql.append("     , recv_addr                                               ");
-		sql.append("FROM odp                                                       ");
+		sql.append("WITH\n");
+		sql.append("    odp AS (SELECT o.reg_tm\n");
+		sql.append("                 , o.no        AS ord_no\n");
+		sql.append("                 , d.prod_no\n");
+		sql.append("                 , p.name      AS prod_name\n");
+		sql.append("                 , d.prod_qnty\n");
+		sql.append("                 , o.ordr_name\n");
+		sql.append("                 , o.ordr_tel\n");
+		sql.append("                 , o.ordr_addr\n");
+		sql.append("                 , o.recv_name\n");
+		sql.append("                 , o.recv_tel\n");
+		sql.append("                 , o.recv_addr\n");
+		sql.append("           FROM ord o INNER JOIN ord_dtl d ON o.no = d.ord_no\n");
+		sql.append("                      INNER JOIN prod p    ON d.prod_no = p.no\n");
+		sql.append("           WHERE sta = 'REQUEST'\n");
+		sql.append("           ORDER BY reg_tm DESC)\n");
+		sql.append("SELECT TO_CHAR(reg_tm, 'YYYY-MM-DD') AS reg_tm\n");
+		sql.append("     , ord_no\n");
+		sql.append("     , prod_no\n");
+		sql.append("     , prod_name\n");
+		sql.append("     , prod_qnty\n");
+		sql.append("     , ordr_name\n");
+		sql.append("     , ordr_tel\n");
+		sql.append("     , ordr_addr\n");
+		sql.append("     , recv_name\n");
+		sql.append("     , recv_tel\n");
+		sql.append("     , recv_addr\n");
+		sql.append("FROM odp\n");
 		requestSql = sql.toString();
 		
 		requestRowMapper = new RowMapper<Map<String, String>>() {
@@ -303,6 +303,7 @@ public class AdminDlvyController {
 		List<List<String>> tbody = new ArrayList<>();
 		
 		List<ODPDBean> odpdList = odpdService.getODPDListReady();
+		
 		for (int i = odpdList.size() - 1; i >= 0; i--) {
 			ODPDBean odpd = odpdList.get(i);
 			if ((reg_tmBeginDate.isBlank() || odpd.getReg_tm().compareTo(reg_tmBeginDate) >= 0)
@@ -328,7 +329,7 @@ public class AdminDlvyController {
 		if (odpdList.size() > 0) {
 			String tempNo = "";
 			
-			for (int i = startRowNum; i <= odpdList.size(); i++) {
+			for (int i = startRowNum; i < odpdList.size(); i++) {
 				if (endRowNum <= i) break;
 				
 				ODPDBean odpd = odpdList.get(i);
@@ -392,7 +393,7 @@ public class AdminDlvyController {
 			row.add("");
 			tbody.add(row);
 		}
-		 
+		
 		List<Pair<String, String>> searchKeyAndValues = new ArrayList<>();
 		searchKeyAndValues.add(new Pair<String, String>("reg_tmBeginDate", reg_tmBeginDate));
 		searchKeyAndValues.add(new Pair<String, String>("reg_tmEndDate", reg_tmEndDate));
@@ -485,7 +486,7 @@ public class AdminDlvyController {
 		if (odpdList.size() > 0) {
 			String tempNo = "";
 			
-			for (int i = startRowNum; i <= odpdList.size(); i++) {
+			for (int i = startRowNum; i < odpdList.size(); i++) {
 				if (endRowNum <= i) break;
 				
 				ODPDBean odpd = odpdList.get(i);
@@ -627,7 +628,7 @@ public class AdminDlvyController {
 		if (odpdList.size() > 0) {
 			String tempNo = "";
 			
-			for (int i = startRowNum; i <= odpdList.size(); i++) {
+			for (int i = startRowNum; i < odpdList.size(); i++) {
 				if (endRowNum <= i) break;
 				
 				ODPDBean odpd = odpdList.get(i);
@@ -750,7 +751,7 @@ public class AdminDlvyController {
 		thead.add(Format.getMap("title=수령인 주소&type=keyword&name=recv_addr"));
 	
 		List<List<String>> tbody = new ArrayList<>();
-		List<ODPDBean> odpdList = odpdService.getODPDListReady();
+		List<ODPDBean> odpdList = odpdService.getODPDListComplete();
 		for (int i = odpdList.size() - 1; i >= 0; i--) {
 			ODPDBean odpd = odpdList.get(i);
 			if ((reg_tmBeginDate.isBlank() || odpd.getReg_tm().compareTo(reg_tmBeginDate) >= 0)
@@ -780,7 +781,7 @@ public class AdminDlvyController {
 		if (odpdList.size() > 0) {
 			String tempNo = "";
 			
-			for (int i = startRowNum; i <= odpdList.size(); i++) {
+			for (int i = startRowNum; i < odpdList.size(); i++) {
 				if (endRowNum <= i) break;
 				
 				ODPDBean odpd = odpdList.get(i);

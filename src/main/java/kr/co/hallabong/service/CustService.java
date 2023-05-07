@@ -21,7 +21,7 @@ public class CustService {
 	private CustDAO custDAO;
 	
 	@Resource(name = "loginCustBean")
-	private CustBean custBean;
+	private CustBean loginCustBean;
 	
 	// 로그인정보확인
 	public String getLoginCustIdx(CustBean paramLoginCustBean) {
@@ -66,9 +66,9 @@ public class CustService {
 		// 가져온 값이 없을시 예외처리
 
 		if (tempLoginUserBean2 != null) {
-			custBean.setId(tempLoginUserBean2.getId());
-			custBean.setName(tempLoginUserBean2.getName());
-			custBean.setCustLogin(true); // 최초에 false로 되음. 로그인성공
+			loginCustBean.setId(tempLoginUserBean2.getId());
+			loginCustBean.setName(tempLoginUserBean2.getName());
+			loginCustBean.setCustLogin(true); // 최초에 false로 되음. 로그인성공
 		}
 	}
 

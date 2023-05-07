@@ -1,10 +1,8 @@
 package kr.co.hallabong.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import kr.co.hallabong.bean.CartBean;
 import kr.co.hallabong.bean.CustBean;
 import kr.co.hallabong.bean.OrdBean;
@@ -51,8 +50,7 @@ public class MypageController {
     @PostMapping("/Orders_complete")
     public String completeOrder(@ModelAttribute("no") String no) {
        ordService.setOrdStaComplete(no);
-       
-      return "redirect:/mypage/Orders";
+       return "redirect:/mypage/Orders";
     }
     
        
@@ -66,8 +64,8 @@ public class MypageController {
 		
     @GetMapping("/Orders")
     public String Orders(Model model) {
-    	List<OrdBean> OrdList=ordService.getOrdList(loginCustBean.getId());
-    	
+    	List<OrdBean> OrdList = ordService.getOrdList(loginCustBean.getId());
+    		
     	model.addAttribute("OrdList", OrdList);
 
     	return "mypage/Orders";
@@ -78,7 +76,7 @@ public class MypageController {
 		
     @GetMapping("/QAList")
     public String QAList(Model model) {
-    	List<QABean> qaList=qaService.getQAList(loginCustBean.getId());
+    	List<QABean> qaList = qaService.getQAList(loginCustBean.getId());
     	
     	model.addAttribute("qaList", qaList);
     	

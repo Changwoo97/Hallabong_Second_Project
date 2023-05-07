@@ -9,8 +9,8 @@ public class ODPDBean {
 	private String reg_tm;
 	private String dep_tm;
 	private String arr_tm;
-	private String dlvy_no;
 	private String ord_no;
+	private String dlvy_no;
 	private String prod_no;
 	private String prod_name;
 	private int prod_qnty;

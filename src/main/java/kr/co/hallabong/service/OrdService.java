@@ -17,6 +17,10 @@ public class OrdService {
 		return ordDAO.selectOrd(no);
 	}
 	
+	public void addOrd(OrdBean bean) {
+		ordDAO.insertOrd(bean);
+	}
+	
 	public void setOrdStaProcess(String no) {
 		ordDAO.updateOrdSta(no, "PROCESS");
 	}

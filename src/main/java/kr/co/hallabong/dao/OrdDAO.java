@@ -17,6 +17,10 @@ public class OrdDAO {
 		return ordMapper.selectOrd(no);
 	}
 	
+	public void insertOrd(OrdBean bean) {
+		ordMapper.insertOrd(bean);
+	}
+	
 	public void updateOrdSta(String no, String sta) {
 		ordMapper.updateOrdSta(no, sta);
 	}

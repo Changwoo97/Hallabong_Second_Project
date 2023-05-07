@@ -11,7 +11,9 @@ import org.apache.ibatis.annotations.Update;
 import kr.co.hallabong.bean.CartBean;
 
 public interface CartMapper {
-	@Select("SELECT * FROM cart WHERE cust_id = #{cust_id} ")
+	@Select("SELECT cust_id, prod_no, qnty, reg_tm\n" + 
+			"FROM cart\n" + 
+			"WHERE cust_id = #{cust_id} ")
 	List<CartBean> getCartList(String cust_id);
 	
 	@Insert("INSERT INTO cart (cust_id, prod_no, qnty, reg_tm)\n" + 

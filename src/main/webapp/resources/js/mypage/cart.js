@@ -17,3 +17,11 @@ function deleteSelected() {
 	form.setAttribute('action', root.getAttribute('value') + 'mypage/delete');
 	form.submit();
 }
+
+function ordersSelected() {
+	let form = document.getElementById('form');
+	let root = document .getElementById('root');
+	
+	form.setAttribute('action', root.getAttribute('value') + 'order/order');
+	form.submit();
+}

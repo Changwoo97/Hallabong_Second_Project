@@ -11,10 +11,10 @@ public interface ODPDMapper {
 			"    odpd AS (SELECT d.reg_tm\n" + 
 			"                  , d.dep_tm\n" +
 			"                  , d.arr_tm\n" +
-			"                  , d.no\n" +
+			"                  , d.no         AS dlvy_no\n" +
 			"                  , d.ord_no\n" +
 			"                  , od.prod_no\n" +
-			"                  , p.name\n" +
+			"                  , p.name       AS prod_name\n" +
 			"                  , od.prod_qnty\n" +
 			"                  , d.send_name\n" +
 			"                  , d.send_tel\n" +
@@ -24,7 +24,7 @@ public interface ODPDMapper {
 			"                  , d.recv_addr\n" +
 			"          FROM dlvy d INNER JOIN ord_dtl od ON d.ord_no = od.ord_no\n" +
 			"                      INNER JOIN prod p     ON od.prod_no = p.no\n" +
-			"          WHERE sta = #{sta}\n" +
+			"          WHERE d.sta = #{sta}\n" +
 			"          ORDER BY reg_tm DESC)\n" + 
 			"SELECT TO_CHAR(reg_tm, 'YYYY-MM-DD') AS reg_tm\n" +
 			"     , TO_CHAR(dep_tm, 'YYYY-MM-DD') AS dep_tm\n" + 

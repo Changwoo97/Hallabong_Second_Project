@@ -1,17 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var='root' value="${pageContext.request.contextPath }/"/>   
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="${root}css/mypage.css" />
-<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Orders</title>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<meta charset="UTF-8">
+	<title>Orders</title>
+	<link rel="stylesheet" href="${root}css/mypage.css" />
+	<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 	<body>
 		<!-- 상단 타이틀 -->
@@ -45,7 +43,7 @@
 						</td>
 					</tr>						
 				</table>
-				<c:forEach var="obj" items="${OrdList }">	
+				<c:forEach var="obj" items="${OrdList}">	
 			      <div class="col-sm-3" ></div>
 			     	 <div class="col-sm-6">
 			         	<div class="card shadow" style="width: 900px">
@@ -54,11 +52,11 @@
 						 		<table>						 		
 									<tr height="40">
 										<td rowspan="8" width="200"><img src="" alt="" /></td>
-										<td align="left" width="350">주문번호 ${obj.no }</td>
+										<td align="left" width="350">주문번호 : ${obj.no}</td>
 										<td align="right" width="350"></td>
 									</tr>
 									<tr height="40">
-										<td align="left" colspan="2">주문인 성함 : ${obj.ordr_name }</td>
+										<td align="left" colspan="2">주문인 성함 : ${obj.ordr_name}</td>
 									</tr>
 									<tr height="40">
 										<td align="left" colspan="2">주문인 전화번호 : ${obj.ordr_tel} </td>
@@ -67,21 +65,21 @@
 										<td align="left" colspan="2">주문인 주소 :${obj.ordr_addr} </td>
 									</tr>
 									<tr height="40">
-										<td align="left" colspan="2">배송인 성함 : ${obj.recv_name }</td>
+										<td align="left" colspan="2">배송인 성함 : ${obj.recv_name}</td>
 									</tr>
 									<tr height="40">
 										<td align="left" colspan="2">배송인 전화번호 :${obj.recv_tel} </td>
 									</tr>
 									<tr height="40">
-										<td align="left">배송인 주소 : ${obj.recv_addr }</td>
+										<td align="left">배송인 주소 : ${obj.recv_addr}</td>
 									</tr>				
 									<tr height="40">
-										<td align="right" colspan="2">결제 수단 : ${obj.pay_meth }</td>
+										<td align="right" colspan="2">결제 수단 : ${obj.pay_meth}</td>
 									</tr>
 									<tr height="40">
 										<td rowspan="2" align="center" >
-											<c:forEach var="com" items="${completeOrder }">
-										        <form method="post" action="${root }mypage/Orders_complete">
+											<c:forEach var="com" items="${completeOrder}">
+										        <form method="post" action="${root}mypage/Orders_complete">
 										          <input type="hidden" name="no" value="${com.no}" />
 										          <input type="hidden"  value="주문확정" />
 										          <button type="submit" class="btn btn-primary" >주문 확정</button>
@@ -90,11 +88,11 @@
 									  
 										</td>
 										
-										<td align="right" colspan="2">가격 : ${obj.dlvy_fee }</td>
+										<td align="right" colspan="2">가격 : ${obj.dlvy_fee}</td>
 									</tr>
 									<tr height="40">
-										<td align="left">주문 시간 : ${obj.reg_tm }</td>
-										<td align="right">정산 시간 : ${obj.stlm_tm } </td>
+										<td align="left">주문 시간 : ${obj.reg_tm}</td>
+										<td align="right">정산 시간 : ${obj.stlm_tm} </td>
 									</tr>
 									
 								</table>
