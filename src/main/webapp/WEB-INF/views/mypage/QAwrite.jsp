@@ -44,32 +44,30 @@
 					</td>
 				</tr>			
 			</table>
-			 <div class="text-right">
-	            <a href="${root }mypage/QAwrite_pro?cust_id=${cust_id}" class="btn btn-primary">문의하기</a>
-	         </div>
-			<form>
-				
-					 <div class="col-sm-3" ></div>
-				     	 <div class="col-sm-6">
-				        	 <div class="card shadow" style="width: 900px">
-					            <div class="card-body">
-									<div>
-								 		<table>
-										
-											<tr height="50px;">
-												<td align="left" style="width: 100px;" >질문</td>		
-											</tr>
-											<tr>
-												<td align="center" style="width: 800px;" >
-													<textarea name="content_text" class="form-control" row="100" style="resize:none"></textarea>
-												</td>
-											</tr>
-										</table>
-									</div>	
-								</div>
+			<form action="${root}mypage/QAwrite_pro" method="post">	
+				<div class="text-right">
+	            	<input type="submit" value="문의하기" />
+	        	 </div>		
+				 <div class="col-sm-3" ></div>
+			     	 <div class="col-sm-6">
+			        	 <div class="card shadow" style="width: 900px">
+				            <div class="card-body">
+								<div>
+							 		<table>
+									
+										<tr height="50px;">
+											<td align="left" style="width: 100px;" >질문</td>		
+										</tr>
+										<tr>
+											<td align="center" style="width: 800px;" >
+												<textarea name="content_text" class="form-control" row="100" style="resize:none"></textarea>
+											</td>
+										</tr>
+									</table>
+								</div>	
 							</div>
 						</div>
-							
+					</div>							
 				</form>			
 			</div>
 		</div>

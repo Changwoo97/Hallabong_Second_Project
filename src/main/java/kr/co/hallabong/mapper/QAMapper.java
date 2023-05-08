@@ -20,7 +20,7 @@ public interface QAMapper {
 	QABean selectQA(String no);
 	
 	@Insert("INSERT INTO qa (no, cust_id, q, q_reg_tm, a, a_reg_tm, sta)\n"
-			+ "VALUES (DEFAULT, #{cust_id}, #{q}, NULL, #{a}, DEFAULT, 'REQUEST') ")
+			+ "VALUES (DEFAULT, #{cust_id}, #{q}, NULL, NULL, DEFAULT, 'REQUEST') ")
 	void insertQA(QABean bean);
 	
 	@Update("UPDATE qa "

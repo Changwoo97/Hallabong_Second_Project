@@ -21,6 +21,10 @@ public class QAService {
 		return qaDAO.selectQAList("COMPLETE");
 	}
 	
+	public void addQA(QABean bean) {
+		qaDAO.insertQA(bean);
+	}
+	
 	public QABean getQA(String no) {
 		return qaDAO.selectQA(no);
 	}

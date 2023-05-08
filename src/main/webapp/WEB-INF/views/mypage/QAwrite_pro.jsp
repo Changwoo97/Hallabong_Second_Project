@@ -3,5 +3,5 @@
 <c:set var='root' value='${pageContext.request.contextPath}/'/>
 <script>
 	alert('문의가 완료되었습니다')
-	location.href = '${root}views/mypage/QAList'
+	location.href = '${root}mypage/QAList'
 </script>

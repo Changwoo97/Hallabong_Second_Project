@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html>
@@ -7,35 +8,152 @@
 <meta charset="UTF-8">
 <title>한라봉 프로젝트</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<link type="text/css" rel="stylesheet" href="${root}css/UpdateLogin_style.css" />
+<%-- <link type="text/css" rel="stylesheet" href="${root}css/UpdateLogin_style.css" /> --%>
+<style>
+.inputbox {
+	width: 100%;
+	height: 40px;
+	padding: 0px 11px 1px 15px;
+	border-radius: 4px;
+	border: 1px solid rgb(221, 221, 221);
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 38px;
+	color: rgb(51, 51, 51);
+	border-style: none;
+	box-sizing: border-box;
+}
+
+.dob_box {
+	height: 44px;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	width: 100%;
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 3px;
+	padding: 0px 15px;
+}
+
+.check_button {
+	background-color: display: block;
+	padding: 0px 10px;
+	text-align: center;
+	overflow: hidden;
+	border-radius: 3px;
+	color: rgb(0, 0, 0);
+	background-color: #F7D358;
+	border: 0px none;
+}
+
+.aa {
+	min-width: 24px;
+	min-height: 24px;
+	display: inline-block;
+	position: relative;
+	border-radius: 50%;
+	background-color: #F7D358;
+}
+
+.hr1 {
+	border: 0px;
+	border-top: 2px solid black;
+	width: 50%;
+}
+
+
+h4 {
+	
+	font-size: 25px;
+	text-align: left;
+	width: 50%;
+	margin: 30px auto;
+    
+}
+
+.form-group {
+    display: flex;
+    margin-bottom: 1rem;
+    }
+
+.form-group label{
+	width: 100px;
+    display: inline-block;
+    margin-bottom: auto;
+}
+
+.text-field{
+    display: block;
+    width: 500px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+ 
+    
+</style>
+
+
 
 </head>
 <body>
-   
+   <c:import url="/WEB-INF/views/include/top.jsp" />
 
    <h4>개인 정보 수정</h4>
-   <p>비밀번호 재확인
-   회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인해주세요.</p>
+  <p style="text-align: center;">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인해주세요.</p>
+  <hr class="hr1"/>
    
-   
-   <hr class="hr1"/>
-   
-    <div class="login-form">      
+    <!-- <div class="login-form">    -->   
      <form id="chkForm" action="${root}cust/update/form" method="post">
-        <label>  아이디 <input type="text" name="id" id="id" class="text-field" value="${id}" placeholder="아이디" readonly></label><br/>      
-        <label>  비밀번호 <input type="password" name="pw" id="pw" class="text-field" placeholder="현재 비밀번호를 입력하세요"></label><br/>
-       <button type="button" onclick="fnGotoUpdate();" class="submit-btn">확인</button>     
-     </form>
-     
-<%--      <form id="updateForm" action="${root}cust/update/form" method="post">
-        <input type="hidden" name="id" id="id" value="${cust_id}"/>     
-     </form> --%>
-   </div>
+       
+       
+      	<div class="container" style="margin-top: 100px" align="center">
+			<div class="row">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+					<div class="card shadow">
+						<div class="card-body">
+							<div class="form-group" style="text-align: left;">
+								 <label>  아이디 
+								 <input type="text" name="id" id="id" class="text-field" value="${id}" readonly> </label> 
+							</div>
+							<div class="form-group" style="text-align: left;">
+								 <label>  비밀번호  
+								 <input type="password" name="pw" id="pw" class="text-field" placeholder="현재 비밀번호를 입력하세요"></label>
+					<%-- 			<input type="password" id="now_pwd" name="now_pwd" value="${custInfo.pw}" class="form-control"> --%>
+								<input type="hidden" id="now_chk_pwd" name="now_chk_pwd" value="${custInfo.pw}">
+							</div>
+		
+						</div>
+
+						<div class="btn_wrap">
+							<button type="button" onclick="fnGotoUpdate();" class="btn btn-primary" style="background-color: #F7D358; border-style: none; color: black;">확인</button>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+
+
+	</form>
 
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
+	<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script>
 
    function fnValidation(){
       //비밀번호 값이 비었을 때 
@@ -92,5 +210,6 @@
    
    
 </script>
+<c:import url="/WEB-INF/views/include/bottom.jsp" />
 </body>
 </html>   

@@ -27,7 +27,7 @@ public class AdminQaController {
 	@Autowired
 	private QAService qaService;
 	
-	private final int ROW_SIZE = 2;
+	private final int ROW_SIZE = 10;
 	
 	@GetMapping("/request")
 	public String request(HttpServletRequest request, Model model,

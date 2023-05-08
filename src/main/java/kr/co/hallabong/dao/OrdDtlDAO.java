@@ -1,5 +1,7 @@
 package kr.co.hallabong.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -13,5 +15,9 @@ public class OrdDtlDAO {
 	
 	public void insertOrdDtl(OrdDtlBean bean) {
 		ordDtlMapper.insertOrdDtl(bean);
+	}
+	
+	public List<OrdDtlBean> selectOrdDtlList(String ord_no) {
+		return ordDtlMapper.selectOrdDtlList(ord_no);
 	}
 }

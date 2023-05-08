@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="${root}/js/admin/admin.js"></script>
 </head>
 <body>
+	<input type="hidden" id="root" value="${root}"/>
 	<div id="header">
 		<table>
 			<tr>

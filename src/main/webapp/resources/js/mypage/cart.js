@@ -12,7 +12,7 @@ function selectAll() {
 
 function deleteSelected() {
 	let form = document.getElementById('form');
-	let root = document .getElementById('root');
+	let root = document.getElementById('root');
 	
 	form.setAttribute('action', root.getAttribute('value') + 'mypage/delete');
 	form.submit();
@@ -20,7 +20,7 @@ function deleteSelected() {
 
 function ordersSelected() {
 	let form = document.getElementById('form');
-	let root = document .getElementById('root');
+	let root = document.getElementById('root');
 	
 	form.setAttribute('action', root.getAttribute('value') + 'order/order');
 	form.submit();

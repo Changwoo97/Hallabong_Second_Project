@@ -21,6 +21,10 @@ public class DlvyDAO {
 		return dlvyMapper.selectDlvy(no);
 	}
 	
+	public DlvyBean selectDlvyByOrdNo(String ord_no) {
+		return dlvyMapper.selectDlvyByOrdNo(ord_no);
+	}
+	
 	public void insertDlvy(DlvyBean bean) {
 		dlvyMapper.insertDlvy(bean);
 	}

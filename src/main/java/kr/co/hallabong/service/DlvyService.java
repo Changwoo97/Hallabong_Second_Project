@@ -17,6 +17,10 @@ public class DlvyService {
 		return dlvyDAO.selectDlvy(no);
 	}
 	
+	public DlvyBean getDlvyByOrdNo(String ord_no) {
+		return dlvyDAO.selectDlvyByOrdNo(ord_no);
+	}
+	
 	public List<DlvyBean> getDlvyListReady() {
 		return dlvyDAO.selectDlvyList("READY");
 	}

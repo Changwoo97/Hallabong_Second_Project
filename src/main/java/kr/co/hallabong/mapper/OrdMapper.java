@@ -39,7 +39,8 @@ public interface OrdMapper {
 			"WHERE no = #{no} ")
 	void updateOrdSta(@Param("no") String no, @Param("sta") String sta);
 	
-	@Select("SELECT * FROM ord WHERE cust_id = #{cust_id} ")
+	@Select("SELECT no, cust_id, type, ordr_name, ordr_tel, ordr_addr, recv_name, recv_tel, recv_addr, pay_meth, dlvy_fee, cont, TO_CHAR(reg_tm, 'YYYY-MM-DD HH24:mm:ss') AS reg_tm, stlm_tm, sta " + 
+			"FROM (SELECT * FROM ord WHERE cust_id = #{cust_id} ORDER BY reg_tm DESC) ")
 	List<OrdBean> getOrdList(String cust_id);
 	
 	@Select("SELECT odd.ord_no\n" + 

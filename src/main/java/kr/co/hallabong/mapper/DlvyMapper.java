@@ -16,6 +16,11 @@ public interface DlvyMapper {
 	DlvyBean selectDlvy(String no);
 	
 	@Select("SELECT no, send_name, send_tel, send_addr, recv_name, recv_tel, recv_addr, fee, reg_tm, dep_tm, arr_tm, sta, ord_no\n" + 
+			"FROM dlvy\n" +
+			"WHERE ord_no = #{ord_no} ")
+	DlvyBean selectDlvyByOrdNo(String ord_no);
+	
+	@Select("SELECT no, send_name, send_tel, send_addr, recv_name, recv_tel, recv_addr, fee, reg_tm, dep_tm, arr_tm, sta, ord_no\n" + 
 			"FROM dlvy\n" + 
 			"WHERE sta = #{sta} ")
 	List<DlvyBean> selectDlvyList(String sta);
