@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import kr.co.hallabong.bean.CatBean;
 import kr.co.hallabong.bean.ProdBean;
-import kr.co.hallabong.bean.join.ProdCatBean;
 import kr.co.hallabong.dao.CatDAO;
 
 @Service

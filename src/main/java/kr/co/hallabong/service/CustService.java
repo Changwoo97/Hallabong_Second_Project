@@ -135,7 +135,6 @@ public class CustService {
         String api_secret = "ORIXGKSEC2WG3BLW314EJQATXXMJVFEK";
         Message coolsms = new Message(api_key, api_secret);
 
-
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("to", tel);    
         params.put("from", "010-4129-9680");   
@@ -145,7 +144,7 @@ public class CustService {
 
         try {
 	        JSONObject obj = (JSONObject) coolsms.send(params);
-	        System.out.println(obj.toString());
+	        // System.out.println(obj.toString());
         } catch (CoolsmsException e) {
         	System.out.println(e.getMessage());
 	        System.out.println(e.getCode());

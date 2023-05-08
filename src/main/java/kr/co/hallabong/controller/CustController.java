@@ -45,7 +45,7 @@ public class CustController {
 	@RequestMapping("/update_login/form") // top에서 가려는 집주소(경로에 대한 요청 처리)
 	public String updateLoginForm(Model model) { // "updateLoginForm" 메서드는 "Model" 객체를 매개변수로 받아서
 		// 추후 아마도 session에 담긴 id 값을 가지고 내려가면 됨.
-		model.addAttribute("cust_id", "tester3333"); // "custId"라는 이름으로 "tester2222" 값을 모델에 추가
+		model.addAttribute("id", loginCustBean.getId()); // "custId"라는 이름으로 "tester2222" 값을 모델에 추가
 		return "cust/UpdateLogin"; // 띄우는 화면 "cust/UpdateLogin" 뷰(View)를 반환
 	}
 
@@ -64,7 +64,7 @@ public class CustController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
 			String custId = custService.getLoginCustIdx(paramLoginCustBean); // 회원여부
-			resultMap.put("cust_id", custId);
+			resultMap.put("id", custId);
 		} catch (Exception e) {
 			resultMap.put("message", e.getMessage());
 		}
@@ -82,7 +82,7 @@ public class CustController {
 	 */
 	@RequestMapping("/update/form")
 	public String updateCustForm(CustBean paramLoginCustBean, Model model) {
-
+		System.out.println("aa");
 		// 추후 아마도 session에 담긴 id 값을 가지고 내려가면 됨.
 		CustBean custInfo = custService.getLoginCustDetailInfo(paramLoginCustBean.getId());
 		model.addAttribute("custInfo", custInfo);

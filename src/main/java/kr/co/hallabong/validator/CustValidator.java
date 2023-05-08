@@ -8,7 +8,6 @@ public class CustValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-
 		return CustBean.class.isAssignableFrom(clazz);
 	}
 	
@@ -18,7 +17,7 @@ public class CustValidator implements Validator {
 		
 		CustBean custBean = (CustBean)target;
 		String beanName = errors.getObjectName();
-		System.out.println(beanName);
+		// System.out.println(beanName);
 		if (beanName.equals("joinusecuCustBean") ) {
 			if (custBean.getPw().equals(custBean.getPw2()) == false) {
 				errors.rejectValue("pw", "NoEquals");

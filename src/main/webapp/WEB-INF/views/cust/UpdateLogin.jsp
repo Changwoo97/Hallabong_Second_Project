@@ -22,7 +22,7 @@
 	
  	<div class="login-form"> 	  
      <form id="chkForm" action="${root}cust/update/form" method="post">
-	     <label>  아이디 <input type="text" name="id" id="id" class="text-field" value="${cust_id}" placeholder="아이디" readonly></label><br/>      
+	     <label>  아이디 <input type="text" name="id" id="id" class="text-field" value="${id}" placeholder="아이디" readonly></label><br/>      
 	     <label>  비밀번호 <input type="password" name="pw" id="pw" class="text-field" placeholder="현재 비밀번호를 입력하세요"></label><br/>
 		 <button type="button" onclick="fnGotoUpdate();" class="submit-btn">확인</button>     
      </form>
@@ -75,9 +75,7 @@
                 	var sdata = JSON.parse(JSON.stringify(data));
                     console.log("success_data_origin= " + data);
                     console.log("success_data_str= " + JSON.stringify(data));// Object로 받아온 것을 문자열의 형태로 풀어서 보여주는 것
-                    console.log("success_data3_ex= " + sdata.cust_id);
-                    console.log("success_data3_ex= " + sdata.cust_id);
-             	if(sdata.cust_id.length > 0){
+             	if(sdata.id.length > 0){
                     	// update 페이지로 이동
                     	// $("#updateForm #cust_idx").val(custId);
                     	$("#chkForm").submit();

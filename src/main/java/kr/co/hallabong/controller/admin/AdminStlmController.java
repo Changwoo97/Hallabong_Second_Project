@@ -113,11 +113,11 @@ public class AdminStlmController {
 		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
 		thead.add(Format.getMap("title=신청일&type=date&name=reg_tm"));
 		thead.add(Format.getMap("title=정산일&type=date&name=stlm_tm"));
-		thead.add(Format.getMap("title=배송료"));
-		thead.add(Format.getMap("title=차감배송료"));
-		thead.add(Format.getMap("title=원가"));
-		thead.add(Format.getMap("title=판매금액"));
-		thead.add(Format.getMap("title=순수익"));
+		thead.add(Format.getMap("title=배송료&align=right"));
+		thead.add(Format.getMap("title=차감배송료&align=right"));
+		thead.add(Format.getMap("title=원가&align=right"));
+		thead.add(Format.getMap("title=판매금액&align=right"));
+		thead.add(Format.getMap("title=순수익&align=right"));
 		thead.add(Format.getMap("title=정산하기"));
 	
 		List<List<String>> tbody = new ArrayList<>();
@@ -248,11 +248,11 @@ public class AdminStlmController {
 		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
 		thead.add(Format.getMap("title=신청일&type=date&name=reg_tm"));
 		thead.add(Format.getMap("title=정산일&type=date&name=stlm_tm"));
-		thead.add(Format.getMap("title=배송료"));
-		thead.add(Format.getMap("title=차감배송료"));
-		thead.add(Format.getMap("title=원가"));
-		thead.add(Format.getMap("title=판매금액"));
-		thead.add(Format.getMap("title=순수익"));
+		thead.add(Format.getMap("title=배송료&align=right"));
+		thead.add(Format.getMap("title=차감배송료&align=right"));
+		thead.add(Format.getMap("title=원가&align=right"));
+		thead.add(Format.getMap("title=판매금액&align=right"));
+		thead.add(Format.getMap("title=순수익&align=right"));
 	
 		List<List<String>> tbody = new ArrayList<>();
 		List<String> tfoot = new ArrayList<>();

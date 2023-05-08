@@ -116,11 +116,10 @@ public class AdminProdController {
 		map.append(catBeans.size());
 
 		thead.add(Format.getMap("title=카테고리&type=select&name=cat_no" + map.toString()));
-		
-		thead.add(Format.getMap("title=판매상태&type=select&name=fs&selectValue1=Y&selectLabel1=판매중&selectValue2=N&selectLabel2=판매보류&selectEnd=2"));		
+		thead.add(Format.getMap("title=판매상태&align=center&type=select&name=fs&selectValue1=Y&selectLabel1=판매중&selectValue2=N&selectLabel2=판매보류&selectEnd=2"));		
 		thead.add(Format.getMap("title=상품명&type=keyword&name=name"));
-		thead.add(Format.getMap("title=원가"));
-		thead.add(Format.getMap("title=판매가"));
+		thead.add(Format.getMap("title=원가&align=right"));
+		thead.add(Format.getMap("title=판매가&align=right"));
 		thead.add(Format.getMap("title=등록일&type=date&name=reg_tm"));
 		thead.add(Format.getMap("title=수정하기"));
 	

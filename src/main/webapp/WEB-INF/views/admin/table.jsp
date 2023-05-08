@@ -1,5 +1,8 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -29,7 +32,7 @@
 				<c:forEach var="i" begin="${beginPageNum}" end="${endPageNum}">
 				<td class="pageNum">
 					<c:choose>
-					<c:when test="${selectedPageNum == i}">
+					<c:when test="${selectedPageNum eq i}">
 					<button name="pageButton" value="${i}" disabled>${i}</button>
 					</c:when>
 					<c:otherwise>
@@ -58,17 +61,17 @@
 		<form name="searchForm" action="${root}${searchPath}" method="get">
 			<table>
 				<c:forEach var="cell" items="${thead}">
-				<c:if test="${cell['type'] != null}">
+				<c:if test="${not empty cell['type']}">
 					<tr>
 						<th>${cell['title']}</th>
 						<td>
 							<c:choose>
-							<c:when test="${cell['type'].equals('date')}">
+							<c:when test="${cell['type'] eq 'date'}">
 							<input type="date" name="${cell['name']}BeginDate"/>
 							~
 							<input type="date" name="${cell['name']}EndDate" />
 							</c:when>
-							<c:when test="${cell['type'].equals('select')}">
+							<c:when test="${cell['type'] eq 'select'}">
 							<select name="${cell['name']}">
 								<option value="T">전체</option>
 								<c:forEach var="i" begin="1" end="${cell['selectEnd']}">
@@ -78,7 +81,7 @@
 								</c:forEach>
 							</select>
 							</c:when>
-							<c:when test="${cell['type'].equals('keyword')}">
+							<c:when test="${cell['type'] eq 'keyword'}">
 							<input type="text" name="${cell['name']}" />
 							</c:when>
 							</c:choose>
@@ -106,19 +109,39 @@
 		<tbody>
 			<c:forEach var="row" items="${tbody}">
 			<tr>
-				<c:forEach var="cell" items="${row}">
-				<td>${cell}</td>
+				<c:forEach var="i" begin="0" end="${fn:length(row) - 1}">
+				<c:set var="cell" value="${row[i]}" />
+				<c:set var="align" value="${thead[i]['align']}" />
+				<c:choose>
+				<c:when test="${not empty align}">
+					<td style="text-align: ${align}">${cell}</td>
+				</c:when>
+				<c:otherwise>
+					<td>${cell}</td>
+				</c:otherwise>
+				</c:choose>
 				</c:forEach>
 			</tr>
 			</c:forEach>	
 		</tbody>
-		<tfoot>
-			<tr>
-				<c:forEach var="cell" items="${tfoot}">
-				<th>${cell}</th>
-				</c:forEach>
-			</tr>
-		</tfoot>
+		<c:if test="${not empty tfoot}">
+			<tfoot>
+				<tr>
+					<c:forEach var="i" begin="0" end="${fn:length(tfoot) - 1}">
+					<c:set var="cell" value="${tfoot[i]}" />
+					<c:set var="align" value="${thead[i]['align']}" />
+					<c:choose>
+					<c:when test="${not empty align}">
+						<th style="text-align: ${align}">${cell}</th>
+					</c:when>
+					<c:otherwise>
+						<th>${cell}</th>
+					</c:otherwise>
+					</c:choose>
+					</c:forEach>
+				</tr>
+			</tfoot>
+		</c:if>
 	</table>
 </body>
 </html>

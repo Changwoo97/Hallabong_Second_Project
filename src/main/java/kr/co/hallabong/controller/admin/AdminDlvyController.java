@@ -125,7 +125,7 @@ public class AdminDlvyController {
 		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
 		thead.add(Format.getMap("title=상품번호&type=keyword&name=prod_no"));
 		thead.add(Format.getMap("title=상품명&type=keyword&name=prod_name"));
-		thead.add(Format.getMap("title=수량"));
+		thead.add(Format.getMap("title=수량&align=right"));
 		thead.add(Format.getMap("title=주문인&type=keyword&name=ordr_name"));
 		thead.add(Format.getMap("title=주문인 전화번호&type=keyword&name=ordr_tel"));
 		thead.add(Format.getMap("title=주문인 주소&type=keyword&name=ordr_addr"));
@@ -291,7 +291,7 @@ public class AdminDlvyController {
 		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
 		thead.add(Format.getMap("title=상품번호&type=keyword&name=prod_no"));
 		thead.add(Format.getMap("title=상품명&type=keyword&name=prod_name"));
-		thead.add(Format.getMap("title=수량"));
+		thead.add(Format.getMap("title=수량&align=right"));
 		thead.add(Format.getMap("title=주문인&type=keyword&name=send_name"));
 		thead.add(Format.getMap("title=주문인 전화번호&type=keyword&name=send_tel"));
 		thead.add(Format.getMap("title=주문인 주소&type=keyword&name=send_addr"));
@@ -450,7 +450,7 @@ public class AdminDlvyController {
 		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
 		thead.add(Format.getMap("title=상품번호&type=keyword&name=prod_no"));
 		thead.add(Format.getMap("title=상품명&type=keyword&name=prod_name"));
-		thead.add(Format.getMap("title=수량"));
+		thead.add(Format.getMap("title=수량&align=right"));
 		thead.add(Format.getMap("title=주문인&type=keyword&name=send_name"));
 		thead.add(Format.getMap("title=주문인 전화번호&type=keyword&name=send_tel"));
 		thead.add(Format.getMap("title=주문인 주소&type=keyword&name=send_addr"));
@@ -591,7 +591,7 @@ public class AdminDlvyController {
 		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
 		thead.add(Format.getMap("title=상품번호&type=keyword&name=prod_no"));
 		thead.add(Format.getMap("title=상품명&type=keyword&name=prod_name"));
-		thead.add(Format.getMap("title=수량"));
+		thead.add(Format.getMap("title=수량&align=right"));
 		thead.add(Format.getMap("title=주문인&type=keyword&name=send_name"));
 		thead.add(Format.getMap("title=주문인 전화번호&type=keyword&name=send_tel"));
 		thead.add(Format.getMap("title=주문인 주소&type=keyword&name=send_addr"));
@@ -742,7 +742,7 @@ public class AdminDlvyController {
 		thead.add(Format.getMap("title=주문번호&type=keyword&name=ord_no"));
 		thead.add(Format.getMap("title=상품번호&type=keyword&name=prod_no"));
 		thead.add(Format.getMap("title=상품명&type=keyword&name=prod_name"));
-		thead.add(Format.getMap("title=수량"));
+		thead.add(Format.getMap("title=수량&align=right"));
 		thead.add(Format.getMap("title=주문인&type=keyword&name=ordr_name"));
 		thead.add(Format.getMap("title=주문인 전화번호&type=keyword&name=ordr_tel"));
 		thead.add(Format.getMap("title=주문인 주소&type=keyword&name=ordr_addr"));
