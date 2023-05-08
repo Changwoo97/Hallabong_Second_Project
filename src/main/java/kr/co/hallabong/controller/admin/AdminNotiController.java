@@ -26,7 +26,7 @@ public class AdminNotiController {
 	@Autowired 
 	NotiService notiService;
 	
-	private final int ROW_SIZE = 25;
+	private final int ROW_SIZE = 10;
 	
 	@GetMapping("/registration") 
 	public String registration(@ModelAttribute NotiBean notiBean, Model model) {
