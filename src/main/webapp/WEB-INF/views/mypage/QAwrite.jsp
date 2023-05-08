@@ -45,50 +45,32 @@
 				</tr>			
 			</table>
 			 <div class="text-right">
-	            <a href="${root }mypage/QAwrite" class="btn btn-primary">작성하기</a>
+	            <a href="${root }mypage/QAwrite_pro?cust_id=${cust_id}" class="btn btn-primary">문의하기</a>
 	         </div>
-			<form:form>
-				<c:forEach var="obj" items="${qaList }">
+			<form>
+				
 					 <div class="col-sm-3" ></div>
 				     	 <div class="col-sm-6">
 				        	 <div class="card shadow" style="width: 900px">
 					            <div class="card-body">
 									<div>
 								 		<table>
-											<tr >
-												<td >Q&A : ${obj.no }</td>
-												<td align="right" >아이디 : ${obj.cust_id }</td>
-											</tr>
-											<tr height="200px;">
-												<td align="center" style="width: 100px;" >질문 : </td>
-												<td align="center" style="width: 800px;" >${obj.q }</td>
-											</tr>
-											
-											<tr >
-												<td />
-												<td align="right" >질문 시간 : ${obj.q_reg_tm }</td>						
-											</tr>
-											<tr height="200px;">
-												<td align="center" style=" width: 100px;" >답변 : </td>
-												<td align="center">${obj.a }</td>
-											</tr>
-											<tr/>
-											<tr >
-												<td />
-												<td align="right">답변 시간 : ${obj.a_reg_tm }</td>						
-											</tr>
-											<tr height="100px;">	
-												<td align="center" colspan="3">답변이 완료되었습니다. 문의해주셔서 감사합니다.</td>
-												<td/>
-											</tr>
 										
+											<tr height="50px;">
+												<td align="left" style="width: 100px;" >질문</td>		
+											</tr>
+											<tr>
+												<td align="center" style="width: 800px;" >
+													<textarea name="content_text" class="form-control" row="100" style="resize:none"></textarea>
+												</td>
+											</tr>
 										</table>
 									</div>	
 								</div>
 							</div>
 						</div>
-					</c:forEach>						
-				</form:form>			
+							
+				</form>			
 			</div>
 		</div>
 	
