@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
@@ -72,11 +73,12 @@
 						<div class="card-body">
 							<div class="form-group" style="text-align: left;">
 								<label>아이디</label>
-								 <input type="text" name="id" value="${custInfo.id}" readonly class="form-control" /> 
+								 <input type="text" name="cust_id" value="${custInfo.id}" readonly class="form-control" /> 
 							</div>
 							<div class="form-group" style="text-align: left;">
 								<label>현재 비밀번호</label> 
-								<input type="password" id="pw" name="pw" value="${custInfo.pw}" class="form-control">
+								<input type="password" id="now_pwd" name="now_pwd" value="${custInfo.pw}" class="form-control">
+								<input type="hidden" id="now_chk_pwd" name="now_chk_pwd" value="${custInfo.pw}">
 							</div>
 							<div class="form-group" style="text-align: left;">
 								<label>새 비밀번호</label> <input type="password" id="new_pwd" name="new_pwd" class="form-control">

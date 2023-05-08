@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.hallabong.bean.OrdBean;
+import kr.co.hallabong.bean.OrdDtlBean;
 import kr.co.hallabong.dao.OrdDAO;
 
 @Service
@@ -35,5 +36,9 @@ public class OrdService {
 	
 	public List<OrdBean> getOrdList(String cust_id) {
 		return ordDAO.getOrdList(cust_id);
+	}
+	
+	public List<OrdDtlBean> getOrdDtlList(String ord_no) {
+	    return ordDAO.getOrdDtlList(ord_no);
 	}
 }

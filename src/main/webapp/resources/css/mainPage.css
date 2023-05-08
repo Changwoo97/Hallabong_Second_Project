@@ -8,11 +8,11 @@
 }
 
 body {
-	font-family: 'GangwonEduPowerExtraBoldA';
+   font-family: 'GangwonEduPowerExtraBoldA';
 }
 
 article{
-	margin-bottom: 50px;
+   margin-bottom: 50px;
 }
 
 a{
@@ -69,16 +69,16 @@ section{
 
 
 #banner div img{
-   width: 100%; 
+   width: 120%; 
 }
 
 .categoryIcon{
-	width: 100%;
-	margin: 0 200x;
-	padding: 20px 0px;
-	display: flex;
-	justify-content: space-between;
-	text-align: center;
+   width: 100%;
+   margin: 0 200x;
+   padding: 20px 0px;
+   display: flex;
+   justify-content: space-between;
+   text-align: center;
 }
 
 .info {
@@ -102,20 +102,20 @@ section{
 }
 
 .product-list li img{   
-   width: 220px;
-   height: 250px; 
+   width: 200px;
+   height: 240px; 
 }
 
 .bestProduct-list{
-	display: flex;
-	justify-content: space-between;
-	text-align: center;
-	
+   display: flex;
+   justify-content: space-between;
+   text-align: center;
+   
 }
 
 .bestProduct-list li img{
-	width: 250px;
-	height: 290px;
+   width: 240px;
+   height: 280px;
 }
 
 
@@ -126,18 +126,18 @@ section{
 
 
 .navigator {
-	height: 50px;
-	background-color: #f9d9a1;
-	position: sticky;
-	left: 0px;
-	top: 0px;
-	margin: 0px 200px 0px;
-	padding: 0;
-	z-index: 10;
+   height: 50px;
+   background-color: #f9d9a1;
+   position: sticky;
+   left: 0px;
+   top: 0px;
+   margin: 0px 200px 0px;
+   padding: 0;
+   z-index: 10;
 }
 
 .navigator ul {
-	list-style-type: none;
+   list-style-type: none;
      display: flex;
      align-items: center;
      justify-content: space-around;
@@ -149,12 +149,12 @@ section{
 }
 
 .navigator-link {
-	display:inline-block;
-	padding: 5px;
+   display:inline-block;
+   padding: 5px;
 }
 
 .navigator-link a {
-	 display: block;
+    display: block;
      height: 40px;
      padding: 0 20px;
      line-height: 40px;
@@ -175,8 +175,8 @@ section{
 } 
  
 .card-title2{
- 	margin-bottom: 0.75rem;
- 	text-align: center;
+    margin-bottom: 0.75rem;
+    text-align: center;
  }
 
 .card-body2 {
@@ -199,3 +199,25 @@ section{
 }
 
 
+.outer {
+  border: 6px solid royalblue;
+  width: 300px;
+  height: 200px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.inner-list {
+  display: flex;
+  transition: .3s ease-out;
+  height: 100%;
+}
+
+.inner {
+  border: 6px solid olive;
+  padding: 0 16px;
+}
+
+.button-list {
+  text-align: center;
+}

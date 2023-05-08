@@ -83,12 +83,23 @@ public class MypageController {
     	return "mypage/QAList";
     }
     
-	/*
-	 * @GetMapping("/QAList_pro") public String QAList_pro(@RequestParam("no")String
-	 * no,Model model) {
-	 * 
-	 * }
-	 */
-	 
+    /**
+     * 리뷰 등록/수정페이지
+     * 
+     * @param model
+     * @return String
+     * @author
+     * @since
+     */
+    @RequestMapping("/review/form") 
+    public String reviewForm(Model model) { 
+             
+       if(loginCustBean.isCustLogin() == true) {
+          model.addAttribute("id", loginCustBean.getId());
+       } 
+       //return "review/write";
+       return "cust/UpdateLogin"; // 띄우는 화면 "cust/UpdateLogin" 뷰(View)를 반환
+    }
+    
 }
 

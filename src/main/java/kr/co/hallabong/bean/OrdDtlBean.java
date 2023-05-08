@@ -12,4 +12,6 @@ public class OrdDtlBean {
 	private int prod_cost; // 상품원가
 	private int prod_sp; // 상품판매가
 	private int prod_qnty; // 상품수량
+	
+	private String prod_name; // 상품명
 }

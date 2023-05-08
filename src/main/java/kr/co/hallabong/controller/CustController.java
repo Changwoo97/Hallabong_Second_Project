@@ -33,7 +33,7 @@ public class CustController {
 
 	@Resource(name = "loginCustBean")
 	private CustBean loginCustBean;
-	
+
 	/**
 	 * 개인정보 확인페이지(개인정보수정페이지 이동 전) 개인정보 수정페이지 이동전 본인 재인증
 	 * 
@@ -45,7 +45,10 @@ public class CustController {
 	@RequestMapping("/update_login/form") // top에서 가려는 집주소(경로에 대한 요청 처리)
 	public String updateLoginForm(Model model) { // "updateLoginForm" 메서드는 "Model" 객체를 매개변수로 받아서
 		// 추후 아마도 session에 담긴 id 값을 가지고 내려가면 됨.
-		model.addAttribute("id", loginCustBean.getId()); // "custId"라는 이름으로 "tester2222" 값을 모델에 추가
+
+		if (loginCustBean.isCustLogin() == true) {
+			model.addAttribute("id", loginCustBean.getId());
+		}
 		return "cust/UpdateLogin"; // 띄우는 화면 "cust/UpdateLogin" 뷰(View)를 반환
 	}
 
@@ -82,7 +85,6 @@ public class CustController {
 	 */
 	@RequestMapping("/update/form")
 	public String updateCustForm(CustBean paramLoginCustBean, Model model) {
-		System.out.println("aa");
 		// 추후 아마도 session에 담긴 id 값을 가지고 내려가면 됨.
 		CustBean custInfo = custService.getLoginCustDetailInfo(paramLoginCustBean.getId());
 		model.addAttribute("custInfo", custInfo);
@@ -132,8 +134,6 @@ public class CustController {
 		return resultMap;
 	}
 
-
-
 	@GetMapping("/update_login")
 	public String updateLogin() {
 		return "cust/UpdateLogin";
@@ -166,33 +166,33 @@ public class CustController {
 	public String resigncheck(@ModelAttribute("paramLoginCustBean") CustBean paramLoginCustBean) {
 		return "cust/Resign"; // 띄우는 화면
 	}
-	
+
 	@GetMapping("/login")
 	public String login(@ModelAttribute("tempLoginUserBean") CustBean tempLoginUserBean,
-						@RequestParam(value = "fail", defaultValue = "false") boolean fail, Model model) {
+			@RequestParam(value = "fail", defaultValue = "false") boolean fail, Model model) {
 		model.addAttribute("fail", fail);
-	
+
 		return "cust/login";
 	}
 
 	@PostMapping("/login_pro")
-	public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") CustBean tempLoginUserBean, BindingResult result, Model model) {
-		if(result.hasErrors()) {
+	public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") CustBean tempLoginUserBean,
+			BindingResult result, Model model) {
+		if (result.hasErrors()) {
 			return "cust/login";
 		}
-		
+
 		custService.getLoginCustInfo(tempLoginUserBean);
 		// 비밀번호 암호하시켜서 대조하여 로그인
 //		tempLoginUserBean.setPw(SHA256.encodeSha256(tempLoginUserBean.getPw()));
-		
-		if(loginCustBean.isCustLogin() == true) {
+
+		if (loginCustBean.isCustLogin() == true) {
 			return "cust/login_success";
 		} else {
 			return "cust/login_fail";
 		}
 	}
-	
-	
+
 	@GetMapping("/join_success")
 	public String join_success() {
 
@@ -205,7 +205,6 @@ public class CustController {
 		return "cust/not_login";
 	}
 
-	
 	@GetMapping("/join")
 	public String join(@ModelAttribute("joinusecuCustBean") CustBean joinusecuCustBean) {
 		joinusecuCustBean.setGender("X");
@@ -218,17 +217,18 @@ public class CustController {
 		if (result.hasErrors()) {
 			return "cust/join";
 		}
-		
-		//비밀번호 암호화 시켜서 데이터베이스에 저장
+
+		// 비밀번호 암호화 시켜서 데이터베이스에 저장
 //		joinusecuCustBean.setPw(SHA256.encodeSha256(joinusecuCustBean.getPw()));
-		joinusecuCustBean.setDob(joinusecuCustBean.getDob_year() + "-" + joinusecuCustBean.getDob_month() + "-" + joinusecuCustBean.getDob_day());
+		joinusecuCustBean.setDob(joinusecuCustBean.getDob_year() + "-" + joinusecuCustBean.getDob_month() + "-"
+				+ joinusecuCustBean.getDob_day());
 		joinusecuCustBean.setAddr(joinusecuCustBean.getAddr1() + " " + joinusecuCustBean.getAddr_detail());
 
 		String gender = joinusecuCustBean.getGender();
 		if (gender != null && (gender.equals("M") || gender.equals("F"))) {
 			joinusecuCustBean.setGender(null);
 		}
-		
+
 		custService.addjoinUserInfo(joinusecuCustBean);
 		return "cust/join_success";
 	}
@@ -236,7 +236,7 @@ public class CustController {
 	@GetMapping("/logout")
 	public String logout() {
 		loginCustBean.setCustLogin(false);
-		
+
 		return "cust/logout";
 	}
 
@@ -247,8 +247,8 @@ public class CustController {
 	}
 
 	@PostMapping("find_id_pro")
-	public String find_id_pro(@ModelAttribute("findid") CustBean findid, BindingResult result,Model model) {
-		
+	public String find_id_pro(@ModelAttribute("findid") CustBean findid, BindingResult result, Model model) {
+
 		custService.findId(findid);
 		return "cust/find_id_pro";
 	}
@@ -260,12 +260,12 @@ public class CustController {
 	}
 
 	@PostMapping("change_pw")
-	public String find_pw_pro(@ModelAttribute("findpw") CustBean findpw, BindingResult result,Model model) {
-		
+	public String find_pw_pro(@ModelAttribute("findpw") CustBean findpw, BindingResult result, Model model) {
+
 		custService.findPw(findpw);
 		return "cust/change_pw_pro";
 	}
-	
+
 	@GetMapping("/myInfo")
 	public String myInfo() {
 
@@ -273,26 +273,26 @@ public class CustController {
 	}
 
 	@InitBinder
-    public void initBinder(WebDataBinder binder) {
-       CustValidator validator = new CustValidator();
-       binder.addValidators(validator);
-    }
-	
-	@RequestMapping("/sendSMS1.do") //jsp 페이지 넘긴 mapping 값
-	@ResponseBody    
-    public String sendSMS(String tel) {
- 
-        Random rand  = new Random(); //랜덤숫자 생성하기 !!
-        String numStr = "";
-        for(int i=0; i<4; i++) {
-            String ran = Integer.toString(rand.nextInt(10));
-            numStr+=ran;
-        }
-        
-        custService.certifiedPhoneNumber(tel, numStr); //휴대폰 api 쪽으로 가기 !!
-        // // 밑에 자세한 설명나옴
-         
-        return numStr;
-    }
-	
+	public void initBinder(WebDataBinder binder) {
+		CustValidator validator = new CustValidator();
+		binder.addValidators(validator);
+	}
+
+	@RequestMapping("/sendSMS1.do") // jsp 페이지 넘긴 mapping 값
+	@ResponseBody
+	public String sendSMS(String tel) {
+
+		Random rand = new Random(); // 랜덤숫자 생성하기 !!
+		String numStr = "";
+		for (int i = 0; i < 4; i++) {
+			String ran = Integer.toString(rand.nextInt(10));
+			numStr += ran;
+		}
+
+		custService.certifiedPhoneNumber(tel, numStr); // 휴대폰 api 쪽으로 가기 !!
+		// // 밑에 자세한 설명나옴
+
+		return numStr;
+	}
+
 }

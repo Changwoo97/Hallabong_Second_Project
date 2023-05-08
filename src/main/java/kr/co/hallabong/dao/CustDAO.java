@@ -14,7 +14,7 @@ public class CustDAO {
 	
 	//로그인 
 	public CustBean getLoginCustInfo(CustBean tempLoginUserBean) {
-		System.out.println(tempLoginUserBean);
+		// System.out.println(tempLoginUserBean);
 		return custMapper.getLoginCustInfo(tempLoginUserBean);
 	}
 	

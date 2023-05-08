@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.hallabong.bean.OrdBean;
+import kr.co.hallabong.bean.OrdDtlBean;
 import kr.co.hallabong.mapper.OrdMapper;
 
 @Repository
@@ -27,5 +28,9 @@ public class OrdDAO {
 	
 	public List<OrdBean> getOrdList(String cust_id) {
 		return ordMapper.getOrdList(cust_id);
+	}
+	
+	public List<OrdDtlBean> getOrdDtlList(String ord_no) {
+	    return ordMapper.selectOrdDtlList(ord_no);
 	}
 }

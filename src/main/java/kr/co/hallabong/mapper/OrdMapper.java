@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import kr.co.hallabong.bean.OrdBean;
+import kr.co.hallabong.bean.OrdDtlBean;
 
 public interface OrdMapper {
 	@Select("SELECT no\n" + 
@@ -39,5 +40,12 @@ public interface OrdMapper {
 	void updateOrdSta(@Param("no") String no, @Param("sta") String sta);
 	
 	@Select("SELECT * FROM ord WHERE cust_id = #{cust_id} ")
-	 List<OrdBean> getOrdList(String cust_id);
+	List<OrdBean> getOrdList(String cust_id);
+	
+	@Select("SELECT odd.ord_no\n" + 
+	         "     , odd.prod_no\n" + 
+	         "     , (select name from prod where no = odd.prod_no) as prod_name\n" + 
+	         "FROM ord_dtl odd\n" + 
+	         "WHERE odd.ord_no = #{no} ")
+	List<OrdDtlBean> selectOrdDtlList(String no);
 }

@@ -102,6 +102,7 @@ public class AdminQaController {
 			row.add("");
 			row.add("");
 			row.add("");
+			row.add("");
 			tbody.add(row);
 		}
 		
@@ -286,12 +287,12 @@ public class AdminQaController {
 	public String reply_proc(Model model, QABean qaBean, BindingResult result) {
 		if (result.hasErrors()) {
 			model.addAttribute("message", "답변 등록에 실패했습니다.");
-			model.addAttribute("path", "/admin/qa/request");
 		} else {
 			qaService.setA(qaBean);
 			model.addAttribute("message", "답변이 등록되었습니다.");
-			model.addAttribute("path", "/admin/qa/complete");
 		}
+		
+		model.addAttribute("path", "/admin/qa/request");
 		return "admin/alert";
 	}
 	

@@ -1,7 +1,7 @@
-DELETE FROM cat;
-INSERT INTO cat (no, name) VALUES ('1', '√§º“');
-INSERT INTO cat (no, name) VALUES ('2', '∞˙¿œ');
-INSERT INTO cat (no, name) VALUES ('3', '¿∞∑˘');
-INSERT INTO cat (no, name) VALUES ('4', '«ÿªÍπ∞');
+ÔªøDELETE FROM cat;
+INSERT INTO cat (no, name) VALUES ('1', 'Ï±ÑÏÜå');
+INSERT INTO cat (no, name) VALUES ('2', 'Í≥ºÏùº');
+INSERT INTO cat (no, name) VALUES ('3', 'Ïú°Î•ò');
+INSERT INTO cat (no, name) VALUES ('4', 'Ìï¥ÏÇ∞Î¨º');
 
 COMMIT;
