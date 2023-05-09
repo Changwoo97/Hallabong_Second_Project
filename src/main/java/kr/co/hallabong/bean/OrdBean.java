@@ -18,6 +18,7 @@ public class OrdBean {
 	private String recv_name; // 수령인 이름
 	private String recv_tel; // 수령인 전화번호
 	private String recv_addr; // 수령인 주소
+	private String recv_addr_detail; // 수령인 주소
 	private String pay_meth; // 지불수단
 	private int dlvy_fee; // 배송료
 	private String cont; // 기타내용(교환사유, 환불사유)

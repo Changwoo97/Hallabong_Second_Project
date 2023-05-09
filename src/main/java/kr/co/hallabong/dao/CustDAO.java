@@ -71,6 +71,10 @@ public class CustDAO {
 		return custMapper.getEmailDupCheck(paramLoginCustBean);
 	}
 	
+	   public int changePw(CustBean findpw) {
+		      return custMapper.changePw(findpw);
+		   }
+	
 	//이메일
 //	public CustBean getCheckCustEmailInfo(String Email) {
 //		return custMapper.getCheckCustEmailInfo(tempLoginCustBean);

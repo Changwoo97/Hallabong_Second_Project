@@ -57,8 +57,6 @@
 				</tbody>
 			</table>
 		</div>
-
-			<p>${numposts}개의 검색결과</p>
 			<div>
 			<table class="products">
 				<thead class="products-head">

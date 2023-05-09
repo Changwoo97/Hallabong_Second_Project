@@ -71,7 +71,7 @@ public class AdminNotiController {
 			NotiBean noti = notiList.get(i);
 			if ((no.isBlank() || noti.getNo().contains(no))
 					&& (tit.isBlank() || noti.getTit().contains(tit))
-					&& (cont.isBlank() || noti.getCont().contains(cont)
+					&& (cont.isBlank() || (noti.getCont() != null && noti.getCont().contains(cont))
 					&& (reg_tmBeginDate.isBlank() || noti.getReg_tm().compareTo(reg_tmBeginDate) >= 0)
 					&& (reg_tmEndDate.isBlank() || noti.getReg_tm().compareTo(reg_tmEndDate) <= 0)))
 				continue;
@@ -92,7 +92,11 @@ public class AdminNotiController {
 				
 				row.add(noti.getNo());
 				row.add(noti.getTit().length() > 15 ? noti.getTit().substring(0, 12) + "..." : noti.getTit());
-				row.add(noti.getCont().length() > 15 ? noti.getCont().substring(0, 12) + "..." : noti.getCont());
+				if (noti.getCont() != null) {
+					row.add(noti.getCont().length() > 15 ? noti.getCont().substring(0, 12) + "..." : noti.getCont());
+				} else {
+					row.add("");
+				}
 				row.add(noti.getReg_tm());
 				
 				StringBuilder sb = new StringBuilder();

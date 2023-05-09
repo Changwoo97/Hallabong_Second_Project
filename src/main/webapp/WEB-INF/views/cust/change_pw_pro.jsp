@@ -4,6 +4,4 @@
 <c:set var='root' value='${pageContext.request.contextPath }/'/>
 <script>
 
-	alert('${findpw.pw}')
-	location.href = '${root}cust/login'
 </script>

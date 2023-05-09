@@ -1,99 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var='root' value="${pageContext.request.contextPath }/"/>   
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<c:set var='root' value="${pageContext.request.contextPath}/"/>   
+<!DOCTYPE html>
 <html>
 <head>
-
-<!-- Bootstrap CDN -->
-<link rel="stylesheet" href="${root}css/mypage.css " />
-<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ProductQuestion</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ProductQuestion</title>
+	<link rel="stylesheet" href="${root}css/mypage.css" />
+	<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 </head>
 <body>
-	<!-- 상단 타이틀 -->
-	<c:import url="/WEB-INF/views/include/top.jsp" />
+	<input type="hidden" id="root" value="${root}"/>
 	
-	<!-- 마이페이지 내용 전체를 감싸는 div -->
-	<div class="mypage-wrapper">
-	    <!-- 왼쪽 리스트 -->
-	    <div class="mypage-nav">
-	        <ul>
-	            <li><a href="${root }mypage/Orders?cust_id=${cust_id}">주문내역</a></li>
-	            <li><a href="${root }mypage/cart?prod_no=${prod_no}">장바구니</a></li>
-	            <li><a href="${root }mypage/QAList?cust_id=${cust_id}">문의내역</a></li>
-	        </ul>
-	    </div>
-	    
-	       <!-- 오른쪽 내용 -->
-    <div class="mypage-content">          		
-			
-			 <table>  								
-				<tr>
-					<td  align="left">
-						<h2>상품문의</h2>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<hr style="height: 2px; background: #000000; width: 930px;" />
-					</td>
-				</tr>			
-			</table>
-			 <div class="text-right">
-	            <a href="${root }mypage/QAwrite" class="btn btn-primary">작성하기</a>
-	         </div>
-			<form:form>
-				<c:forEach var="obj" items="${qaList }">
-					 <div class="col-sm-3" ></div>
-				     	 <div class="col-sm-6">
-				        	 <div class="card shadow" style="width: 900px">
-					            <div class="card-body">
-									<div>
-								 		<table>
-											<tr >
-												<td >Q&A : ${obj.no }</td>
-												<td align="right" >아이디 : ${obj.cust_id }</td>
-											</tr>
-											<tr height="200px;">
-												<td align="center" style="width: 100px;" >질문 : </td>
-												<td align="center" style="width: 800px;" >${obj.q }</td>
-											</tr>
-											
-											<tr >
-												<td />
-												<td align="right" >질문 시간 : ${obj.q_reg_tm }</td>						
-											</tr>
-											<tr height="200px;">
-												<td align="center" style=" width: 100px;" >답변 : </td>
-												<td align="center">${obj.a }</td>
-											</tr>
-											<tr/>
-											<tr >
-												<td />
-												<td align="right">답변 시간 : ${obj.a_reg_tm }</td>						
-											</tr>
-											<tr height="100px;">	
-												<td align="center" colspan="3">답변이 완료되었습니다. 문의해주셔서 감사합니다.</td>
-												<td/>
-											</tr>
-										
-										</table>
-									</div>	
-								</div>
-							</div>
-						</div>
-					</c:forEach>						
-				</form:form>			
-			</div>
+	<header>
+		<jsp:include page="/WEB-INF/views/include/top.jsp"/>
+	</header>
+	
+	<section class="cartPage">
+		<div class="mypage">
+			<article class="pay-step">
+				<div class="pay-step-button">
+					<span class="mypahe-button">
+						<h2><a href="${root}mypage/Orders">주문내역</a></h2>
+					</span> 
+					<span class="mypahe-button">
+						<h2><a href="${root}mypage/cart">장바구니</a></h2>
+					</span> 
+					<span class="mypahe-button" style="background: #f9d9a1">
+						<h2>문의내역</h2>
+					</span>
+				</div>
+				<hr style="height: 2px; background: #000000; width: 100%; margin-top: 0px" />
+			</article>
 		</div>
-	
-		
-		<!-- 하단타이틀 -->
-		<c:import url="/WEB-INF/views/include/bottom.jsp" />
-	</body>
+		<article class="cart-main">
+			<div class="cart-select">
+               <a href="${root}mypage/QAwrite" class="btn btn-primary" >문의하기</a>
+			</div>
+			
+			<c:forEach var="qa" items="${qaList}">
+				<table class="cartList">
+					<thead>
+						<tr>
+							<td colspan="5" style="text-align: left">${qa.no} (${qa.sta eq 'REQUEST' ? '요청' : '완료'})</td>
+						</tr>
+						<tr>
+							<th style="min-width: 50%; width: 50%; max-width: 50%">질문 (${qa.q_reg_tm})</th>
+							<th>답변 (${qa.a_reg_tm})</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><textarea rows="10" style="border: 0px; width: 100%; height: 100%" readonly>${qa.q}</textarea></td>
+							<td><textarea rows="10" style="border: 0px; width: 100%; height: 100%" readonly>${qa.a}</textarea></td>
+						</tr>
+					</tbody>
+				</table>
+			</c:forEach>
+		</article>
+	</section>
+
+	<jsp:include page="/WEB-INF/views/include/bottom.jsp" />
+</body>
 </html>

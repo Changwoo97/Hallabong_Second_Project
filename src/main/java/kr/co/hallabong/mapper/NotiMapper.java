@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.session.RowBounds;
 
 import kr.co.hallabong.bean.NotiBean;
 
@@ -13,6 +14,10 @@ public interface NotiMapper {
 	@Select("SELECT no, tit, cont, TO_CHAR(reg_tm, 'YYYY-MM_DD') AS reg_tm\n" + 
 			"FROM (SELECT * FROM noti ORDER BY reg_tm DESC) ")
 	public List<NotiBean> selectNotiList();
+	
+	@Select("SELECT no, tit, cont, TO_CHAR(reg_tm, 'YYYY-MM_DD') AS reg_tm\n" + 
+			"FROM (SELECT * FROM noti ORDER BY reg_tm DESC) ")
+	public List<NotiBean> selectNotiList2( RowBounds rowBounds);
 	
 	@Select("SELECT no, tit, cont, TO_CHAR(reg_tm, 'YYYY-MM_DD') AS reg_tm\n" + 
 			"FROM noti\n" + 
@@ -31,4 +36,8 @@ public interface NotiMapper {
 	@Delete("DELETE FROM noti \n" + 
 			"WHERE no = #{no} ")
 	public void deleteNoti(String no);
+	
+	@Select("select count(*) "
+			+ "from noti ")
+	 int getNotiCnt();	
 }

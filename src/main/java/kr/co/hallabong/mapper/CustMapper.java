@@ -91,5 +91,8 @@ public interface CustMapper {
 		  + " AND id <> #{id} ")
 	int getEmailDupCheck(CustBean paramLoginCustBean);
 
+	@Update("update cust set pw = #{pw} where id= #{id}")
+	   int changePw(CustBean findpw);
+	
 }
 

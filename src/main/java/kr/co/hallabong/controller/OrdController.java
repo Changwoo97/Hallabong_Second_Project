@@ -79,9 +79,10 @@ public class OrdController {
 			@RequestParam("prodList") String[] prodList) {
 		ord.setCust_id(loginCustBean.getId());
 		ord.setType("ORD");
+		ord.setOrdr_addr(ord.getRecv_addr()+","+ ord.getRecv_addr_detail());
 		ordService.addOrd(ord);
+		
 		List<OrdBean> ordList = ordService.getOrdList(loginCustBean.getId());
-
 		String ord_no = ordList.get(0).getNo();
 		for (int i = 1; i < ordList.size(); i++) {
 			String comp = ordList.get(i).getNo();

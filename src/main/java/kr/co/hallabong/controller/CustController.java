@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.hallabong.bean.CustBean;
+import kr.co.hallabong.dao.SHA256;
 import kr.co.hallabong.service.CustService;
 import kr.co.hallabong.validator.CustValidator;
 
@@ -66,6 +67,7 @@ public class CustController {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
+			paramLoginCustBean.setPw(SHA256.encodeSha256(paramLoginCustBean.getPw()));
 			String custId = custService.getLoginCustIdx(paramLoginCustBean); // 회원여부
 			resultMap.put("id", custId);
 		} catch (Exception e) {
@@ -168,23 +170,21 @@ public class CustController {
 	}
 
 	@GetMapping("/login")
-	public String login(@ModelAttribute("tempLoginUserBean") CustBean tempLoginUserBean,
-			@RequestParam(value = "fail", defaultValue = "false") boolean fail, Model model) {
+	public String login(@ModelAttribute("tempLoginUserBean") CustBean tempLoginUserBean, @RequestParam(value = "fail", defaultValue = "false") boolean fail, Model model) {
 		model.addAttribute("fail", fail);
 
 		return "cust/login";
 	}
 
 	@PostMapping("/login_pro")
-	public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") CustBean tempLoginUserBean,
-			BindingResult result, Model model) {
+	public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") CustBean tempLoginUserBean, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "cust/login";
 		}
-
+		tempLoginUserBean.setPw(SHA256.encodeSha256(tempLoginUserBean.getPw()));
 		custService.getLoginCustInfo(tempLoginUserBean);
 		// 비밀번호 암호하시켜서 대조하여 로그인
-//		tempLoginUserBean.setPw(SHA256.encodeSha256(tempLoginUserBean.getPw()));
+		
 
 		if (loginCustBean.isCustLogin() == true) {
 			return "cust/login_success";
@@ -212,17 +212,15 @@ public class CustController {
 	}
 
 	@PostMapping("/join_pro")
-	public String join_pro(@Valid @ModelAttribute("joinusecuCustBean") CustBean joinusecuCustBean,
-			BindingResult result) {
+	public String join_pro(@Valid @ModelAttribute("joinusecuCustBean") CustBean joinusecuCustBean, BindingResult result) {
 		if (result.hasErrors()) {
 			return "cust/join";
 		}
 
 		// 비밀번호 암호화 시켜서 데이터베이스에 저장
-//		joinusecuCustBean.setPw(SHA256.encodeSha256(joinusecuCustBean.getPw()));
-		joinusecuCustBean.setDob(joinusecuCustBean.getDob_year() + "-" + joinusecuCustBean.getDob_month() + "-"
-				+ joinusecuCustBean.getDob_day());
-		joinusecuCustBean.setAddr(joinusecuCustBean.getAddr1() + " " + joinusecuCustBean.getAddr_detail());
+		joinusecuCustBean.setPw(SHA256.encodeSha256(joinusecuCustBean.getPw()));
+		joinusecuCustBean.setDob(joinusecuCustBean.getDob_year() + "-" + joinusecuCustBean.getDob_month() + "-" + joinusecuCustBean.getDob_day());
+		joinusecuCustBean.setAddr(joinusecuCustBean.getAddr1() + "," + joinusecuCustBean.getAddr_detail());
 
 		String gender = joinusecuCustBean.getGender();
 		if (gender != null && (gender.equals("M") || gender.equals("F"))) {
@@ -259,13 +257,35 @@ public class CustController {
 		return "cust/change_pw";
 	}
 
-	@PostMapping("change_pw")
-	public String find_pw_pro(@ModelAttribute("findpw") CustBean findpw, BindingResult result, Model model) {
 
-		custService.findPw(findpw);
-		return "cust/change_pw_pro";
+
+	@RequestMapping("/update_pw") // 집주소
+	@ResponseBody
+	public Map<String, Object> updateCustPw(CustBean findpw, Model model) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+
+			int result = custService.changePw(findpw);
+			resultMap.put("result", result);
+		} catch (Exception e) {
+			resultMap.put("message", e.getMessage());
+		}
+		return resultMap;
 	}
+	   @PostMapping("change_pw_pro")
+	   public String find_pw_pro(@ModelAttribute("findpw") CustBean findpw, BindingResult result,Model model) {
+	      System.out.println(findpw.getTel());
+	      
+	      boolean pw =custService.findPw(findpw);
+	      if(pw == true) {
+	         return "cust/change_pw";
+	      }else {
+	         
+	      return "cust/update_pw";
+	      }
+	   }
 
+	
 	@GetMapping("/myInfo")
 	public String myInfo() {
 

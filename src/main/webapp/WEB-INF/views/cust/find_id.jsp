@@ -55,13 +55,13 @@
 							<h1>아이디 찾기</h1>	
 							<form:form action="find_id_pro" method="post" modelAttribute="findid">
 								<div class="form-group">
-									<form:label path="name">이름</form:label>		
+										
 									<div>
 										<form:input path="name" placeholder="이름을 입력해주세요" class="inputbox"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<form:label path="tel">휴대폰번호</form:label>
+									
 									<div>
 										<form:input path="tel" placeholder="휴대폰 번호를 입력해주세요" class="inputbox"/>
 									</div>

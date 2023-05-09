@@ -137,19 +137,19 @@
 			        }
 				});
 			});
+			
+			//휴대폰 인증번호 대조
+			$("#tell2").click(function() {
+			    if($("#tel2").val() == code2) { // 위에서 저장한값을 ㅣ교함
+		    		alert('인증성공');
+		            $("#custTelExist").val('true');
+			    } else {
+		        	alert('인증실패');
+		          	$("#custTelExist").val('false');
+			    }
+			});
 		});
 			
-		//휴대폰 인증번호 대조
-		$("#tell2").click(function() {
-		    if($("#tel2").val() == code2) { // 위에서 저장한값을 ㅣ교함
-	    		alert('인증성공');
-	            $("#custTelExist").val('true');
-		    } else {
-	        	alert('인증실패');
-	          	$("#custTelExist").val('false');
-		    }
-		});
-		
 		function resetCustTelExist() {
 		    $("#custTelExist").val('true');
 		}

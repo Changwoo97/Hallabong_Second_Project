@@ -39,6 +39,7 @@ import kr.co.hallabong.mapper.OrdMapper;
 import kr.co.hallabong.mapper.ProdCatMapper;
 import kr.co.hallabong.mapper.ProdMapper;
 import kr.co.hallabong.mapper.QAMapper;
+import kr.co.hallabong.mapper.RevMapper;
 import kr.co.hallabong.interceptor.CheckLoginInterceptor;
 import kr.co.hallabong.interceptor.TopMenuInterceptor;
 
@@ -200,7 +201,7 @@ public class ServletAppContext implements WebMvcConfigurer {
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}
-	
+
 	@Bean
 	public MapperFactoryBean<ODPDMapper> getODPDMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<ODPDMapper> factoryBean = new MapperFactoryBean<>(ODPDMapper.class);
@@ -214,20 +215,27 @@ public class ServletAppContext implements WebMvcConfigurer {
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}
-	
+
 	@Bean
-    public MapperFactoryBean<CartMapper> getCartMapper(SqlSessionFactory factory) throws Exception{
-  	  MapperFactoryBean<CartMapper> factoryBean = new MapperFactoryBean<>(CartMapper.class);
-  	  factoryBean.setSqlSessionFactory(factory);
-  	  return factoryBean;
-    }
-	
+	public MapperFactoryBean<CartMapper> getCartMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<CartMapper> factoryBean = new MapperFactoryBean<>(CartMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+
 	@Bean
-    public MapperFactoryBean<ProdCatMapper> getProdCatMapper(SqlSessionFactory factory) throws Exception{
-  	  MapperFactoryBean<ProdCatMapper> factoryBean = new MapperFactoryBean<>(ProdCatMapper.class);
-  	  factoryBean.setSqlSessionFactory(factory);
-  	  return factoryBean;
-    }
+	public MapperFactoryBean<ProdCatMapper> getProdCatMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<ProdCatMapper> factoryBean = new MapperFactoryBean<>(ProdCatMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+
+	@Bean
+	public MapperFactoryBean<RevMapper> getRevMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<RevMapper> factoryBean = new MapperFactoryBean<>(RevMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
 
 	@Bean
 	public ReloadableResourceBundleMessageSource messageSource() {

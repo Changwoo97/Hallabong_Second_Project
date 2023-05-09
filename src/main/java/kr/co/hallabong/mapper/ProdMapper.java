@@ -63,10 +63,10 @@ public interface ProdMapper {
 	@Delete("DELETE FROM prod WHERE no = ${no} ")
 	void deleteProd(String no);
 	
-	@Select("select * "+
-			"from prod " +
-			"where name LIKE '%' || #{name} || '%'")
-	List<ProdBean> searchProductList(String name);
+	   @Select(" SELECT * "
+		         + "  FROM prod "
+		         + "  WHERE LOWER(name) LIKE '%' || LOWER(#{name}) || '%'")
+		   List<ProdBean> searchProductList(String name);
 	
 	
 	@Select("select r.no, r.cust_id, r.no, r.cont, r.reg_tm "

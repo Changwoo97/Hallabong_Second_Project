@@ -52,21 +52,21 @@
 					<div class="card-body">
 						<div style="text-align: center">
 							<h1>비밀번호 찾기</h1>	
-							<form:form action="change_pw" method="post" modelAttribute="findpw" >
+							<form:form action="change_pw_pro" method="post" modelAttribute="findpw" >
 								<div class="form-group">
-									<form:label path="id">아이디</form:label>	
+										
 									<div>	
 										<form:input path="id" placeholder="아이디를 입력해주세요" class="inputbox"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<form:label path="tel">휴대폰번호</form:label>
+									
 									<div>
 										<form:input path="tel" placeholder="휴대폰 번호를 입력해주세요" class="inputbox"/>
 									</div>
 								</div>
 								<div>
-									<form:button class="find_button">찾기</form:button>
+									<form:button class="find_button">비밀번호 변경</form:button>
 								</div>
 							</form:form>
 						</div>

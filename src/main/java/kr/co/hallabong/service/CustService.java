@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.hallabong.bean.CustBean;
 import kr.co.hallabong.dao.CustDAO;
+import kr.co.hallabong.dao.SHA256;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import net.nurigo.java_sdk.api.Message;
 
@@ -46,7 +47,7 @@ public class CustService {
 		paramLoginCustBean.setTel(paramLoginCustBean.getTel() == null ? temp.getTel() : paramLoginCustBean.getTel());
 		paramLoginCustBean.setGender(paramLoginCustBean.getGender() == null ? temp.getGender() : paramLoginCustBean.getGender());
 		paramLoginCustBean.setDob(paramLoginCustBean.getDob() == null ? temp.getDob() : paramLoginCustBean.getDob());
-		paramLoginCustBean.setPw(paramLoginCustBean.getPw() == null ? temp.getPw() : paramLoginCustBean.getPw());
+		paramLoginCustBean.setPw(paramLoginCustBean.getPw() == null ? temp.getPw() :SHA256.encodeSha256(paramLoginCustBean.getPw()));
 		
 		String addr1 = paramLoginCustBean.getAddr1();
 		String addr_detail = paramLoginCustBean.getAddr_detail();
@@ -120,13 +121,13 @@ public class CustService {
 		}
 	}
 
-	public void findPw(CustBean findpw) {
+	public boolean findPw(CustBean findpw) {
 		CustBean findpw2 = custDAO.findPw(findpw);
 		
-		if (findpw2 != null) {
-			findpw.setPw(findpw2.getPw());
+		if (findpw2 == null) {
+			return true;
 		} else {
-			findpw.setPw("찾으시는 정보의 비밀번호가 없습니다 다시 확인해주세요");
+			return false;
 		}
 	}
 	
@@ -150,6 +151,16 @@ public class CustService {
 	        System.out.println(e.getCode());
         }
    }
+	public int changePw(CustBean findpw) {
+	      
+	      if(!findpw.getNew_pwd().isBlank()) {
+	         findpw.setPw(findpw.getNew_pwd());
+	         CustBean temp = custDAO.getLoginCustDetailInfo(findpw.getId());
+	         findpw.setPw(findpw.getPw() == null ? temp.getPw() :SHA256.encodeSha256(findpw.getPw()));
+	      }
+	      return custDAO.changePw(findpw);
+	   }
+	
 }
 
 // 이메일중복확인

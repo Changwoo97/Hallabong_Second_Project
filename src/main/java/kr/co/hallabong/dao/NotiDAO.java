@@ -2,6 +2,7 @@ package kr.co.hallabong.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +16,10 @@ public class NotiDAO {
 
 	public List<NotiBean> selectNotiList() {
 		return notiMapper.selectNotiList();
+	}
+	
+	public List<NotiBean> selectNotiList2(RowBounds rowBounds) {
+		return notiMapper.selectNotiList2(rowBounds);
 	}
 	
 	public NotiBean selectNoti(String no) {
@@ -31,5 +36,9 @@ public class NotiDAO {
 	
 	public void deleteNoti(String no) {
 		notiMapper.deleteNoti(no);
+	}
+	
+	public int getNotiCnt() {
+		return notiMapper.getNotiCnt();
 	}
 }

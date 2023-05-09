@@ -13,5 +13,5 @@ public class RevBean {
 	private String cont; // 내용
 	private String reg_tm; // 등록시간(YYYY-MM-DD) default 이용
 	
-	
+	private String prod_nm; // 상품명
 }

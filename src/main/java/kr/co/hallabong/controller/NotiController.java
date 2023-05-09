@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.hallabong.bean.NotiBean;
+import kr.co.hallabong.bean.PageBean;
 import kr.co.hallabong.service.NotiService;
 
 @Controller
@@ -19,20 +20,29 @@ public class NotiController {
 	private NotiService NotiService;
 	
 	@GetMapping("/main")
-	public String NotiMainPage(Model model) {
+	public String NotiMainPage(
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			Model model) {
 		
-		List<NotiBean> NoticeList = NotiService.getNotiList();
+		List<NotiBean> NoticeList = NotiService.getNotiList2(page);
 		model.addAttribute("NoticeList", NoticeList);
+		
+		PageBean pageBean = NotiService.getNotiCnt(page);
+		model.addAttribute("pageBean", pageBean);
+		
+		model.addAttribute("page", page);
 		
 		return "notice/main";
 	}
 	
 	@GetMapping("/read")
-	public String selectNoti(@RequestParam("noti_no") String no,
+	public String readNoti(@RequestParam("noti_no") String noti_no,
 					Model model) {
-		model.addAttribute("no", no);
-		NotiBean selectNoti = NotiService.getNoti(no);
-		model.addAttribute("selectNoti", selectNoti);
+		
+		model.addAttribute("noti_no", noti_no);
+		
+		NotiBean notiBean = NotiService.getNoti(noti_no);
+		model.addAttribute("notiBean", notiBean);
 		
 		return "notice/read";
 	}
