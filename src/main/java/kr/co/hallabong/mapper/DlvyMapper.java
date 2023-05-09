@@ -22,7 +22,8 @@ public interface DlvyMapper {
 	
 	@Select("SELECT no, send_name, send_tel, send_addr, recv_name, recv_tel, recv_addr, fee, reg_tm, dep_tm, arr_tm, sta, ord_no\n" + 
 			"FROM dlvy\n" + 
-			"WHERE sta = #{sta} ")
+			"WHERE sta = #{sta}\n" + 
+			"ORDER BY reg_tm DESC")
 	List<DlvyBean> selectDlvyList(String sta);
 	
 	@Insert("INSERT INTO dlvy (no, send_name, send_tel, send_addr, recv_name, recv_tel, recv_addr, fee, reg_tm, dep_tm, arr_tm, sta, ord_no)\n" + 
