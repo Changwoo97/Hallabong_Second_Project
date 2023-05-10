@@ -208,7 +208,8 @@ h4 {
 	                   var sdata = JSON.parse(JSON.stringify(data));
 	                    console.log("success_data_origin= " + data);
 	                    console.log("success_data_str= " + JSON.stringify(data));// Object로 받아온 것을 문자열의 형태로 풀어서 보여주는 것
-	                if(sdata.id.length > 0){
+	                	
+	                   	if(sdata.id != null && sdata.id.length > 0){
 	                       // update 페이지로 이동
 	                       // $("#updateForm #cust_idx").val(custId);
 	                       $("#chkForm").submit();

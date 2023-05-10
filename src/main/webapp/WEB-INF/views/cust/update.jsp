@@ -73,7 +73,7 @@
                   <div class="card-body">
                      <div class="form-group" style="text-align: left;">
                         <label>아이디</label>
-                         <input type="text" name="id" value="${custInfo.id}" readonly class="form-control" /> 
+                         <input type="text" id="id" name="id" value="${custInfo.id}" readonly class="form-control" /> 
                      </div>
                      
                      <div class="form-group" style="text-align: left;">
@@ -90,10 +90,10 @@
                      <div class="form-group" style="text-align: left;">
                         <label>주소</label>
                         <%-- <input type="text" id="addr" name="addr" value="${custInfo.addr}"> --%>
-                        <input type="text" id="addr" name="addr" value="${custInfo.addr}" readonly class="form-control">
+                        <input type="text" id="addr1" name="addr1" value="${custInfo.addr}" readonly class="form-control">
                      </div>
                      <div class="form-group" style="text-align: left;">
-                        <label>상세 주소</label> <input type="text" id="addr_detail" name="addr" class="form-control">
+                        <label>상세 주소</label> <input type="text" id="addr_detail" name="addr_detail" class="form-control">
                      </div>
                      <div class="form-group" style="text-align: left;">
                         <label>이메일</label>
@@ -153,7 +153,7 @@
       //주소 API
       window.onload = function() {
          document
-               .getElementById("addr")
+               .getElementById("addr1")
                .addEventListener(
                      "click",
                      function() { //주소입력칸을 클릭하면 지도 발생
@@ -161,7 +161,7 @@
                         new daum.Postcode(
                               {
                                  oncomplete : function(data) { //선택시 입력값 세팅
-                                    document.getElementById("addr").value = data.address; // 주소 넣기
+                                    document.getElementById("addr1").value = data.address; // 주소 넣기
                                     document
                                           .querySelector(
                                                 "input[name=addr_detail]")
@@ -274,18 +274,21 @@
 
          //key : value 형식의 data를 직접 입력
          var params = {
-            cust_idx : $("#cust_idx").val(),
+            id : $('#id').val(),
             email : email
          }
 
          // ajax 통신
          $.ajax({
             type : "POST", // HTTP method type(GET, POST) 형식
-            url : "/cust/email/check", // 컨트롤러에 구현해놓은 URL 주소
+            url : "${root}cust/email/check", // 컨트롤러에 구현해놓은 URL 주소
             data : params,
+            dataType : 'json',
             success : function(result) {
                // 여기로 들어오는 자체가 ajax 자체는 성공!
-               if (result.emailCount == 0) {
+               console.log(result);
+               console.log(JSON.stringify(result));
+               if (result.emailCount < 1) {
                   alert("사용가능한 이메일 입니다.");
                   $("#emailChkBtn").addClass('disabled');
                   $("#emailChkBtn").prop('disabled', true);
@@ -308,13 +311,13 @@
             // 예를 눌렀을 경우
             // 아래의 params는 파라미터로 보낼값(아래는 json 형태로 구현)
             var params = {
-               cust_idx : $("#cust_idx").val()
+               id : $("#id").val()
             }
 
             // ajax 통신
             $.ajax({
                type : "POST", // HTTP method type(GET, POST) 형식
-               url : "/cust/quit", // 컨트롤러에 구현해놓은 URL 주소
+               url : "${root}cust/quit", // 컨트롤러에 구현해놓은 URL 주소
                data : params,
                success : function(result) {
                   // 여기로 들어오는 자체가 ajax 자체는 성공!

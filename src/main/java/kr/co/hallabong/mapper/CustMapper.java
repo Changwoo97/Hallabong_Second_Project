@@ -78,8 +78,8 @@ public interface CustMapper {
 		  + "     , email = #{email}"
 		  + "     , tel = #{tel}"
 		  + "     , addr = #{addr}"
-		  + "     , gender = #{gender}"
-		  + "     , dob = #{dob}"
+		  + "     , gender = ${gender}"
+		  + "     , dob = ${dob}"
 		  + "     , pw = #{pw}"		  
 		  + " WHERE id = #{id}")
 	int updateCustInfo(CustBean updateCustBean);

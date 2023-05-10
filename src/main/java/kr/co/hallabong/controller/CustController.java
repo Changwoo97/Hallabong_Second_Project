@@ -64,7 +64,6 @@ public class CustController {
 	@RequestMapping("/login/check") // 집주소(경로에 대한요청 처리)
 	@ResponseBody // @Responsebody 어노테이션을 사용하면 http요청 body를 자바 객체로 전달받을 수 있다.
 	public Map<String, Object> loginCheck(CustBean paramLoginCustBean, Model model) { // Model 객체를 사용하여 View로 데이터를 전달
-
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
 			paramLoginCustBean.setPw(SHA256.encodeSha256(paramLoginCustBean.getPw()));

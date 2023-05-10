@@ -45,15 +45,30 @@ public class CustService {
 		paramLoginCustBean.setName(paramLoginCustBean.getName() == null ? temp.getName() : paramLoginCustBean.getName());
 		paramLoginCustBean.setEmail(paramLoginCustBean.getEmail() == null ? temp.getEmail() : paramLoginCustBean.getEmail());
 		paramLoginCustBean.setTel(paramLoginCustBean.getTel() == null ? temp.getTel() : paramLoginCustBean.getTel());
-		paramLoginCustBean.setGender(paramLoginCustBean.getGender() == null ? temp.getGender() : paramLoginCustBean.getGender());
-		paramLoginCustBean.setDob(paramLoginCustBean.getDob() == null ? temp.getDob() : paramLoginCustBean.getDob());
+		
+		String gender = paramLoginCustBean.getGender() == null ? temp.getGender() : paramLoginCustBean.getGender();
+		
+		paramLoginCustBean.setGender(gender == null ? "NULL" : "'" + gender + "'");
+		
+		String dob = String.format("%d-%02d-%02d", paramLoginCustBean.getDob_year(), paramLoginCustBean.getDob_month(), paramLoginCustBean.getDob_day());
+		try {
+			LocalDate.parse(dob);
+			dob = "'" + dob + "'";
+		} catch (Exception e) {
+			dob = temp.getDob();
+			if (dob == null) {
+				dob = "NULL";
+			}
+		}
+		
+		paramLoginCustBean.setDob(dob);
 		paramLoginCustBean.setPw(paramLoginCustBean.getPw() == null ? temp.getPw() :SHA256.encodeSha256(paramLoginCustBean.getPw()));
 		
 		String addr1 = paramLoginCustBean.getAddr1();
 		String addr_detail = paramLoginCustBean.getAddr_detail();
 
 		if (addr1 != null && addr_detail != null) {
-			paramLoginCustBean.setAddr(addr1 + " " + addr_detail);
+			paramLoginCustBean.setAddr(addr1 + "," + addr_detail);
 		} else {
 			paramLoginCustBean.setAddr(temp.getAddr());
 		}
