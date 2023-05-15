@@ -58,6 +58,8 @@ public class CustService {
 			dob = temp.getDob();
 			if (dob == null) {
 				dob = "NULL";
+			} else {
+				dob = "'" + dob + "'";
 			}
 		}
 		
